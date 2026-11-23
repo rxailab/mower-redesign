@@ -1,9 +1,11 @@
-# Large binaries kept out of Git (GitHub limit is 100 MB per file)
-*.blend
+# Source models (.blend, .stl) and full-res meshes are stored with Git LFS (see .gitattributes).
+# Still kept out: Blender backups, renders, and the large intermediate meshes.
 *.blend1
 renders/
 renders.zip
-work/
+work/*
+scripts/work/*
+!scripts/work/asm_dock.npz
 
 # Generated / local-only
 __pycache__/

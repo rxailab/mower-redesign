@@ -42,11 +42,25 @@ cd viewer && vercel deploy --prod
 
 `viewer/.vercelignore` 决定哪些文件不上线（本地启动脚本、claude.ai 版页面、README 等）。
 
+## 用 Git LFS 存放的大文件
+
+下面这些文件用 Git LFS 存放（规则见 `.gitattributes`）。克隆前先装好 Git LFS，`git clone` 时会自动下载；只要普通文件的话，可以设 `GIT_LFS_SKIP_SMUDGE=1` 再克隆。
+
+| 文件 | 大小 | 内容 |
+| --- | --- | --- |
+| `mower_assembly.blend` | 1.4 GB | 原始装配模型 |
+| `mower_shell.blend` | 124 MB | 原始外壳模型 |
+| `source/dock.stl` | 208 MB | 充电座原始网格 |
+| `scripts/work/asm_dock.npz` | 105 MB | 充电座网格，`design_render.py` 渲染时要用 |
+| `scripts/pipeline/a_cov.npz` | 86 MB | v17（一体式车身 + 卡扣上盖）全分辨率设计网格 |
+| `scripts/pipeline/a_one.npz` | 85 MB | v16（一体式车身）全分辨率设计网格 |
+| `scripts/pipeline/a_pro.npz` | 69 MB | v15 全分辨率设计网格 |
+
+网页查看器里的 glb 是减面后的版本，不走 LFS。
+
 ## 没有放进仓库的文件
 
-这些文件超过 GitHub 单个文件 100 MB 的上限，或者是可再生成的输出：
-
-- `mower_assembly.blend`、`mower_shell.blend`（各约 1.4 GB / 124 MB）：原始装配和外壳模型。
+- `*.blend1`：Blender 自动备份。
 - `renders/`、`renders.zip`：各版本渲染图（约 1.1 GB）。
-- `work/`：从装配模型拆出来的中间网格（底盘、车轮、充电座等，共约 9 GB）。`design_render.py` 渲染时需要其中的 `asm_dock.npz`。
+- 其余中间网格（从装配模型拆出的底盘、车轮等，以及各轮试验版本，约 15 GB）。
 - `scripts/pipeline/out_*/`：渲染输出。

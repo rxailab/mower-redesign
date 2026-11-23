@@ -1,0 +1,4 @@
+*.blend filter=lfs diff=lfs merge=lfs -text
+*.stl filter=lfs diff=lfs merge=lfs -text
+scripts/pipeline/a_*.npz filter=lfs diff=lfs merge=lfs -text
+scripts/work/*.npz filter=lfs diff=lfs merge=lfs -text
