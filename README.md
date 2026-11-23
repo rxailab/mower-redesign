@@ -4,10 +4,27 @@
 
 - 公开查看器：<https://mower-3d-viewer.vercel.app>（原版设计在 `/original/`）
 
+## 新设计的完整模型
+
+[new_design/v17_top_cover/](new_design/v17_top_cover/) 是 v17 的全分辨率装配模型，可以直接用 Blender 或任何支持 glTF 的软件打开：
+
+- `mower_new_v17.blend`（89 MB）：按零件分成 6 个集合，分别是车身（含下裙、台面、14 颗螺丝）、卡扣式上盖、盖板（含铰链）、前保险杠、控制面板（STOP 键、显示屏），以及原有的底盘、驱动轮和万向轮。
+- `mower_new_v17.glb`（79 MB）：同一套模型，单个 glTF 文件。
+- `preview.png`：预览图。
+
+新设计的零件没有减面，约 280 万个三角面。底盘和车轮取自网页查看器用的 `viewer/models/base.glb`，是减面后的版本；它们的原始全分辨率模型在 `mower_assembly.blend` 里。单位是米，Z 轴向上，+X 指向车头。
+
+重新导出（例如换成 v16 的 `a_one`）：
+
+```bash
+FULL=1 NAME=mower_new_v17 BASE=viewer/models/base.glb blender -b --factory-startup -P scripts/export_design_web.py -- scripts/pipeline scripts/pipeline/a_cov.json scripts/pipeline/a_cov.npz new_design/v17_top_cover
+```
+
 ## 目录
 
 | 路径 | 内容 |
 | --- | --- |
+| `new_design/` | 新设计的完整模型（.blend / .glb） |
 | `viewer/` | three.js 网页查看器（静态文件）。说明见 [viewer/README.md](viewer/README.md) |
 | `viewer/models/` | 查看器用的 glb 模型、`design.json`、`hotspots.json`、配色表 |
 | `viewer/original/` | 原版设计的查看器页面 |

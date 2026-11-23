@@ -2,9 +2,12 @@
 usage: blender -b --factory-startup -P export_design_web.py -- DESIGN_DIR PARAMS.json SHELL.npz OUTDIR
 DESIGN_DIR holds keep.npz (front bumper, as scanned), control.npz (STOP key, display) and mounts.json (chassis fastening points).
 Layers: lid (flap + hinge arms) / cover (snap-on top cover, lid well) / body (one-piece body with skirt, deck and screws) /
-lower (front bumper) / panel (STOP key and display: they stay on the chassis)."""
+lower (front bumper) / panel (STOP key and display: they stay on the chassis).
+FULL=1: no decimation; instead of the web files, write one assembled full-resolution model OUTDIR/NAME.blend + NAME.glb
+(NAME defaults to the npz name). BASE=path/to/base.glb adds the chassis, drive wheels and casters, trimmed like the viewer does."""
 import bpy, sys, os, json, math, numpy as np
 a = sys.argv[sys.argv.index('--') + 1:]; DD, PJ, NPZ, OUT = a[0], a[1], a[2], a[3]
+FULL = os.environ.get('FULL') == '1'
 P = json.load(open(PJ)); col = P.get('colors', {}); d = np.load(NPZ)
 bpy.ops.wm.read_factory_settings(use_empty=True); sc = bpy.context.scene
 
@@ -67,14 +70,14 @@ if HASCOVER:
     if 'ckit_v' in d.files and len(d['ckit_f']): obj('CoverKit', d['ckit_v'], d['ckit_f'], ['Inner'], smooth_deg=35).parent = cover
 obj('LidWell', d['kitf_v'], d['kitf_f'], KIT, d['kitf_lab']).parent = cover if HASCOVER else body
 c = np.load(os.path.join(DD, 'control.npz')); cl = c['lab']
-obj('Controls', c['v'], c['f'], ['Dark', 'StopButton', 'DisplayGlass'], np.where(cl == 1, 1, np.where(cl == 2, 2, 0)), smooth_deg=40, ratio=0.3).parent = panel
+obj('Controls', c['v'], c['f'], ['Dark', 'StopButton', 'DisplayGlass'], np.where(cl == 1, 1, np.where(cl == 2, 2, 0)), smooth_deg=40, ratio=None if FULL else 0.3).parent = panel
 skin('LidSkin', lab == 4, ['LidPaint'], lidr, idx=False)
 obj('LidKit', d['kitm_v'], d['kitm_f'], KIT, d['kitm_lab']).parent = lidr
 k = np.load(os.path.join(DD, 'keep.npz')); kl = k['lab']; kc = k['v'][k['f']].mean(1); kk = ~((kl == 6) & (kc[:, 0] > 0.27))
 if P.get('nose'): kk &= ~((kl == 0) & (kc[:, 0] > 0.255))
 if P.get('skirt'): kk &= (kl != 0)                    # one-piece body: the scanned skirt is gone, only the front bumper is kept
 v_, f_ = compact(k['v'], k['f'][kk])
-obj('Bumper', v_, f_, ['SkirtPaint', 'Dark'], np.where((kl == 7) | (kl == 6), 1, 0)[kk], smooth_deg=40, weld=False, ratio=0.085).parent = lower
+obj('Bumper', v_, f_, ['SkirtPaint', 'Dark'], np.where((kl == 7) | (kl == 6), 1, 0)[kk], smooth_deg=40, weld=False, ratio=None if FULL else 0.085).parent = lower
 if 'plinth_v' in d.files: obj('Plinth', d['plinth_v'], d['plinth_f'], ['SkirtPaint'], smooth_deg=30).parent = lower
 
 def export(root, path):
@@ -85,6 +88,41 @@ def export(root, path):
     print('exported', os.path.basename(path), os.path.getsize(path) // 1024, 'KB')
 os.makedirs(OUT, exist_ok=True)
 ROOTS = {'body': body, 'cover': cover, 'lid': lidr, 'lower': lower, 'panel': panel}
+
+if FULL:          # one assembled, full-resolution model for Blender / CAD: NAME.blend + NAME.glb
+    import bmesh
+    NAME = os.environ.get('NAME', os.path.splitext(os.path.basename(NPZ))[0])
+    CN = {'body': 'Body (one-piece, skirt, deck, screws)', 'cover': 'Top cover (snap-on)', 'lid': 'Lid (hinged flap)',
+          'lower': 'Front bumper', 'panel': 'Control panel (STOP key, display)'}
+    def to_col(objs, cname):
+        c_ = bpy.data.collections.new(cname); sc.collection.children.link(c_)
+        for o in objs:
+            for u in list(o.users_collection): u.objects.unlink(o)
+            c_.objects.link(o)
+    for k_, r_ in ROOTS.items():
+        if r_.children: to_col([r_, *r_.children], CN[k_])
+        else: bpy.data.objects.remove(r_)
+    BASE = os.environ.get('BASE')
+    if BASE:
+        before = set(bpy.data.objects); bpy.ops.import_scene.gltf(filepath=BASE); new = [o for o in bpy.data.objects if o not in before]
+        MJ = json.load(open(os.path.join(DD, 'mounts.json'))); posts = MJ['posts']
+        ch = bpy.data.objects.get('Chassis'); cut_n = 0
+        for o in ([ch, *ch.children_recursive] if ch else []):          # same cut as the viewer: chassis side rails that would show through the body
+            if o.type != 'MESH': continue
+            bm = bmesh.new(); bm.from_mesh(o.data); mw = o.matrix_world; dead = []
+            for v_ in bm.verts:
+                p_ = mw @ v_.co
+                if abs(p_.y) > 0.160 and p_.z > 0.135 and -0.06 < p_.x < 0.29 and not any((p_.x - q[0]) ** 2 + (p_.y - q[1]) ** 2 < 0.0068 ** 2 for q in posts):
+                    dead.append(v_)
+            cut_n += len(dead); bmesh.ops.delete(bm, geom=dead, context='VERTS'); bm.to_mesh(o.data); bm.free()
+        print('chassis trimmed:', cut_n, 'vertices')
+        to_col(new, 'Chassis, drive wheels, casters (original)')
+    bpy.ops.object.select_all(action='DESELECT')
+    bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT, NAME + '.blend'), compress=True)
+    bpy.ops.export_scene.gltf(filepath=os.path.join(OUT, NAME + '.glb'), export_format='GLB', use_selection=False, export_yup=True, export_apply=True,
+                              export_normals=True, export_materials='EXPORT', export_cameras=False, export_lights=False, export_animations=False)
+    for ext in ('.blend', '.glb'): print('saved', NAME + ext, os.path.getsize(os.path.join(OUT, NAME + ext)) // 1024, 'KB')
+    sys.exit(0)
 for n_, r_ in ROOTS.items(): export(r_, os.path.join(OUT, n_ + '.glb'))
 
 # ---- numbers the viewer needs (glTF axes: x forward, y up, z = the mower's right)
