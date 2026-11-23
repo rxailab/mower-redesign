@@ -1,0 +1,18 @@
+# Large binaries kept out of Git (GitHub limit is 100 MB per file)
+*.blend
+*.blend1
+renders/
+renders.zip
+work/
+
+# Generated / local-only
+__pycache__/
+*.pyc
+venv/
+scripts/pipeline/out_*/
+*.log
+
+# Secrets and tool state
+.env*
+.vercel/
+.claude/

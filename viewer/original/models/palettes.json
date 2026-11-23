@@ -1,0 +1,165 @@
+{
+ "default": "black",
+ "schemes": [
+  {
+   "id": "black",
+   "zh": "曜石黑",
+   "en": "Obsidian Black",
+   "shell": {
+    "hex": "#212123",
+    "finish": "gloss"
+   },
+   "middle": {
+    "hex": "#4A4D52",
+    "finish": "satin"
+   },
+   "pod": "#8C929A",
+   "stripe": null,
+   "ring": "#2FC6DC"
+  },
+  {
+   "id": "yellow",
+   "zh": "明黄",
+   "en": "Signal Yellow",
+   "shell": {
+    "hex": "#F4D014",
+    "finish": "gloss"
+   },
+   "middle": {
+    "hex": "#2E2C2A",
+    "finish": "matte"
+   },
+   "pod": "#F2F1EC",
+   "stripe": null,
+   "ring": "#FFD23F"
+  },
+  {
+   "id": "blue",
+   "zh": "宝石蓝",
+   "en": "Sapphire Blue",
+   "shell": {
+    "hex": "#1A47B0",
+    "finish": "metallic"
+   },
+   "middle": {
+    "hex": "#26282C",
+    "finish": "satin"
+   },
+   "pod": "#ADB5BF",
+   "stripe": null,
+   "ring": "#2F6BFF"
+  },
+  {
+   "id": "red",
+   "zh": "绯红",
+   "en": "Crimson",
+   "shell": {
+    "hex": "#B8102E",
+    "finish": "gloss"
+   },
+   "middle": {
+    "hex": "#2A2B2D",
+    "finish": "satin"
+   },
+   "pod": "#ADB5BF",
+   "stripe": null,
+   "ring": "#4FC3FF"
+  },
+  {
+   "id": "stripes",
+   "zh": "勒芒白",
+   "en": "Le Mans Stripes",
+   "shell": {
+    "hex": "#ECEDEA",
+    "finish": "gloss"
+   },
+   "middle": {
+    "hex": "#1D2840",
+    "finish": "satin"
+   },
+   "pod": "#7D8BA3",
+   "stripe": "#2A4C93",
+   "ring": "#4E87FF"
+  },
+  {
+   "id": "silver",
+   "zh": "银箭",
+   "en": "Silver Arrow",
+   "shell": {
+    "hex": "#B5BBC1",
+    "finish": "metallic"
+   },
+   "middle": {
+    "hex": "#2B2F34",
+    "finish": "satin"
+   },
+   "pod": "#7E858C",
+   "stripe": null,
+   "ring": "#00CDBE"
+  },
+  {
+   "id": "brg",
+   "zh": "英伦绿",
+   "en": "Racing Green",
+   "shell": {
+    "hex": "#1E4532",
+    "finish": "gloss"
+   },
+   "middle": {
+    "hex": "#E6D9B8",
+    "finish": "satin"
+   },
+   "pod": "#D5CFBF",
+   "stripe": "#DED8C7",
+   "ring": "#3DDC97"
+  },
+  {
+   "id": "sage",
+   "zh": "鼠尾草",
+   "en": "Sage & Pine",
+   "shell": {
+    "hex": "#829474",
+    "finish": "satin"
+   },
+   "middle": {
+    "hex": "#2D3631",
+    "finish": "matte"
+   },
+   "pod": "#D9D5CB",
+   "stripe": null,
+   "ring": "#B4EC8E"
+  },
+  {
+   "id": "sand",
+   "zh": "大漠沙",
+   "en": "Rally Sand",
+   "shell": {
+    "hex": "#BCAA88",
+    "finish": "satin"
+   },
+   "middle": {
+    "hex": "#35332F",
+    "finish": "matte"
+   },
+   "pod": "#ECE9E2",
+   "stripe": null,
+   "ring": "#2FC6DC"
+  },
+  {
+   "id": "taro",
+   "zh": "香芋紫",
+   "en": "Taro Lilac",
+   "shell": {
+    "hex": "#AC93D3",
+    "finish": "gloss"
+   },
+   "middle": {
+    "hex": "#3D2E52",
+    "finish": "satin"
+   },
+   "pod": "#F2F1F6",
+   "stripe": null,
+   "ring": "#9B6BFF"
+  }
+ ]
+}

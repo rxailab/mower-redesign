@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>割草机 3D 查看器（原版）</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect x='6' y='18' width='52' height='28' rx='12' fill='%231d232b'/%3E%3Ccircle cx='20' cy='46' r='10' fill='%232fc6dc'/%3E%3Ccircle cx='20' cy='46' r='6' fill='%231d232b'/%3E%3Crect x='30' y='24' width='14' height='6' rx='3' fill='%23e8552f'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+<script>
+  // Boot watchdog: explains the most common reasons the 3D module cannot start
+  (function () {
+    function msg(html) {
+      var t = document.getElementById('loaderText'), b = document.getElementById('barFill');
+      if (t) t.innerHTML = html;
+      if (b) b.classList.add('error');
+    }
+    document.addEventListener('DOMContentLoaded', function () {
+      if (location.protocol === 'file:') {
+        msg('浏览器不允许直接从本地文件加载模型。<br>请双击运行“启动查看器”脚本（或 serve.py），它会在浏览器中打开本页面。');
+        return;
+      }
+      if (window.HTMLScriptElement && HTMLScriptElement.supports && !HTMLScriptElement.supports('importmap')) {
+        msg('当前浏览器版本过旧，无法运行三维查看器。<br>请使用最新版 Chrome / Edge / Firefox / Safari。');
+        return;
+      }
+      setTimeout(function () {
+        if (!window.__mowerStarted) msg('三维引擎（three.js）加载失败或超时。<br>首次打开需要联网访问 cdn.jsdelivr.net，请检查网络后刷新页面。');
+      }, 20000);
+    });
+  })();
+</script>
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://cdn.jsdelivr.net/npm/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://cdn.jsdelivr.net/npm/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<div id="stage">
+  <canvas id="c" role="img" aria-label="割草机三维模型：可拖动旋转、缩放，轮子可拖动转动"></canvas>
+  <svg id="leaders" aria-hidden="true"></svg>
+  <div id="hotspots"></div>
+  <div id="partlabels" aria-hidden="true"></div>
+</div>
+
+<header id="title">
+  <h1>割草机 3D 模型查看器</h1>
+  <p id="hint">左键拖动旋转&nbsp;· 滚轮缩放&nbsp;· 右键平移&nbsp;· 点编号看说明&nbsp;· 按住轮子拖动可转动</p>
+</header>
+
+<button id="panelToggle" class="icon-btn" aria-expanded="true" aria-controls="panel" aria-label="控制面板">✕</button>
+
+<aside id="panel" aria-label="控制面板">
+  <section>
+    <h2>视角</h2>
+    <div class="btn-grid">
+      <button data-view="iso" aria-pressed="false">轴测</button>
+      <button data-view="front" aria-pressed="false">正面</button>
+      <button data-view="rear" aria-pressed="false">背面</button>
+      <button data-view="left" aria-pressed="false">左侧</button>
+      <button data-view="right" aria-pressed="false">右侧</button>
+      <button data-view="top" aria-pressed="false">俯视</button>
+    </div>
+    <div class="row">
+      <label class="switch"><input type="checkbox" id="autoRotate"><span>自动旋转</span></label>
+      <button id="shot" class="ghost-btn">截图</button>
+    </div>
+  </section>
+
+  <section>
+    <h2>充电座</h2>
+    <button id="dockBtn" class="primary wide">驶离充电座</button>
+    <p class="note">割草机默认停在充电座上，车头的两个开口套在充电针上。点击后它会自动倒车驶离，再点一次开回充电座。</p>
+  </section>
+
+  <section>
+    <h2>爆炸视图</h2>
+    <div class="row">
+      <input type="range" id="explode" min="0" max="100" value="0" aria-label="爆炸程度">
+      <output id="explodeVal" for="explode">0%</output>
+    </div>
+    <button id="explodeBtn" class="primary wide">展开分解</button>
+    <p class="note">顶壳、中层壳体依次升起；驱动轮与万向轮始终装在底盘上。</p>
+  </section>
+
+  <section>
+    <h2>配色方案</h2>
+    <div id="swatches" role="radiogroup" aria-label="配色方案（顶壳与中层壳体一起变色）"></div>
+    <p class="note scheme-name" id="schemeName" aria-live="polite"></p>
+    <p class="note">顶壳、中层壳体、传感器罩和轮毂灯环一起换色；底盘、前保险杠和 STOP 键颜色不变。</p>
+  </section>
+
+  <section>
+    <h2>车轮</h2>
+    <div class="slider-row"><label for="wheelL">左轮转角</label><input type="range" id="wheelL" min="-180" max="180" value="0"><output id="wheelLOut" for="wheelL">0°</output></div>
+    <div class="slider-row"><label for="wheelR">右轮转角</label><input type="range" id="wheelR" min="-180" max="180" value="0"><output id="wheelROut" for="wheelR">0°</output></div>
+    <div class="slider-row"><label for="casterL">左万向轮朝向</label><input type="range" id="casterL" min="-180" max="180" value="0"><output id="casterLOut" for="casterL">0°</output></div>
+    <div class="slider-row"><label for="casterR">右万向轮朝向</label><input type="range" id="casterR" min="-180" max="180" value="0"><output id="casterROut" for="casterR">0°</output></div>
+    <div class="row">
+      <label class="switch"><input type="checkbox" id="drive"><span>行驶演示</span></label>
+      <button id="resetWheels" class="ghost-btn">车轮复位</button>
+    </div>
+    <p class="note">在模型上按住驱动轮拖动即可转动；万向轮在车尾底部，打开“透视外壳”或展开分解后即可直接拖动调整朝向。转角为正表示向前滚动，朝向 0° 表示跟随行驶方向。</p>
+  </section>
+
+  <section>
+    <h2>显示</h2>
+    <label class="check"><input type="checkbox" id="showTop" checked> 顶壳</label>
+    <label class="check"><input type="checkbox" id="showMid" checked> 中层壳体</label>
+    <label class="check"><input type="checkbox" id="showBase" checked> 底盘（含驱动轮、万向轮）</label>
+    <label class="check"><input type="checkbox" id="showDock" checked> 充电座</label>
+    <label class="check"><input type="checkbox" id="ghost"> 透视外壳（看清底盘和万向轮）</label>
+    <label class="check"><input type="checkbox" id="showHotspots" checked> 部件标注</label>
+  </section>
+
+  <section>
+    <p class="note version-link">当前是原版设计。<a href="../">查看新设计 →</a></p>
+  </section>
+</aside>
+
+<div id="info" role="dialog" aria-modal="false" aria-labelledby="infoTitle" aria-describedby="infoText" hidden>
+  <button id="infoClose" class="icon-btn small" aria-label="关闭说明">✕</button>
+  <h3 id="infoTitle"></h3>
+  <p id="infoText" aria-live="polite"></p>
+</div>
+
+<div id="loader">
+  <div class="loader-card">
+    <div class="loader-title">正在加载模型…</div>
+    <div class="bar"><div id="barFill"></div></div>
+    <div id="loaderText">0%</div>
+  </div>
+</div>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>

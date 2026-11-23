@@ -1,0 +1,155 @@
+{
+ "default": "silver",
+ "schemes": [
+  {
+   "id": "silver",
+   "zh": "银箭",
+   "en": "Silver Arrow",
+   "body": {
+    "hex": "#B4B9C0",
+    "finish": "metallic"
+   },
+   "deck": {
+    "hex": "#0B0C0E",
+    "finish": "gloss"
+   },
+   "accent": "#FF6A2B",
+   "ring": "#D7DCE2"
+  },
+  {
+   "id": "black",
+   "zh": "曜石黑",
+   "en": "Obsidian Black",
+   "body": {
+    "hex": "#2B2D31",
+    "finish": "metallic"
+   },
+   "deck": {
+    "hex": "#0B0C0E",
+    "finish": "gloss"
+   },
+   "accent": "#FF6A2B",
+   "ring": "#2FC6DC"
+  },
+  {
+   "id": "white",
+   "zh": "勒芒白",
+   "en": "Le Mans White",
+   "body": {
+    "hex": "#ECEDEA",
+    "finish": "gloss"
+   },
+   "deck": {
+    "hex": "#16203A",
+    "finish": "gloss"
+   },
+   "accent": "#FF6A2B",
+   "ring": "#4E87FF"
+  },
+  {
+   "id": "yellow",
+   "zh": "明黄",
+   "en": "Signal Yellow",
+   "body": {
+    "hex": "#F4D014",
+    "finish": "gloss"
+   },
+   "deck": {
+    "hex": "#0B0C0E",
+    "finish": "gloss"
+   },
+   "accent": "#F2F1EC",
+   "ring": "#FFD23F"
+  },
+  {
+   "id": "blue",
+   "zh": "宝石蓝",
+   "en": "Sapphire Blue",
+   "body": {
+    "hex": "#1A47B0",
+    "finish": "metallic"
+   },
+   "deck": {
+    "hex": "#0B0C0E",
+    "finish": "gloss"
+   },
+   "accent": "#FF6A2B",
+   "ring": "#2F6BFF"
+  },
+  {
+   "id": "red",
+   "zh": "绯红",
+   "en": "Crimson",
+   "body": {
+    "hex": "#B8102E",
+    "finish": "gloss"
+   },
+   "deck": {
+    "hex": "#0B0C0E",
+    "finish": "gloss"
+   },
+   "accent": "#E6E8EB",
+   "ring": "#4FC3FF"
+  },
+  {
+   "id": "brg",
+   "zh": "英伦绿",
+   "en": "Racing Green",
+   "body": {
+    "hex": "#1E4532",
+    "finish": "gloss"
+   },
+   "deck": {
+    "hex": "#0B0C0E",
+    "finish": "gloss"
+   },
+   "accent": "#DED8C7",
+   "ring": "#3DDC97"
+  },
+  {
+   "id": "sage",
+   "zh": "鼠尾草",
+   "en": "Sage & Pine",
+   "body": {
+    "hex": "#829474",
+    "finish": "satin"
+   },
+   "deck": {
+    "hex": "#1C241F",
+    "finish": "gloss"
+   },
+   "accent": "#F2E9D0",
+   "ring": "#B4EC8E"
+  },
+  {
+   "id": "sand",
+   "zh": "大漠沙",
+   "en": "Rally Sand",
+   "body": {
+    "hex": "#BCAA88",
+    "finish": "satin"
+   },
+   "deck": {
+    "hex": "#201E1B",
+    "finish": "gloss"
+   },
+   "accent": "#FF6A2B",
+   "ring": "#2FC6DC"
+  },
+  {
+   "id": "taro",
+   "zh": "香芋紫",
+   "en": "Taro Lilac",
+   "body": {
+    "hex": "#AC93D3",
+    "finish": "gloss"
+   },
+   "deck": {
+    "hex": "#241A33",
+    "finish": "gloss"
+   },
+   "accent": "#F2F1F6",
+   "ring": "#9B6BFF"
+  }
+ ]
+}

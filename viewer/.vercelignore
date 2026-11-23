@@ -1,0 +1,11 @@
+# only the static viewer is deployed; local launcher and the claude.ai variant stay out
+artifact.html
+serve.py
+启动查看器.sh
+启动查看器.bat
+README.md
+models/rig.json
+.env*
+.vercel
+.gitignore
+models/hotspots_base.json
