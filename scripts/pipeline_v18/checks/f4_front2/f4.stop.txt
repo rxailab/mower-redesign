@@ -1,0 +1,144 @@
+{
+ "npz": "f4.npz",
+ "A_geometry_20.101.4": {
+  "minor_dimension_mm": 39.99,
+  "min_rect_mm": [
+   39.99,
+   39.99
+  ],
+  "req_minor_dimension_mm": 35.0,
+  "surround_band_z_mm": [
+   278.22,
+   280.06
+  ],
+  "cap_top_mm": 289.2,
+  "cap_z_at_20pct_area_mm": 289.1,
+  "raised_ge_5mm_plan_fraction": 0.995,
+  "req_fraction": 0.2,
+  "height_of_20pct_area_over_band_max_mm": 9.04,
+  "surround_clear_width_min_mm": 60.0,
+  "req_surround_width_mm": 15.0,
+  "highest_point_of_machine": true,
+  "machine_top_without_key_mm": 280.07,
+  "legend": {
+   "width_mm": 28.0,
+   "cap_height_mm": 7.35,
+   "font": "Liberation Sans Bold (SIL OFL 1.1)"
+  },
+  "legend_reads": "front",
+  "colour": {
+   "stop": "#C8102E",
+   "legend": "#F4F4F2",
+   "contrast_legend_on_red": 5.34,
+   "contrast_red_on_lid": 3.79
+  },
+  "pass": true
+ },
+ "B_budget": {
+  "worst_case": {
+   "gap_nominal": 1.45,
+   "stack_wc": 1.3,
+   "stack_rss": 0.48,
+   "thermal": [
+    -0.31,
+    0.41
+   ],
+   "gap_range_wc": [
+    -0.16,
+    3.16
+   ],
+   "false_press_at_rest_max": 0.16,
+   "key_act_min": 0.3,
+   "no_false_stop": true,
+   "cap_travel_to_actuate_max": 4.66,
+   "stroke": 5.0,
+   "actuation_margin": 0.34,
+   "always_actuates": true,
+   "F_operate_max": 20.6,
+   "F_operate_min": 4.8,
+   "F_to_cap_stop_max": 28.8,
+   "compliance_travel_max": 5.55,
+   "F_on_real_key_max": 24.9,
+   "F_ret_max": 5.0
+  },
+  "monte_carlo": {
+   "n": 200000,
+   "gap_p001_p999": [
+    0.79,
+    2.22
+   ],
+   "false_stop_fraction": 0.0,
+   "no_actuation_fraction": 0.0,
+   "F_operate_p50_p999": [
+    13.1,
+    19.5
+   ],
+   "F_operate_gt_30": 0.0,
+   "F_to_stop_p50_p999": [
+    24.0,
+    26.4
+   ],
+   "F_to_stop_gt_30": 0.0
+  },
+  "latch_order": {
+   "F_lid_over_at_cap_N": {
+    "min": 14.4,
+    "max": 37.3
+   },
+   "seal_I2_m3": 0.011244,
+   "theta_over_deg": 0.438,
+   "spring_T_closed_Nm": 0.2175,
+   "gravity_T_closed_Nm": 0.1414,
+   "net_open_closed_Nm": 0.0761,
+   "spring_source": "lid.h3"
+  },
+  "latch_order_ok": true
+ },
+ "D_lid_open_real_key": {
+  "key_minor_dimension_mm": 37.73,
+  "key_z_at_20pct_area_mm": 261.01,
+  "panel_in_band_max_mm": 253.57,
+  "kit_in_band_max_mm": {
+   "well": 257.07,
+   "latch": 267.94,
+   "lip": 255.07
+  },
+  "rise_over_panel_mm": 7.44,
+  "rise_over_well_floor_mm": 3.94,
+  "latch_housing_above_key_mm": 6.93,
+  "stop_parts_min_xz_distance_to_key_open_mm": 141.7
+ },
+ "ok": true
+}
+{"slices": 95, "stroke_steps": 21, "lid_angles": [0.0, -0.438], "min_clearance_check_mm": 0.525, "worst_pair": "stop_cap|lidskin", "ok_0_5mm": true}
+  stop_carrier|stop_halo             {'min_mm': 0.0, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(15.5), 'hit': True, 'cls': 'designed'}
+  stop_arm_upper|stop_bumper         {'min_mm': 0.0, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(5.6), 'hit': True, 'cls': 'designed'}
+  stop_arm_upper|stop_pin_front      {'min_mm': 0.159, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(-6.0), 'hit': False, 'cls': 'designed'}
+  stop_arm_upper|stop_pin_rear       {'min_mm': 0.159, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(-6.0), 'hit': False, 'cls': 'designed'}
+  stop_arm_lower|stop_pin_front      {'min_mm': 0.159, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(-6.0), 'hit': False, 'cls': 'designed'}
+  stop_arm_lower|stop_pin_rear       {'min_mm': 0.159, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(6.0), 'hit': False, 'cls': 'designed'}
+  stop_pin_front|stop_bumper         {'min_mm': 0.2, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(-6.5), 'hit': False, 'cls': 'designed'}
+  stop_arm_upper|stop_bore           {'min_mm': 0.2, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(-4.0), 'hit': False, 'cls': 'designed'}
+  stop_cap|lidskin                   {'min_mm': 0.525, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(-19.0), 'hit': False, 'cls': 'check'}
+  stop_carrier|controls              {'min_mm': 0.788, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(3.0), 'hit': False, 'cls': 'check'}
+  stop_cap|stop_halo                 {'min_mm': 0.995, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(-6.5), 'hit': False, 'cls': 'check'}
+  stop_carrier|stop_bumper           {'min_mm': 1.021, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(0.0), 'hit': False, 'cls': 'check'}
+  stop_arm_upper|kitm_underside      {'min_mm': 1.11, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(5.6), 'hit': False, 'cls': 'check'}
+  stop_arm_lower|controls            {'min_mm': 1.308, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(5.6), 'hit': False, 'cls': 'check'}
+  stop_arm_upper|stop_carrier        {'min_mm': 1.383, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(0.0), 'hit': False, 'cls': 'check'}
+  stop_arm_lower|stop_bracket        {'min_mm': 1.432, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(-4.5), 'hit': False, 'cls': 'check'}
+  stop_arm_lower|stop_carrier        {'min_mm': 1.5, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(0.0), 'hit': False, 'cls': 'check'}
+  stop_arm_upper|stop_bracket        {'min_mm': 1.5, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(-4.5), 'hit': False, 'cls': 'check'}
+  stop_pin_front|controls            {'min_mm': 1.502, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(5.0), 'hit': False, 'cls': 'check'}
+  stop_carrier|lidskin               {'min_mm': 1.508, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(-13.0), 'hit': False, 'cls': 'check'}
+  stop_arm_upper|stop_halo           {'min_mm': 1.727, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(-5.6), 'hit': False, 'cls': 'check'}
+  stop_carrier|kitm_underside        {'min_mm': 2.321, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(0.0), 'hit': False, 'cls': 'check'}
+  stop_carrier|stop_bore             {'min_mm': 2.321, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(0.0), 'hit': False, 'cls': 'check'}
+  stop_cspring|stop_bumper           {'min_mm': 2.406, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(0.5), 'hit': False, 'cls': 'check'}
+  stop_cap|kitm_rib                  {'min_mm': 2.443, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(19.0), 'hit': False, 'cls': 'check'}
+  stop_arm_lower|stop_arm_upper      {'min_mm': 2.686, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(-5.6), 'hit': False, 'cls': 'check'}
+  stop_cap|kitm_underside            {'min_mm': 2.725, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(19.0), 'hit': False, 'cls': 'check'}
+  stop_arm_upper|stop_cspring        {'min_mm': 2.795, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(0.0), 'hit': False, 'cls': 'check'}
+  stop_pin_front|stop_bore           {'min_mm': 2.874, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(-6.5), 'hit': False, 'cls': 'designed'}
+  stop_carrier|halo_feed             {'min_mm': 2.954, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.0), 'y_mm': np.float64(-0.5), 'hit': False, 'cls': 'check'}
+STOPCHECK OK: True

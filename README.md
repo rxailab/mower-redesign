@@ -1,10 +1,38 @@
 # 割草机外壳重新设计（方案 A）与 3D 查看器
 
-机器人割草机外壳的重新设计：保留原有底盘、前保险杠和车轮，重新设计车身。当前版本是 v17：一体式车身，加一块卡扣式上盖，盖住所有固定螺丝；盖板与车顶齐平，下面是 STOP 键和显示屏。
+机器人割草机外壳的重新设计：保留原有底盘、前保险杠和车轮，重新设计车身。当前版本是 v18“Orbit”（f4）：
+
+- 浅陶瓷灰的卡扣式上盖罩在深石墨色的一体式车身上，2.5 mm 实体壁厚；
+- 全车只有一条分缝，带防水迷宫；
+- 前后是同样的烟色镜面灯带，用密封灯组；
+- 车头是对称的充电口；
+- 盖板与车顶齐平，用隐藏的齿轮弧轨铰链，自动开启、双向阻尼；
+- 盖板上是符合 EN 50636-2-107 的红色凸起 STOP 键；
+- 底盘只切两处旧挡泥板件。
+
+v17 的模型和生成器还保留在仓库里。
 
 - 公开查看器：<https://mower-3d-viewer.vercel.app>（原版设计在 `/original/`）
 
 ## 新设计的完整模型
+
+[new_design/v18_orbit/](new_design/v18_orbit/) 是 v18 Orbit（f4）的全分辨率装配模型：
+
+- `mower_new_v18_orbit.blend`（234 MB）：按零件分成 6 个集合：
+  - 车身（含下裙、台面、螺丝、灯组、线束）；
+  - 卡扣式上盖（含盖板槽和铰链座）；
+  - 盖板（含 STOP 键）；
+  - 前保险杠；
+  - 控制面板；
+  - 原有的底盘、驱动轮和万向轮（底盘按规格切掉两处）。
+- `mower_new_v18_orbit.glb`（17 MB）：同一套模型，单个 glTF 文件，用 Draco 压缩（Blender 和大多数 glTF 软件都能直接打开）。
+- `preview.png`：预览图。
+
+重新导出（在 `scripts/pipeline_v18/` 里，先按该目录 `CHANGES.txt` 第 4、7 节生成 `f4.npz`）：
+
+```bash
+FULL=1 NAME=mower_new_v18_orbit BASE=../../viewer/models/base.glb blender -b --factory-startup -P export_web.py -- f4.json f4.npz ../../new_design/v18_orbit
+```
 
 [new_design/v17_top_cover/](new_design/v17_top_cover/) 是 v17 的全分辨率装配模型，可以直接用 Blender 或任何支持 glTF 的软件打开：
 
@@ -24,7 +52,9 @@ FULL=1 NAME=mower_new_v17 BASE=viewer/models/base.glb blender -b --factory-start
 
 | 路径 | 内容 |
 | --- | --- |
-| `new_design/` | 新设计的完整模型（.blend / .glb） |
+| `scripts/pipeline_v18/` | v18“Orbit”生成器、全部检查和渲染脚本。最终参数是 `f4.json`（由 `mk_f3.py` 从 `f2.json` 和 `fix3_*.json`、`fix4_*.json` 合成）。说明见 `CHANGES.txt`：第 6 节是第 3 轮修复，第 7 节是第 4 轮修复。检查结果在 `checks/` |
+| `renders/redesign/v18_orbit/`、`v18_orbit_f4/` | v18 f2 和 f4 的渲染图（不在仓库里，`renders/` 被忽略） |
+| `new_design/` | 新设计的完整模型（.blend / .glb）：v18 Orbit 和 v17 |
 | `viewer/` | three.js 网页查看器（静态文件）。说明见 [viewer/README.md](viewer/README.md) |
 | `viewer/models/` | 查看器用的 glb 模型、`design.json`、`hotspots.json`、配色表 |
 | `viewer/original/` | 原版设计的查看器页面 |
@@ -37,7 +67,17 @@ FULL=1 NAME=mower_new_v17 BASE=viewer/models/base.glb blender -b --factory-start
 - `scripts/pipeline/design_gen.py`：读取设计参数（如 `a_cov.json`），生成车身、上盖、盖板网格，输出 `.npz`，并打印检查结果。需要同目录下的 `constraints.json`、`keep.npz`、`control.npz`、`chassis_top.npy`。
 - `scripts/pipeline/check_cover.py`：检查上盖是否盖住所有螺丝孔。
 - `scripts/pipeline/run_cov.sh`：一次完成 v17 的生成、检查和全套渲染。
-- `scripts/export_design_web.py`：把生成结果导出为查看器用的 glb，例如：
+- `scripts/pipeline_v18/export_web.py`：把 v18 生成结果导出为查看器用的 glb、`design.json`、`hotspots.json`、`chassis_cut.json`，再用 gltfpack（meshoptimizer）压缩：
+
+  ```bash
+  blender -b --factory-startup -P export_web.py -- f4_web.json f4_web.npz <输出目录>
+  ```
+
+  ```bash
+  npx gltfpack -i body.glb -o ../viewer/models/body.glb -cc -kn -km -ke -vp 16 -vn 12
+  ```
+
+- `scripts/export_design_web.py`：v17 的导出脚本，例如：
 
   ```bash
   blender -b --factory-startup -P scripts/export_design_web.py -- <设计目录> <设计>.json <设计>.npz viewer/models
@@ -72,8 +112,9 @@ cd viewer && vercel deploy --prod
 | `scripts/pipeline/a_cov.npz` | 86 MB | v17（一体式车身 + 卡扣上盖）全分辨率设计网格 |
 | `scripts/pipeline/a_one.npz` | 85 MB | v16（一体式车身）全分辨率设计网格 |
 | `scripts/pipeline/a_pro.npz` | 69 MB | v15 全分辨率设计网格 |
+| `new_design/v18_orbit/mower_new_v18_orbit.blend` | 234 MB | v18 Orbit 全分辨率装配模型 |
 
-网页查看器里的 glb 是减面后的版本，不走 LFS。
+网页查看器里的 glb 是减面或压缩后的版本，不走 LFS。`scripts/pipeline_v18/` 里的输入网格（`keep.npz`、`control.npz`、`dev/base_parts.npz`、`base.glb`）也用 LFS 存放。
 
 ## 没有放进仓库的文件
 

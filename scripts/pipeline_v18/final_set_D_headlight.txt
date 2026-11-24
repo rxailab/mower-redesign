@@ -1,0 +1,1 @@
+   HEADLIGHT=12 CUSTOM_VIEWS="portc=0.55:0.10:0.20:0.318:0.006:0.147:230;port=0.62:0.16:0.24:0.316:0.020:0.146:170;floor=0.62:-0.52:0.17:0.29:-0.17:0.118:110" $R $P $N $O/d portc,port,floor 1600 64      # [fix2] dark close-ups: headlight 12 (labelled on the sheet)

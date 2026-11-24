@@ -1,0 +1,30 @@
+{
+ "//": "[fix3-ports] charger openings: mirror-symmetric windows in the slot web, sized for the dock pins over the chassis funnel capture (portskit.py)",
+ "port_slot": {
+  "//": "slot 120 x 20 (the lens band's height and stadium ends), top raised 160.5 -> 161.7 for pin headroom (2.0 mm gap to the band paint at 163.6 -> 1.9), bottom 131.5 -> 141.7",
+  "z0": 0.1417, "z1": 0.1617
+ },
+ "ports3": {
+  "//pins": "dock pin axis fits in the asm_dock pose (x, y, z at x = 298.5 mm; dy, dz = slope per x), docked z (DOCK_LIFT 17.3)",
+  "pins": [{"x": 0.2985, "y": 0.02274, "z": 0.15249, "dy": -0.0043, "dz": 0.0139}, {"x": 0.2985, "y": -0.03047, "z": 0.15283, "dy": -0.0107, "dz": 0.0099}],
+  "//pin_r": "d 8 nominal (scan 7.90 / 7.94)",
+  "pin_r": 0.004,
+  "//tip_x": "seated pin tip (domed) x",
+  "tip_x": 0.2905,
+  "//seat_dy": "asm_dock -> seated pose: pins centred in the chassis V pockets (pocket centres +28.8 / -24.9 at x 288)",
+  "seat_dy": 0.0058,
+  "//capture": "lateral misalignment both funnels accept (d 8 pin inside the mouths y 8.7..52.0 / -45.4..-4.6 at the chassis face x 302)",
+  "capture": [-0.0158, 0.0161],
+  "//dz": "vertical misalignment design range (tyre wear / load lever 1.57 to the nose, debris on the plate, cleats, tolerances; RSS)",
+  "dz": [-0.0035, 0.0035],
+  "margin": 0.0005,
+  "//snap": "a window closer than this to the slot tunnel runs out to it (no hair-thin web); fillet: convex window corners",
+  "snap": 0.0012, "fillet": 0.0015,
+  "//walls": "web plate, tunnel and duct walls 1.5 (0.6 t, rib rule), front window edges R0.4, 1 deg draft (front slider pulls +x)",
+  "web_t": 0.0015, "wall_t": 0.0015, "bev": 0.0004, "draft_deg": 1.0,
+  "//duct": "ducts end duct_clear in front of the chassis (ledge under the mouths: full ring; above zb + hood_lift: top + sides on to the face)",
+  "duct_clear": 0.001, "hood_lift": 0.0025,
+  "//dock_dy": "renderer: dock drawn in the seated pose (y + 5.8 mm vs asm_dock); pin_standin: clean d 7.94 pins (the pin model of portcheck.py) over the open-bottom pin scan",
+  "dock_dy": 0.0058, "pin_standin": true
+ }
+}

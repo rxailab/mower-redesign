@@ -1,0 +1,280 @@
+v18 "Orbit", fix round 2 (f2, sections 1-5) + fix round 3 (f3, section 6)  -  code, parameters, how to run, checks
+=================================================================================================================
+Units: metres in code / parameters, mm in this text. World: +X forward, +Y left, Z up.
+
+1. WHAT CHANGED VERSUS v17 (summary of v18 -> v18c -> fix 1 -> fix 2)
+-----------------------------------------------------------------------
+v17: a one-piece body with a snap-on top cover, gas-strut lid, scattered details.
+v18 / v18c ("Orbit"):
+ - A light ceramic-grey snap-on COVER over a dark graphite one-piece BODY (shell wall + integrated skirt + inner deck screwed to the
+   chassis with 14 hidden screws). Real 2.5 mm walls: both parts are closed solids (shell_wall.py), every free edge rolled.
+ - One joint detail everywhere: gap 0.8, cover 0.5 proud, rolled edges R0.8 (cover) / R0.5 (core).
+ - Identical smoked lens bands front and rear under a level brow at z 190; flush camera / IR / LED pupil at the front, a dot at the rear.
+ - A flush, same-colour lid over the STOP key and the display on a hidden virtual-pivot arc-track hinge (stop 75 deg, push-push latch,
+   continuous seal, drained gutter). No gas struts. Exposed drive wheels.
+fix 1 (f1): C2 roof, dense plan outline (no centre ridge), level hem, real snap legs / datum pins / seat pads / drains, heat-staked
+   well, lens-groove section, controls stand-in, welded final mesh.
+fix 2 (f2) - this round (finding IDs from the round-2 reviews in brackets):
+ - SECTION: one G2 superellipse shoulder (a 34 x 26.5 mm corner, n 3.4, zero curvature at the wall and at the roof) of the SAME
+   absolute size along the whole body and round the nose and tail, for both the pinched and the full-width surface [A1, A6, A7].
+   Walls: vertical beside the wheels (171 envelope, chassis post 10), 1.5 deg tumblehome / draft on the haunch, nose and tail [R2E11].
+   Crown 6 -> 3 mm (tauter roof) [A7]; haunch tuck 0.35 -> 0.2 [A3].
+ - PART LINE: an explicit side-view curve (partline.py): level brows z 190, the R128 wheel orbit about the hub, the base line z 123,
+   a convex R90 TAIL SWEEP tangent to the tail brow at x -262, and true-circle R20 fillets at every concave corner; the field is the
+   exact signed distance to it [G4]. The tail sweep replaces the forward-leaning S-rise: no thumb, no ear flaps, the line leaves the
+   brow at the same distance beyond the lens end at both ends (front 96 / rear 101 mm, measured lens tip -> first off-brow point), and
+   its x(z) never increases upward, so the cover lifts straight off (0 of 337 381 cover vertices collide) [G2, A3, R2E2].
+ - ZONE SINK: the 0.5 mm step trade beside the wheels is spread over |n_y| 0.15..0.995 and an 80 mm C2 ramp in x (was 0.55..0.9 and
+   35 mm: an S-wave of +-2.5 1/m); the 171 limit is now measured on the FINAL outer skin (170.91) [A1 (2), F-S1].
+ - Nose / tail rake back to z1 = 0.19 (no forehead lean, no concave tongue above the tail brow) [G3, A8].
+ - Rear: the three decorative grooves are deleted [G1, R2E9, A4]; the lower rear half tucks in 3 mm at the hem (was flared out 3 mm) [A4].
+ - Roof: ONE graphic. The white status stroke and the orange STOP stroke are gone; a flush 2K STOP pad (d 18, accent colour, white
+   stop square) on the lid over the STOP key, ringed by the status halo (1.2 mm clear ring, lit from the control panel through the lid
+   when closed) [A2, G5, R2E4].
+ - STOP function: a cored plunger (OD 7, TPE tip) under the pad, 0.5 mm over the real STOP key when closed; the latch over-travel
+   (1.5 mm at the striker) moves the tip 1.29 mm at the key, i.e. presses it 0.79 mm, then the push-push latch releases [R2E4].
+ - Front: the two bare charger "nostrils" become ONE stadium service slot centred on y = 0 (120 x 29, 3.5 mm under the band), with a
+   web 3 mm behind the face that carries the two (off-centre, fixed) port openings [A5, L7].
+ - Nose corner floor: one closed 2.5 mm solid per side, mirror-symmetric, clipped to the bumper's own plan hull - 1 mm (never past its
+   rear end or outer edge), >= 1.5 mm from the bumper, R0.5 edges, 2 mm under the nose wall and tied to its foot by ribs [F-M1, R2E7, G8, A9].
+ - Cover kit rebuilt [R2E1, R2E6, R2E8]: 10 snap legs, each placed where the deck is level (<= 15 deg over -3.5..+4 mm), root fused into
+   the inner skin over its whole section and necked to 1.5 mm (0.6 t) with two 1.2 mm gussets; 2 CORED datum pins (wall 1.0) with
+   conformal fused tops, 0.5 deg draft, gussets; nose hole round, TAIL HOLE A 4.3 x 13.3 SLOT along x; 18 cored seat pads (OD 6, wall 1.2)
+   on level deck lands (<= 5 deg) all round; stake pins r 0.75 through clearance holes in the well ears [F-N1].
+ - DECK: a real 2.5 mm closed solid (441 k faces, 0 open / 0 non-manifold edges) with REAL holes: 10 leg windows 9.6 x 3.8, the
+   round datum hole + the slot, 10 drain slots 6 x 3 at the deck's lowest line next to the wall, 14 screw-boss holes, 2 clearance slots
+   over the chassis ribs at x 103..144; its edge runs 0.5 mm into the body wall (the joint). 0 legs / barbs / pins / pads / chassis
+   points inside it [R2E5, F-S5, R2E3].
+ - Lid underside ribs: two closed rings (offsets 30 / 50, R20 corners) clear of the hinge pods, diagonals and front / rear ribs mirrored [G9].
+ - Controls stand-in: display window symmetric on y = 0 (+-58), window and key cap both R4, planar tops render flat (no shading
+   creases) [G7, F-S2]; a dark control-tower stand-in under the panel (never floats in exploded views) [F-N2].
+ - Grid: the converging spine-end columns are welded (no 5 mm pit at the pole); spine normals with n_y = 0.
+
+2. FILES (this folder)
+----------------------
+ design_gen.py   generator (all fix-2 changes tagged [fix2])        partline.py  explicit side-view part line + exact signed distance
+ lidmech.py      lid mechanism (PM 'plunger', rib_layout 'v2')       shell_wall.py  2.5 mm walls (unchanged)
+ design_render.py  renderer (lid paint 0..3, flat stand-in tops, CtlTower)   meshkit.py, tail.py, slicekit.py  helpers
+ section.py      plane sections with caps (now carries the lid paint)
+ f2.json         FINAL parameters (built by mk_f2.py from f1.json)    f2_web.json  web-viewer variant (stride 2, fine_scale 2.2)
+ mk_f2.py        f2.json = f1.json + the fix-2 overrides, each commented with its finding ID
+ checks: checks.sh (topo, check_wall, wall_clear, check_cover2, wallprobe, kitcheck, lidsim, lidsim_ctl), lifttest.py (NEW: straight
+   lift of the cover), deckcheck.py (NEW: deck solid, kit / chassis through the deck, nose floor), rimfold.py (Blender).
+ final_set.sh / sheet2.py  final renders and contact sheets; after_r.sh / pairs2.sh / pair2.py  before / after pairs.
+ checks/         every check output of the final f2.npz; f2.check.json  the generator report.
+
+3. NEW PARAMETERS (f2.json)
+---------------------------
+ section {a 0.034, b 0.0265, n 3.4, t1 0.28, t2 0.52, draft_deg 0}   section_wide {draft_deg 1.5}   y_pinch 0.1709   crown 0.003
+ cover.orbit.explicit true;  cover.orbit.tail {mode 'sweep', x_top -0.262, R 0.09, fillet 0.02}  (mode 'orbit': x_hub, R = R128 tail orbit)
+ cover.orbit.zone_ny [0.15, 0.995], zone_x_ramp 0.08
+ cover.kit2 true, kit2_slope 0.27, pad_slope 0.09, deck_cell 0.0008, deck_edge 0.0005, deck_into_wall 0.0008, deck_notch [[x0, |y|, x1, r]]
+ cover.legs.t_neck 0.0015;  cover.datum.slot 0.009, datum.wall 0.001
+ lid.stop_pad {x 0.018, r 0.009, icon 0.0055, icon_r 0.001, halo_gap 0.0015, halo_w 0.0012};  lid.stop_mark null
+ lid.stakes.pin_r 0.00075;  lid.rib_layout 'v2', lid.ring_off [0.03, 0.05]
+ nose.corner_floor {v2 true, z_top 0.1135, t 0.0025, clear 0.0015, hull_in 0.001, under 0.002, roll 0.0005}
+ controls_standin {symmetric true, glass_r 0.004, key_r 0.004, plunger_gap 0.0005}
+ port_slot {y 0.060, z0 0.1315, z1 0.1605, web 0.003};  skirt.flare [[-0.4, -0.003], [0.4, -0.003]];  panels [] ;  rear_recess []
+
+4. HOW TO RUN (inside design/, with ../venv and ../work as in the earlier rounds)
+------------------------------------------------------------------------------
+ ../venv/bin/python mk_f2.py f2.json
+ ../venv/bin/python design_gen.py f2.json f2.npz > f2.check.json            (about 2.5 min, 4.59 M faces, 324 MB)
+ ./checks.sh f2;  ../venv/bin/python lifttest.py f2.npz;  ../venv/bin/python deckcheck.py f2.npz dev/base_parts.npz
+ ~/blender-4.2.3-linux-x64/blender -b --factory-startup -P rimfold.py -- f2.npz chk/f2.rimfold.json
+ renders: ../final_set.sh A|B|C|D   (or design_render.py -- f2.json f2.npz OUTPREFIX VIEWS RES SPP with LIDDEG / CLIPY / CLIP / HIDE / LIFT ...)
+ web: echo '{"stride": 2, "fine_scale": 2.2, "cover": {"deck_cell": 0.0016, "deck_edge": 0.001}}' > web.json;
+      ../venv/bin/python mk_f2.py f2_web.json web.json; ../venv/bin/python design_gen.py f2_web.json f2_web.npz   (1.77 M faces, ok true)
+
+5. CHECKS ON THE FINAL f2.npz
+-----------------------------
+ generator "ok": true; half-width beside the wheels 170.91 on the final outer skin (<= 171); min surface radius 12.7 (f1 8.9);
+   roof clearance inner 12.1 / outer 16.0 (f1 7.5 / 11.1); room over a screw head >= 10.2 (f1 5.9); post to deck edge >= 4.6.
+ topology: body 2 893 424 faces, cover 1 490 644 faces: 0 boundary / 0 non-manifold / 0 unpaired edges each.
+ shell_wall: 0 inner vertices outside the outer skin (body, cover); wallprobe on all inner vertices: 0 outside, 0 thinner than 1.5;
+   body wall min 1.79 (post-10 thin zone) p1 2.22 median 2.5; cover 2.49..2.5; 0 folded inner faces.
+ lidsim: ALL >= 0.5 mm: True (cover edge 0.720, kit 0.98, chassis 24.2; designed contacts: open stop, latch, STOP plunger at over-travel).
+ lidsim_ctl: plunger 0.66 over the scanned key closed (sliced), 0.0 = pressing at the latch over-travel; everything else >= 15.3.
+ kitcheck: KIT OK True (fixed kit under the cover 3.07, to controls 2.92, cover-solid gap 0.59).
+ check_wall (inner skins): deck >= 1.00 mm under the cover solid; screws 5.6; legs / pins / pads / stakes fused only into the cover.
+ check_cover2: 0 / 0 / 0.   wall_clear (real chassis): body and cover 0 points inside, none closer than 1.0 mm.
+ lifttest: cover lifts straight off: 0 colliding (f1: 665, free lift 5.94 mm).
+ deckcheck: deck 0 open / 0 non-manifold edges, 2.5 thick; 0 leg / barb / pin / pad samples inside it; chassis 0 inside (min 0.25);
+   nose floor closed, symmetric (0.000 mm), 1.64 from the bumper.
+ rimfold: 0 rim self-intersections (both parts).
+
+6. FIX ROUND 3 (f3) - SIX ISSUES, ONE INTEGRATED TREE  (code tags [fix3-<issue>] per branch, [fix3-int] for the integration)
+------------------------------------------------------------------------------------------------------------------------
+f3.json = f2.json + fix3_labyrinth / fix3_struts / fix3_ports / fix3_lights / fix3_stop / fix3_hinge .json (mk_f3.py, '//' keys are comments).
+The six branches were merged textually; the integration (branch 'integrate') makes them work together (6.7). Fixed hardware unchanged
+except the two chassis cuts per side of 6.2. Body half-width beside the wheels 170.91 on the final outer skin (<= 171).
+
+6.1 LABYRINTH at the cover / body part line [fix3-labyrinth] (labyrinthkit.py, labcheck.py; shell_wall.py hooks)
+ One 2084 mm loop: cover lip 1.55 thick for 3.3 mm (C1 taper back to 2.5, R0.8 roll kept), 0.80 channel (= the visible gap: no
+ capillary pull), body upstand 1.23-1.28 thick, top 4.0 over the body cut line (3.08..3.20 overlap above the cover edge), 1 deg draft,
+ R0.3 root, ledge raised <= 0.5 so it drains outward (>= 4.05 deg on the level runs); body edge thickened 2.5 -> 3.13 for 1 mm. The deck
+ edge stops 0.63 further in where it meets the thickened edge (deck_inset); datum-pin gusset feet >= 7 mm above the line (kit_cv_min).
+ Joint look unchanged (gap 0.8, 0.5 proud, R0.8 / R0.5). Parameters: wall.labyrinth.* in fix3_labyrinth.json.
+6.2 CHASSIS STRUTS [fix3-struts] (strutskit.py, strutcheck.py, struts_cut.json / .js, struts_secfig.py)
+ The f2 renderer deleted 13 486 mm2 of chassis (rim flange, drive-unit housings, old mudguard pin + hook). Now kept: rim flange and drive
+ housings; cut (6 capped planes, 1 896 mm2): mudguard pin trimmed to |y| 167.2 and cut at z 218.5, front hook cut at |y| 165.0.
+ skirt.seat.z 136.2 -> 156.5: the body's lower edge + seat flange sit 1.46 / 1.51 over the housing crest (z 155.0).
+ npz struts_spec / struts_cap_*; design_render cuts the chassis with them (STRUTS_HL=1 marks the caps).
+6.3 CHARGER PORTS [fix3-ports] (portskit.py, portcheck.py, CHANGES_fix3_ports.txt)
+ Slot 120 x 20 at z 141.7..161.7 (was 120 x 29), centred on the pin axes; closed port frame (tunnel buried in the wall, 1.5 web 3 mm
+ behind the face with two mirror-symmetric windows |y| 3.86..49.32, ducts + hood to 1 mm before the chassis, 1 deg slider draft) sized
+ for the dock pins over the chassis funnels' capture -15.8..+16.1 and dz +-3.5. Dock drawn seated (dock_dy 5.8) with clean pin stand-ins.
+ npz: sleeve_v/f = the port frame, ports_wp / wm / tw / xw. Params: port_slot.z0/z1, ports3.*.
+6.4 LIGHTS [fix3-lights] (lightkit.py, lightcheck.py)
+ Each band is a separate 2.5 mm smoked PC lens (outer face = the f2 A-surface within 0.008) in a body opening with a real 0.4 gap
+ (body edge R0.3 'lens_opening' wall rule, lens edge R0.2); lens laser-welded to a sealed black PC/ABS lamp housing (light-trap step +
+ foam gasket flange, vent, sealed connector); PMMA light bars fed by 3030 LEDs at the outboard ends; pupil board (camera, ToF, LED pipe),
+ rear dot; 4 cored PT K25 bosses per module along the module axis; harness through D7 deck grommets to a service connector pair on the
+ deck. npz lights_lens_* / lights_kit_* / lights_harn_* / lights_halo_*; objects LightLens, LightKit, HaloEmitter, Harness, LightHalo,
+ LightCaps (+ LightHaloCap [fix3-int]). The band faces live only in lights_lens (drawn once). Params: lights.* in fix3_lights.json.
+6.5 STOP KEY [fix3-stop] (stopkit.py, stopcheck.py, stop_glyphs.json)
+ EN 50636-2-107/A3 20.101.4 + 7.9: the flush 18 mm orange pad (failed size, height, colour, legend) -> a raised, parallel-guided d 40
+ red (#C8102E) key with a white 2K STOP inlay on the still-flush lid, top 9.5 over the lid (machine top 289.2), stroke 5.0 to a ring stop
+ on the opal halo boss (d 34), compliant plunger (16 N preload) over the real key, tip gap 1.45 (worst case -0.16..3.16), <= 20.6 N to
+ actuate / 28.8 N to the cap stop anywhere; colors.stop also on the real key and its stand-in. lid.stop_pad null (no lid paint, no f2
+ plunger). npz stop_v / f / lab / part / axis / kin; object StopKey (STOPSTROKE=m renders it pressed).
+6.6 LID HINGE [fix3-hinge] (hingekit.py, hingecalc.py, hingefea.py, fea/*.json, hinge_renders.sh)
+ f2 failed LC3 (20 N at a free-edge corner, 60 C): POM cheek SF 0.22, tongue root SF 0.03, the 4.2 N constant-force band not buildable.
+ Now (lid.h3): two integral d3.5 MIM 17-4PH lugs in conformal slots of 1.4310 cassette plates + TPE first stage; tongue 4 mm; steel root
+ blade in an 11 mm keel + 1.5 spine rib; UHMWPE tape over an idler onto a drum with a spiral power spring (+ one-way damper); the pod is
+ a housing round the cassette. Spring retuned for the total lid in 6.7.1. FEA needs PYTHONPATH=<round>/hinge/pylib.
+
+6.7 INTEGRATION [fix3-int] - interactions found and how they were resolved
+ 6.7.1 Lid balance (build failure). fix-stop read lid.spring.torque_Nm_total (the f2 band) that fix-hinge had superseded, and raised
+   lid.spring_N 4.2 -> 5.2 for 30.1 g (analytic) of STOP parts. Resolution: stopkit.build now runs BEFORE lidmech.build; stopkit.mass_mesh
+   takes the STOP parts from their closed meshes (density per part, minus the skin they replace: 26.0 g net, COM 155 mm (cap) .. 86 mm
+   (links' rear pivot) in front of Q) into LP['extra_mass'], so lidmech's mass / gravity and the h3 spring report see ONE lid:
+   166.6 g (fix-hinge 140.6), gravity torque 0.1414 N m closed / 0.0404 at 75 deg (fix-hinge 0.1092 / 0.0315); spring_N removed.
+   With the fix-hinge spring this lid would NOT open (net incl. rail friction -0.008 N m closed, -0.017 at 20 deg). No spiral in the
+   5.5 mm wide r 5 drum reaches the fix-hinge margin within its limits (<= 897 MPa, stress ratio >= 0.455, fill <= 0.62, <= 45 % of the
+   available turns: best +0.0116 even at r 5.5); a r 6 drum does not fit the pod (flange 1.2 into the pocket). Chosen: drum 5.5 -> 7.0
+   wide (r, idler, tape lever 19.3, drum position unchanged; inside the 7.1 pod half-width; the pod's damper box follows, lidmech),
+   strip 4.5 -> 6.0 x 0.18, T 0.2175 -> 0.100 N m (rate 3.13 N mm/rad, L 180 mm, 0.67 turn preload open, drum 284 deg).
+   Result (hingecalc on the full f3): net opening torque incl. friction +0.035 closed / min +0.021 at 25 deg / +0.052 at 75 deg
+   (fix-hinge +0.024 / +0.0134 / +0.037); 5 % relaxation still +0.013; sigma 887 / 408 MPa = 0.49 Rm, ratio 0.46 (fix-hinge 897 / 408,
+   0.455); closing force at the edge 0.57 / 0.33 N (0.43 / 0.24); tape 5.63 N; damper 0.41 N cm per side at 19 rpm for 2.5 s.
+   Open stop with the heavier lid: LC1 (spring on the stop) 0.060 N m (0.044) = 0.88 N per lug; LC2 2.5 m/s flick KE 0.138 J (0.106),
+   lid inertia 1.85e-3 kg m2 (1.42e-3), first bending mode 15.9 Hz (17.5, STOP parts as concentrated masses, Rayleigh), peak hinge
+   moment 2.23 N m both hinges (1.88) - still below LC3 (4.1 N m on one hinge); slam without damper 0.039 J (0.027; f2 0.086).
+   LC3 / LC4 unchanged (load-defined): hingefea on the merged f3: tongue / blade root 458 MPa SF 2.12, lug root SF 2.56, rails 415 N
+   24.8 MPa SF 2.22, cassette plate 61.8 MPa SF 11.3 (branch 465 / 2.09; the 4 % spread is the free mesh). STOP latch order with the h3
+   spring at the closed pose: lid over-travel needs 14.4..37.3 N at the cap > 5.0 N return force (fix-stop 14.5..37.4) - OK.
+ 6.7.2 Status halo. fix-stop: the cap floats on an opal halo boss "lit from the panel LED"; fix-lights: a D3 feed at the f2 halo ring's
+   front point (x 29.1 from STOPPAD, now null), so the merged tree had a halo boss and no light path. ONE halo now: the STOP key's opal
+   boss (d 34, fused 1.6 into the lid skin) is fed by a clear D3 PC pipe in the same 2K shot, straight from a skin window under the boss's
+   front sector (top x 18.0 = 13.6 from the key axis, fused 0.1 into the boss) down-forward (62.6 deg, 24 mm) to 2.4 mm over fix-lights'
+   emitter (5 x 8 board + LED, x 26.6..31.6 on the panel front strip, panel supplier). It passes in front of the real key and under the
+   front ring rib; the orphaned 6 mm front-centre stub rib (cut free by the STOP keep-out) is kept out. The f2 path (lid.stop_pad) is
+   kept for f2 builds. Clearances (lidsim, full f3): emitter 1.02 at the latch over-travel / 2.40 closed / 4.3 at 0.6 deg, controls
+   2.62, lip 3.75, well 5.23, latch 5.56, claw 7.9; STOP stroke (stopcheck, 0..5 mm, closed + over-travel): carrier 2.95 at full stroke.
+ 6.7.3 Lamp housing vs port frame. The housing was designed against the f2 slot (flange 0.9 over it); the f3 port frame's tunnel top
+   (z 162.75) ran 0.63 into the housing's flange / step / back-bottom corner (lightcheck). Resolution (the frame has no room: pin envelope
+   161.15 + 1.5 wall, slot under the band): over the frame (+1 mm, |y| <= 62.4) the housing's bottom section is clamped to a plane
+   0.5 above the frame top at that y (housing.port_clear 0.0005): the trap flange shrinks to nothing (no sliver), the bottom wall gets a
+   chamfer from u 6.0 (behind the pupil board, wall stays 1.5), back edge up 1.0. Housing to frame 0.55 (designed >= 0.45: the frame is
+   body moulding, module location +-0.09 RSS); the light trap is the step behind the gap, then the frame's own top wall: 0 sight-line
+   leaks (22 of 2400 gap rays end on the frame; lightcheck now counts it as opaque).
+ 6.7.4 Lens openings vs the labyrinth rim code: the runtime 'lens_opening' rule (R0.3) builds with fix-labyrinth's per-loop rim profile:
+   body / cover 0 boundary / 0 non-manifold / 0 folded, rimfold 0 pairs in all six classes, lens gap 0.368 / p1 0.383 / median 0.511.
+ 6.7.5 Deck: grommet holes + labyrinth inset + struts seat build together: deck 0 open / 0 non-manifold, 436 196 faces.
+ 6.7.6 Renderer: all objects present once (OBJLIST=1 prints them); no lid paint; LightHalo + LightHaloCap move with the lid and hide with
+   LidKit, HaloEmitter hides with Controls, LightLens / LightKit / Harness with NewShell; section.py caps the halo pipe too.
+ 6.7.7 Also fixed: export_web.py (crashed on f3: lid_paint, band labels) exports the f3 parts, STOP red, hotspots from the STOP key and the
+   lens solids, chassis cut by strutskit; hotspots_text.json STOP / slot texts describe f3; hingecalc counts the STOP parts in the lid
+   dynamics; lidsim checks the halo feed (moving) against its emitter (fixed); stopcheck checks the halo pipe against the STOP stroke;
+   final_set.sh renders f3 (stoppad aimed at the key). Not fixed here (outside design/): viewer/app.js trimChassis -> struts_cut.js.
+
+6.8 HOW TO RUN (inside design/)
+ F="fix3_labyrinth.json fix3_struts.json fix3_ports.json fix3_lights.json fix3_stop.json fix3_hinge.json"
+ ../venv/bin/python mk_f3.py f3.json $F;  ../venv/bin/python mk_f3.py f3_web.json $F web.json
+ ../venv/bin/python design_gen.py f3_web.json f3_web.npz > f3_web.check.json        (30 s, 1.55 M faces + kits)
+ flock ../../heavy.lock ../venv/bin/python design_gen.py f3.json f3.npz > f3.check.json   (114 s, 4.5 GB peak, 343 MB npz)
+ checks: ./checks.sh f3; lifttest.py f3.npz [--kit]; deckcheck.py f3.npz dev/base_parts.npz; blender -b -P rimfold.py -- f3.npz chk/f3.rimfold.json;
+   labcheck.py f3.npz chk/f3.lab.json --step 0.25 (~13 min); lightcheck.py f3.npz dev/base_parts.npz --ref base_f2.npz --json chk/f3.lights.json;
+   stopcheck.py f3.npz f3.json chk/f3.stop.json (needs f3.check.json); strutcheck.py f3.npz dev/base_parts.npz chk/f3.struts.json;
+   portcheck.py f3.npz f3.json --json chk/f3.ports.json; hingecalc.py f2.check.json f3.check.json fea/calc.json;
+   PYTHONPATH=<round>/hinge/pylib hingefea.py f3.json f3.npz tongue|cheek 20 --out JSON.
+ renders: ../final_set.sh A|B|C|D and ./fix3_renders.sh S|H|P|T|L|G -> ../final_set/renders; LIGHTS_DUMP=x.pkl + lightkit.py x.pkl IN OUT
+   rebuilds only lights_*.  Web export: blender -b -P export_web.py -- f3_web.json f3_web.npz OUTDIR (needs OUTDIR/hotspots_base.json).
+
+6.9 CHECKS ON THE FINAL f3.npz (outputs in checks/f3/; f2 = section 5; "branch" = that branch's own f3)
+ generator ok true; half-width 170.91 (f2 170.91); min radius 12.7 (12.7); roof clearance inner 12.1 / outer 16.0 (=); chassis exposed 0;
+   faces 3 954 754 (f2 4 592 952: the bands left the body for the lens solids); body top 280.1 without the key, STOP cap top 289.2.
+ topology: body 2 093 062, cover 1 668 912 faces, 0 boundary / 0 non-manifold / 0 unpaired each (f2 2 893 424 / 1 490 644).
+ shell_wall: 0 inner outside outer, 0 folded; body wall min 1.79 / p1 2.5 / median 2.5 / max 3.13 (labyrinth edge); cover 1.55 (lip) .. 2.5.
+ wallprobe: 0 outside, 0 thinner than 1.5, inward-facing inner faces 0 / 0 (f2 22 / 0; lights 1; labyrinth 21).
+ check_wall: deck >= 1.00 under the cover solid (=); screws 5.99 (5.6); cover pin to body 4.86 (3.06); seat flange fused 0.6 (struts, by design).
+ check_cover2 0 / 0 / 0 (=).  wall_clear: body / cover 0 chassis points inside, none < 1.0 (with the real cut chassis, 1 215 299 samples);
+   port frame 0 inside, min 1.06 (branch 1.06).
+ kitcheck: KIT OK; under cover 3.1 (f2 3.07), to controls 2.2 (2.92; fix-hinge 2.2), over chassis 3.3, cover-solid gap 0.59 (=).
+ lidsim: ALL >= 0.5 True; cover edge 0.720 (=); kit 0.817 blade|pod (fix-hinge 0.817; f2 0.98); controls 2.11 (stop_rod at over-travel,
+   = fix-stop); chassis 24.2 (=); open stop at 75.0; halo feed as 6.7.2.  lidsim_ctl: STOP tip 1.86 closed / 0.67 at over-travel (designed,
+   = fix-stop), everything else >= 15.09 (halo feed at 5 deg; f2 15.3).
+ lifttest: cover 0 of 432 272 colliding (f2 0 of 337 381); --kit 129 (= labyrinth; barbs / nose pin lead-in engage by design).
+ deckcheck: deck 0 / 0, 436 196 faces; legs / barbs / pins / pads 0 inside (min 0.102 / 0.083 / 0.045 / 0.019 = labyrinth); chassis 0
+   inside, min 0.26 (f2 0.25); probe p1 0.83 (f2 0.70: hole edges), median 2.5; nose floor closed, 0.000 asymmetric, 1.64 to the bumper.
+ rimfold: 0 pairs in all six classes (=).
+ labcheck (0..12 mm lift, 0.25 steps): 0 inside at every step; cover->body 0.584, body->cover 0.697, cover->deck 0.578, deck->cover
+   0.967 (= branch; f2 0.715 / 0.750 / 0.407); 417 stations, every ray stopped within 2.95 (f2: 260 stations past 10.2); upstand overlap
+   3.08 / p5 3.13 / median 3.20.
+ lightcheck: LIGHTS OK, 0 violations; lenses closed, flush 0.008, gap 0.368 / 0.383 / 0.511 (= branch); 85 kit + 30 harness components
+   closed; real chassis 0 inside the kit, min 1.92 (=); housing: body 0.32, deck 2.47 (branch 1.73), port frame 0.55 (new, 6.7.3);
+   sight lines 0 leaks front and rear; halo sweep: emitter 1.02 / 2.40, controls 2.62, stand-in 1.34, well 3.73 (branch 1.02 / 2.4 / 2.63).
+ stopcheck: STOPCHECK OK (= branch): minor dimension 39.99, 99.5 % raised, 20 %-area 9.04 over the band, surround >= 60, highest point;
+   contrast 5.34 / 3.79; budget: gap -0.16..3.16, actuates by 4.66 of 5.0, <= 20.6 / 28.8 N, Monte Carlo 0 / 0; latch order 14.4..37.3 N
+   > 5.0 N (h3 spring); stroke sim min 0.525 (cap skirt to lid), carrier to key 0.79, halo pipe 2.95; lid open: parts 141.7 from the key.
+ strutcheck (= branch): pin 1.20 / 1.20 from the body, 1.76 / 1.25 from the deck; drive housings 1.52 / 1.49 (body), seat 1.44 / 1.72,
+   vertical 1.51 / 1.46; hook 1.48 / 1.46; rim flange >= 1.05; tyre 8.37 / 10.52; 6 cuts, 0 faces left in the boxes, air check 0.
+ portcheck (= branch): frame 6 closed solids, mirror 0.0003 / XOR 0.000; docking stroke nominal 4.08, worst 0.571 (capture max + dz min);
+   no chassis contact seated; centre deck drain onto the chassis ledge (z 140.9).
+ hingecalc / hingefea: see 6.7.1 (calc in fea/calc.json, FEA of the merged model in chk/f3int_*_20N.json).
+
+6.10 OPEN ITEMS (external confirmation; details in the branch reports)
+ Spring maker: spiral 6.0 x 0.18 x 180 mm (1.4310), 3.13 N mm/rad, 0.67 turn preload, 887 MPa, >= 2e4 cycles at 60 C, relaxation <= 5 %;
+   drum 7.0 wide in the pod; tape / idler / damper as fix-hinge (damper ~0.41 N cm per side). MIM / plate / moulder items as fix-hinge.
+ STOP: real-key force / travel (<= 15 N, 0.3..1.5 switch travel), firmware (override, 2 s, restart rule), lid-open = STOP + start inhibit
+   (lid-closed signal needed), test-house reading of the 30 N rule, tolerance / seal / latch data.
+ Halo: control-panel supplier adds the 5 x 8 emitter board at x 26.6..31.6; lid tool: the D3 pipe is part of the halo's 2K shot through a
+   skin window; a light-coupling check (LED -> 24 mm pipe -> opal boss) with samples.
+ Lights: camera behind the smoked window, IR-transparent PC, prism extraction, LED thermal, lifters for the module-axis bosses, the 2.1 mm
+   body strip between slot and lens (now also above the port frame), gasket squeeze.
+ Ports: registration owner (scan yaw 1.25 deg), dock drawing (pin d 8, height 152.7), vertical range +-3.5, contacts.
+ Struts: chassis owner sign-off of the two cuts per side; drive-housing top as the seat stop.
+ Labyrinth: IPX4 / IPX5 spray tests with soiled surfaces; tolerances of the 0.58 nose clearance; sink at the 3.13 body edge.
+
+7. FIX ROUND 4 (f4) - REVIEW FINDINGS OF ROUND 3  (tags [fix4-qa], [fix4-stop2], [fix4-hinge2], [fix4-front2], [fix4-cover2], [fix4-int])
+-------------------------------------------------------------------------------------------------------------------------------
+ Four independent reviews of the integrated f3 (aesthetics, mechanics, safety, geometry) found one blocker and ~20 majors / minors. Parameters:
+ f4.json = f3 files + fix4_stop2.json fix4_hinge2.json fix4_front2.json fix4_cover2.json fix4_int.json (mk_f3.py). Full notes per finding: the
+ branch reports (stop2 / hinge2 / front2 / cover2); numbers below are on the full-resolution f4.npz.
+ QA (new, [fix4-qa]): interfere.py - pairwise interference matrix of every part (393+ closed components) incl. the lid sweep -0.44..75 deg and the
+   STOP stroke, with a documented allow-list of designed contacts / fused joints; solidaudit.py - closure / orientation / self-intersection per
+   component; qa_parts.py shared part model. checks.sh runs both. They caught the three interferences round 3 missed (G1 legs on the chassis,
+   G2 STOP springs in the lid plate, G3 halo pipe through the lid skin) plus four pre-existing ones (rear socket brackets vs chassis apron,
+   a seat pad on a post top, the nose datum pin through the deck, a front boss rib vs the chassis) - all fixed in f4.
+ STOP key v4 (stop4.py): one control - red cap (RAL 3020 #C1121C, inside the ISO 3864-4 safety-red box, moulded texture finish) on a dark socket,
+   a flush opal status ring OUTSIDE the cap (r 21.5-24.5, 434 mm2 visible in plan) fed by one vertical D3 pipe through a real skin window;
+   crisper cap (R1.2 roll, 0.6 dish), STOP legend reads like the display; true tip gap 1.86 used in the budget, +-10 % spring tolerances, grit
+   and edge-press tilt: actuation always before the stop; box links + POM bush carry side loads (21.1 oblique 1 J); return springs on the
+   lower pin clear of the lid; pivot cover; lid-closed magnet + hall pair provision for "lid open = STOP / start inhibit"; well weeps.
+   EN 50636-2-107 cl. 20.101.4 geometry: 99.7 % raised >= 5 mm, 20 %-area height 9.92, surround >= 60, highest point of the machine.
+ Hinge h4 (hingekit4.py, hingebal.py, prismkit.py): the tape / idler / drum are replaced by a 72-tooth sector gear on each tongue driving a
+   16-tooth pinion with a closed steel spiral-spring cartridge and a TWO-WAY rotary damper inboard of each pod (damps the lid, not a drum);
+   spring 0.36 / 0.21 N m closed / 75 deg; worst-case net opening torque (spring -14.5 %, gear eff 0.91, rail mu 0.20, lid 160..180 g) >= +0.024 N m;
+   detent hold-open at 75 deg; lid and pod are closed solids; FEA tongue / blade root SF 2.17, toothed run-out SF 2.59.
+ Front (lightkit / portskit): both lens bands 17.5 mm (R8.75) at z 167.0-184.5 - a balanced 5.1 mm strip to the 120 x 20 charger slot and 5.2 mm to
+   the part line; housing clamp removed (housing to port frame 1.24 mm), continuous gasket with drains, crush pads + floating ears, horizontal lamp
+   bosses (one tool action), sealed IP67 service pair; charger windows all R3, scarfed duct ends, no lip trough; docking checked with +-2 deg yaw;
+   toolcheck.py specifies the tool actions; lit HEADLIGHT pass for the port / floor close-ups.
+ Cover kit / deck / labyrinth (coverkit4.py, kitclear.py, labthermal.py): the gap-4 / gap-9 legs moved to x 157.2 and follow the deck (kitclear:
+   >= 1.48 mm to the real cut chassis over a 0-30 mm lift, 10 legs, 117.9 N); deck rebuilt as an exact offset solid (0 self-intersections, was 4053);
+   cover x-datum at mid-length (legs at x 2.0, nose slot) and a deeper upstand towards the ends: the labyrinth keeps >= 0.42 mm clearance in every
+   thermal case incl. sun (body 75 C / cover 50 C); TPE seat on the drive-housing top; body / cover / deck / kits audit clean.
+   deck_refine stays 0 (memory: see the OOM note in the session log; deck_envelope is now batched and capped).
+ Integration ([fix4-int]): closed well-kit solids (pocket, latch housing, rotor, TPE lip, ears), interfere RNG seeded per pair, halo pipe vs the
+   h4 closed lid's STOP bore, hingecalc mass / inertia net of the lid skin the STOP socket replaces, f4 render scripts (fix4_renders.sh, final_set4).

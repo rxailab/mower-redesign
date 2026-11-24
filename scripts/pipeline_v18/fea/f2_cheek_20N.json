@@ -1,0 +1,24 @@
+{
+ "case": "cheek",
+ "params": "f2_web.json",
+ "F_edge_N": 20.0,
+ "L_edge_mm": 205.0,
+ "design": "f2",
+ "material": "POM-C (60 C)",
+ "lug_force_N": 241.2,
+ "contact_area_mm2": 1.28,
+ "p_nominal_MPa": 187.9,
+ "bearing_nominal_MPa": 109.1,
+ "engaged_mm": 1.105,
+ "vm_max_MPa": 180.4,
+ "vm_max_at_mm": [
+  11.33,
+  -13.31,
+  0.0
+ ],
+ "min_principal_MPa": -249.5,
+ "mesh": {
+  "nodes": 9790,
+  "tets": 38131
+ }
+}

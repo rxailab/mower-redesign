@@ -1,0 +1,12 @@
+{
+ "body": {
+  "chassis_points_inside_wall": 0,
+  "min_gap_mm": null,
+  "spots": []
+ },
+ "cover": {
+  "chassis_points_inside_wall": 0,
+  "min_gap_mm": null,
+  "spots": []
+ }
+}

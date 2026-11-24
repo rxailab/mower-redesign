@@ -1,0 +1,96 @@
+{
+ "case": "tongue",
+ "params": "f3.json",
+ "F_edge_N": 20.0,
+ "L_edge_mm": 205.0,
+ "design": "f3",
+ "load": {
+  "M_Nmm": 4100,
+  "skin_bearing_N": 241.9,
+  "keel_bearing_N": 261.9,
+  "x_bearing_mm": [
+   16.8,
+   31.1
+  ],
+  "p_skin_MPa": 5.67,
+  "p_keel_MPa": 1.86
+ },
+ "mesh": {
+  "nodes": 41537,
+  "tets": 204821,
+  "dofs": 913677
+ },
+ "contact_iterations": 1,
+ "rails": [
+  {
+   "rail": "inner (mouth)",
+   "force_N": 415.0,
+   "p_max_MPa": 24.8,
+   "at_deg": -97.2,
+   "active_facets": 1000
+  },
+  {
+   "rail": "outer (tail)",
+   "force_N": 345.4,
+   "p_max_MPa": 10.37,
+   "at_deg": -140.2,
+   "active_facets": 2458
+  }
+ ],
+ "regions": {
+  "lug_root": {
+   "vm_qp_max_MPa": 411.7,
+   "vm_node_max_MPa": 379.4,
+   "at_mm": [
+    -11.87,
+    -14.16,
+    4.25
+   ]
+  },
+  "tongue_free_span (mouth..root)": {
+   "vm_qp_max_MPa": 414.9,
+   "vm_node_max_MPa": 457.5,
+   "at_mm": [
+    18.51,
+    -5.77,
+    2.22
+   ]
+  },
+  "tongue_in_guide": {
+   "vm_qp_max_MPa": 203.2,
+   "vm_node_max_MPa": 205.8,
+   "at_mm": [
+    -2.6,
+    -14.77,
+    -0.44
+   ]
+  },
+  "blade_root (x 14..22)": {
+   "vm_qp_max_MPa": 417.1,
+   "vm_node_max_MPa": 457.9,
+   "at_mm": [
+    18.76,
+    -5.72,
+    0.89
+   ]
+  },
+  "blade_deep (x > 22.5)": {
+   "vm_qp_max_MPa": 102.2,
+   "vm_node_max_MPa": 105.5,
+   "at_mm": [
+    22.24,
+    -2.57,
+    -2.58
+   ]
+  }
+ },
+ "vm_max_MPa": 457.9,
+ "vm_max_at_mm": [
+  18.76,
+  -5.72,
+  0.89
+ ],
+ "max_disp_mm": 0.6386,
+ "stop_force_N": -211.7,
+ "stop_force_expected_N": 241.2
+}

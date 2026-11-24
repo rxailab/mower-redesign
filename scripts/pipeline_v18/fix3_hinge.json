@@ -1,0 +1,26 @@
+{
+ "//": "[fix3-hinge] lid hinge open-stop strength + spring. Load cases / numbers: hingecalc.py, FEA: hingefea.py, geometry: hingekit.py.",
+ "lid": {
+  "//arc_t": "tongue radial section 3 -> 4 mm (MIM 17-4PH H900); rails / pod follow",
+  "arc_t": 0.004,
+  "//lug_d": "stop lugs d 2 (one, pressed) -> d 3.5 (two, integral, R0.25 root fillet), in slots of both stainless cheeks",
+  "lug_d": 0.0035,
+  "//bumper": "TPE first-stage pad in each slot end 1.5 -> 1.2 mm",
+  "bumper": 0.0012,
+  "//band_t": "UHMWPE tape 4 x 0.2 (only transmits force) instead of the 4 x 0.1 constant-force steel band",
+  "band_t": 0.0002,
+  "//exit_a": "tape leaves the guide tangentially at -45 deg (was -57 with a ~100 deg kink over the edge) onto an idler pulley",
+  "exit_a": -45.0,
+  "h3": {
+   "//": "hingekit.DEF3 holds the defaults; keys here override them",
+   "lug_both": true, "lug_fillet": 0.00025, "lug_eng": 0.92, "cheek_metal": true, "rail_split": [-9.0, 13.0],
+   "blade": {"x1": 0.040, "z_deep": -0.0080, "drop_clr": 0.0008, "top": 0.0002, "fillet": 0.0010},
+   "keel": {"w": 0.011, "x1": 0.068, "z_deep": -0.0100, "taper": 0.012, "rib": 0.004},
+   "spine": {"t": 0.0015, "x0": 0.062, "x1": 0.122, "h": [0.008, 0.005], "taper": 0.012},
+   "idler": {"r": 0.003, "w": 0.0044, "pin_r": 0.00075, "dz": 0.0098},
+   "drum": {"r": 0.005, "w": 0.0070, "flange": 0.0005},
+   "spring": {"T0": 0.2175, "T75": 0.100, "strip": [0.0060, 0.00018], "arbor_r": 0.0016, "turns": 9.5},
+   "//int": "[fix3-int] retuned for the TOTAL lid: fix-hinge 140.6 g + the STOP key parts from their meshes (26.0 g net incl. the skin they replace, stopkit.mass_mesh -> lidmech extra_mass) = 166.6 g; gravity torque 0.109 -> 0.141 N m closed, 0.032 -> 0.040 at 75 deg. With the fix-hinge spring (0.165 / 0.075 N m) the net opening torque incl. rail friction would be -0.008 N m closed and -0.017 at 20 deg: the lid would not open. No spiral in the 5.5 mm wide r 5 drum reaches +0.0134 at <= 897 MPa / fill <= 0.62 / <= 45 % of the available turns; a r 6 drum does not fit the pod (back flange 1.2 mm through the pod wall into the pocket). So the drum widens 5.5 -> 7.0 mm (r, tape lever, idler, drum position unchanged; still inside the 7.1 mm pod half-width; the pod's damper box follows, lidmech [fix3-int]) and the strip widens 4.5 -> 6.0 at the same 0.18 thickness: T 0.2175 -> 0.100 N m, rate 3.13 N mm/rad, L 180 mm, 0.67 turn preload open, sigma 887 / 408 MPa (<= 897, stress ratio 0.46 >= 0.455), fill 0.61, 44 % of the available turns. Net opening torque incl. friction +0.035 closed, min +0.021 at 25 deg (fix-hinge +0.0134), +0.052 at 75; with 5 % relaxation min +0.013. turns: drawn spiral length ~ L"
+  }
+ }
+}

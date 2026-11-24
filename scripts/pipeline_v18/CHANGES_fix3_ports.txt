@@ -1,0 +1,85 @@
+v18 "Orbit", fix round 3, branch fix-ports  -  charger openings: symmetric front, working dock path       (code tag [fix3-ports])
+==================================================================================================================================
+Units: mm in this text, metres in code / json. World: +X forward, +Y left, Z up.
+
+1. MEASURED (ana scripts in the round folder; numbers repeated in portskit.py and fix3_ports.json)
+ Dock pins (work/asm_dock.npz lab 1, docked pose of design_render.py = dock lowered by DOCK_LIFT 17.3):
+   two round brass pins, d 7.90 / 7.94 in the scan (circle fits per 5 mm slice) = d 8 nominal; 57 mm free length + 15 x 18.6 collar
+   at x 350; domed tips at x 290.5; spacing 53.2 (tip) .. 53.5 (base); axis tilt 0.6-0.8 deg up towards the dock (z 152.5 -> 153.1).
+   Axis fits (x in mm): +y pin  y = 22.74 - 0.0043 (x - 298.5), z = 152.49 + 0.0139 (x - 298.5)
+                        -y pin  y = -30.47 - 0.0107 (x - 298.5), z = 152.83 + 0.0099 (x - 298.5)
+   The scanned rods are open underneath (only the upper ~3/4 was scanned).
+   Approach: the mower drives +x; relative to the mower the pins travel -x. Plate top under the drive wheels 17.25-17.6 (cleats 17.9),
+   under the casters 16.3-17.0; the plate runs from x -330, so all four wheels are on it for the last 100+ mm of the stroke: the pin
+   height is set by the plate, not the lawn. The dock has NO lateral guide (no rails, flat cleated plate): lateral alignment comes from
+   navigation + the chassis funnels only.
+ Chassis contact pockets (dev/base_parts.npz Chassis, fixed): two V funnels in plan (flanks 50-56 deg to x), apex x 284, floor z 143.5,
+   ceiling z 167.6, mouths at the chassis face (x 302, z 152.6): y +8.7..+52.0 and -45.4..-4.6; a 13.3 mm rib between them
+   (y -4.6..+8.7, face x 302.7); a ledge in front of the mouths (x up to 307.4, top z 140.5..142.4, tilted 1.3 deg across y).
+   Pocket centres y +28.8 / -24.9 -> 53.65 apart (= the pin spacing) and centred on y = +1.95, NOT on -4.3.
+ Why two answers (-4.3 / +1.95): the old shell scan (keep.npz, whose port boxes _pb gave -4.3) is mirror-symmetric about a plane
+   yawed -0.75 deg (fit median 0.35 mm); the chassis scan about a plane yawed +0.5 deg. At x 300 the two symmetry planes are 6 mm apart.
+   Each part's openings are centred on ITS OWN plane within 1 mm (old shell -0.9, chassis -0.6): the "4.3 mm off-centre" is a
+   registration artefact of the scans, and asm_dock (aligned to the old shell) puts the pins 5.8 mm to -y of the chassis pockets.
+   In the asm_dock pose the -y pin is inside the chassis funnel flank (stroke sim: contact at tip x 291.8) - not a physical pose.
+   Seated pose used here: asm_dock + 5.8 mm in y (pins centred in the pockets; no chassis contact over the whole stroke).
+ Lateral capture of the funnels (d 8 pin inside both mouths at x 302): delta = -15.8 .. +16.1 about the seated pose (both sides
+   limited by the chassis rib). Outside it the docking fails on the chassis whatever the body does.
+ Vertical misalignment budget (relative to the scanned pose; must be confirmed by the vehicle team, see 5):
+   drive tyre wear 1.5 mm radius x lever 1.57 (casters x -200, drive axle x 118, pins x 300) = +2.4; tyre deflection under load ~0.8
+   x 1.57 = +1.3 (systematic); clippings/mud under the drive wheels 2 mm -> -3.1; cleat engagement +-0.5; part tolerances +-0.5.
+   RSS: +3.8 / -3.3 -> design range dz = +-3.5 mm with 0.5 mm margin. (f2 allowed +1.7: its holes' top edge sat at 158.6.)
+ f2 defects found on the way (portcheck.py base_f2_web.npz): the port sleeves were CLOSED at x 308.2 ("flat back wall") - the pins hit
+   them 18 mm before the contacts in every case (clearance -4.0 = the cap through the pin axis); the web holes followed the old-shell
+   boxes, 6 mm off the chassis mouths, and limited the capture to +11.6 mm.
+
+2. DESIGN (portskit.py, hook in design_gen.py, parameters fix3_ports.json)
+ * Slot: stadium 120 x 20 (was 120 x 29), z 141.7 .. 161.7 = the lens band's height and R10 stadium ends, centred on the pin axes
+   (z 152.7) instead of on the old-shell boxes (z 146). Top raised 160.5 -> 161.7 for pin headroom (gap to the band paint 163.6: 1.9).
+ * Web (1.5, 3 mm behind the face as before) with TWO MIRROR-IMAGE WINDOWS, each = convex hull of BOTH pins' positions (one direct, the
+   other mirrored) over capture x dz along the stroke, grown by r 4 + margin 0.5 + the draft shrink to the duct end:
+   |y| 3.86 .. 49.32, z 144.27 .. tunnel top 161.19; bottom corners R4.5, top corners R1.5 into the tunnel; mullion 7.72, sill 2.9,
+   D-shaped end cheeks. Mirror XOR of the windows 0.000 mm2.
+ * Behind each window a duct (1.5 walls, 1 deg draft = the front slider's pull +x) to 1 mm in front of the chassis ledge (x 307.7),
+   its top + sides (hood) on to 1 mm in front of the chassis face (x 304.5). One end plane for both ducts; the -y duct is the exact
+   mirror of the +y duct. Tunnel, web, ducts: closed solids (6 components, 0 open / 0 non-manifold / 0 unpaired edges), drawn by the
+   existing PortSleeves object (arrays sleeve_v / sleeve_f; window outlines in ports_wp / ports_wm / ports_tw / ports_xw).
+ * Seen from the front everything within the first 6 mm (face, tunnel, web, windows, ducts) is mirror-symmetric (port frame mirror
+   deviation 0.0003 mm). What stays asymmetric is the black chassis funnel 17 mm behind the face (its mouth sits +3.8 / +1.6 mm off the
+   window centres) - the real +1.95 mm chassis offset, deep and black on black.
+ * Water: the slot is a closed channel from the face to the chassis, so cavity water (the deck drain at x 307 y 0 z 191.5 drops behind
+   the mullion onto the chassis ledge, z 140.9) cannot reach it; window bottoms 2.9 above the tunnel floor (sill), the floor and the
+   duct floors drain forward (draft), anything inside the windows goes to the chassis pockets as in the OEM design.
+ * Structure: pin abuse case (pin outside the capture, 80 N = traction limit mu 0.7 x 12 kg) on the mullion: web alone 1.5 x 7.72 would
+   see ~58 MPa (PC/ABS yield ~55); with the two duct walls behind it (U channel 7.72 x 6.5 deep) I = 187 mm4, sigma = 4.3 MPa.
+ * Renderer: dock drawn in the seated pose (ports3.dock_dy 5.8) with clean d 7.94 pins + 15 x 18.6 collars on the fitted axes (the scanned pins are
+   open underneath); bpy view_layer.update() after placing the dock so CLIP / CLIPY cut it where it is.
+
+3. FILES
+ portskit.py (new)  envelope / windows / tunnel-web-duct solids, orientation fix for lidmech.extrude caps.
+ portcheck.py (new) docking stroke (capsule pins on the fitted axes, 0.25 mm steps, 70 mm stroke, 10 cases x r 4.00 / 3.97), chassis
+   first contact, port frame topology + mirror, deck-drain drop paths.  usage: python portcheck.py f3.npz f3.json --json chk/f3.ports.json
+ fix3_ports.json (new) parameters.  design_gen.py: 3 hooks (P3_ / assert guard, post-wall sleeve branch, report key 'ports3').
+ design_render.py: dock_dy, view_layer.update, pin stand-ins.  wall_clear.py: port frame vs chassis ('ports' entry).
+ section.py: caps for the closed port frame.
+
+4. CHECKS (full resolution f3.npz; outputs in checks/fix3_ports/; f2 in brackets)
+ generator ok true; every report value identical to f2 (half-width 170.91, min radius 12.7, crease 5.2, roof clearances 16.0 / 12.1,
+   chassis exposed 0.0, mounts, lid) except faces 4 583 428 (4 592 952), the charger_port loop and the new 'ports3' block.
+   ('ports_centre_y_mm' -4.3 is the legacy f2 key computed from the old-shell boxes; it no longer drives anything.)
+ topo 0 / 0 / 0 both parts; check_wall, check_cover2, kitcheck, lidsim, lidsim_ctl, lifttest, deckcheck, rimfold: identical to f2;
+   wallprobe identical except the inner vertex count (617 719 vs 622 435: smaller slot).
+ wall_clear: body / cover 0 inside, none < 1.0 (unchanged); port frame 0 inside, none < 1.0, min gap 1.06 mm (x 303.5 y -49.1 z 150.1).
+ portcheck: frame 6 closed solids, mirror deviation 0.0003 mm, windows mirror XOR 0.000 mm2.
+   stroke (r 4.00): nominal 4.08 mm, asm_dock pose 4.08, worst over capture x dz 0.571 mm (target >= 0.5) [f2: -4.0 = blocked by the
+   closed sleeves in every case]; chassis: seated pose no contact; capture limits first touch the funnel flank at tip x 299.8, before
+   any body contact. Deck drains: centre drain -> chassis ledge z 140.9 behind the mullion; side drains fall clear.
+ web model (f3_web.npz): ok true, 0 open edges; the coarse web mesh has 1 folded inner-skin face at the slot's top corner
+   (316, 51, 163) that the full model does not have (f2_web 0).
+
+5. TO CONFIRM OUTSIDE
+ a) which scan registration is right (chassis pockets at +1.95 or old shell at -4.3): the windows clear both (asm_dock pose 4.08 mm).
+ b) dock pin d 8 and height 152.7 +- 0.3 above the wheel contact plane from the dock drawing.
+ c) docked nose height range within +-3.5 mm of the scan pose (tyre wear limit, tyre deflection, debris): the slot top cannot rise
+    further without moving the lens band.
+ d) the real contacts (springs, not in the chassis scan: the seated pins touch nothing) and their position.

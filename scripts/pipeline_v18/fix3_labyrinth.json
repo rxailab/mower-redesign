@@ -1,0 +1,46 @@
+{
+ "//": "[fix3-labyrinth] labyrinth along the whole cover / body part line (labyrinthkit.py, shell_wall.py hooks). Joint look unchanged: gap 0.8, cover 0.5 proud, R0.8 / R0.5 rolls.",
+ "wall": {
+  "labyrinth": {
+   "cover_seam": {
+    "//": "cover LIP: 1.55 wall (>= 1.5) for 3.3 mm from the cut line, 45 deg taper back to 2.5 over 1.0 mm = the rebate the body upstand stands in; r_frac keeps the R0.8 roll",
+    "t_edge": 0.00155,
+    "t_len": 0.0033,
+    "t_taper": 0.001,
+    "splits": 4,
+    "r_frac": 0.55
+   },
+   "core_seam": {
+    "//": "body UPSTAND: outer face 1.85 under the body skin (0.8 channel to the cover lip = the gap width), top 4.0 above the cut line (3.2 above the cover edge), >= 1.2 thick, 1 deg draft; ledge raised <= 0.5 for a 5 deg outward drain; inner skin thickened at the edge (t_edge derived), back to 2.5 over 3 mm",
+    "t_len": 0.001,
+    "t_taper": 0.003,
+    "splits": 4,
+    "upstand": {
+     "w_o": 0.00185,
+     "h": 0.004,
+     "t_top": 0.0012,
+     "draft_deg": 1.0,
+     "fillet": 0.0003,
+     "ledge_slope_deg": 5.0,
+     "ledge_dmax": 0.0005,
+     "n_fillet": 3,
+     "n_top": 8
+    }
+   },
+   "kit_cv_min": 0.007,
+   "//kit": "kit_cv_min: datum-pin gusset feet (fused into the cover's inner skin) stay >= 7 mm (side-view distance) above the part line, i.e. clear of the 1.55 lip, its taper (ends at 5.1) and the upstand top (4.0)",
+   "deck_inset": {
+    "extra": 0.00063,
+    "below": [
+     0.001,
+     0.004
+    ],
+    "above": [
+     0.0055,
+     0.007
+    ]
+   },
+   "//deck": "deck_inset: the deck edge (plan offset from the body edge, deck_into_wall 0.8 = 0.5 into the 2.5 wall, unchanged) stops `extra` 0.63 further in where it meets the thickened body edge / the upstand: deck edge between 1.0 (full) .. 4.0 (none) mm below the part line (follows the 3.13 -> 2.5 taper) and up to 5.5 (full) .. 7.0 (none) above it"
+  }
+ }
+}

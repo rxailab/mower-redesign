@@ -1,0 +1,104 @@
+{
+ "method": "45/0 geometry, linear Cycles render, reflectance = plaque / white plaque of the same finish (design_render.mat materials)",
+ "swatches": {
+  "STOP red chip": {
+   "spec": "#C1121C",
+   "finish": "gloss",
+   "measured_srgb": [
+    188,
+    25,
+    33
+   ],
+   "hsv": [
+    357,
+    0.87,
+    0.74
+   ],
+   "delta_max": 7,
+   "ok_10": true
+  },
+  "STOP red": {
+   "spec": "#C1121C",
+   "finish": "texture",
+   "measured_srgb": [
+    190,
+    50,
+    54
+   ],
+   "hsv": [
+    358,
+    0.74,
+    0.75
+   ],
+   "delta_max": 32,
+   "ok_10": false
+  },
+  "legend": {
+   "spec": "#F4F4F2",
+   "finish": "satin",
+   "measured_srgb": [
+    238,
+    238,
+    236
+   ],
+   "hsv": [
+    60,
+    0.01,
+    0.93
+   ],
+   "delta_max": 6,
+   "ok_10": true
+  },
+  "lid": {
+   "spec": "#CDD0CF",
+   "finish": "satincoat",
+   "measured_srgb": [
+    200,
+    203,
+    202
+   ],
+   "hsv": [
+    160,
+    0.01,
+    0.8
+   ],
+   "delta_max": 5,
+   "ok_10": true
+  },
+  "halo ring": {
+   "spec": "#F2FBFF",
+   "finish": "satin",
+   "measured_srgb": [
+    236,
+    244,
+    248
+   ],
+   "hsv": [
+    200,
+    0.05,
+    0.97
+   ],
+   "delta_max": 7,
+   "ok_10": true
+  },
+  "socket / kit": {
+   "spec": "#34373C",
+   "finish": "satin",
+   "measured_srgb": [
+    65,
+    67,
+    71
+   ],
+   "hsv": [
+    220,
+    0.08,
+    0.28
+   ],
+   "delta_max": 13,
+   "ok_10": false
+  }
+ },
+ "png": "../r/f4_swatch.png",
+ "exposure_ev": 0.032,
+ "ok": true
+}

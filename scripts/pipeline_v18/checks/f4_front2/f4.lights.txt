@@ -1,0 +1,35 @@
+topology {"front": {"boundary_edges": 0, "nonmanifold_edges": 0}, "rear": {"boundary_edges": 0, "nonmanifold_edges": 0}} {"kit_topology": 0, "harness_topology": 0}
+lens {'max_abs_dev_away_from_edge': 0.0173, 'n': 44609, 'p99_9': 0.0, 'n_over_0_02': 0, 'feature_zone_max_dev': 0.115, 'edge_zone_max_dev': 0.615, 'ref_groove_zone_max_dev': 0.0} see below
+lens gap {'min': 0.368, 'at_mm': [312.1, 19.1, 183.7], 'p1': 0.393, 'median': 0.512}
+housing       {'body': 0.29, 'cover': 4.7, 'deck': 1.97, 'body_kit': 13.83, 'cover_kit': 8.08, 'sleeves': 1.24, 'chassis': 1.86, 'lens': -0.23}
+gasket        {'body': -0.18, 'cover': 4.65, 'deck': 2.63, 'body_kit': 17.78, 'cover_kit': 9.15, 'sleeves': 1.83, 'chassis': 8.98, 'lens': 0.88}
+bar           {'body': 6.31, 'cover': 13.17, 'deck': 10.52, 'body_kit': 23.71, 'cover_kit': 16.82, 'sleeves': 9.61, 'chassis': 7.48, 'lens': 0.24}
+carrier       {'body': 5.82, 'cover': 12.24, 'deck': 9.61, 'body_kit': 22.45, 'cover_kit': 15.6, 'sleeves': 8.53, 'chassis': 6.47, 'lens': 0.09}
+pcb           {'body': 3.36, 'cover': 9.51, 'deck': 6.53, 'body_kit': 19.41, 'cover_kit': 11.56, 'sleeves': 5.7, 'chassis': 7.44, 'lens': 1.9}
+led           {'body': 8.72, 'cover': 15.15, 'deck': 12.45, 'body_kit': 26.89, 'cover_kit': 22.96, 'sleeves': 11.78, 'chassis': 9.19, 'lens': 1.3}
+camera        {'body': 5.56, 'cover': 11.68, 'deck': 8.49, 'body_kit': 17.05, 'cover_kit': 12.58, 'sleeves': 7.09, 'chassis': 3.62, 'lens': 0.2}
+tof           {'body': 7.75, 'cover': 14.2, 'deck': 11.59, 'body_kit': 27.65, 'cover_kit': 21.3, 'sleeves': 10.93, 'chassis': 9.02, 'lens': 0.34}
+pipe          {'body': 6.74, 'cover': 13.28, 'deck': 11.52, 'body_kit': 26.95, 'cover_kit': 22.6, 'sleeves': 10.91, 'chassis': 9.77, 'lens': 0.1}
+foam          {'body': 4.75, 'cover': 11.19, 'deck': 9.06, 'body_kit': 22.73, 'cover_kit': 14.55, 'sleeves': 8.28, 'chassis': 10.23, 'lens': 0.02}
+boss          {'body': -1.25, 'cover': 10.47, 'deck': 9.59, 'sleeves': 22.35, 'chassis': 11.13, 'lens': 5.56}
+screw         {'body': 0.99, 'cover': 14.21, 'deck': 11.56, 'body_kit': 26.58, 'sleeves': 22.84, 'chassis': 6.78, 'lens': 8.98}
+ear           {'body': 4.11, 'cover': 12.15, 'deck': 9.34, 'body_kit': 27.02, 'sleeves': 20.75, 'chassis': 8.38, 'lens': 3.94}
+shroud        {'body': 11.25, 'cover': 15.0, 'deck': 10.71, 'body_kit': 26.66, 'cover_kit': 22.7, 'chassis': 4.32, 'lens': 10.89}
+vent          {'body': 7.64, 'cover': 12.37, 'deck': 8.25, 'body_kit': 21.59, 'cover_kit': 12.18, 'sleeves': 13.18, 'chassis': 5.89, 'lens': 6.89}
+emitter       {'lid_well': 1.27, 'lid_kit': 15.44, 'controls': 0.0, 'ctl_standin': 3.0}
+pad           {'body': -0.11, 'cover': 13.89, 'deck': 12.21, 'sleeves': 25.06, 'chassis': 15.64, 'lens': 1.88}
+plug          {'body': 12.61, 'cover': 15.05, 'deck': 9.83, 'body_kit': 25.79, 'cover_kit': 21.99, 'chassis': 4.68}
+cable         {'body': 11.81, 'cover': 6.31, 'deck': 0.36, 'body_kit': 7.85, 'cover_kit': 15.91, 'chassis': 8.55}
+grommet       {'body': 10.14, 'cover': 5.63, 'deck': -0.34, 'body_kit': 19.24, 'cover_kit': 17.18, 'chassis': 11.65}
+clip          {'body': 29.49, 'cover': 8.97, 'deck': -0.76, 'body_kit': 6.72, 'cover_kit': 15.54, 'chassis': 10.49}
+svc           {'cover': 13.39, 'deck': 1.92, 'body_kit': 6.65, 'cover_kit': 25.16, 'chassis': 8.03}
+cradle        {'cover': 14.26, 'deck': -1.25, 'body_kit': 4.23, 'cover_kit': 26.48, 'chassis': 2.65}
+chassis_lead  {'cover': 24.71, 'deck': 10.6, 'body_kit': 19.81, 'chassis': 2.05}
+chassis vs kit {'samples': 825265, 'inside': 0, 'min_gap_mm': 1.87} boss/screw behind outer skin 0.35 3.49
+violations []
+sight front {'gap_rays': {'lens': 1208, 'kit:housing': 660, 'body': 532}, 'gap_leaks': 0, 'leak_examples': [], 'behind_windows': {'kit:bar/light': 188, 'kit:pipe/light': 15, 'kit:camera/glass': 85, 'kit:tof/glass': 10, 'kit:pcb/glass': 2}}
+sight rear {'gap_rays': {'lens': 1234, 'kit:housing': 614, 'body': 552}, 'gap_leaks': 0, 'leak_examples': [], 'behind_windows': {'kit:bar/light': 259, 'kit:pipe/light': 41}}
+<scratch>/wf5/r4_front2/design/lightcheck.py:233: RuntimeWarning: All-NaN slice encountered
+  rows[str(deg)] = {tg: round(float(np.nanmin(np.where(np.isfinite(sdist(tg, P2)), sdist(tg, P2), np.nan))) * 1000, 2) for tg in ('controls', 'ctl_standin', 'emitter', 'lid_well')}
+halo sweep {'-0.438': {'controls': 2.62, 'ctl_standin': 1.34, 'emitter': 1.02, 'lid_well': 3.73}, '0.0': {'controls': 3.47, 'ctl_standin': 2.07, 'emitter': 2.4, 'lid_well': 4.73}, '2.0': {'controls': 7.23, 'ctl_standin': 5.6, 'emitter': 8.65, 'lid_well': 5.78}, '5.0': {'controls': 15.09, 'ctl_standin': 13.42, 'emitter': 18.06, 'lid_well': 7.34}, '10.0': {'controls': 29.61, 'ctl_standin': 28.27, 'emitter': nan, 'lid_well': 21.31}, '20.0': {'controls': nan, 'ctl_standin': nan, 'emitter': nan, 'lid_well': nan}, '40.0': {'controls': nan, 'ctl_standin': nan, 'emitter': nan, 'lid_well': nan}, '75.0': {'controls': nan, 'ctl_standin': nan, 'emitter': nan, 'lid_well': nan}}
+LIGHTS OK: True

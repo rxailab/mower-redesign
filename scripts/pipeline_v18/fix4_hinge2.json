@@ -1,0 +1,52 @@
+{
+ "//": "[fix4-hinge2] lid hinge round 4: geared spring / damper drive (hingekit4.py, numbers hingebal.py). Applied after fix3_hinge.json.",
+ "lid": {
+  "//clr_r": "tongue running fit 0.2 -> 0.07 mm radial inside, 0.17 outside (MIM tongue +-0.02, PTFE-filled POM liners +-0.03): the sector gear needs a held centre distance (contact ratio >= 1.1 over the whole 0.24 radial play)",
+  "clr_r": 7e-05,
+  "//band_t": "no tape any more: the outer running clearance is clr_r + 0.1 (was clr_r + tape 0.2 + 0.1)",
+  "band_t": 0.0,
+  "//exit_a": "mesh angle phi_p: pinion centre on this ray from Q (was the tape exit -45)",
+  "exit_a": -48.0,
+  "h3": {
+   "//rail_split": "slot in the outer rail for the pinion (4.0 wide, +-2.3 slot) over +-15 deg round the mesh; the two side lands stay",
+   "rail_split": [
+    -15.0,
+    15.0
+   ]
+  },
+  "h4": {
+   "//": "hingekit4.DEF4 holds every default; keys here override them (dicts merge). Spring T0 / T75 = torque at the lid of both springs together before losses.",
+   "gear": {
+    "m": 0.0005,
+    "z_w": 72,
+    "z_p": 16,
+    "x_p": 0.1,
+    "band": 0.003,
+    "pinion_w": 0.0024,
+    "zone": [
+     -87.0,
+     12.0
+    ],
+    "//zone": "teeth from phi_p - 87 to phi_p + 12 (tongue frame): the pinion tip circle reaches inside the tongue band within +-10 deg of the line of centres, so the band is toothed 10 deg beyond the mesh at closed (+ 1.5 over-travel) and at 75 deg",
+    "runout": 5.5,
+    "//band": "toothed band 3.0 of the 8.0 tongue (pinion 2.4 + 0.3 each side): Lewis 46 MPa / Hertz 490 MPa at the largest tooth force (16.7 N); keeps 2 x 2.5 mm full side lands: tongue section in the zone Z 15.1 mm3 (full 21.3) -> LC3 SF 2.1 with the tooth-root Kt 1.7 on the full corner moment",
+    "//runout": "the cut rises from the root circle to the full tongue radius over 5.5 deg at both zone ends (inside the pinion tip-circle clearance incl. the 1.5 deg bottom over-travel): no step at the root-side end"
+   },
+   "spring": {
+    "T0": 0.36,
+    "T75": 0.21,
+    "strip": [
+     0.008,
+     0.00019
+    ],
+    "cup_r_in": 0.0058
+   },
+   "damper": {
+    "c_Q": 0.12
+   },
+   "detent": {
+    "delta": 5e-05
+   }
+  }
+ }
+}

@@ -1,0 +1,22 @@
+{
+ "body": {
+  "chassis_points_inside_wall": 0,
+  "min_gap_mm": null,
+  "spots": []
+ },
+ "cover": {
+  "chassis_points_inside_wall": 0,
+  "min_gap_mm": null,
+  "spots": []
+ },
+ "ports": {
+  "chassis_points_inside_wall": 0,
+  "closer_than_clear": 0,
+  "min_gap_mm": 1.06,
+  "tightest_at_mm": [
+   303.5,
+   -49.1,
+   150.1
+  ]
+ }
+}

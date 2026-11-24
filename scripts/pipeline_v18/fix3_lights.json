@@ -1,0 +1,418 @@
+{
+ "// fix3-lights": "light bands: separate smoked PC lens per band (real 0.4 mm gap replaces the groove), sealed lamp module behind it, bosses, harness, halo feed (lightkit.py)",
+ "lights": {
+  "lens": {
+   "gap": 0.0004,
+   "roll_body": 0.0003,
+   "roll_lens": 0.0002,
+   "t": 0.0025,
+   "edge_ri": 0.0002
+  },
+  "housing": {
+   "weld_in": 0.002,
+   "weld_out": 0.0005,
+   "weld_u": 0.00245,
+   "step_d": -0.0001,
+   "step_u": 0.0033,
+   "frame_t": 0.0015,
+   "d_out": 0.0025,
+   "d_out_top": 0.002,
+   "d_out_bot": 0.003,
+   "d_trap": 0.0009,
+   "trap_y": 0.064,
+   "gasket_in": 0.0007,
+   "gasket_edge": 0.0003,
+   "u_back": {
+    "front": [
+     [
+      0.0,
+      0.0108
+     ],
+     [
+      0.022,
+      0.0108
+     ],
+     [
+      0.03,
+      0.0094
+     ],
+     [
+      0.074,
+      0.0094
+     ],
+     [
+      0.084,
+      0.0139
+     ],
+     [
+      0.2,
+      0.0139
+     ]
+    ],
+    "rear": [
+     [
+      0.0,
+      0.0098
+     ],
+     [
+      0.014,
+      0.0098
+     ],
+     [
+      0.022,
+      0.0094
+     ],
+     [
+      0.074,
+      0.0094
+     ],
+     [
+      0.084,
+      0.0139
+     ],
+     [
+      0.2,
+      0.0139
+     ]
+    ]
+   },
+   "back_t": 0.0015,
+   "vent": [
+    0.06,
+    0.178,
+    0.0035
+   ]
+  },
+  "bar": {
+   "y0": 0.0255,
+   "y1": 0.1245,
+   "z0": -0.0022,
+   "z1": 0.0022,
+   "u0": 0.00275,
+   "u1": 0.00625,
+   "leg_y": 0.121,
+   "leg_u": 0.0099,
+   "carrier_t": 0.0008
+  },
+  "board": {
+   "y0": 0.113,
+   "y1": 0.1265,
+   "z_half": 0.007,
+   "u0": 0.0106,
+   "t": 0.001,
+   "led": [
+    0.003,
+    0.003,
+    0.0006
+   ]
+  },
+  "pupil": {
+   "board": [
+    0.023,
+    0.0075,
+    0.0044
+   ],
+   "cam": [
+    0.0085,
+    0.004,
+    0.003,
+    0.00275
+   ],
+   "tof": [
+    0.0049,
+    0.0025,
+    0.00156
+   ],
+   "tof_y": -0.0165,
+   "led_y": 0.0165,
+   "pipe_r": 0.0014
+  },
+  "dot": {
+   "board": [
+    0.008,
+    0.006,
+    0.007
+   ],
+   "pipe_r": 0.0023,
+   "led": [
+    0.0016,
+    0.0008,
+    0.0006
+   ]
+  },
+  "bosses": {
+   "at": [
+    [
+     0.139,
+     0.0
+    ],
+    [
+     0.086,
+     -0.02
+    ]
+   ],
+   "od": 0.0049,
+   "hole": 0.002,
+   "seat_u": 0.009,
+   "ear_t": 0.002,
+   "ear_w": 0.009,
+   "gusset_t": 0.0012,
+   "sink": 0.001,
+   "screw": [
+    0.0025,
+    0.007,
+    0.0045,
+    0.0016
+   ],
+   "fit_hole": 0.0026,
+   "slot": 0.001,
+   "clear_hole": 0.0032
+  },
+  "connector": {
+   "y": 0.112,
+   "dz": 0.002,
+   "w": 0.016,
+   "h": 0.011,
+   "wall": 0.0012,
+   "len": 0.006,
+   "plug_len": 0.008
+  },
+  "harness": {
+   "cable_d": {
+    "front": 0.005,
+    "rear": 0.0042
+   },
+   "grommet_holes": [
+    [
+     0.2905,
+     0.11,
+     0.0035,
+     0.0035
+    ],
+    [
+     -0.289,
+     0.11,
+     0.0035,
+     0.0035
+    ]
+   ],
+   "front": {
+    "path": [
+     [
+      0.2918,
+      0.1092,
+      0.184
+     ],
+     [
+      0.291,
+      0.1097,
+      0.193
+     ],
+     [
+      0.2905,
+      0.11,
+      0.1985
+     ],
+     [
+      0.289,
+      0.1088,
+      0.2002
+     ],
+     [
+      0.282,
+      0.103,
+      0.2
+     ],
+     [
+      0.274,
+      0.0955,
+      0.2
+     ],
+     [
+      0.266,
+      0.089,
+      0.2
+     ],
+     [
+      0.2633,
+      0.087,
+      0.2003
+     ]
+    ],
+    "grommet": [
+     0.2905,
+     0.11,
+     0.1961,
+     0.0035,
+     0.0025
+    ],
+    "clips": [
+     [
+      0.274,
+      0.0955,
+      0.2,
+      0.0,
+      0.0,
+      -1.0,
+      0.0006
+     ]
+    ],
+    "service": [
+     0.262,
+     0.086,
+     0.201,
+     -0.76,
+     -0.65,
+     0.0,
+     0.003,
+     0.009,
+     0.1962
+    ],
+    "chassis_lead": [
+     [
+      0.2385,
+      0.066,
+      0.201
+     ],
+     [
+      0.2345,
+      0.064,
+      0.193
+     ],
+     [
+      0.232,
+      0.066,
+      0.16
+     ],
+     [
+      0.231,
+      0.07,
+      0.116
+     ]
+    ]
+   },
+   "rear": {
+    "path": [
+     [
+      -0.298,
+      0.1091,
+      0.184
+     ],
+     [
+      -0.2965,
+      0.1094,
+      0.195
+     ],
+     [
+      -0.293,
+      0.1098,
+      0.21
+     ],
+     [
+      -0.2895,
+      0.11,
+      0.222
+     ],
+     [
+      -0.289,
+      0.11,
+      0.2285
+     ],
+     [
+      -0.2875,
+      0.109,
+      0.2295
+     ],
+     [
+      -0.281,
+      0.1035,
+      0.2295
+     ],
+     [
+      -0.274,
+      0.0975,
+      0.2295
+     ],
+     [
+      -0.27,
+      0.0943,
+      0.2298
+     ]
+    ],
+    "grommet": [
+     -0.289,
+     0.11,
+     0.2255,
+     0.0035,
+     0.0025
+    ],
+    "clips": [
+     [
+      -0.281,
+      0.1035,
+      0.2295,
+      0.0,
+      0.0,
+      -1.0,
+      0.0006
+     ]
+    ],
+    "service": [
+     -0.2688,
+     0.0933,
+     0.2303,
+     0.78,
+     -0.62,
+     0.0,
+     0.003,
+     0.009,
+     0.2256
+    ],
+    "chassis_lead": [
+     [
+      -0.2468,
+      0.0758,
+      0.2303
+     ],
+     [
+      -0.244,
+      0.076,
+      0.222
+     ],
+     [
+      -0.243,
+      0.079,
+      0.16
+     ],
+     [
+      -0.243,
+      0.08,
+      0.114
+     ]
+    ]
+   }
+  },
+  "halo": {
+   "on": true,
+   "boss_r": 0.0015,
+   "gap_closed": 0.0024,
+   "emitter": [
+    0.005,
+    0.008,
+    0.001
+   ],
+   "led_h": 0.0006
+  },
+  "on": true,
+  "// lens": "separate smoke PC lens (IR-transparent tint, hard-coat outside, dead-front IR-transparent black print inside except the light windows / pupil, silver ring print); gap = real joint to the body opening (was a 0.6 x 0.3 groove); roll_body / roll_lens = edge radii; t = lens thickness = wall",
+  "// housing": "black PC/ABS lamp housing, laser-welded to the lens back face (inner / outer wall faces weld_in / weld_out inside the outline (wall 1.5, the weld land between them) at u = weld_u); step_d / step_u = light trap step behind the gap and gasket face; d_out* = flange width beyond the outline (top / bottom / ends), d_trap over the charger slot (|y| < trap_y: no gasket, drain); gasket_in / gasket_edge = gasket band; u_back = back-plate depth by |y| (under the A-surface) per module; back_t; vent = [y, z, r] ePTFE vent",
+  "// bar": "PMMA light bar behind each light window: y0..y1, z0..z1 about the band axis, u0..u1 depth; 45 deg TIR periscope leg at leg_y..y1 down to leg_u; carrier_t = white PC carrier channel wall",
+  "// board": "LED end board (FR4) y0..y1, +-z_half, front face at u0, thickness t; led = [w, h, t] of the 3030 LED",
+  "// pupil": "front centre: board [half width, half height, front-face u], cam = [holder size, depth, barrel r, barrel front u], tof = [w, h, t], tof_y, led_y, pipe_r",
+  "// dot": "rear centre: board [half w, half h, front-face u], pipe_r, led",
+  "// bosses": "screw bosses on the body wall [|y|, dz] (dz 0: on the band axis at the lens end, else under the lens), od / hole (PT K25), seat_u = ear seat depth, ear_t / ear_w, gusset_t, sink = base fused into the wall, screw = [d, length, head d, head h]; fit_hole / slot = the locating holes of the two end ears (left round, right slot along y), clear_hole = lower ears",
+  "// connector": "sealed module connector on the back plate: y, dz, w, h, wall, shroud len, plug_len (right-angle plug, cable exits upward)",
+  "// harness": "cable_d per module; per module: path waypoints (world m) from the plug exit, grommet [x, y, z deck top, hole r, deck t], clips [x, y, z, foot direction, foot h], service [x, y, z, axis, cradle offsets 2x, deck z], chassis_lead waypoints; grommet_holes [x, y, rx, ry] are cut into the deck by design_gen",
+  "// halo": "status halo feed: clear boss r on the lid underside at the halo ring's front point, gap_closed to the emitter LED (lid closed), emitter = [x, y, t] LED board on the control panel's front strip, led_h; panel_z = panel top there"
+ }
+}

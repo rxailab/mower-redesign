@@ -1,0 +1,21 @@
+{
+ "//": "[fix3-struts] chassis struts / stubs beside the drive wheels (strutskit.py). Replaces the f2 vertex deletion |y|>160, z>135, -60<x<290 mm.",
+ "//2": "Kept: rim flange (>= 1.05 mm from the body), drive-unit housings (body edge raised over them). Cut: old mudguard pin (2 planes) and front hook (1 plane).",
+ "skirt": {"seat": {
+   "//": "lower edge of the body wall beside the wheels: was z 136.2 over the (deleted) drive-housing tops; the housings stay, top face z 152..155.0 -> edge at 156.5 = 1.5 mm gap at the crest, the seat flange stops on the housing",
+   "z": 0.1565}},
+ "struts": {
+  "mode": "cut",
+  "cuts": [
+   {"id": "pin_trim", "feature": "old mudguard locating pin (rim flange, above the hub)",
+    "//": "trim the pin's outboard overhang flush with the rim flange's outer edge line (|y| 165.9..167.0): leaves |y| <= 167.2 = 1.2 mm from the body inner skin (168.4)",
+    "box": {"x": [0.1085, 0.1280], "ay": [0.1672, 0.1760], "z": [0.2120, 0.2420]}, "plane": {"axis": "ay", "at": 0.1672}},
+   {"id": "pin_top", "feature": "old mudguard locating pin (rim flange, above the hub)",
+    "//": "cut the pin off <= 1.0 mm above the rim flange top face (flange top z 217.5 at the pin, level behind it, falling to 216.9 just ahead): stub top 218.5 (+0 / -1.0, flush allowed) = 1.0 / 1.5 mm (R / L) under the deck",
+    "box": {"x": [0.1085, 0.1280], "ay": [0.1560, 0.1760], "z": [0.2185, 0.2420]}, "plane": {"axis": "z", "at": 0.2185, "remove": "+"}},
+   {"id": "hook", "feature": "old mudguard front hook (L-bracket ahead of the wheel)",
+    "//": "straight cut parallel to the centre line at |y| 165.0: >= 1.2 mm from the nose-corner inner skin (166.2..168.0 over x 260..276)",
+    "box": {"x": [0.2540, 0.2780], "ay": [0.1650, 0.1780], "z": [0.1460, 0.1680]}, "plane": {"axis": "ay", "at": 0.1650}}
+  ]
+ }
+}

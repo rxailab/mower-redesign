@@ -4,6 +4,8 @@ import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
+import { MeshoptDecoder } from 'three/addons/libs/meshopt_decoder.module.js';
+import { cutChassis } from './chassis_cut.js';
 
 window.__mowerStarted = true;           // tells the boot watchdog in index.html that the module loaded
 const $ = (id) => document.getElementById(id);
@@ -166,11 +168,11 @@ canvas.addEventListener('webglcontextlost', (e) => e.preventDefault());
 canvas.addEventListener('webglcontextrestored', () => { buildEnv(); requestRender(); });
 
 // ---------------------------------------------------------------- loading
-const MODEL_VERSION = '2026-11-23';     // bump when the models change, so browsers do not reuse cached copies
+const MODEL_VERSION = '2026-11-24b';     // bump when the models change, so browsers do not reuse cached copies
 const FILES = ['body', 'cover', 'lid', 'lower', 'panel', 'base', 'dock'].map((k) => [k, `models/${k}.glb?v=${MODEL_VERSION}`]);
 const GROUP_OF = { panel: 'base' };      // the control panel (STOP key, display) is fixed to the chassis
 // the host compresses the models and sends no Content-Length: use the known sizes as the progress total
-const SIZES = { body: 6292920, cover: 8676208, lid: 621900, lower: 1798928, panel: 1042152, base: 13671280, dock: 5486764 };
+const SIZES = { body: 9138436, cover: 2873828, lid: 1014092, lower: 479300, panel: 266068, base: 13671280, dock: 5486764 };
 const prog = {};
 for (const k in SIZES) prog[k] = [0, SIZES[k]];
 function updateBar() {
@@ -183,7 +185,7 @@ function updateBar() {
 if (location.protocol === 'file:') {
   fail('浏览器不允许直接从本地文件加载模型。<br>请双击运行“启动查看器”脚本（或 serve.py），它会在浏览器中打开本页面。');
 } else {
-  const gl = new GLTFLoader();
+  const gl = new GLTFLoader(); gl.setMeshoptDecoder(MeshoptDecoder);      // the design models are meshopt-compressed (gltfpack)
   // Web-hosted copy: the host only serves text, so each .glb ships as base64 text chunks (models/manifest.json)
   const B64 = new Uint8Array(128); 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/'.split('').forEach((c, i) => { B64[c.charCodeAt(0)] = i; });
   function decodeB64(s) {
@@ -221,9 +223,9 @@ if (location.protocol === 'file:') {
   });
   const loadOne = (f) => retry(() => loadOnce(f));
   const loadJSON = (name) => retry(() => fetch(window.MOWER_B64 ? `models/${name}` : `models/${name}?v=${MODEL_VERSION}`).then((r) => { if (!r.ok) throw new Error(`${name}: HTTP ${r.status}`); return r.json(); }));
-  Promise.all([...FILES.map(loadOne), loadJSON('hotspots.json'), loadJSON('palettes.json'), loadJSON('dock_profile.json'), loadJSON('design.json')])
+  Promise.all([...FILES.map(loadOne), loadJSON('hotspots.json'), loadJSON('palettes.json'), loadJSON('dock_profile.json'), loadJSON('design.json'), loadJSON('chassis_cut.json').catch(() => null)])
     .then((res) => {
-      DESIGN = res.pop(); dockProfile = res.pop(); const pal = res.pop(); const hs = res.pop();
+      CUT = res.pop(); DESIGN = res.pop(); dockProfile = res.pop(); const pal = res.pop(); const hs = res.pop();
       for (const [k, g] of res) groups[GROUP_OF[k] || k].add(g.scene);
       setup(hs, pal);
       $('loader').classList.add('done');
@@ -241,12 +243,13 @@ const proxyMat = new THREE.MeshBasicMaterial({ visible: false });
 let PALETTES = [];
 let paletteId = null;
 let DESIGN = null;                  // models/design.json: lid hinge axis, opening angle, chassis screw posts
+let CUT = null;                     // models/chassis_cut.json (v18): the exact cuts of the two old mudguard features per side
 // finish presets: [roughness, metalness, clearcoat, clearcoatRoughness] (same values as the Blender renders)
 const FINISH = {
-  body: { gloss: [0.30, 0, 0.8, 0.06], metallic: [0.36, 0.55, 1.0, 0.05], satin: [0.50, 0, 0.15, 0.2], matte: [0.75, 0, 0, 0.3] },
-  deck: { gloss: [0.26, 0, 0.8, 0.06], metallic: [0.36, 0.55, 1.0, 0.05], satin: [0.5, 0, 0.1, 0.2], matte: [0.72, 0, 0, 0.3] },
+  body: { gloss: [0.30, 0, 0.8, 0.06], metallic: [0.36, 0.55, 1.0, 0.05], satin: [0.50, 0, 0.15, 0.2], matte: [0.75, 0, 0, 0.3], satincoat: [0.42, 0, 0.45, 0.06] },
+  deck: { gloss: [0.26, 0, 0.8, 0.06], metallic: [0.36, 0.55, 1.0, 0.05], satin: [0.5, 0, 0.1, 0.2], matte: [0.72, 0, 0, 0.3], texture: [0.62, 0, 0, 0.3] },
 };
-const FINISH_ZH = { gloss: '亮面', metallic: '金属漆', satin: '缎面', matte: '哑光' };
+const FINISH_ZH = { gloss: '亮面', metallic: '金属漆', satin: '缎面', matte: '哑光', satincoat: '缎面清漆', texture: '细纹理' };
 // state.wheel: + = rolling forward; state.swivel: 0 = caster trailing behind its pivot
 const state = { wheel: { L: 0, R: 0 }, swivel: { L: 0, R: 0 }, spin: { L: 0, R: 0 }, explode: 0, dock: 0, lid: 0 };
 const LIFT = { lid: 0.5, cover: 0.4, body: 0.24, lower: 0 };      // the front bumper stays on the chassis
@@ -272,8 +275,11 @@ function setup(hotspotData, paletteData) {
   for (const n of ['BodyPaint', 'LidPaint']) for (const m of matsAll[n] || []) m.envMapIntensity = 0.8;
   for (const n of ['DeckPaint', 'Glass', 'LensGlass']) for (const m of matsAll[n] || []) m.envMapIntensity = 0.9;
   for (const n of ['Visor', 'SkirtPaint', 'Dark', 'KitDark', 'KitRubber']) for (const m of matsAll[n] || []) m.envMapIntensity = 0.5;
+  for (const n of ['CorePaint', 'InnerSkin', 'Inner']) for (const m of matsAll[n] || []) m.envMapIntensity = 0.6;      // v18: dark one-piece body, inside of the walls
+  for (const m of matsAll.Visor || []) m.envMapIntensity = 1.0;                                                   // v18: smoked lens bands read as glass
   addInnerSkins();
   trimChassis();
+  if (DESIGN && DESIGN.dock_dy) groups.dock.position.z = -DESIGN.dock_dy;      // v18: seated pose, pins centred in the chassis contact pockets
   rigLid();
   buildGuides();
   PALETTES = (paletteData && paletteData.schemes) || [];
@@ -387,7 +393,7 @@ function setPaint(id) {
   const p = PALETTES.find((x) => x.id === id); if (!p) return;
   paletteId = p.id;
   for (const n of ['BodyPaint', 'LidPaint']) for (const m of matsAll[n] || []) applyFinish(m, p.body.hex, p.body.finish, 'body');
-  for (const m of matsAll.DeckPaint || []) applyFinish(m, p.deck.hex, p.deck.finish, 'deck');
+  for (const n of ['DeckPaint', 'CorePaint']) for (const m of matsAll[n] || []) applyFinish(m, p.deck.hex, p.deck.finish, 'deck');      // v18: the dark body takes the second colour
   for (const m of matsAll.Accent || []) m.color.set(p.accent);
   // wheel light ring: emissive LED colour normalised to full brightness, dim base colour underneath
   const e = new THREE.Color(p.ring || '#2fc6dc'); const mx = Math.max(e.r, e.g, e.b) || 1; e.multiplyScalar(1 / mx);
@@ -402,7 +408,7 @@ function setPaint(id) {
     const en = document.createElement('span'); en.textContent = p.en;
     const dot = document.createElement('i'); dot.className = 'ring-dot'; dot.style.background = '#' + e.getHexString(THREE.SRGBColorSpace);
     lab.replaceChildren(nm, ' ', en, document.createElement('br'),
-      `机身 ${FINISH_ZH[p.body.finish] || ''} · 顶板 ${FINISH_ZH[p.deck.finish] || ''} · 轮毂灯环 `, dot);
+      `上盖 ${FINISH_ZH[p.body.finish] || ''} · 车身 ${FINISH_ZH[p.deck.finish] || ''} · 轮毂灯环 `, dot);
   }
   requestRender();
 }
@@ -413,7 +419,7 @@ function buildSwatches() {
     const b = document.createElement('button');
     b.className = 'swatch'; b.type = 'button'; b.dataset.id = p.id;
     b.setAttribute('role', 'radio'); b.setAttribute('aria-checked', 'false'); b.tabIndex = -1;
-    b.title = `${p.zh}（${p.en}）`; b.setAttribute('aria-label', `${p.zh}：机身、顶板、饰线与轮毂灯环配色`);
+    b.title = `${p.zh}（${p.en}）`; b.setAttribute('aria-label', `${p.zh}：上盖、车身与轮毂灯环配色`);
     b.style.setProperty('--c1', p.body.hex); b.style.setProperty('--c2', p.deck.hex); b.style.setProperty('--s', p.accent); b.style.setProperty('--r', p.ring || '#2fc6dc');
     b.addEventListener('click', () => setPaint(p.id));
     b.addEventListener('keydown', (e) => {          // radio-group arrow keys
@@ -492,8 +498,8 @@ function syncGuides() {
 }
 
 // ---------------------------------------------------------------- lid: hinge, opening
-// The lid turns about the hinge axis (parallel to Z, under the roof behind the opening). Friction hinges hold it at any
-// angle, so there are no gas struts. The lid and its well ride on the top cover.
+// v18: a hidden virtual-pivot arc-track hinge - the lid turns about a fixed axis (parallel to Z) that lies just outside the rear gap,
+// up to a stop at 75 deg; no gas struts. The lid and its well ride on the top cover.
 let lidRig = null, lidAnim = null;
 function rigLid() {
   const L = DESIGN.lid, pivot = new THREE.Group(); pivot.name = 'LidHinge'; pivot.position.fromArray(L.pivot);
@@ -516,10 +522,12 @@ function animateLid(to) {
   setLid(state.lid);
 }
 // The body and the top cover are single skins: seen from inside they are unpainted dark plastic (same as in the renders).
+// (v17 only: the v18 parts are closed solids, see DESIGN.wall)
 // Each skin mesh gets a twin that shares its geometry and only draws the back faces.
 const innerMat = new THREE.MeshStandardMaterial({ color: 0x2e3035, roughness: 0.6, metalness: 0, side: THREE.BackSide });
 innerMat.name = 'ShellInner';
 function addInnerSkins() {
+  if (DESIGN && DESIGN.wall) return;          // v18: both parts are closed 2.5 mm solids with a real inner skin
   for (const name of ['NewShell', 'TopCover']) {
     const root = scene.getObjectByName(name); if (!root) continue;
     const meshes = []; root.traverse((o) => { if (o.isMesh) meshes.push(o); });
@@ -537,6 +545,7 @@ function addInnerSkins() {
 function trimChassis() {
   const ch = groups.base.getObjectByName('Chassis'); if (!ch) return;
   ch.updateWorldMatrix(true, true);
+  if (CUT) { cutChassisMeshes(ch); return; }
   const v = new THREE.Vector3(), posts = (DESIGN && DESIGN.posts) || [];
   const nearPost = (p) => posts.some((q) => (p.x - q[0]) ** 2 + (p.z - q[2]) ** 2 < 0.0068 ** 2);
   ch.traverse((o) => {
@@ -552,6 +561,32 @@ function trimChassis() {
       keep[n++] = idx[i]; keep[n++] = idx[i + 1]; keep[n++] = idx[i + 2];
     }
     o.geometry.setIndex(new THREE.BufferAttribute(keep.slice(0, n), 1));
+  });
+}
+
+// v18: the chassis keeps its rim flange and drive-unit housings; only the old mudguard locating pin and front hook are cut, each by one
+// plane with a flat cap (models/chassis_cut.json, chassis_cut.js). Positions are cut in the base-model frame, then mapped back.
+function cutChassisMeshes(ch) {
+  const toBase = new THREE.Matrix4().copy(groups.base.matrixWorld).invert();
+  ch.traverse((o) => {
+    if (!o.isMesh || !o.geometry.index) return;
+    const g = o.geometry, rel = toBase.clone().multiply(o.matrixWorld), inv = rel.clone().invert();
+    const n0 = g.attributes.position.count, p = g.attributes.position.clone().applyMatrix4(rel);
+    const r = cutChassis(p.array, g.index.array, CUT, 'gltf');
+    const pos = new THREE.BufferAttribute(r.position, 3).applyMatrix4(inv), n1 = pos.count;
+    const nor = new Float32Array(n1 * 3);
+    if (g.attributes.normal) nor.set(g.attributes.normal.array.subarray(0, n0 * 3));
+    const a = new THREE.Vector3(), b = new THREE.Vector3(), c = new THREE.Vector3(), idx = r.index;
+    for (let i = 0; i < idx.length; i += 3) {                    // new vertices (clip points, caps): normal from their faces
+      const [i0, i1, i2] = [idx[i], idx[i + 1], idx[i + 2]];
+      if (i0 < n0 && i1 < n0 && i2 < n0) continue;
+      a.fromBufferAttribute(pos, i0); b.fromBufferAttribute(pos, i1); c.fromBufferAttribute(pos, i2);
+      const fn = b.sub(a).cross(c.sub(a));
+      for (const k of [i0, i1, i2]) if (k >= n0) { nor[3 * k] += fn.x; nor[3 * k + 1] += fn.y; nor[3 * k + 2] += fn.z; }
+    }
+    for (let k = n0; k < n1; k++) { const l = Math.hypot(nor[3 * k], nor[3 * k + 1], nor[3 * k + 2]) || 1; nor[3 * k] /= l; nor[3 * k + 1] /= l; nor[3 * k + 2] /= l; }
+    const ng = new THREE.BufferGeometry(); ng.setAttribute('position', pos); ng.setAttribute('normal', new THREE.BufferAttribute(nor, 3));
+    ng.setIndex(new THREE.BufferAttribute(idx, 1)); o.geometry = ng; g.dispose();
   });
 }
 
@@ -678,7 +713,7 @@ window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('info')
 const partLabels = [];
 function buildPartLabels(boxes) {
   const host = $('partlabels');
-  const defs = [['lid', '盖板'], ['cover', '上盖（卡扣固定）'], ['body', '一体式车身（14 颗螺丝）'], ['base', '底盘（含前保险杠）']];
+  const defs = [['lid', '盖板（含 STOP 键）'], ['cover', '卡扣式上盖'], ['body', '一体式车身（14 颗螺丝）'], ['base', '底盘（含前保险杠）']];
   for (const [k, text] of defs) {
     const el = document.createElement('div'); el.className = 'plabel'; el.textContent = text; host.appendChild(el);
     const b = boxes[k]; const corners = [];

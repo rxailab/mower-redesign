@@ -1,0 +1,192 @@
+chassis cut: {"pin_trim_L": {"faces_near": 144, "removed": 112, "faces_left_in_box": 0, "cap_area_mm2": 35.3}, "pin_trim_R": {"faces_near": 101, "removed": 90, "faces_left_in_box": 0, "cap_area_mm2": 30.1}, "pin_top_L": {"faces_near": 178, "removed": 163, "faces_left_in_box": 0, "cap_area_mm2": 97.3}, "pin_top_R": {"faces_near": 224, "removed": 215, "faces_left_in_box": 0, "cap_area_mm2": 99.6}, "hook_L": {"faces_near": 196, "removed": 164, "faces_left_in_box": 0, "cap_area_mm2": 115.9}, "hook_R": {"faces_near": 65, "removed": 62, "faces_left_in_box": 0, "cap_area_mm2": 83.6}, "open_edges_on_cut_planes": 0}
+parts 386, built 13.7 s
+audited 96.1 s
+
+=== SOLID AUDIT f4.npz: 386 components, 84 design parts failing, 10 hardware / render stand-ins not clean (info)
+component                   faces   bound nonman unpair  degen     vol mm3   selfx  frame  center mm / self-x at
+lid                        196978    7592     16   7592     41   6108817.3       0    lid  [-47.01, 0.0, 277.33] OPEN+WINDING
+lid.rib#0                    2432       0      0     16      0       426.1       0    lid  [-140.3, 0.13, 272.67] WINDING
+lid.rib#1                     560       0      0     16      0      -271.7       0    lid  [-108.0, 0.0, 274.64] INVERTED+WINDING
+lid.rib#2                     784       0      0     16      0      -214.0       0    lid  [-102.29, 35.98, 274.72] INVERTED+WINDING
+lid.rib#3                     784       0      0     16      0      -214.0       0    lid  [-101.98, -36.29, 274.73] INVERTED+WINDING
+lid.rib#4                    1130      54      0    358      0      -220.7     104    lid  [-29.36, -54.12, 277.64] OPEN+INVERTED+WINDING+SELF-X
+lid.rib#5                    1130      54      0    358      0      -220.7     102    lid  [-88.64, 54.1, 276.44] OPEN+INVERTED+WINDING+SELF-X
+lid.rib#6                    7104       0      0     16      0      1285.6       0    lid  [-47.23, 0.0, 275.46] WINDING
+lid.rib#7                   12208      16      0     16      0      2134.3       9    lid  [-97.99, -51.5, 274.1] OPEN+WINDING+SELF-X
+lid.rib#8                     608       0      0     16      0      -125.9       0    lid  [-47.0, -62.8, 275.68] INVERTED+WINDING
+lid.rib#9                     560       0      0     16      0       -66.1       0    lid  [-47.0, -42.0, 275.85] INVERTED+WINDING
+lid.rib#10                    560       0      0     16      0       -66.1       0    lid  [-47.0, 42.0, 275.85] INVERTED+WINDING
+lid.rib#11                    608       0      0     16      0      -125.9       0    lid  [-47.0, 62.8, 275.68] INVERTED+WINDING
+lid.rib#12                  14000       0      0     16      0      3953.7       0    lid  [-46.99, 0.0, 273.7] WINDING
+lid.rib#13                    784       0      0     16      0        -6.9       0    lid  [7.98, 36.29, 275.3] INVERTED+WINDING
+lid.rib#14                    784       0      0     16      0        -6.9       0    lid  [8.29, -35.98, 275.3] INVERTED+WINDING
+lid.rib#15                     48       0      0     16      0       -70.3       0    lid  [23.79, 0.0, 274.91] INVERTED+WINDING
+lid.boss#0                   1150      70      0    266      0     -1957.6     115    lid  [-138.55, -59.46, 274.76] OPEN+INVERTED+WINDING+SELF-X
+lid.boss#1                   1150      70      0    266      0     -1958.6     117    lid  [-138.55, 48.54, 274.76] OPEN+INVERTED+WINDING+SELF-X
+lid.tongue#0                 5878      30      0   1466      0      -595.9      26    lid  [-163.67, -57.98, 266.82] OPEN+INVERTED+WINDING+SELF-X
+lid.tongue#1                 5878      30      0   1466      0      -595.9      26    lid  [-163.67, 50.02, 266.82] OPEN+INVERTED+WINDING+SELF-X
+lid.striker#0                  36       0      0     16      0     -3106.2       0    lid  [44.6, 0.0, 275.14] INVERTED+WINDING
+lid.striker#1                4176       0      0     48      0      -475.2       0    lid  [45.0, 0.0, 268.34] INVERTED+WINDING
+lid.blade#0                  1802     314      0    450    698      -421.7     998    lid  [-136.69, -57.94, 274.43] OPEN+INVERTED+WINDING+SELF-X
+lid.blade#1                  1824     320      0    456    698      -421.9    1024    lid  [-133.06, 50.17, 271.6] OPEN+INVERTED+WINDING+SELF-X
+well.well                   38798     542      0   4570     31  -1314990.4    1959  fixed  [-129.86, 75.82, 259.35] OPEN+INVERTED+WINDING+SELF-X
+well.seal                   78176       0      0      0      0     -7018.2       0  fixed  [-47.0, 0.0, 274.57] INVERTED
+well.guide#0                 7674      30      0   2554      0      -100.3      34  fixed  [-142.44, -59.08, 265.88] OPEN+INVERTED+WINDING+SELF-X
+well.guide#1                 7674      30      0   2554      0      -100.3      34  fixed  [-142.44, -49.18, 265.88] OPEN+INVERTED+WINDING+SELF-X
+well.guide#2                 7674      30      0   2554      0      -100.3      34  fixed  [-142.44, 48.92, 265.88] OPEN+INVERTED+WINDING+SELF-X
+well.guide#3                 7674      30      0   2554      0      -100.3      34  fixed  [-142.44, 58.82, 265.88] OPEN+INVERTED+WINDING+SELF-X
+well.guide#4                 3952      20      0   1316      0      -184.0      11  fixed  [-137.98, -58.27, 272.24] OPEN+INVERTED+WINDING+SELF-X
+well.guide#5                 3952      20      0   1316      0      -184.0      12  fixed  [-137.98, 49.73, 272.24] OPEN+INVERTED+WINDING+SELF-X
+well.guide#6                 4688       0      4   1568      0      -238.8      10  fixed  [-139.24, -54.69, 261.71] OPEN+INVERTED+WINDING+SELF-X
+well.guide#7                 4688       0      4   1568      0      -238.8      10  fixed  [-139.18, 54.91, 261.64] OPEN+INVERTED+WINDING+SELF-X
+well.pocket#0                  84       0      6    104      0      -839.1      25  fixed  [-150.72, -49.43, 259.21] OPEN+INVERTED+WINDING+SELF-X
+well.pocket#1                  84       0      6    104      0      -839.1      25  fixed  [-150.72, 58.57, 259.21] OPEN+INVERTED+WINDING+SELF-X
+well.damper#0                5472       0      0      8      0        13.0       0  fixed  [-137.23, -54.0, 252.16] WINDING
+well.damper#2                2184       0      0      0    496       919.2     115  fixed  [-139.56, -50.42, 254.62] SELF-X
+well.damper#3                2184       0      0      0    496       919.2     115  fixed  [-139.56, 50.42, 254.61] SELF-X
+well.damper#4                5472       0      0      8      0        13.0       0  fixed  [-137.23, 54.0, 252.16] WINDING
+well.latch                   1564      18     56    462      0     11165.2     213  fixed  [46.75, -3.98, 259.05] OPEN+WINDING+SELF-X
+well.claw#1                  1926      22      0    638      0       -30.6      22  fixed  [44.55, -0.16, 264.24] OPEN+INVERTED+WINDING+SELF-X
+well.bumper#0                 960       0      0    964      0        -2.2       0  fixed  [-141.11, -58.95, 263.89] INVERTED+WINDING
+well.bumper#1                 960       0      0    964      0        -2.2       0  fixed  [-141.11, -49.05, 263.89] INVERTED+WINDING
+well.bumper#2                 960       0      0    964      0        -2.2       0  fixed  [-141.11, 49.05, 263.89] INVERTED+WINDING
+well.bumper#3                 960       0      0    964      0        -2.2       0  fixed  [-141.11, 58.95, 263.89] INVERTED+WINDING
+well.lip                     2864    1432      0   1432      0     90698.3      15  fixed  [-127.19, -61.23, 250.8] OPEN+WINDING+SELF-X
+well.spring#0                 968       0      0      8      0      -116.9       0  fixed  [-148.69, -54.0, 256.13] INVERTED+WINDING
+well.spring#1                 968       0      0      8      0      -116.9       0  fixed  [-148.69, 54.0, 256.13] INVERTED+WINDING
+well.pod#0                   3764       0    844    764    544     -2194.7     451  fixed  [-138.73, -59.31, 270.59] OPEN+INVERTED+WINDING+SELF-X
+well.pod#1                   3764       0    842    764    544     -2183.7     451  fixed  [-138.79, 59.31, 270.57] OPEN+INVERTED+WINDING+SELF-X
+well.pod#2                     44       0      0     16      0      -359.4       0  fixed  [-136.96, -44.6, 250.28] INVERTED+WINDING
+well.pod#3                     44       0      0     16      0      -359.4       0  fixed  [-136.96, 44.6, 250.28] INVERTED+WINDING
+well.ear#0                    176       0      0    176      0        22.9       0  fixed  [-97.5, -87.5, 274.94] WINDING
+well.ear#1                    176       0      0    176      0        22.9       0  fixed  [-97.5, 87.5, 274.94] WINDING
+well.ear#2                    176       0      0    176      0        22.9       0  fixed  [-47.0, -87.5, 276.03] WINDING
+well.ear#3                    176       0      0    176      0        22.9       0  fixed  [-47.0, 87.5, 276.03] WINDING
+well.ear#4                    176       0      0    176      0        22.9       0  fixed  [59.5, -41.0, 273.33] WINDING
+well.ear#5                    176       0      0    176      0        22.9       0  fixed  [59.5, 41.0, 273.33] WINDING
+stop.carrier                 3840       0      0      0    672     -1539.3       0   stop  [4.44, 0.0, 277.62] INVERTED
+stop.boot                    1280       0      0      0      0      -130.8       0   stop  [4.44, 0.0, 282.48] INVERTED
+stop.cspring                 6280       0      0     20      0       106.3       0   stop  [4.44, 0.0, 279.02] WINDING
+stop.tip                      800       0      0      0      0       -79.6       0   stop  [4.44, 0.0, 263.12] INVERTED
+stop.arm#0                     12       0      0     16      0      -185.6       0   stop  [-31.06, 0.0, 268.48] INVERTED+WINDING
+stop.arm#1                     12       0      0     16      0      -185.6       0   stop  [-31.06, 0.0, 275.98] INVERTED+WINDING
+stop.arm#2                    332       0      0    112      0       -68.4       0   stop  [-30.56, -5.7, 269.48] INVERTED+WINDING
+stop.arm#3                    332       0      0    112      0       -68.4       0   stop  [-30.56, -5.7, 274.98] INVERTED+WINDING
+stop.arm#4                    332       0      0    112      0       -68.4       0   stop  [-30.56, 5.7, 269.48] INVERTED+WINDING
+stop.arm#5                    332       0      0    112      0       -68.4       0   stop  [-30.56, 5.7, 274.98] INVERTED+WINDING
+stop.pin#1                    360       0     80      0    240       118.4       0   stop  [-65.56, 0.0, 274.98] OPEN+WINDING
+stop.rspring#2               1760       0      0     20     40       473.6      41   stop  [-61.08, -10.82, 274.77] WINDING+SELF-X
+stop.rspring#3               1760       0      0     20     40       473.9      43   stop  [-61.04, 10.76, 274.76] WINDING+SELF-X
+stop.bore                    1280       0      0      0      0      -160.2       0    lid  [4.44, 0.0, 277.33] INVERTED
+stop.bracket                  332       0      0    112      0      -375.1       0    lid  [-65.56, 0.0, 272.39] INVERTED+WINDING
+stop.bumper                  1280       0      0      0      0       -32.5       0    lid  [4.44, 0.0, 276.48] INVERTED
+portframe#5                 11440       0      0      0      0      2742.0      10  fixed  [315.71, -15.21, 162.34] SELF-X
+lamp.carrier#1              14116       0      6      0      0      1099.7     137  fixed  [-316.28, -25.17, 174.24] OPEN+WINDING+SELF-X
+lamp.carrier#2              14116       0      6      0      0      1099.8     129  fixed  [-316.43, 25.26, 174.15] OPEN+WINDING+SELF-X
+lamp.carrier#3              14116       0      6      0      0      1092.0     144  fixed  [310.25, -25.17, 174.41] OPEN+WINDING+SELF-X
+lamp.carrier#4              14116       0      6      0      0      1092.1     134  fixed  [310.41, 25.23, 174.34] OPEN+WINDING+SELF-X
+harn.cable#0                 3264       0      0      0      0      1047.8      26  fixed  [-287.76, 108.76, 227.39] SELF-X
+harn.chassis_lead#1          4800       0      0      0      0      1580.3      17  fixed  [-248.0, 74.61, 229.56] SELF-X
+harn.chassis_lead#2          3680       0      0      0      0      1715.2      16  fixed  [239.16, 66.88, 198.82] SELF-X
+render.ctl_standin#0          160       0      0     80      0   1713019.0       0  fixed  [-68.87, 0.0, 253.49] WINDING (hw/render, info)
+render.ctl_standin#1          624      48      0     48      0    347067.5       0  fixed  [4.44, 0.98, 257.58] OPEN+WINDING (hw/render, info)
+hw.controls                184473    1377      0   1377      6   1731681.9       0  fixed  [-47.01, -0.01, 253.1] OPEN+WINDING (hw/render, info)
+hw.wheel_l                 117293    4649      0   4649      0   2429562.5       5  fixed  [79.21, 228.62, 30.55] OPEN+WINDING+SELF-X (hw/render, info)
+hw.wheel_r                  95680    6682      0   6682      0   2018393.4      20  fixed  [70.18, -225.86, 192.69] OPEN+WINDING+SELF-X (hw/render, info)
+hw.caster_l                 28275      69      0     69      0    341977.5       0  fixed  [-179.4, 118.96, 49.73] OPEN+WINDING (hw/render, info)
+hw.caster_r                 23469      97      0     97      0    341326.8       0  fixed  [-222.5, -115.63, 49.83] OPEN+WINDING (hw/render, info)
+hw.chassis#0                  625     189      0    189      0     88120.6       0  fixed  [-142.06, -107.11, 113.99] OPEN+WINDING (hw/render, info)
+hw.chassis#1               257324   22494      0  22494      1   9669421.6      46  fixed  [-80.72, 109.62, 204.11] OPEN+WINDING+SELF-X (hw/render, info)
+hw.bumper                 1129024    2742      0   2742      0   2762952.6       0  fixed  [288.24, -3.61, 87.64] OPEN+WINDING (hw/render, info)
+
+group                  comps     faces  open   inv  wind selfx   degen
+body                       1   2222090     0     0     0     0      22
+ckit.barb                 10       160     0     0     0     0       0
+ckit.leg                  30      1280     0     0     0     0       0
+ckit.pin                   6      1584     0     0     0     0       0
+ckit.seatpad              18      8640     0     0     0     0       0
+ckit.stake                 6      1728     0     0     0     0     576
+cover                      1   1668912     0     0     0     0      30
+halo_feed                  1      2080     0     0     0     0       0
+harn.cable                 2      5728     0     0     0     1       0
+harn.chassis_lead          4      8640     0     0     0     2       0
+harn.clip                  4       408     0     0     0     0       0
+harn.cradle                8        96     0     0     0     0       0
+harn.grommet               2      1152     0     0     0     0       0
+harn.plug                  4       456     0     0     0     0       0
+harn.svc                   6       456     0     0     0     0       0
+hw.bumper                  1   1129024     1     0     1     0       0
+hw.caster_l                1     28275     1     0     1     0       0
+hw.caster_r                1     23469     1     0     1     0       0
+hw.chassis                 2    257949     2     0     2     1       1
+hw.controls                1    184473     1     0     1     0       6
+hw.wheel_l                 1    117293     1     0     1     1       0
+hw.wheel_r                 1     95680     1     0     1     1       0
+lamp.bar                   4     32880     0     0     0     0       0
+lamp.boss                 24      3328     0     0     0     0       0
+lamp.camera                3      1192     0     0     0     0       0
+lamp.carrier               5     56784     4     0     4     4       0
+lamp.ear                   8      2800     0     0     0     0       0
+lamp.emitter               2       120     0     0     0     0       0
+lamp.foam                  2       968     0     0     0     0       0
+lamp.gasket                2     89880     0     0     0     0       0
+lamp.housing               2    114208     0     0     0     0       0
+lamp.led                   6       248     0     0     0     0       0
+lamp.pcb                   6     26796     0     0     0     0       0
+lamp.pipe                  2       448     0     0     0     0       0
+lamp.screw                 8      2304     0     0     0     0       0
+lamp.shroud                4      4144     0     0     0     0       0
+lamp.tof                   1        96     0     0     0     0       0
+lamp.vent                  2       384     0     0     0     0       0
+lens.front                 1    596808     0     0     0     0   27684
+lens.rear                  1    453296     0     0     0     0   24030
+lid                        1    196978     1     0     1     0      41
+lid.blade                  2      3626     2     2     2     2    1396
+lid.boss                   2      2300     2     2     2     2       0
+lid.lug                    4      1792     0     0     0     0     448
+lid.rib                   16     44084     3    12    16     3       0
+lid.striker                2      4212     0     2     2     0       0
+lid.tongue                 2     11756     2     2     2     2       0
+mount.boss                 3       960     0     0     0     0       0
+mount.bracket              8       720     0     0     0     0       0
+mount.clip                15       180     0     0     0     0       0
+mount.deck                 1    531036     0     0     0     0       0
+mount.pad                 14      3360     0     0     0     0    2240
+mount.pilot                5       800     0     0     0     0       0
+mount.rib                 12       336     0     0     0     0       0
+mount.screw               14      6720     0     0     0     0       0
+mount.seat                 4      3776     0     0     0     0       0
+nosefloor                  6      8168     0     0     0     0       0
+portframe                  6     60908     0     0     0     1    7687
+render.ctl_standin         2       784     1     0     2     0       0
+render.ctl_tower           1        12     0     0     0     0       0
+stop.arm                   6      1352     0     6     6     0       0
+stop.boot                  1      1280     0     1     0     0       0
+stop.bore                  1      1280     0     1     0     0       0
+stop.bracket               1       332     0     1     1     0       0
+stop.bumper                1      1280     0     1     0     0       0
+stop.cap                   1     11676     0     0     0     0       0
+stop.carrier               1      3840     0     1     0     0     672
+stop.cspring               1      6280     0     0     1     0       0
+stop.halo                  1      1920     0     0     0     0       0
+stop.pin                   6       960     1     0     1     0     640
+stop.rod                   1       480     0     0     0     0       0
+stop.rspring               4      3640     0     0     2     2     160
+stop.tip                   1       800     0     1     0     0       0
+well.bumper                4      3840     0     4     4     0       0
+well.claw                  2      2022     1     1     1     1      64
+well.damper                6     15552     0     0     2     2    1152
+well.drain                 4      1536     0     0     0     0       0
+well.ear                   6      1056     0     0     6     0       0
+well.guide                 8     47976     8     8     8     8       0
+well.idler                 4       992     0     0     0     0     448
+well.latch                 1      1564     1     0     1     1       0
+well.lip                   1      2864     1     0     1     1       0
+well.pocket                2       168     2     2     2     2       0
+well.pod                   4      7616     2     4     4     2    1088
+well.seal                  1     78176     0     1     0     0       0
+well.spring                2      1936     0     2     2     0       0
+well.well                  1     38798     1     1     1     1      31
+wrote chk/f4.solid.json
+SOLIDAUDIT FAIL: 84 design components fail (110 s)
+Blender 4.2.3 LTS (hash 0e22e4fcea03 built 2024-10-14 23:31:34)

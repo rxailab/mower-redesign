@@ -11,5 +11,5 @@ for k in ('body', 'cover', 'lid', 'lower', 'panel', 'base', 'dock'):
         nm = f'{k}.glb.b64.{i // CH}.txt'; open(os.path.join(out, nm), 'w').write(b[i:i + CH]); names.append('models/' + nm)
     man[k] = {'size': len(b), 'chunks': names}
 json.dump(man, open(os.path.join(out, 'manifest.json'), 'w'), indent=1)
-for j in ('hotspots.json', 'palettes.json', 'dock_profile.json', 'design.json'): shutil.copy(os.path.join(src, j), os.path.join(out, j))
+for j in ('hotspots.json', 'palettes.json', 'dock_profile.json', 'design.json', 'chassis_cut.json'): shutil.copy(os.path.join(src, j), os.path.join(out, j))
 print(json.dumps({k: (v['size'], len(v['chunks'])) for k, v in man.items()}))

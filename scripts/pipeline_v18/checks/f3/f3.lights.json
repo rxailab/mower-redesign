@@ -1,0 +1,334 @@
+{
+ "lens_topology": {
+  "front": {
+   "boundary_edges": 0,
+   "nonmanifold_edges": 0
+  },
+  "rear": {
+   "boundary_edges": 0,
+   "nonmanifold_edges": 0
+  }
+ },
+ "kit_topology": {
+  "components": 85,
+  "open_components": 0,
+  "open": []
+ },
+ "harness_topology": {
+  "components": 30,
+  "open_components": 0,
+  "open": []
+ },
+ "lens_flush_mm": {
+  "max_abs_dev_away_from_edge": 0.0081,
+  "n": 166410,
+  "edge_zone_max_dev": 0.0
+ },
+ "lens_gap_to_body_mm": {
+  "min": 0.368,
+  "at_mm": [
+   312.2,
+   -22.6,
+   183.2
+  ],
+  "p1": 0.383,
+  "median": 0.511
+ },
+ "chassis_samples_vs_kit": {
+  "samples": 855866,
+  "inside": 0,
+  "min_gap_mm": 1.92
+ },
+ "boss_behind_outer_skin_mm": 0.73,
+ "screw_behind_outer_skin_mm": 3.78,
+ "clearance_mm": {
+  "housing": {
+   "body": 0.32,
+   "cover": 5.15,
+   "deck": 2.47,
+   "body_kit": 14.05,
+   "cover_kit": 8.48,
+   "sleeves": 0.55,
+   "chassis": 1.92,
+   "lens": -0.18
+  },
+  "gasket": {
+   "body": -0.19,
+   "cover": 5.36,
+   "deck": 3.16,
+   "body_kit": 18.13,
+   "cover_kit": 9.54,
+   "sleeves": 5.35,
+   "chassis": 9.06,
+   "lens": 0.9
+  },
+  "bar": {
+   "body": 6.45,
+   "cover": 14.94,
+   "deck": 12.3,
+   "body_kit": 24.8,
+   "cover_kit": 18.38,
+   "sleeves": 7.84,
+   "chassis": 7.65,
+   "lens": 0.24
+  },
+  "carrier": {
+   "body": 7.06,
+   "cover": 14.01,
+   "deck": 11.38,
+   "body_kit": 23.54,
+   "cover_kit": 17.16,
+   "sleeves": 6.75,
+   "chassis": 6.63,
+   "lens": 0.09
+  },
+  "pcb": {
+   "body": 3.35,
+   "cover": 9.97,
+   "deck": 7.01,
+   "body_kit": 19.63,
+   "cover_kit": 12.0,
+   "sleeves": 2.7,
+   "chassis": 7.48,
+   "lens": 1.89
+  },
+  "led": {
+   "body": 9.44,
+   "cover": 16.93,
+   "deck": 14.24,
+   "body_kit": 27.88,
+   "cover_kit": 24.28,
+   "sleeves": 10.0,
+   "chassis": 9.41,
+   "lens": 1.3
+  },
+  "camera": {
+   "body": 6.65,
+   "cover": 13.36,
+   "deck": 10.24,
+   "body_kit": 18.16,
+   "cover_kit": 14.3,
+   "sleeves": 5.24,
+   "chassis": 3.76,
+   "lens": 0.2
+  },
+  "tof": {
+   "body": 9.03,
+   "cover": 15.98,
+   "deck": 13.38,
+   "body_kit": 28.57,
+   "cover_kit": 22.64,
+   "sleeves": 9.14,
+   "chassis": 9.18,
+   "lens": 0.34
+  },
+  "pipe": {
+   "body": 8.05,
+   "cover": 15.06,
+   "deck": 13.29,
+   "body_kit": 27.9,
+   "cover_kit": 23.89,
+   "sleeves": 9.14,
+   "chassis": 9.95,
+   "lens": 0.1
+  },
+  "foam": {
+   "body": 6.0,
+   "cover": 12.95,
+   "deck": 10.75,
+   "body_kit": 23.6,
+   "cover_kit": 16.1,
+   "sleeves": 6.52,
+   "chassis": 10.4,
+   "lens": 0.02
+  },
+  "boss": {
+   "body": -1.25,
+   "cover": 12.14,
+   "deck": 11.08,
+   "sleeves": 22.05,
+   "chassis": 11.26,
+   "lens": 5.45
+  },
+  "screw": {
+   "body": 1.28,
+   "cover": 16.46,
+   "deck": 14.76,
+   "body_kit": 28.86,
+   "sleeves": 22.77,
+   "chassis": 7.85,
+   "lens": 9.17
+  },
+  "ear": {
+   "body": 4.42,
+   "cover": 15.2,
+   "deck": 12.52,
+   "body_kit": 25.72,
+   "sleeves": 20.28,
+   "chassis": 7.62,
+   "lens": 6.14
+  },
+  "shroud": {
+   "body": 11.31,
+   "cover": 15.46,
+   "deck": 11.21,
+   "body_kit": 27.01,
+   "cover_kit": 23.27,
+   "chassis": 3.69,
+   "lens": 10.89
+  },
+  "vent": {
+   "body": 7.45,
+   "cover": 12.37,
+   "deck": 8.25,
+   "body_kit": 21.6,
+   "cover_kit": 12.19,
+   "sleeves": 13.18,
+   "chassis": 5.89,
+   "lens": 6.89
+  },
+  "emitter": {
+   "lid_well": 1.27,
+   "lid_kit": 15.43,
+   "controls": 0.0,
+   "ctl_standin": 3.0
+  },
+  "plug": {
+   "body": 12.74,
+   "cover": 15.29,
+   "deck": 10.52,
+   "body_kit": 26.16,
+   "cover_kit": 22.43,
+   "chassis": 3.91
+  },
+  "cable": {
+   "body": 11.81,
+   "cover": 5.79,
+   "deck": 0.37,
+   "body_kit": 7.77,
+   "cover_kit": 15.91,
+   "chassis": 7.98
+  },
+  "grommet": {
+   "body": 10.14,
+   "cover": 5.63,
+   "deck": -0.34,
+   "body_kit": 19.24,
+   "cover_kit": 17.18,
+   "chassis": 11.65
+  },
+  "clip": {
+   "body": 29.47,
+   "cover": 8.97,
+   "deck": -0.68,
+   "body_kit": 6.7,
+   "cover_kit": 15.54,
+   "chassis": 10.39
+  },
+  "svc": {
+   "cover": 15.03,
+   "deck": 0.42,
+   "body_kit": 5.83,
+   "cover_kit": 25.85,
+   "chassis": 6.03
+  },
+  "cradle": {
+   "cover": 15.89,
+   "deck": -1.25,
+   "body_kit": 4.23,
+   "cover_kit": 26.48,
+   "chassis": 2.65
+  },
+  "chassis_lead": {
+   "cover": 26.59,
+   "deck": 9.9,
+   "body_kit": 19.36,
+   "chassis": 2.1
+  }
+ },
+ "violations": [],
+ "sight": {
+  "front": {
+   "gap_rays": {
+    "kit:housing": 599,
+    "lens": 1272,
+    "body": 507,
+    "ports": 22
+   },
+   "gap_leaks": 0,
+   "leak_examples": [],
+   "behind_windows": {
+    "kit:bar/light": 190,
+    "kit:tof/glass": 15,
+    "kit:camera/glass": 85,
+    "kit:pipe/light": 10
+   }
+  },
+  "rear": {
+   "gap_rays": {
+    "lens": 1303,
+    "kit:housing": 543,
+    "body": 554
+   },
+   "gap_leaks": 0,
+   "leak_examples": [],
+   "behind_windows": {
+    "kit:bar/light": 258,
+    "kit:pipe/light": 42
+   }
+  }
+ },
+ "halo_sweep_mm": {
+  "-0.438": {
+   "controls": 2.62,
+   "ctl_standin": 1.34,
+   "emitter": 1.02,
+   "lid_well": 3.73
+  },
+  "0.0": {
+   "controls": 3.47,
+   "ctl_standin": 2.07,
+   "emitter": 2.4,
+   "lid_well": 4.73
+  },
+  "2.0": {
+   "controls": 7.23,
+   "ctl_standin": 5.6,
+   "emitter": 8.65,
+   "lid_well": 5.78
+  },
+  "5.0": {
+   "controls": 15.09,
+   "ctl_standin": 13.42,
+   "emitter": 18.06,
+   "lid_well": 7.34
+  },
+  "10.0": {
+   "controls": 29.61,
+   "ctl_standin": 28.27,
+   "emitter": NaN,
+   "lid_well": 21.31
+  },
+  "20.0": {
+   "controls": NaN,
+   "ctl_standin": NaN,
+   "emitter": NaN,
+   "lid_well": NaN
+  },
+  "40.0": {
+   "controls": NaN,
+   "ctl_standin": NaN,
+   "emitter": NaN,
+   "lid_well": NaN
+  },
+  "75.0": {
+   "controls": NaN,
+   "ctl_standin": NaN,
+   "emitter": NaN,
+   "lid_well": NaN
+  }
+ },
+ "halo_feed_top_under_lid_A_surface_mm": 1.37,
+ "halo_feed_to_lid_underside_mm": 0.06,
+ "ok": true
+}
