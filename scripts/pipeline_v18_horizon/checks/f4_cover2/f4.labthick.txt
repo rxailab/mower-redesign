@@ -1,0 +1,6 @@
+x -100 side +1: part-line zone max inscribed circle d = 2.69 mm at (y 173.3, z 121.7), wall top z 127.1
+x -100 side -1: part-line zone max inscribed circle d = 2.69 mm at (y -173.3, z 121.7), wall top z 127.1
+y 85 side +1: part-line zone max inscribed circle d = 2.75 mm at (y 310.4, z 188.5), wall top z 193.0
+y 85 side -1: part-line zone max inscribed circle d = 2.75 mm at (y -316.6, z 188.5), wall top z 193.2
+y -97 side +1: part-line zone max inscribed circle d = 2.76 mm at (y 309.6, z 188.5), wall top z 193.1
+y -97 side -1: part-line zone max inscribed circle d = 2.74 mm at (y -315.7, z 188.6), wall top z 193.4

@@ -1,0 +1,1434 @@
+{
+ "frame": {
+  "components": [
+   {
+    "faces": 11216,
+    "boundary": 0,
+    "nonmanifold": 0,
+    "unpaired": 0,
+    "vol_mm3": 3136.4
+   },
+   {
+    "faces": 26608,
+    "boundary": 0,
+    "nonmanifold": 0,
+    "unpaired": 0,
+    "vol_mm3": 1427.8
+   },
+   {
+    "faces": 1984,
+    "boundary": 0,
+    "nonmanifold": 0,
+    "unpaired": 0,
+    "vol_mm3": 1136.2
+   },
+   {
+    "faces": 1984,
+    "boundary": 0,
+    "nonmanifold": 0,
+    "unpaired": 0,
+    "vol_mm3": 1136.2
+   }
+  ],
+  "all_closed": true,
+  "all_positive": true,
+  "mirror_dev_mm": {
+   "web_ducts_max": 0.0085,
+   "tunnel_p99": 0.001,
+   "tunnel_max": 0.03
+  }
+ },
+ "windows": {
+  "mirror_xor_mm2": 0.0,
+  "plus_y_mm": [
+   3.11,
+   144.29,
+   50.11,
+   161.64
+  ],
+  "minus_y_mm": [
+   -50.11,
+   144.29,
+   -3.11,
+   161.64
+  ]
+ },
+ "stroke": [
+  {
+   "case": "nominal (seated pose)",
+   "dy_mm": 0.0,
+   "dz_mm": 0.0,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 4.079,
+   "at_mm": [
+    307.7,
+    28.5,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "nominal (seated pose)",
+   "dy_mm": 0.0,
+   "dz_mm": 0.0,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 4.109,
+   "at_mm": [
+    307.7,
+    28.5,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "asm_dock pose",
+   "dy_mm": -5.8,
+   "dz_mm": 0.0,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 4.081,
+   "at_mm": [
+    307.7,
+    23.0,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "asm_dock pose",
+   "dy_mm": -5.8,
+   "dz_mm": 0.0,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 4.111,
+   "at_mm": [
+    307.7,
+    23.0,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "capture min + dz min",
+   "dy_mm": -15.8,
+   "dz_mm": -3.5,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 0.581,
+   "at_mm": [
+    307.8,
+    12.7,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "capture min + dz min",
+   "dy_mm": -15.8,
+   "dz_mm": -3.5,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 0.611,
+   "at_mm": [
+    307.8,
+    12.7,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "capture min + dz max",
+   "dy_mm": -15.8,
+   "dz_mm": 3.5,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 1.13,
+   "at_mm": [
+    304.6,
+    -40.6,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y"
+  },
+  {
+   "case": "capture min + dz max",
+   "dy_mm": -15.8,
+   "dz_mm": 3.5,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 1.16,
+   "at_mm": [
+    304.6,
+    -40.6,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y"
+  },
+  {
+   "case": "capture max + dz min",
+   "dy_mm": 16.1,
+   "dz_mm": -3.5,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 0.581,
+   "at_mm": [
+    307.8,
+    44.7,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "capture max + dz min",
+   "dy_mm": 16.1,
+   "dz_mm": -3.5,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 0.611,
+   "at_mm": [
+    307.8,
+    44.7,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "capture max + dz max",
+   "dy_mm": 16.1,
+   "dz_mm": 3.5,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 1.129,
+   "at_mm": [
+    304.5,
+    -8.6,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y"
+  },
+  {
+   "case": "capture max + dz max",
+   "dy_mm": 16.1,
+   "dz_mm": 3.5,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 1.159,
+   "at_mm": [
+    304.5,
+    -8.6,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y"
+  },
+  {
+   "case": "lateral 0 + dz min",
+   "dy_mm": 0.0,
+   "dz_mm": -3.5,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 0.579,
+   "at_mm": [
+    307.7,
+    28.5,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "lateral 0 + dz min",
+   "dy_mm": 0.0,
+   "dz_mm": -3.5,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 0.609,
+   "at_mm": [
+    307.7,
+    28.5,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "lateral 0 + dz max",
+   "dy_mm": 0.0,
+   "dz_mm": 3.5,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 1.129,
+   "at_mm": [
+    304.5,
+    -24.8,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y"
+  },
+  {
+   "case": "lateral 0 + dz max",
+   "dy_mm": 0.0,
+   "dz_mm": 3.5,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 1.159,
+   "at_mm": [
+    304.5,
+    -24.8,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y"
+  },
+  {
+   "case": "capture min",
+   "dy_mm": -15.8,
+   "dz_mm": 0.0,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 4.08,
+   "at_mm": [
+    307.8,
+    12.7,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "capture min",
+   "dy_mm": -15.8,
+   "dz_mm": 0.0,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 4.11,
+   "at_mm": [
+    307.8,
+    12.7,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "capture max",
+   "dy_mm": 16.1,
+   "dz_mm": 0.0,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 1.293,
+   "at_mm": [
+    304.5,
+    -3.2,
+    152.6
+   ],
+   "stroke_mm": 10.0,
+   "pin": "-y"
+  },
+  {
+   "case": "capture max",
+   "dy_mm": 16.1,
+   "dz_mm": 0.0,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 1.323,
+   "at_mm": [
+    304.5,
+    -3.2,
+    152.6
+   ],
+   "stroke_mm": 10.0,
+   "pin": "-y"
+  }
+ ],
+ "stroke_yaw": [
+  {
+   "yaw_deg": -3.0,
+   "case": "nominal (seated pose)",
+   "model": "heading",
+   "min_clear_mm": 4.081,
+   "at_mm": [
+    307.8,
+    28.3,
+    144.4
+   ],
+   "stroke_mm": 12.0,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": -3.0,
+   "case": "nominal (seated pose)",
+   "model": "crab",
+   "min_clear_mm": 4.082,
+   "at_mm": [
+    307.8,
+    27.8,
+    144.4
+   ],
+   "stroke_mm": 12.0,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": -3.0,
+   "case": "capture min + dz min",
+   "model": "heading",
+   "min_clear_mm": 0.582,
+   "at_mm": [
+    307.8,
+    12.6,
+    144.4
+   ],
+   "stroke_mm": 12.0,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": -3.0,
+   "case": "capture min + dz min",
+   "model": "crab",
+   "min_clear_mm": 0.581,
+   "at_mm": [
+    307.8,
+    11.9,
+    144.4
+   ],
+   "stroke_mm": 12.0,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": -3.0,
+   "case": "capture min + dz max",
+   "model": "heading",
+   "min_clear_mm": 1.116,
+   "at_mm": [
+    304.6,
+    -41.3,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": false
+  },
+  {
+   "yaw_deg": -3.0,
+   "case": "capture min + dz max",
+   "model": "crab",
+   "min_clear_mm": 1.116,
+   "at_mm": [
+    304.6,
+    -41.3,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": false
+  },
+  {
+   "yaw_deg": -3.0,
+   "case": "capture max + dz min",
+   "model": "heading",
+   "min_clear_mm": 0.582,
+   "at_mm": [
+    307.7,
+    44.4,
+    144.4
+   ],
+   "stroke_mm": 12.0,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": -3.0,
+   "case": "capture max + dz min",
+   "model": "crab",
+   "min_clear_mm": 0.582,
+   "at_mm": [
+    307.9,
+    43.8,
+    144.4
+   ],
+   "stroke_mm": 12.0,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": -3.0,
+   "case": "capture max + dz max",
+   "model": "heading",
+   "min_clear_mm": 1.116,
+   "at_mm": [
+    304.5,
+    -9.3,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": false
+  },
+  {
+   "yaw_deg": -3.0,
+   "case": "capture max + dz max",
+   "model": "crab",
+   "min_clear_mm": 1.116,
+   "at_mm": [
+    304.5,
+    -9.3,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": false
+  },
+  {
+   "yaw_deg": -3.0,
+   "case": "lateral 0 + dz min",
+   "model": "heading",
+   "min_clear_mm": 0.581,
+   "at_mm": [
+    307.8,
+    28.3,
+    144.4
+   ],
+   "stroke_mm": 12.0,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": -3.0,
+   "case": "lateral 0 + dz min",
+   "model": "crab",
+   "min_clear_mm": 0.582,
+   "at_mm": [
+    307.9,
+    27.7,
+    144.4
+   ],
+   "stroke_mm": 12.0,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": -3.0,
+   "case": "lateral 0 + dz max",
+   "model": "heading",
+   "min_clear_mm": 1.116,
+   "at_mm": [
+    304.6,
+    -25.5,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": false
+  },
+  {
+   "yaw_deg": -3.0,
+   "case": "lateral 0 + dz max",
+   "model": "crab",
+   "min_clear_mm": 1.116,
+   "at_mm": [
+    304.6,
+    -25.5,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": false
+  },
+  {
+   "yaw_deg": -3.0,
+   "case": "capture min",
+   "model": "heading",
+   "min_clear_mm": 4.081,
+   "at_mm": [
+    307.7,
+    12.5,
+    144.4
+   ],
+   "stroke_mm": 12.0,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": -3.0,
+   "case": "capture min",
+   "model": "crab",
+   "min_clear_mm": 4.08,
+   "at_mm": [
+    307.7,
+    11.9,
+    144.4
+   ],
+   "stroke_mm": 12.0,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": -3.0,
+   "case": "capture max",
+   "model": "heading",
+   "min_clear_mm": 1.467,
+   "at_mm": [
+    304.7,
+    -3.2,
+    152.8
+   ],
+   "stroke_mm": 11.5,
+   "pin": "-y",
+   "design": false
+  },
+  {
+   "yaw_deg": -3.0,
+   "case": "capture max",
+   "model": "crab",
+   "min_clear_mm": 2.015,
+   "at_mm": [
+    304.5,
+    50.0,
+    152.3
+   ],
+   "stroke_mm": 8.0,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": -2.0,
+   "case": "nominal (seated pose)",
+   "model": "heading",
+   "min_clear_mm": 4.082,
+   "at_mm": [
+    307.7,
+    28.4,
+    144.4
+   ],
+   "stroke_mm": 12.5,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": -2.0,
+   "case": "nominal (seated pose)",
+   "model": "crab",
+   "min_clear_mm": 4.081,
+   "at_mm": [
+    307.7,
+    28.0,
+    144.4
+   ],
+   "stroke_mm": 12.5,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": -2.0,
+   "case": "capture min + dz min",
+   "model": "heading",
+   "min_clear_mm": 0.582,
+   "at_mm": [
+    307.8,
+    12.6,
+    144.4
+   ],
+   "stroke_mm": 12.5,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": -2.0,
+   "case": "capture min + dz min",
+   "model": "crab",
+   "min_clear_mm": 0.583,
+   "at_mm": [
+    307.7,
+    12.2,
+    144.4
+   ],
+   "stroke_mm": 12.0,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": -2.0,
+   "case": "capture min + dz max",
+   "model": "heading",
+   "min_clear_mm": 1.122,
+   "at_mm": [
+    304.8,
+    -41.1,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": true
+  },
+  {
+   "yaw_deg": -2.0,
+   "case": "capture min + dz max",
+   "model": "crab",
+   "min_clear_mm": 1.122,
+   "at_mm": [
+    304.8,
+    -41.1,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": true
+  },
+  {
+   "yaw_deg": -2.0,
+   "case": "capture max + dz min",
+   "model": "heading",
+   "min_clear_mm": 0.582,
+   "at_mm": [
+    307.8,
+    44.5,
+    144.4
+   ],
+   "stroke_mm": 12.5,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": -2.0,
+   "case": "capture max + dz min",
+   "model": "crab",
+   "min_clear_mm": 0.582,
+   "at_mm": [
+    307.8,
+    44.0,
+    144.4
+   ],
+   "stroke_mm": 12.5,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": -2.0,
+   "case": "capture max + dz max",
+   "model": "heading",
+   "min_clear_mm": 1.12,
+   "at_mm": [
+    304.6,
+    -9.1,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": true
+  },
+  {
+   "yaw_deg": -2.0,
+   "case": "capture max + dz max",
+   "model": "crab",
+   "min_clear_mm": 1.12,
+   "at_mm": [
+    304.6,
+    -9.1,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": true
+  },
+  {
+   "yaw_deg": -2.0,
+   "case": "lateral 0 + dz min",
+   "model": "heading",
+   "min_clear_mm": 0.582,
+   "at_mm": [
+    307.9,
+    28.4,
+    144.4
+   ],
+   "stroke_mm": 12.5,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": -2.0,
+   "case": "lateral 0 + dz min",
+   "model": "crab",
+   "min_clear_mm": 0.582,
+   "at_mm": [
+    307.8,
+    28.0,
+    144.4
+   ],
+   "stroke_mm": 12.5,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": -2.0,
+   "case": "lateral 0 + dz max",
+   "model": "heading",
+   "min_clear_mm": 1.12,
+   "at_mm": [
+    304.5,
+    -25.3,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": true
+  },
+  {
+   "yaw_deg": -2.0,
+   "case": "lateral 0 + dz max",
+   "model": "crab",
+   "min_clear_mm": 1.12,
+   "at_mm": [
+    304.5,
+    -25.3,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": true
+  },
+  {
+   "yaw_deg": -2.0,
+   "case": "capture min",
+   "model": "heading",
+   "min_clear_mm": 4.081,
+   "at_mm": [
+    307.8,
+    12.6,
+    144.4
+   ],
+   "stroke_mm": 12.5,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": -2.0,
+   "case": "capture min",
+   "model": "crab",
+   "min_clear_mm": 4.081,
+   "at_mm": [
+    307.7,
+    12.1,
+    144.4
+   ],
+   "stroke_mm": 12.5,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": -2.0,
+   "case": "capture max",
+   "model": "heading",
+   "min_clear_mm": 1.417,
+   "at_mm": [
+    304.5,
+    -3.2,
+    152.6
+   ],
+   "stroke_mm": 11.0,
+   "pin": "-y",
+   "design": true
+  },
+  {
+   "yaw_deg": -2.0,
+   "case": "capture max",
+   "model": "crab",
+   "min_clear_mm": 1.795,
+   "at_mm": [
+    304.5,
+    50.0,
+    152.4
+   ],
+   "stroke_mm": 9.0,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": 2.0,
+   "case": "nominal (seated pose)",
+   "model": "heading",
+   "min_clear_mm": 4.081,
+   "at_mm": [
+    307.7,
+    28.7,
+    144.4
+   ],
+   "stroke_mm": 14.0,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": 2.0,
+   "case": "nominal (seated pose)",
+   "model": "crab",
+   "min_clear_mm": 4.083,
+   "at_mm": [
+    307.8,
+    29.2,
+    144.4
+   ],
+   "stroke_mm": 14.0,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": 2.0,
+   "case": "capture min + dz min",
+   "model": "heading",
+   "min_clear_mm": 0.581,
+   "at_mm": [
+    307.7,
+    13.0,
+    144.4
+   ],
+   "stroke_mm": 14.0,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": 2.0,
+   "case": "capture min + dz min",
+   "model": "crab",
+   "min_clear_mm": 0.582,
+   "at_mm": [
+    307.7,
+    13.5,
+    144.4
+   ],
+   "stroke_mm": 14.0,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": 2.0,
+   "case": "capture min + dz max",
+   "model": "heading",
+   "min_clear_mm": 1.141,
+   "at_mm": [
+    304.6,
+    -39.9,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": true
+  },
+  {
+   "yaw_deg": 2.0,
+   "case": "capture min + dz max",
+   "model": "crab",
+   "min_clear_mm": 1.141,
+   "at_mm": [
+    304.6,
+    -39.9,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": true
+  },
+  {
+   "yaw_deg": 2.0,
+   "case": "capture max + dz min",
+   "model": "heading",
+   "min_clear_mm": 0.581,
+   "at_mm": [
+    307.7,
+    44.9,
+    144.4
+   ],
+   "stroke_mm": 14.0,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": 2.0,
+   "case": "capture max + dz min",
+   "model": "crab",
+   "min_clear_mm": 0.581,
+   "at_mm": [
+    307.7,
+    45.4,
+    144.4
+   ],
+   "stroke_mm": 14.0,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": 2.0,
+   "case": "capture max + dz max",
+   "model": "heading",
+   "min_clear_mm": 0.741,
+   "at_mm": [
+    312.6,
+    50.1,
+    156.2
+   ],
+   "stroke_mm": -0.0,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": 2.0,
+   "case": "capture max + dz max",
+   "model": "crab",
+   "min_clear_mm": 0.661,
+   "at_mm": [
+    312.5,
+    50.1,
+    156.0
+   ],
+   "stroke_mm": 19.0,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": 2.0,
+   "case": "lateral 0 + dz min",
+   "model": "heading",
+   "min_clear_mm": 0.582,
+   "at_mm": [
+    307.7,
+    28.7,
+    144.4
+   ],
+   "stroke_mm": 14.0,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": 2.0,
+   "case": "lateral 0 + dz min",
+   "model": "crab",
+   "min_clear_mm": 0.583,
+   "at_mm": [
+    307.8,
+    29.2,
+    144.4
+   ],
+   "stroke_mm": 14.0,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": 2.0,
+   "case": "lateral 0 + dz max",
+   "model": "heading",
+   "min_clear_mm": 1.138,
+   "at_mm": [
+    304.5,
+    -24.3,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": true
+  },
+  {
+   "yaw_deg": 2.0,
+   "case": "lateral 0 + dz max",
+   "model": "crab",
+   "min_clear_mm": 1.138,
+   "at_mm": [
+    304.5,
+    -24.3,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": true
+  },
+  {
+   "yaw_deg": 2.0,
+   "case": "capture min",
+   "model": "heading",
+   "min_clear_mm": 4.081,
+   "at_mm": [
+    307.7,
+    13.0,
+    144.4
+   ],
+   "stroke_mm": 14.0,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": 2.0,
+   "case": "capture min",
+   "model": "crab",
+   "min_clear_mm": 4.081,
+   "at_mm": [
+    307.7,
+    13.5,
+    144.4
+   ],
+   "stroke_mm": 14.0,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": 2.0,
+   "case": "capture max",
+   "model": "heading",
+   "min_clear_mm": 0.742,
+   "at_mm": [
+    312.5,
+    50.1,
+    152.7
+   ],
+   "stroke_mm": -0.0,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": 2.0,
+   "case": "capture max",
+   "model": "crab",
+   "min_clear_mm": 0.66,
+   "at_mm": [
+    312.5,
+    50.1,
+    152.4
+   ],
+   "stroke_mm": 19.0,
+   "pin": "+y",
+   "design": true
+  },
+  {
+   "yaw_deg": 3.0,
+   "case": "nominal (seated pose)",
+   "model": "heading",
+   "min_clear_mm": 4.081,
+   "at_mm": [
+    307.7,
+    28.7,
+    144.4
+   ],
+   "stroke_mm": 14.5,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": 3.0,
+   "case": "nominal (seated pose)",
+   "model": "crab",
+   "min_clear_mm": 4.08,
+   "at_mm": [
+    307.7,
+    29.4,
+    144.4
+   ],
+   "stroke_mm": 14.5,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": 3.0,
+   "case": "capture min + dz min",
+   "model": "heading",
+   "min_clear_mm": 0.58,
+   "at_mm": [
+    307.7,
+    13.0,
+    144.4
+   ],
+   "stroke_mm": 14.5,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": 3.0,
+   "case": "capture min + dz min",
+   "model": "crab",
+   "min_clear_mm": 0.583,
+   "at_mm": [
+    307.7,
+    13.5,
+    144.4
+   ],
+   "stroke_mm": 14.5,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": 3.0,
+   "case": "capture min + dz max",
+   "model": "heading",
+   "min_clear_mm": 1.143,
+   "at_mm": [
+    304.5,
+    -39.8,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": false
+  },
+  {
+   "yaw_deg": 3.0,
+   "case": "capture min + dz max",
+   "model": "crab",
+   "min_clear_mm": 1.143,
+   "at_mm": [
+    304.5,
+    -39.8,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": false
+  },
+  {
+   "yaw_deg": 3.0,
+   "case": "capture max + dz min",
+   "model": "heading",
+   "min_clear_mm": 0.339,
+   "at_mm": [
+    312.5,
+    50.1,
+    149.3
+   ],
+   "stroke_mm": -0.0,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": 3.0,
+   "case": "capture max + dz min",
+   "model": "crab",
+   "min_clear_mm": 0.251,
+   "at_mm": [
+    312.6,
+    50.1,
+    148.9
+   ],
+   "stroke_mm": 19.5,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": 3.0,
+   "case": "capture max + dz max",
+   "model": "heading",
+   "min_clear_mm": 0.334,
+   "at_mm": [
+    312.6,
+    50.1,
+    156.2
+   ],
+   "stroke_mm": -0.0,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": 3.0,
+   "case": "capture max + dz max",
+   "model": "crab",
+   "min_clear_mm": 0.253,
+   "at_mm": [
+    312.5,
+    50.1,
+    156.0
+   ],
+   "stroke_mm": 19.5,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": 3.0,
+   "case": "lateral 0 + dz min",
+   "model": "heading",
+   "min_clear_mm": 0.581,
+   "at_mm": [
+    307.7,
+    28.7,
+    144.4
+   ],
+   "stroke_mm": 14.5,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": 3.0,
+   "case": "lateral 0 + dz min",
+   "model": "crab",
+   "min_clear_mm": 0.58,
+   "at_mm": [
+    307.7,
+    29.4,
+    144.4
+   ],
+   "stroke_mm": 14.5,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": 3.0,
+   "case": "lateral 0 + dz max",
+   "model": "heading",
+   "min_clear_mm": 1.144,
+   "at_mm": [
+    304.6,
+    -24.0,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": false
+  },
+  {
+   "yaw_deg": 3.0,
+   "case": "lateral 0 + dz max",
+   "model": "crab",
+   "min_clear_mm": 1.144,
+   "at_mm": [
+    304.6,
+    -24.0,
+    161.5
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y",
+   "design": false
+  },
+  {
+   "yaw_deg": 3.0,
+   "case": "capture min",
+   "model": "heading",
+   "min_clear_mm": 4.08,
+   "at_mm": [
+    307.7,
+    13.0,
+    144.4
+   ],
+   "stroke_mm": 14.5,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": 3.0,
+   "case": "capture min",
+   "model": "crab",
+   "min_clear_mm": 4.081,
+   "at_mm": [
+    307.7,
+    13.5,
+    144.4
+   ],
+   "stroke_mm": 14.5,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": 3.0,
+   "case": "capture max",
+   "model": "heading",
+   "min_clear_mm": 0.335,
+   "at_mm": [
+    312.5,
+    50.1,
+    152.7
+   ],
+   "stroke_mm": -0.0,
+   "pin": "+y",
+   "design": false
+  },
+  {
+   "yaw_deg": 3.0,
+   "case": "capture max",
+   "model": "crab",
+   "min_clear_mm": 0.252,
+   "at_mm": [
+    312.5,
+    50.1,
+    152.4
+   ],
+   "stroke_mm": 19.5,
+   "pin": "+y",
+   "design": false
+  }
+ ],
+ "worst_design_mm": {
+  "value": 0.579,
+  "yaw_range_deg": 2.0,
+  "target": 0.5,
+  "ok": true
+ },
+ "chassis_contact": [
+  {
+   "case": "seated",
+   "first_contact_stroke_mm": null,
+   "tip_x_mm": null,
+   "at_mm": null,
+   "pin": null
+  },
+  {
+   "case": "asm_dock",
+   "first_contact_stroke_mm": 1.25,
+   "tip_x_mm": 291.75,
+   "at_mm": [
+    292.5,
+    -32.3,
+    152.6
+   ],
+   "pin": "-y"
+  },
+  {
+   "case": "capture min",
+   "first_contact_stroke_mm": 9.25,
+   "tip_x_mm": 299.75,
+   "at_mm": [
+    300.8,
+    10.2,
+    152.2
+   ],
+   "pin": "+y"
+  },
+  {
+   "case": "capture max",
+   "first_contact_stroke_mm": 9.25,
+   "tip_x_mm": 299.75,
+   "at_mm": [
+    300.8,
+    -6.1,
+    152.8
+   ],
+   "pin": "-y"
+  }
+ ],
+ "drains": [
+  {
+   "drain_mm": [
+    278.9,
+    163.1,
+    180.1
+   ],
+   "hit_z_mm": {
+    "body": null,
+    "port frame": null,
+    "chassis": null
+   },
+   "first": null
+  },
+  {
+   "drain_mm": [
+    278.9,
+    -163.1,
+    180.1
+   ],
+   "hit_z_mm": {
+    "body": null,
+    "port frame": null,
+    "chassis": null
+   },
+   "first": null
+  }
+ ],
+ "mouths_mm": {
+  "plus": [
+   8.7,
+   52.0
+  ],
+  "minus": [
+   -45.4,
+   -4.6
+  ]
+ }
+}

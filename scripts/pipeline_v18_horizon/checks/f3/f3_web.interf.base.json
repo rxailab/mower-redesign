@@ -1,0 +1,141 @@
+{
+ "info": {
+  "npz": "<scratch>",
+  "parts": 393,
+  "faces": 4529546,
+  "lid_pivot": [
+   -0.15100000000000002,
+   0.0,
+   0.27786894269885254
+  ],
+  "lid_open": 75.0,
+  "lid_over_deg": -0.4385,
+  "stop_stroke_mm": 5.0,
+  "stop_tip_gap_mm": 1.45
+ },
+ "summary": {
+  "VIOLATION": 36,
+  "RENDER": 3,
+  "ALLOWED": 761,
+  "NEAR": 170
+ },
+ "n_violations": 36,
+ "violation_groups": [
+  {
+   "a": "well.damper",
+   "b": "well.pod",
+   "n": 8,
+   "crossings": 1360,
+   "deepest_mm": 4.3,
+   "ref": "M2 (pod solid round drum / idler: no cavity)"
+  },
+  {
+   "a": "well.idler",
+   "b": "well.pod",
+   "n": 4,
+   "crossings": 764,
+   "deepest_mm": 3.968,
+   "ref": "M2 (pod solid round drum / idler: no cavity)"
+  },
+  {
+   "a": "well.pod",
+   "b": "well.spring",
+   "n": 2,
+   "crossings": 28,
+   "deepest_mm": 2.486,
+   "ref": "M2 (pod solid round drum / idler: no cavity)"
+  },
+  {
+   "a": "ckit.leg",
+   "b": "hw.chassis",
+   "n": 2,
+   "crossings": 28,
+   "deepest_mm": 1.913,
+   "ref": "G1"
+  },
+  {
+   "a": "hw.chassis",
+   "b": "mount.bracket",
+   "n": 4,
+   "crossings": 283,
+   "deepest_mm": 1.507,
+   "ref": "new: rear socket boss / bracket plate x chassis apron"
+  },
+  {
+   "a": "ckit.barb",
+   "b": "hw.chassis",
+   "n": 2,
+   "crossings": 26,
+   "deepest_mm": 1.413,
+   "ref": "G1"
+  },
+  {
+   "a": "well.damper",
+   "b": "well.well",
+   "n": 2,
+   "crossings": 106,
+   "deepest_mm": 1.147,
+   "ref": "M2 (axial room)"
+  },
+  {
+   "a": "lid",
+   "b": "stop.rspring",
+   "n": 4,
+   "crossings": 365,
+   "deepest_mm": 1.095,
+   "ref": "G2"
+  },
+  {
+   "a": "hw.chassis",
+   "b": "mount.pad",
+   "n": 2,
+   "crossings": 253,
+   "deepest_mm": 1.045,
+   "ref": "new: seat pad under the scanned post top (mounts.json post z)"
+  },
+  {
+   "a": "ckit.pin",
+   "b": "mount.deck",
+   "n": 1,
+   "crossings": 205,
+   "deepest_mm": 0.938,
+   "ref": "new: nose pin x deck hole"
+  },
+  {
+   "a": "stop.carrier",
+   "b": "stop.tip",
+   "n": 1,
+   "crossings": 799,
+   "deepest_mm": 0.885,
+   "ref": "S6 (stem on the tip: compliance travel used up)"
+  },
+  {
+   "a": "halo_feed",
+   "b": "lid",
+   "n": 1,
+   "crossings": 82,
+   "deepest_mm": 0.827,
+   "ref": "G3"
+  },
+  {
+   "a": "hw.chassis",
+   "b": "mount.rib",
+   "n": 1,
+   "crossings": 10,
+   "deepest_mm": 0.22,
+   "ref": "new: body kit x real chassis"
+  },
+  {
+   "a": "ckit.barb",
+   "b": "mount.deck",
+   "n": 2,
+   "crossings": 26,
+   "deepest_mm": 0.14,
+   "ref": "G1 region (x 118 legs)"
+  }
+ ],
+ "tip_landing_gap_mm": {
+  "0": 1.858,
+  "-0.4385": 0.666
+ }
+}

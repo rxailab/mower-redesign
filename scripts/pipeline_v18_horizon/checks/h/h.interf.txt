@@ -1,0 +1,229 @@
+chassis cut: {"pin_trim_L": {"faces_near": 144, "removed": 112, "faces_left_in_box": 0, "cap_area_mm2": 35.3}, "pin_trim_R": {"faces_near": 101, "removed": 90, "faces_left_in_box": 0, "cap_area_mm2": 30.1}, "pin_top_L": {"faces_near": 178, "removed": 163, "faces_left_in_box": 0, "cap_area_mm2": 97.3}, "pin_top_R": {"faces_near": 224, "removed": 215, "faces_left_in_box": 0, "cap_area_mm2": 99.6}, "hook_L": {"faces_near": 196, "removed": 164, "faces_left_in_box": 0, "cap_area_mm2": 115.9}, "hook_R": {"faces_near": 65, "removed": 62, "faces_left_in_box": 0, "cap_area_mm2": 83.6}, "open_edges_on_cut_planes": 0}
+parts 274 (9703129 faces), built 8.4 s; angles [-0.4385, 0.0, 0.3, 1.0, 2.0, 5.0, 10.0, 20.0, 30.0, 45.0, 60.0, 75.0]; strokes [0.0, 1.6, 3.0, 5.5] mm
+pose lid 0.000 deg stroke 0.00 mm: 1312 pairs measured (61.4 s)
+pose lid -0.439 deg stroke 0.00 mm: 535 pairs measured (13.7 s)
+pose lid 0.300 deg stroke 0.00 mm: 296 pairs measured (12.8 s)
+pose lid 1.000 deg stroke 0.00 mm: 284 pairs measured (12.2 s)
+pose lid 2.000 deg stroke 0.00 mm: 264 pairs measured (11.2 s)
+pose lid 5.000 deg stroke 0.00 mm: 218 pairs measured (8.2 s)
+pose lid 10.000 deg stroke 0.00 mm: 121 pairs measured (4.6 s)
+pose lid 20.000 deg stroke 0.00 mm: 91 pairs measured (3.0 s)
+pose lid 30.000 deg stroke 0.00 mm: 77 pairs measured (2.4 s)
+pose lid 45.000 deg stroke 0.00 mm: 77 pairs measured (2.3 s)
+pose lid 60.000 deg stroke 0.00 mm: 81 pairs measured (2.0 s)
+pose lid 75.000 deg stroke 0.00 mm: 85 pairs measured (1.9 s)
+pose lid 0.000 deg stroke 1.60 mm: 300 pairs measured (5.3 s)
+pose lid 0.000 deg stroke 3.00 mm: 310 pairs measured (5.2 s)
+pose lid 0.000 deg stroke 5.50 mm: 316 pairs measured (5.4 s)
+pose lid -0.439 deg stroke 1.60 mm: 307 pairs measured (5.3 s)
+pose lid -0.439 deg stroke 3.00 mm: 321 pairs measured (5.3 s)
+pose lid -0.439 deg stroke 5.50 mm: 330 pairs measured (5.6 s)
+
+=== INTERFERENCE h.npz: 274 parts, 18 poses, 5325 pair-poses measured, 187 s
+class     part A                   part B                        x   gap mm   n_in  worst pose / where (mm; pen_at = deepest point, else crossing / nearest)
+RENDER    render.ctl_tower         hw.chassis#1                218   -3.704   4855  lid   0.00 s 0.00  at [-112.96, -52.15, 239.97]
+RENDER    stop.tip                 render.ctl_standin#1        130   -0.744     33  lid   0.00 s 1.60  at [4.99, -0.26, 261.09]
+RENDER    render.ctl_standin#0     hw.controls                1374   -0.265   5083  lid   0.00 s 0.00  at [-112.19, 14.14, 253.26]
+NEAR      well.ear#4               ckit.stake#4                  0    0.015      -  lid   0.00 s 0.00  at [58.65, -41.0, 272.58]
+NEAR      well.ear#5               ckit.stake#5                  0    0.015      -  lid   0.00 s 0.00  at [58.65, 41.0, 272.58]
+NEAR      well.guide#4             well.pinion#1                 0    0.019      -  lid   0.30 s 0.00  at [-136.64, 49.02, 262.17]
+NEAR      well.guide#2             well.pinion#0                 0    0.019      -  lid   1.00 s 0.00  at [-135.31, -59.07, 260.7]
+NEAR      well.guide#3             well.pinion#0                 0    0.019      -  lid   1.00 s 0.00  at [-135.31, -49.17, 260.7]
+NEAR      well.guide#5             well.pinion#1                 0    0.019      -  lid   1.00 s 0.00  at [-135.31, 58.83, 260.7]
+NEAR      well.damper#0            well.pinion#0                 0    0.027      -  lid   2.00 s 0.00  at [-136.96, -33.1, 261.85]
+NEAR      well.damper#1            well.pinion#1                 0    0.027      -  lid   2.00 s 0.00  at [-136.96, 33.1, 261.85]
+NEAR      well.well                well.seal                     0    0.030      -  lid   0.00 s 0.00  at [-131.65, -78.08, 272.17]
+NEAR      well.spring#0            well.cartridge#0              0    0.032      -  lid   0.00 s 0.00  at [-139.69, -46.2, 265.85]
+NEAR      well.spring#1            well.cartridge#1              0    0.032      -  lid   0.00 s 0.00  at [-139.69, 38.2, 265.85]
+NEAR      well.spring#0            well.pinion#0                 0    0.034      -  lid   0.30 s 0.00  at [-134.47, -40.87, 261.29]
+NEAR      well.spring#1            well.pinion#1                 0    0.034      -  lid   0.30 s 0.00  at [-134.47, 43.53, 261.29]
+NEAR      well.lip                 hw.controls                   0    0.036      -  lid   0.00 s 0.00  at [32.87, -4.16, 252.35]
+NEAR      cover                    well.well                     0    0.044      -  lid   0.00 s 0.00  at [55.31, 62.77, 274.47]
+NEAR      well.pocket#0            well.pod#0                    0    0.050      -  lid   0.00 s 0.00  at [-143.5, -60.1, 254.9]
+NEAR      well.pocket#1            well.pod#1                    0    0.050      -  lid   0.00 s 0.00  at [-143.5, 47.9, 254.9]
+NEAR      well.bumper#0            well.pod#0                    0    0.050      -  lid   0.00 s 0.00  at [-143.04, -59.55, 264.87]
+NEAR      well.bumper#1            well.pod#0                    0    0.050      -  lid   0.00 s 0.00  at [-143.42, -48.45, 264.62]
+NEAR      well.bumper#2            well.pod#1                    0    0.050      -  lid   0.00 s 0.00  at [-143.04, 48.45, 264.87]
+NEAR      well.bumper#3            well.pod#1                    0    0.050      -  lid   0.00 s 0.00  at [-143.42, 59.55, 264.62]
+NEAR      lid.tongue#0             well.guide#0                  0    0.070      -  lid  -0.44 s 0.00  at [-140.34, -52.52, 267.42]
+NEAR      lid.tongue#1             well.guide#1                  0    0.070      -  lid  -0.44 s 0.00  at [-157.7, 54.85, 264.53]
+NEAR      lid.tongue#0             well.pod#0                    0    0.070      -  lid  20.00 s 0.00  at [-137.21, -55.5, 272.16]
+NEAR      lid.tongue#1             well.pod#1                    0    0.070      -  lid  20.00 s 0.00  at [-137.21, 52.5, 272.16]
+NEAR      lid.tongue#0             well.pinion#0                 0    0.076      -  lid   0.30 s 0.00  at [-139.07, -55.2, 264.23]
+NEAR      lid.tongue#1             well.pinion#1                 0    0.076      -  lid   0.30 s 0.00  at [-139.07, 52.8, 264.23]
+NEAR      lid.lug#0                well.guide#0                  0    0.077      -  lid  20.00 s 0.00  at [-157.01, -57.8, 264.12]
+NEAR      lid.lug#1                well.guide#0                  0    0.077      -  lid  20.00 s 0.00  at [-157.01, -50.2, 264.12]
+NEAR      lid.lug#2                well.guide#1                  0    0.077      -  lid  20.00 s 0.00  at [-157.01, 50.2, 264.12]
+NEAR      lid.lug#3                well.guide#1                  0    0.077      -  lid  20.00 s 0.00  at [-157.01, 57.8, 264.12]
+NEAR      ckit.barb#7              mount.deck                    0    0.084      -  lid   0.00 s 0.00  at [5.94, 157.65, 225.86]
+NEAR      ckit.leg#21              mount.deck                    0    0.084      -  lid   0.00 s 0.00  at [5.94, 157.65, 227.52]
+NEAR      ckit.leg#20              mount.deck                    0    0.084      -  lid   0.00 s 0.00  at [5.94, -157.65, 226.79]
+NEAR      ckit.barb#6              mount.deck                    0    0.084      -  lid   0.00 s 0.00  at [5.94, -157.65, 225.13]
+NEAR      well.ear#0               ckit.stake#0                  0    0.084      -  lid   0.00 s 0.00  at [-98.35, -87.5, 274.2]
+NEAR      well.ear#1               ckit.stake#1                  0    0.084      -  lid   0.00 s 0.00  at [-98.35, 87.5, 274.2]
+NEAR      ckit.seatpad#6           mount.deck                    0    0.092      -  lid   0.00 s 0.00  at [-65.13, 158.03, 227.68]
+NEAR      ckit.seatpad#8           mount.deck                    0    0.093      -  lid   0.00 s 0.00  at [-21.43, 158.05, 228.18]
+NEAR      cover                    well.ear#4                    0    0.093      -  lid   0.00 s 0.00  at [62.5, -45.0, 274.08]
+NEAR      cover                    well.ear#5                    0    0.093      -  lid   0.00 s 0.00  at [62.5, 45.0, 274.08]
+NEAR      ckit.seatpad#11          mount.deck                    0    0.095      -  lid   0.00 s 0.00  at [39.69, -157.07, 227.91]
+NEAR      ckit.seatpad#9           mount.deck                    0    0.096      -  lid   0.00 s 0.00  at [-15.98, -157.08, 227.5]
+NEAR      ckit.seatpad#7           mount.deck                    0    0.096      -  lid   0.00 s 0.00  at [-61.97, -156.79, 227.06]
+NEAR      ckit.seatpad#10          mount.deck                    0    0.096      -  lid   0.00 s 0.00  at [37.46, 156.13, 228.59]
+NEAR      well.ear#2               ckit.stake#2                  0    0.098      -  lid   0.00 s 0.00  at [-47.42, -86.77, 275.78]
+NEAR      well.ear#3               ckit.stake#3                  0    0.098      -  lid   0.00 s 0.00  at [-47.42, 86.77, 276.28]
+NEAR      ckit.seatpad#3           mount.deck                    0    0.099      -  lid   0.00 s 0.00  at [-171.0, -164.24, 225.99]
+NEAR      ckit.seatpad#13          mount.deck                    0    0.099      -  lid   0.00 s 0.00  at [293.29, -81.07, 195.96]
+NEAR      ckit.seatpad#5           mount.deck                    0    0.099      -  lid   0.00 s 0.00  at [-123.62, -160.06, 226.49]
+NEAR      cover                    well.ear#0                    0    0.099      -  lid   0.00 s 0.00  at [-101.5, -90.5, 275.7]
+NEAR      cover                    well.ear#1                    0    0.099      -  lid   0.00 s 0.00  at [-101.5, 90.5, 275.7]
+NEAR      ckit.seatpad#14          mount.deck                    0    0.099      -  lid   0.00 s 0.00  at [294.89, -21.07, 195.9]
+NEAR      ckit.seatpad#15          mount.deck                    0    0.099      -  lid   0.00 s 0.00  at [294.89, 25.33, 195.9]
+NEAR      ckit.seatpad#4           mount.deck                    0    0.099      -  lid   0.00 s 0.00  at [-128.31, 159.73, 226.32]
+NEAR      ckit.seatpad#2           mount.deck                    0    0.099      -  lid   0.00 s 0.00  at [-173.11, 164.53, 225.99]
+NEAR      ckit.seatpad#12          mount.deck                    0    0.100      -  lid   0.00 s 0.00  at [293.29, 86.13, 195.95]
+NEAR      ckit.seatpad#1           mount.deck                    0    0.100      -  lid   0.00 s 0.00  at [-229.11, -170.67, 225.49]
+NEAR      ckit.seatpad#0           mount.deck                    0    0.100      -  lid   0.00 s 0.00  at [-234.71, 168.53, 225.9]
+NEAR      well.damper#0            well.pod#0                    0    0.100      -  lid   0.00 s 0.00  at [-141.2, -37.0, 256.8]
+NEAR      well.damper#1            well.pod#1                    0    0.100      -  lid   0.00 s 0.00  at [-141.2, 37.1, 256.8]
+NEAR      well.pod#0               well.cartridge#0              0    0.100      -  lid   0.00 s 0.00  at [-139.74, -38.92, 255.86]
+NEAR      well.pod#1               well.cartridge#1              0    0.100      -  lid   0.00 s 0.00  at [-139.72, 41.37, 255.88]
+NEAR      well.pinion#0            well.cartridge#0              0    0.100      -  lid   0.00 s 0.00  at [-137.71, -46.3, 261.33]
+NEAR      well.pinion#1            well.cartridge#1              0    0.100      -  lid   0.00 s 0.00  at [-137.71, 46.3, 261.33]
+NEAR      cover                    well.ear#3                    0    0.100      -  lid   0.00 s 0.00  at [-51.0, 90.5, 276.78]
+NEAR      cover                    well.ear#2                    0    0.100      -  lid   0.00 s 0.00  at [-51.0, -90.5, 276.78]
+NEAR      lid.lug#0                well.pod#0                    0    0.104      -  lid  75.00 s 0.00  at [-142.39, -59.5, 261.96]
+NEAR      lid.lug#1                well.pod#0                    0    0.104      -  lid  75.00 s 0.00  at [-142.39, -48.5, 261.96]
+NEAR      lid.lug#2                well.pod#1                    0    0.104      -  lid  75.00 s 0.00  at [-142.39, 48.5, 261.96]
+NEAR      lid.lug#3                well.pod#1                    0    0.104      -  lid  75.00 s 0.00  at [-142.39, 59.5, 261.96]
+NEAR      mount.bracket#5          hw.chassis#1                  0    0.121      -  lid   0.00 s 0.00  at [-263.7, -179.26, 76.14]
+NEAR      render.ctl_standin#1     hw.controls                   0    0.128      -  lid   0.00 s 0.00  at [23.49, 6.28, 253.12]
+NEAR      mount.bracket#2          hw.chassis#1                  0    0.145      -  lid   0.00 s 0.00  at [-265.73, 175.58, 77.2]
+NEAR      stop.carrier             stop.bush                     0    0.150      -  lid   0.00 s 0.00  at [4.44, -5.0, 277.38]
+NEAR      lid                      lid.blade#0                   0    0.166      -  lid   0.00 s 0.00  at [-136.67, -58.0, 274.97]
+NEAR      lid                      lid.blade#1                   0    0.166      -  lid   0.00 s 0.00  at [-136.67, 58.0, 274.97]
+NEAR      lid.tongue#0             well.guide#6                  0    0.169      -  lid  20.00 s 0.00  at [-150.21, -57.6, 258.89]
+NEAR      lid.tongue#1             well.guide#7                  0    0.169      -  lid  20.00 s 0.00  at [-150.21, 50.4, 258.89]
+NEAR      stop.arm#1               stop.bush                     0    0.169      -  lid   0.00 s 0.00  at [5.64, -5.98, 276.38]
+NEAR      stop.arm#7               stop.bush                     0    0.169      -  lid   0.00 s 0.00  at [5.64, 5.82, 276.38]
+NEAR      lid.lug#0                well.guide#6                  0    0.174      -  lid  45.00 s 0.00  at [-150.18, -57.8, 258.89]
+NEAR      lid.lug#1                well.guide#6                  0    0.174      -  lid  45.00 s 0.00  at [-150.18, -50.2, 258.89]
+NEAR      lid.lug#2                well.guide#7                  0    0.174      -  lid  45.00 s 0.00  at [-150.18, 50.2, 258.89]
+NEAR      lid.lug#3                well.guide#7                  0    0.174      -  lid  45.00 s 0.00  at [-150.18, 57.8, 258.89]
+NEAR      stop.rod                 render.ctl_standin#1          0    0.176      -  lid   0.00 s 3.00  at [2.94, 0.0, 261.37]
+NEAR      ckit.barb#9              mount.deck                    0    0.182      -  lid   0.00 s 0.00  at [295.32, -54.67, 193.37]
+NEAR      ckit.barb#8              mount.deck                    0    0.183      -  lid   0.00 s 0.00  at [295.23, 58.66, 193.38]
+NEAR      ckit.barb#0              mount.deck                    0    0.184      -  lid   0.00 s 0.00  at [-298.68, -58.81, 223.0]
+NEAR      ckit.barb#1              mount.deck                    0    0.184      -  lid   0.00 s 0.00  at [-298.62, 53.94, 222.99]
+NEAR      ckit.barb#2              mount.deck                    0    0.197      -  lid   0.00 s 0.00  at [-204.53, 167.19, 223.44]
+NEAR      ckit.barb#3              mount.deck                    0    0.197      -  lid   0.00 s 0.00  at [-202.31, -167.33, 223.2]
+NEAR      well.damper#0            well.cartridge#0              0    0.200      -  lid   0.00 s 0.00  at [-141.34, -37.5, 257.37]
+NEAR      well.damper#1            well.cartridge#1              0    0.200      -  lid   0.00 s 0.00  at [-141.34, 37.5, 257.37]
+NEAR      ckit.barb#4              mount.deck                    0    0.203      -  lid   0.00 s 0.00  at [-93.8, 158.18, 224.5]
+NEAR      ckit.barb#5              mount.deck                    0    0.208      -  lid   0.00 s 0.00  at [-98.57, -159.01, 224.16]
+NEAR      mount.deck               hw.chassis#1                  0    0.224      -  lid   0.00 s 0.00  at [-266.27, 118.87, 223.35]
+NEAR      stop.cap                 stop.cspring                  0    0.225      -  lid   0.00 s 3.00  at [7.01, 1.91, 285.39]
+NEAR      ckit.leg#0               mount.deck                    0    0.277      -  lid   0.00 s 0.00  at [-298.4, -58.38, 224.67]
+NEAR      ckit.leg#1               mount.deck                    0    0.278      -  lid   0.00 s 0.00  at [-298.33, 53.51, 224.67]
+NEAR      ckit.leg#29              mount.deck                    0    0.278      -  lid   0.00 s 0.00  at [295.03, -55.08, 193.96]
+NEAR      ckit.leg#28              mount.deck                    0    0.279      -  lid   0.00 s 0.00  at [295.22, 59.09, 194.22]
+NEAR      ckit.leg#8               mount.deck                    0    0.281      -  lid   0.00 s 0.00  at [-205.04, 166.99, 225.1]
+NEAR      ckit.leg#14              mount.deck                    0    0.281      -  lid   0.00 s 0.00  at [-100.7, 158.39, 225.99]
+NEAR      ckit.leg#15              mount.deck                    0    0.282      -  lid   0.00 s 0.00  at [-98.57, -158.72, 225.8]
+NEAR      ckit.leg#9               mount.deck                    0    0.282      -  lid   0.00 s 0.00  at [-202.82, -167.13, 224.86]
+NEAR      well.pod#0               well.pinion#0                 0    0.295      -  lid   0.30 s 0.00  at [-134.74, -55.2, 256.99]
+NEAR      well.pod#1               well.pinion#1                 0    0.295      -  lid   0.30 s 0.00  at [-134.74, 52.8, 256.99]
+NEAR      well.lip                 well.pod#0                    0    0.299      -  lid   0.00 s 0.00  at [-130.11, -46.9, 255.83]
+NEAR      lid.lug#0                well.guide#2                  0    0.300      -  lid  -0.44 s 0.00  at [-161.59, -59.3, 266.89]
+NEAR      lid.lug#1                well.guide#3                  0    0.300      -  lid  -0.44 s 0.00  at [-161.59, -48.7, 266.89]
+NEAR      lid.lug#2                well.guide#4                  0    0.300      -  lid  -0.44 s 0.00  at [-161.59, 48.7, 266.89]
+NEAR      lid.lug#3                well.guide#5                  0    0.300      -  lid  -0.44 s 0.00  at [-161.59, 59.3, 266.89]
+NEAR      stop.arm#0               stop.bracket                  0    0.300      -  lid   0.00 s 0.00  at [-67.84, -5.7, 270.79]
+NEAR      stop.arm#1               stop.bracket                  0    0.300      -  lid   0.00 s 0.00  at [-67.84, -5.7, 274.79]
+NEAR      stop.arm#6               stop.bracket                  0    0.300      -  lid   0.00 s 0.00  at [-67.84, 5.7, 270.79]
+NEAR      stop.arm#7               stop.bracket                  0    0.300      -  lid   0.00 s 0.00  at [-67.84, 5.7, 274.79]
+NEAR      lid.tongue#0             well.guide#2                  0    0.300      -  lid   0.00 s 0.00  at [-165.88, -58.0, 266.94]
+NEAR      lid.tongue#0             well.guide#3                  0    0.300      -  lid   0.00 s 0.00  at [-165.88, -50.0, 266.94]
+NEAR      lid.tongue#1             well.guide#4                  0    0.300      -  lid   0.00 s 0.00  at [-165.88, 50.0, 266.94]
+NEAR      lid.tongue#1             well.guide#5                  0    0.300      -  lid   0.00 s 0.00  at [-165.88, 58.0, 266.94]
+NEAR      well.guide#6             well.pinion#0                 0    0.300      -  lid   0.00 s 0.00  at [-139.48, -55.5, 260.95]
+NEAR      well.guide#7             well.pinion#1                 0    0.300      -  lid   0.00 s 0.00  at [-139.48, 52.5, 260.95]
+NEAR      well.lip                 well.pod#1                    0    0.300      -  lid   0.00 s 0.00  at [-129.89, 56.11, 256.75]
+NEAR      stop.arm#1               stop.bore                     0    0.319      -  lid   0.00 s 0.00  at [-0.21, -5.91, 276.7]
+NEAR      stop.arm#7               stop.bore                     0    0.319      -  lid   0.00 s 0.00  at [-0.21, 5.91, 276.7]
+NEAR      well.well                well.guide#2                  0    0.338      -  lid   0.00 s 0.00  at [-143.49, -59.6, 265.12]
+NEAR      stop.arm#5               stop.bore                     0    0.348      -  lid  -0.44 s 0.00  at [-1.37, 5.71, 275.23]
+NEAR      stop.arm#5               stop.bush                     0    0.348      -  lid  -0.44 s 0.00  at [-1.35, -2.05, 275.58]
+NEAR      lid.tongue#0             well.bumper#0                 0    0.350      -  lid   0.00 s 0.00  at [-143.65, -58.0, 264.64]
+NEAR      lid.tongue#0             well.bumper#1                 0    0.350      -  lid   0.00 s 0.00  at [-143.65, -50.0, 264.64]
+NEAR      lid.tongue#1             well.bumper#2                 0    0.350      -  lid   0.00 s 0.00  at [-143.65, 50.0, 264.64]
+NEAR      lid.tongue#1             well.bumper#3                 0    0.350      -  lid   0.00 s 0.00  at [-143.65, 58.0, 264.64]
+NEAR      well.well                well.bumper#0                 0    0.388      -  lid   0.00 s 0.00  at [-143.53, -59.55, 264.69]
+NEAR      well.well                well.guide#4                  0    0.393      -  lid   0.00 s 0.00  at [-143.49, 48.4, 265.12]
+NEAR      lid                      lid.tongue#1                  0    0.397      -  lid   0.00 s 0.00  at [-136.33, 57.6, 274.75]
+NEAR      lid                      lid.tongue#0                  0    0.397      -  lid   0.00 s 0.00  at [-136.33, -57.6, 274.75]
+NEAR      stop.pin#0               stop.pcover#1                 0    0.400      -  lid   0.00 s 0.00  at [-66.46, -12.2, 270.98]
+NEAR      stop.pin#0               stop.pcover#3                 0    0.400      -  lid   0.00 s 0.00  at [-66.46, 12.2, 270.98]
+NEAR      ckit.pin#1               mount.deck                    0    0.401      -  lid   0.00 s 0.00  at [-279.82, 2.15, 225.15]
+NEAR      well.well                well.guide#5                  0    0.401      -  lid   0.00 s 0.00  at [-143.49, 59.6, 265.12]
+NEAR      ckit.pin#4               mount.deck                    0    0.408      -  lid   0.00 s 0.00  at [279.26, -2.15, 195.28]
+NEAR      lid.lug#0                well.well                     0    0.441      -  lid  75.00 s 0.00  at [-143.49, -59.5, 263.86]
+NEAR      well.well                well.bumper#2                 0    0.444      -  lid   0.00 s 0.00  at [-143.53, 48.45, 264.69]
+NEAR      well.well                well.bumper#3                 0    0.452      -  lid   0.00 s 0.00  at [-143.53, 59.55, 264.69]
+NEAR      well.well                well.guide#3                  0    0.457      -  lid   0.00 s 0.00  at [-143.49, -48.4, 265.12]
+NEAR      lid.lug#2                well.well                     0    0.497      -  lid  75.00 s 0.00  at [-143.49, 48.5, 263.86]
+NEAR      stop.bumper              stop.socket                   0    0.500      -  lid   0.00 s 0.00  at [0.78, -6.54, 277.17]
+NEAR      stop.pin#5               stop.bumper                   0    0.500      -  lid  -0.44 s 0.00  at [4.42, 6.6, 274.69]
+NEAR      stop.pin#3               stop.bumper                   0    0.500      -  lid  -0.44 s 0.00  at [4.42, -6.6, 274.69]
+--- violations per group pair (n components, crossings, deepest mm):
+--- allowed (designed contacts / fusions), per rule:
+  [ 0] cover          ckit.*         fused    68 pairs, deepest 0.000 mm  - cover kit (legs, barbs, pins, seat pads, stakes, flange) moulded on the cover (check_wall:
+  [ 1] ckit.*         ckit.*         fused    34 pairs, deepest 0.000 mm  - one cover-kit feature from overlapping primitives (leg stem + leg + barb, pin + ribs)
+  [ 2] body           mount.deck|mount.boss|mount.rib|mount.bracket|mount.clip|mount.well|mount.hem_lip|mount.other|mount.seat|mount.drain fused    35 pairs, deepest 0.000 mm  - body kit moulded on the body wall (check_wall: boss, rib, bracket, clip, deck edge start i
+  [ 3] mount.*        mount.*        fused    79 pairs, deepest 0.000 mm  - body kit = one moulding with the deck (bosses, ribs, brackets, clips, pads, wells, pilot /
+  [ 4] body           portframe      fused     4 pairs, deepest 0.000 mm  - port frame = part of the body moulding (fix-ports; lightcheck housing|sleeves note)
+  [ 5] portframe      portframe      fused     5 pairs, deepest 0.000 mm  - port frame: 6 overlapping solids of one moulding (un-booleaned union, review G7)
+  [ 6] body           nosefloor      fused     6 pairs, deepest 0.000 mm  - nose floor joined to the body (union; review G6 whitelist)
+  [ 7] nosefloor      nosefloor      fused     4 pairs, deepest 0.000 mm  - nose floor primitives (union)
+  [32] mount.screw    hw.chassis     fused    14 pairs, deepest 0.000 mm  - screw threaded into the chassis post
+  [33] mount.pad|mount.pilot hw.chassis     contact  19 pairs, deepest 0.000 mm  - seat pad on the post top / pilot inlay at the screw hole (bearing face on the scanned post
+  [34] mount.boss     hw.chassis     contact   3 pairs, deepest 0.113 mm  - design_gen: front boss standing on the chassis wing (bearing face at its foot: <= 0.3 scan
+  [35] lid            lid.rib|lid.boss|lid.striker fused    20 pairs, deepest 0.000 mm  - moulded on the lid underside
+  [36] lid.rib|lid.boss|lid.striker lid.rib|lid.boss|lid.striker fused    50 pairs, deepest 0.000 mm  - lid moulding: ribs, bosses and the striker post join
+  [37] lid.tongue|lid.blade|lid.lug lid.boss|lid.rib|lid.tongue|lid.blade|lid.lug fused    16 pairs, deepest 0.000 mm  - hinge tongue / blade / lug: metal inserts in the lid bosses, lug on the tongue (fix-hinge)
+  [38] lid            stop.bore|stop.bracket|stop.halo fused     3 pairs, deepest 0.000 mm  - stopkit: bore boss, link bracket and opal halo boss moulded into the lid skin (halo fused 
+  [40] stop.arm       stop.arm       fused    24 pairs, deepest 0.000 mm  - link U-channel from primitives
+  [41] stop.pin       stop.arm|stop.bracket|stop.carrier fused    18 pairs, deepest 0.000 mm  - link pins through the arms, the rear bracket and the carrier
+  [42] stop.rspring   stop.rspring   fused    14 pairs, deepest 0.000 mm  - torsion spring: coil + legs
+  [43] stop.rspring   stop.arm|stop.pin|stop.bracket contact  48 pairs, deepest 0.000 mm  - return spring on its pin, leg on the link
+  [44] stop.rod       stop.tip       fused     1 pairs, deepest 0.000 mm  - TPE tip on the plunger rod
+  [45] stop.cap       stop.carrier   fused     1 pairs, deepest 0.000 mm  - cap snapped on the carrier
+  [46] stop.boot      stop.carrier|stop.halo|stop.bore fused     2 pairs, deepest 0.000 mm  - silicone boot: bead on the stem, bead in the halo-boss bore
+  [47] stop.bore      stop.halo|stop.bumper fused     2 pairs, deepest 0.000 mm  - bore inside the halo boss; TPE up-stop bumper bonded under the bore boss
+  [48] stop.arm       stop.bumper    contact   3 pairs, deepest 0.031 mm  - up-stop: upper link on the TPE bumper at rest
+  [49] stop.cspring   stop.carrier|stop.rod contact   2 pairs, deepest 0.018 mm  - compliance spring between the rod shoulder and the carrier
+  [50] stop.rod       stop.carrier   contact   1 pairs, deepest 0.016 mm  - rod head on its shoulder in the stem (16 N preload)
+  [51] stop.carrier   stop.halo      contact   1 pairs, deepest 0.000 mm  - down-stop: carrier stop ring on the halo boss at full stroke
+  [52] stop.tip       hw.controls    contact   1 pairs, deepest 0.001 mm  - lidsim DESIGNED: the TPE tip presses the real STOP key (0.3..1.5 switch travel)
+  [53] stop.boot      lid            contact   1 pairs, deepest 0.000 mm  - rolling boot: the renderer-style linear squash of the boot (STOPSTROKE) is only an approxi
+  [54] lid|lid.rib    stop.socket|stop.post|stop.pcover|stop.bush fused    31 pairs, deepest 0.000 mm  - [fix4-stop2] socket = the lid's dark shot through the skin cut (bridges the plate, joins t
+  [55] stop.halo      stop.socket    fused     1 pairs, deepest 0.000 mm  - [fix4-stop2] opal ring light guide insert-moulded in the socket pocket
+  [56] stop.post|stop.socket|stop.pcover stop.post|stop.socket|stop.pcover fused    11 pairs, deepest 0.000 mm  - [fix4-stop2] post (+ its rib gusset) and socket = one dark lid shot; pivot cover tray from
+  [58] stop.magnet    stop.post      fused     1 pairs, deepest 2.500 mm  - [fix4-stop2] lid-closed magnet in its closed pocket in the post
+  [59] stop.bush      stop.socket|stop.bore|stop.bumper fused     3 pairs, deepest 0.000 mm  - [fix4-stop2] POM guide bush pressed into the socket bore / bore ring; TPE bumper + lip bon
+  [60] stop.bore      stop.socket    fused     1 pairs, deepest 0.000 mm  - [fix4-stop2] bore ring = part of the socket moulding under the plate
+  [62] stop.boot      stop.socket|stop.bush contact   2 pairs, deepest 0.494 mm  - [fix4-stop2] rolling boot: the model squashes it linearly (STOPSTROKE) instead of rolling 
+  [63] stop.carrier   stop.socket    contact   1 pairs, deepest 0.006 mm  - [fix4-stop2] down-stop: the shroud's castellated rim on the socket at full stroke
+  [64] stop.carrier   stop.bumper    contact   1 pairs, deepest 0.237 mm  - [fix4-stop2] TPE lip seal (2nd barrier) wipes the stem; the lip follows the 0.22 link-arc 
+  [66] stop.pcover    stop.bracket   fused     2 pairs, deepest 0.000 mm  - [fix4-stop2] pivot cover clipped to the bracket
+  [67] lid            well.seal      contact   1 pairs, deepest 1.438 mm  - lidsim SEAL: bulb seal compressed at closed (designed), lifts off when the lid opens
+  [68] lid.striker    well.claw      contact   2 pairs, deepest 1.000 mm  - lidsim DESIGNED: latch rotor holds the striker bar; pushed through it at the 1.5 latch ove
+  [69] lid.lug        well.bumper    contact   4 pairs, deepest 0.000 mm  - lidsim DESIGNED: open stop at open_deg
+  [70] well.well      well.drain|well.ear|well.pocket|well.lip|well.latch|well.pod fused    18 pairs, deepest 0.000 mm  - moulded on the lid well (drains, staked ears, pockets, lip, latch housing, hinge pods)
+  [72] well.guide     well.guide|well.pod|well.bumper fused    30 pairs, deepest 0.000 mm  - guide rails / cheeks of the hinge cassette in the pod; TPE open-stop bumper in the guide s
+  [73] well.claw      well.claw|well.latch fused     3 pairs, deepest 0.000 mm  - latch rotor (primitives) on its housing pin
+  [76] well.spring    well.idler|well.damper contact   2 pairs, deepest 0.000 mm  - hingekit: tape over the idler, wound on the drum
+--- allow-list rules not hit (stale?): [8] body|lamp.boss, [9] body|lamp.gasket, [10] lamp.housing|lens.*, [11] lamp.boss|lamp.boss, [12] lamp.shroud|lamp.shroud, [13] lamp.camera|lamp.camera, [14] lamp.emitter|lamp.emitter, [15] lamp.screw|lamp.boss|lamp.ear, [16] lamp.ear|lamp.boss, [17] lamp.housing|lamp.ear|lamp.shroud|lamp.vent, [18] lamp.housing|lamp.gasket, [19] lamp.housing|lamp.camera, [20] lamp.pcb|lamp.led|lamp.camera|lamp.tof, [21] lamp.foam|lamp.tof, [22] lamp.emitter|hw.controls, [23] harn.cable|harn.grommet|harn.plug|lamp.shroud, [24] harn.plug|lamp.shroud, [25] harn.plug|harn.plug, [26] harn.svc|harn.svc, [27] harn.clip|harn.clip, [28] harn.chassis_lead|harn.chassis_lead|harn.svc, [29] harn.clip|harn.cradle|harn.grommet|mount.deck, [30] harn.svc|harn.cradle|mount.deck, [31] harn.chassis_lead|hw.chassis, [39] halo_feed|stop.halo, [57] halo_feed|stop.socket|stop.post|stop.halo, [61] stop.boot|stop.socket|stop.bush, [65] stop.rspring|stop.arm, [71] well.pod|well.pod, [74] well.damper|well.damper, [75] well.idler|well.idler, [77] lamp.carrier|lamp.carrier, [78] lamp.housing|lamp.pad, [79] body|lamp.pad, [80] harn.cable|harn.svc, [81] harn.cable|harn.clip
+wrote chk/h.interf.json
+tip landing gap on the real key (mm, per lid angle): {'0': 1.621, '-0.4385': 0.428}
+INTERFERE OK: 0 violations, 3 render-only, 593 allowed, 150 near (< 0.50 mm)
+Blender 4.2.3 LTS (hash 0e22e4fcea03 built 2024-10-14 23:31:34)

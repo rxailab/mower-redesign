@@ -5,3 +5,5 @@ scripts/work/*.npz filter=lfs diff=lfs merge=lfs -text
 new_design/**/*.glb filter=lfs diff=lfs merge=lfs -text
 scripts/pipeline_v18/**/*.npz filter=lfs diff=lfs merge=lfs -text
 scripts/pipeline_v18/*.glb filter=lfs diff=lfs merge=lfs -text
+scripts/pipeline_v18_horizon/**/*.npz filter=lfs diff=lfs merge=lfs -text
+scripts/pipeline_v18_horizon/*.glb filter=lfs diff=lfs merge=lfs -text

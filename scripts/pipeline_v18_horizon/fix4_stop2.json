@@ -1,0 +1,24 @@
+{
+  "//": "[fix4-stop2] STOP key v4 (stop4.py): one designed control - red cap (crisp R1.2 roll, 2.0 side, 0.6 dish, rear-reading legend) over a dark shroud in a flush dark socket ringed by a flush opal status ring; true tip gap; spring tolerances; closed-box links + y-float stem lug + POM bush; lid-closed magnet / hall pair; return springs on the lower pin under a pivot cover.",
+  "lid": {
+    "well_weep": [0.0015, 0.0012, 0.03], "//well_weep": "S7: two TPE duckbills (hole d 3, 1.2 from the frame edges, |y| > 30) at the front corners of the well floor frame: water past the boot + lip seal leaves the sealed well into the body cavity (deck drains); the gutter is ~14 mm above the well floor, so it cannot take it",
+    "stop_key": {
+      "v4": true, "//v4": "stopkit.build -> stop4.build (design_gen); false = the f3 key",
+      "stroke": 0.0055, "//stroke": "S1-B: 5.5 to the shroud's castellated rim on the socket",
+      "clear": 0.0020, "//clear": "S2: skirt 2.0 over the lid plane = 1.7 over the dark socket at full stroke (1.0 grit + the 0.53 deg edge-press roll at r 20 = 1.52 still clear: stopcheck grit_case)",
+      "gap": 0.0016, "//gap": "S1: TRUE gap = minimum vertical distance tip surface -> scanned key surface (stop4.true_gap_tip), asserted by stopcheck",
+      "roll": 0.0012, "side": 0.0020, "dome": -0.0006, "wall": 0.0016, "//cap": "A5: crisp R1.2 roll, 2.0 straight side, 0.6 concave dish (finger seat); flat face d 37.6 (S5)",
+      "legend_front": false, "//legend_front": "A7: the STOP inlay reads from BEHIND, like the display and the real key on the fixed panel (one product reading direction)",
+      "tip_h": 0.0015, "//tip_h": "S6: TPE tip 1.5 tall (0.8 land + 0.7 dome): stem bottom -> tip top 6.6 >= the worst-case compliance travel 5.9 + 0.5 (stopcheck stem_tip_room)",
+      "bush": 0.0022, "head_t": 0.0008, "//bush": "S6 / M4: rod guide in the stem bottom 2.2 long, rod head 0.8: the compliance-spring chamber grows 0.5 so the spring (solid + 0.6) still has travel for the worst-case compliance travel 5.9 (stopcheck stem_tip_room.spring_block_margin)",
+      "stem_above_key": 0.0095, "//stem_above_key": "S6: rigid stem 9.5 over the key top (stopcheck: >= 0.5 in the worst stack at full stroke + lid over-travel)",
+      "arm_h": 0.0028, "arm_t": 0.0004, "arm_y": 0.0057, "arm_d": 0.0040, "arm_top": -0.0032, "//arm": "S2 / S4: closed stainless boxes 12.2 x 2.8 x 0.4, open tines only round the stem lug / bracket; 4.0 apart (lower link clears the key in the worst stack)",
+      "F_c0": 16.0, "F_c0_tol": 0.8, "k_c": 1.25, "k_c_tol": 0.10, "//F_c0": "M4: compliance spring grade 1, 100 % force-sorted: 15.2 N > 15 N key maximum, so the plunger never yields before the key switches",
+      "F_ret0": 2.0, "F_ret0_tol": 0.2, "k_ret": 0.15, "k_ret_tol": 0.10, "k_boot": 0.1, "F_fric": 1.0, "//F_ret": "M4: return springs 2.0 +- 0.2 N, 0.15 N/mm +- 10 %; friction 0..1.0 N incl. the stem lip seal",
+      "tip_comp": [0.04, 0.10], "//tip_comp": "M4: TPE tip compression before the key moves"
+    }
+  },
+  "colors": {"stop": "#C1121C", "//stop": "A6: RAL 3020 traffic red (sRGB #C1121C): CIE x 0.615 y 0.325, luminance factor 0.12, inside the ISO 3864-4 safety-red box (stopcheck colour.iso3864_4); the f3 #C8102E (Pantone 186C crimson, x 0.596 y 0.313) lies just outside it on the purple side and renders pink / coral. Lid key, real key and stand-in",
+             "stop_finish": "texture", "//stop_finish": "A6: fine moulded-in texture (the dark core's finish, no clear coat): measured in the studio renders it reads the same deep red from every side (plan 191,65,60 / 3-4 view 190,67,62 / closed-lid view 190,69,64 with matte; gloss and satin-coat wash out to 194,137,136 / 193,117,115 in plan under the soft box); a textured key also keeps its grip wet (renderer colors.stop_finish)",
+             "halo_emit": 2.0, "//halo_emit": "A1: the opal ring reads as a lit status light in the product renders"}
+}

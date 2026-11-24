@@ -1,0 +1,146 @@
+{
+ "body deck / screws vs cover": 0,
+ "cover legs / flange vs body": 0,
+ "body inner parts vs body skin": 0,
+ "body deck": {
+  "cover": {
+   "inside": 0,
+   "depth_max_mm": 0.0,
+   "gap_min_mm": 1.0,
+   "gap_under_0p3": 0
+  },
+  "body": {
+   "inside": 985,
+   "depth_max_mm": 0.52,
+   "gap_min_mm": -0.1,
+   "gap_under_0p3": 1313
+  }
+ },
+ "body pad": {
+  "cover": {
+   "inside": 0,
+   "depth_max_mm": 0.0,
+   "gap_min_mm": 2.8,
+   "gap_under_0p3": 0
+  },
+  "body": {
+   "inside": 0,
+   "depth_max_mm": 0.0,
+   "gap_min_mm": 0.8,
+   "gap_under_0p3": 0
+  }
+ },
+ "body screw": {
+  "cover": {
+   "inside": 0,
+   "depth_max_mm": 0.0,
+   "gap_min_mm": 5.6,
+   "gap_under_0p3": 0
+  },
+  "body": {
+   "inside": 0,
+   "depth_max_mm": 0.0,
+   "gap_min_mm": 3.3,
+   "gap_under_0p3": 0
+  }
+ },
+ "body boss": {},
+ "body rib": {},
+ "body bracket": {
+  "body": {
+   "inside": 24,
+   "depth_max_mm": 1.06,
+   "gap_min_mm": 2.81,
+   "gap_under_0p3": 0
+  }
+ },
+ "body pilot": {},
+ "body clip": {
+  "body": {
+   "inside": 40,
+   "depth_max_mm": 1.25,
+   "gap_min_mm": 1.43,
+   "gap_under_0p3": 0
+  }
+ },
+ "body seat": {
+  "body": {
+   "inside": 326,
+   "depth_max_mm": 0.6,
+   "gap_min_mm": 0.0,
+   "gap_under_0p3": 326
+  }
+ },
+ "cover leg": {
+  "cover": {
+   "inside": 106,
+   "depth_max_mm": 0.6,
+   "gap_min_mm": -0.03,
+   "gap_under_0p3": 18
+  },
+  "body": {
+   "inside": 0,
+   "depth_max_mm": 0.0,
+   "gap_min_mm": 6.82,
+   "gap_under_0p3": 0
+  }
+ },
+ "cover barb": {
+  "cover": {
+   "inside": 0,
+   "depth_max_mm": 0.0,
+   "gap_min_mm": 7.1,
+   "gap_under_0p3": 0
+  },
+  "body": {
+   "inside": 0,
+   "depth_max_mm": 0.0,
+   "gap_min_mm": 6.1,
+   "gap_under_0p3": 0
+  }
+ },
+ "cover pin": {
+  "cover": {
+   "inside": 300,
+   "depth_max_mm": 1.21,
+   "gap_min_mm": 0.45,
+   "gap_under_0p3": 0
+  },
+  "body": {
+   "inside": 0,
+   "depth_max_mm": 0.0,
+   "gap_min_mm": 3.06,
+   "gap_under_0p3": 0
+  }
+ },
+ "cover seatpad": {
+  "cover": {
+   "inside": 2160,
+   "depth_max_mm": 0.64,
+   "gap_min_mm": 4.8,
+   "gap_under_0p3": 0
+  },
+  "body": {
+   "inside": 0,
+   "depth_max_mm": 0.0,
+   "gap_min_mm": 3.8,
+   "gap_under_0p3": 0
+  }
+ },
+ "cover stake": {
+  "cover": {
+   "inside": 288,
+   "depth_max_mm": 0.9,
+   "gap_min_mm": -0.06,
+   "gap_under_0p3": 144
+  }
+ },
+ "lid well kit": {
+  "cover": {
+   "inside": 0,
+   "depth_max_mm": 0.0,
+   "gap_min_mm": 0.04,
+   "gap_under_0p3": 4392
+  }
+ }
+}

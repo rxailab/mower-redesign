@@ -1,0 +1,314 @@
+{
+ "//": "[hz] v18 HORIZON = f3 (Orbit) parameters + these overrides (mk_f3.py h.json fix3_*.json horizon.json [hz_*.json]); '//' keys are comments",
+ "section": {
+  "draft_deg": 1.2
+ },
+ "//section": "beside the wheels the body wall leans in 1.2 deg from the belt (>= 1.0 deg measured on the faired skin; max half-width at the belt 171.0)",
+ "section_wide": {
+  "draft_deg": 12.7
+ },
+ "//section_wide": "trapezoid stance: the wide body behind the wheels (flanks, tail) leans in 12.7 deg from the belt to the shoulder - the ONE rake",
+ "tail_rake": null,
+ "waist_tuck": {
+  "amount": 0.0,
+  "z0": 0.15,
+  "z1": 0.27
+ },
+ "skirt": {
+  "flare": [
+   [
+    -0.4,
+    0.0
+   ],
+   [
+    0.4,
+    0.0
+   ]
+  ],
+  "flare_z": [
+   [
+    0.04,
+    0.00566
+   ],
+   [
+    0.08,
+    0.00391
+   ],
+   [
+    0.115,
+    0.00238
+   ],
+   [
+    0.123,
+    0.00203
+   ],
+   [
+    0.1275,
+    0.00101
+   ],
+   [
+    0.132,
+    0.0
+   ]
+  ],
+  "flare_z_x": [
+   -0.05,
+   -0.008
+  ]
+ },
+ "cover": {
+  "orbit": {
+   "level": 0.18,
+   "zone_sink": false,
+   "wheel_proud": 0.001,
+   "zone_x_ramp": 0.08,
+   "zone_ny": [
+    0.15,
+    0.995
+   ]
+  },
+  "deck_fall": {
+   "slope_deg": 1.0,
+   "weeps": [
+    [
+     0.275,
+     0.15
+    ],
+    [
+     -0.14,
+     0.19
+    ],
+    [
+     -0.3,
+     0.15
+    ]
+   ],
+   "band": [
+    0.003,
+    0.006
+   ],
+   "chassis_floor": {
+    "clear": 0.003,
+    "band": [
+     0.01,
+     0.016
+    ],
+    "post_r": 0.0,
+    "soft": 0.0015
+   },
+   "ridge": 0.175,
+   "slot_in": 0.0005
+  },
+  "datum": {
+   "pin_slope": 0.09,
+   "pad_foot_gap": 0.0001
+  },
+  "inset_normal": 0.0012,
+  "deck_clip": [
+   [
+    -0.02,
+    0.24,
+    0.1665
+   ]
+  ]
+ },
+ "//cover": "K1: ONE level part line all round at z 180 (below chassis post 10, z 186..211 at |y| 167.7: the labyrinth upstand tops out at 183.2)",
+ "bands": [],
+ "lights": {
+  "on": false
+ },
+ "colors": {
+  "body": "#C3C7CC",
+  "body_finish": "satinmetal",
+  "lid": "#0D0F12",
+  "lid_finish": "glossdark",
+  "roof": "#0D0F12",
+  "roof_finish": "glossdark",
+  "core": "#2A2D32",
+  "core_finish": "texture",
+  "base": "#1C1E21",
+  "base_finish": "matte_tex",
+  "light": "#F2FBFF"
+ },
+ "nose_rake": {
+  "k": 0.208,
+  "d0": 0.012
+ },
+ "//nose_rake": "12.7 deg total (rake 11.7 + 1.0 section draft) over z 120..190, 12 mm foot offset over the bumper",
+ "port_slot": {
+  "z0": 0.1422,
+  "z1": 0.1622
+ },
+ "//port_slot": "slot 0.5 mm higher: on the 12.7 deg face the tunnel drops 0.66 mm over the 3 mm to the web (pin envelope top 160.83)",
+ "section_wide_front": {
+  "draft_deg": 1.2,
+  "x": [
+   0.05,
+   0.2
+  ]
+ },
+ "//section_wide_front": "ahead of the wheels the wide section is the pinched one (1 deg); the nose face gets its 12.7 deg from nose_rake (rear section 12.7 deg behind x 0.05)",
+ "y_pinch": 0.171,
+ "//skirt": "behind the wheels the 12.7 deg lean continues below the belt (z 132) down to the base line K2 (z 123); the base below drafts 2.5 deg outward to the hem (textured: >= 2 deg)",
+ "spine": {
+  "y": 0.094,
+  "profile": "quintic",
+  "half_w": 0.0012,
+  "depth": 0.0009,
+  "fine": 0.0004,
+  "run_out": [
+   0.0045,
+   0.01
+  ]
+ },
+ "//spine": "the dark spine: |y| < 94 on the cover (2K smoked gloss PC), flush; its edges are a real groove 2.4 wide x 0.9 deep (quintic section: smooth lips, no vertical walls), the colour break in its bottom; lid 164 wide inside it (10.8 mm clear each side); the groove runs out above the cover's 1.55 K1 lip",
+ "baseline": {
+  "z": 0.123,
+  "step": 0.0005,
+  "arc_r": 0.128,
+  "fillet": 0.02,
+  "x_max": 0.2,
+  "fine": 0.0008
+ },
+ "//baseline": "K2: textured base below z 123 behind the wheels and round the tail, 0.5 proud (R0.5 top edge), ending on the R128 arc about the hub",
+ "hzlight": {
+  "z": 0.1705,
+  "h": 0.003,
+  "gap": 0.0004,
+  "orbit_r": 0.128,
+  "front_y": 0.012,
+  "rear_y": 0.012,
+  "pupil_r": 0.004,
+  "dot_r": 0.0025,
+  "roll_body": 0.0005,
+  "draft_deg": 1.0,
+  "t": 0.0025
+ },
+ "//hzlight": "light line 169.0..172.0 (7.2 under the body's K1 edge 179.2, 7.3 over the charger slot 162.2), ends on R128 about the hub, light-pupil-light at the front (pupil d8, 8 mm clear), dot d5 at the rear",
+ "wall": {
+  "loop_r": [
+   {
+    "name": "cover_seam",
+    "attr": "cv",
+    "iso": 0.0008,
+    "part": 1,
+    "r": 0.0008
+   },
+   {
+    "name": "core_seam",
+    "attr": "cv",
+    "iso": 0.0,
+    "part": 0,
+    "r": 0.0005
+   },
+   {
+    "name": "lid_opening",
+    "attr": "lid",
+    "iso": 0.0008,
+    "part": 1,
+    "r": 0.0008
+   },
+   {
+    "name": "hem",
+    "attr": "hem",
+    "iso": 0.0,
+    "part": 0,
+    "r": 0.001
+   },
+   {
+    "name": "charger_port",
+    "attr": "pt",
+    "iso": 0.0,
+    "part": 0,
+    "r": 0.0008,
+    "draft_deg": 1.0
+   }
+  ],
+  "thin": [
+   {
+    "why": "[hz] chassis post 10 + rim (|y| <= 167.9 at x 165..190, z 186..211) behind the COVER beside the wheel: cover wall 1.55 there (0.62 t, = the labyrinth lip; outer skin 2.57 from the post at the 1.2 deg draft)",
+    "part": 1,
+    "c": [
+     0.1775,
+     0.169,
+     0.186
+    ],
+    "c2": [
+     0.1775,
+     0.169,
+     0.212
+    ],
+    "r": 0.0125,
+    "t": 0.00155
+   },
+   {
+    "why": "[hz] trimmed mudguard pin + rim flange + post-10 approach (|y| <= 167.4 at x 70..170, z 204..219) behind the cover: wall 1.85 (0.74 t)",
+    "part": 1,
+    "c": [
+     0.07,
+     0.169,
+     0.2155
+    ],
+    "c2": [
+     0.168,
+     0.169,
+     0.206
+    ],
+    "r": 0.009,
+    "t": 0.00185
+   },
+   {
+    "why": "[hz] same, right side (pin, rim)",
+    "part": 1,
+    "c": [
+     0.07,
+     -0.169,
+     0.2155
+    ],
+    "c2": [
+     0.168,
+     -0.169,
+     0.206
+    ],
+    "r": 0.009,
+    "t": 0.00185
+   },
+   {
+    "why": "[hz] front hook (cut at |y| 165.0, z 149..162) behind the nose corner: body wall 2.1 (the 1 deg draft took 0.5 mm of Orbit's 1.48 room)",
+    "part": 0,
+    "c": [
+     0.262,
+     0.168,
+     0.158
+    ],
+    "c2": [
+     0.276,
+     0.168,
+     0.158
+    ],
+    "r": 0.008,
+    "t": 0.0021
+   },
+   {
+    "why": "[hz] front hook (cut at |y| 165.0, z 149..162) behind the nose corner: body wall 2.1 (the 1 deg draft took 0.5 mm of Orbit's 1.48 room)",
+    "part": 0,
+    "c": [
+     0.262,
+     -0.168,
+     0.158
+    ],
+    "c2": [
+     0.276,
+     -0.168,
+     0.158
+    ],
+    "r": 0.008,
+    "t": 0.0021
+   }
+  ]
+ },
+ "//deck_fall": "level K1 -> the deck land along the wall falls >= 1 deg to 6 weep slots (front corners, behind the wheels, tail corners)",
+ "//wheel_proud": "beside the wheels the cover's flank stands 1.0 (not 0.5) proud of the body's K1 edge, so its 1.2 deg draft restarts from the 171 line (body: 169.99 at K1); hidden behind the tyre",
+ "pre_weld": true,
+ "rib_chassis_clear": 0.0012
+}

@@ -1,0 +1,40 @@
+kitm.underside   comps   1  not-clean   1
+   comp faces 22124 bnd 6092 nonman 0 unpaired 6092 vol -3017927.63 degen 0 at [-36.5, -0.1, 276.3]
+kitm.rib         comps  16  not-clean   1
+   comp faces 12208 bnd 16 nonman 0 unpaired 16 vol 2134.28 degen 0 at [-47.0, -0.0, 274.1]
+kitm.boss        comps   2  not-clean   0
+kitm.tongue      comps   2  not-clean   0
+kitm.lug         comps   4  not-clean   0
+kitm.striker     comps   2  not-clean   0
+kitm.edge        comps   1  not-clean   1
+   comp faces 22080 bnd 11040 nonman 0 unpaired 11040 vol 17713.77 degen 0 at [-38.2, -0.2, 276.7]
+kitm.blade       comps   2  not-clean   0
+kitf.well        comps   1  not-clean   1
+   comp faces 38718 bnd 638 nonman 0 unpaired 4578 vol -1233592.28 degen 0 at [-46.0, 0.0, 266.3]
+kitf.seal        comps   1  not-clean   0
+kitf.guide       comps   8  not-clean   0
+kitf.pocket      comps   2  not-clean   2
+   comp faces 84 bnd 0 nonman 6 unpaired 0 vol 2461.04 degen 0 at [-157.2, -54.0, 263.5]
+   comp faces 84 bnd 0 nonman 6 unpaired 0 vol 2461.04 degen 0 at [-157.2, 54.0, 263.5]
+kitf.damper      comps   2  not-clean   0
+kitf.latch       comps   1  not-clean   1
+   comp faces 1564 bnd 18 nonman 56 unpaired 18 vol 1256.44 degen 0 at [42.2, 0.0, 264.2]
+kitf.claw        comps   2  not-clean   2
+   comp faces 1926 bnd 22 nonman 0 unpaired 22 vol -69.74 degen 0 at [42.7, 0.0, 261.5]
+   comp faces 96 bnd 0 nonman 34 unpaired 0 vol 19.50 degen 32 at [42.6, -0.0, 261.4]
+kitf.bumper      comps   4  not-clean   0
+kitf.drain       comps   4  not-clean   0
+kitf.lip         comps   1  not-clean   1
+   comp faces 2864 bnd 1432 nonman 0 unpaired 1432 vol 90698.28 degen 0 at [-47.1, -0.0, 252.7]
+kitf.spring      comps   2  not-clean   0
+kitf.pod         comps   2  not-clean   0
+kitf.ear         comps   6  not-clean   6
+   comp faces 176 bnd 0 nonman 0 unpaired 176 vol 22.87 degen 0 at [-97.5, -87.5, 274.9]
+   comp faces 176 bnd 0 nonman 0 unpaired 176 vol 22.87 degen 0 at [-97.5, 87.5, 274.9]
+   comp faces 176 bnd 0 nonman 0 unpaired 176 vol 22.87 degen 0 at [-47.0, -87.5, 276.0]
+   comp faces 176 bnd 0 nonman 0 unpaired 176 vol 22.87 degen 0 at [-47.0, 87.5, 276.0]
+   comp faces 176 bnd 0 nonman 0 unpaired 176 vol 22.87 degen 0 at [59.5, -41.0, 273.3]
+   comp faces 176 bnd 0 nonman 0 unpaired 176 vol 22.87 degen 0 at [59.5, 41.0, 273.3]
+kitf.pinion      comps   2  not-clean   0
+kitf.cartridge   comps   2  not-clean   0
+LID composite comp faces 210962 bnd 0 nonman 0 unpaired 0 vol 71542.8 degen 0

@@ -1,0 +1,106 @@
+{
+ "//": "[fix4-cover2] fix round 4: snap-on cover kit, deck, labyrinth, seat stop (coverkit4.py, labthermal.py; design_gen.py hooks tagged [fix4-cover2])",
+ "cover": {
+  "legs": {
+   "move": [
+    {
+     "//": "G1: the legs between posts 8 / 10 and 9 / 7 (default site x ~118) stood on the kept rim flange + pin stub (z 218.5); at x 157 the flange has fallen to <= 209.5 under the leg",
+     "x": [
+      0.1,
+      0.14
+     ],
+     "ay": [
+      0.15,
+      0.175
+     ],
+     "to_x": 0.157
+    },
+    {
+     "//": "M5: the legs between posts 6 / 8 and 7 / 5 (default x 9.7 / 7.5) become the x-locators of the cover (window +-0.1 along the edge, corner R0.1 so the leg's corners clear it) at x 2: thermal datum at mid-length",
+     "x": [
+      -0.03,
+      0.04
+     ],
+     "ay": [
+      0.15,
+      0.175
+     ],
+     "to_x": 0.002,
+     "window_half": 0.0041,
+     "window_r": 0.0001
+    }
+   ],
+   "follow_deck": true
+  },
+  "datum": {
+   "//": "M5: nose hole a 3 mm slot along x (y-datum only), the tail slot stays",
+   "slot_nose": 0.003
+  },
+  "//deck": "G4: deck_envelope = exact lower offset straight under the top (no fold), collinear outline points dropped; deck_clear = >= 1.05 mm to the cover solid by cutting the outline back (the f3 vertex push folded the plate), deck_push false; deck_refine 2 rounds (<= 20000 points each) of plan points where the underside is steeper than 1:1 within deck_refine_near of a through-hole (the barb under the window's outer strip: a chord across the skirt's inside face cut 0.34 into it), final build only",
+  "deck_envelope": true,
+  "deck_refine": 2,
+  "deck_refine_slope": 1.0,
+  "deck_refine_h": 0.00025,
+  "deck_clear": 0.00105,
+  "deck_push": false,
+  "//orient": "G5: closed kit parts wound consistently and outward; screw-boss pads closed on top and standing on the scanned post top",
+  "orient_kits": true,
+  "pad_on_scan": true,
+  "deck_refine_near": 0.008,
+  "deck_refine_max": 20000,
+  "//deck_thermal": "M5: deck_clear target + k (|x - x0| - r0): the dark body (and its deck) grows up to 1.47e-3 more than the light cover about the cover's x-datum (x-locator legs at x0): +0.24 at the tail / nose ends",
+  "deck_clear_thermal": {
+   "x0": 0.002,
+   "r0": 0.15,
+   "k": 0.0015
+  },
+  "//mount_chassis_clear": "interfere (pre-existing since f1): body under-mounts vs the real chassis: rear socket boss foot on the scanned socket floor, bracket plate inner edge and front boss ribs >= this from the chassis",
+  "mount_chassis_clear": 0.0008
+ },
+ "wall": {
+  "labyrinth": {
+   "core_seam": {
+    "//": "m11: the 3.13 body edge (upstand root) is held only to the trimmed edge and tapers to 2.5 within 1.5 mm (f3: 1.0 + 3.0)",
+    "t_len": 0.0006,
+    "t_taper": 0.0015,
+    "upstand": {
+     "relief": {
+      "//": "M5: the upstand outer face (and the body edge with it, the upstand keeps 1.2) moves dw further in at the nose / tail ends, smoothstep over |x - x0| = r0 .. r1: channel 0.8 -> 0.95 where the 0.45 mm thermal shift (sun: dark body 75 C / light cover 50 C) closes it",
+      "x0": 0.002,
+      "r": [
+       0.19,
+       0.27
+      ],
+      "dw": 0.00015
+     }
+    }
+   },
+   "deck_inset": {
+    "//": "follows the shorter taper (t_len .. t_len + t_taper)",
+    "below": [
+     0.0006,
+     0.0021
+    ]
+   }
+  }
+ },
+ "skirt": {
+  "seat": {
+   "//": "m12: body edge over the drive housings +0.5 (156.5 -> 157.0): hard flange 1.96 / 2.01 over the crest; a 2K TPE bump pad (1.0 thick, 0.5 proud) takes the stop: 1.46 / 1.51 air nominal, 0.85 at the struts worst case, 0.59 with the dark-body growth",
+   "z": 0.157,
+   "flange": {
+    "tpe": {
+     "x": [
+      0.104,
+      0.132
+     ],
+     "t": 0.001,
+     "proud": 0.0005,
+     "out": 0.001,
+     "r": 0.0015,
+     "bev": 0.0003
+    }
+   }
+  }
+ }
+}

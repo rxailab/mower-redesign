@@ -1,0 +1,35 @@
+samples: body 1463448, port frame 655206, chassis 529041
+frame {"components": [{"faces": 11216, "boundary": 0, "nonmanifold": 0, "unpaired": 0, "vol_mm3": 3136.4}, {"faces": 26608, "boundary": 0, "nonmanifold": 0, "unpaired": 0, "vol_mm3": 1427.8}, {"faces": 1984, "boundary": 0, "nonmanifold": 0, "unpaired": 0, "vol_mm3": 1136.2}, {"faces": 1984, "boundary": 0, "nonmanifold": 0, "unpaired": 0, "vol_mm3": 1136.2}], "all_closed": true, "all_positive": true, "mirror_dev_mm": {"web_ducts_max": 0.0085, "tunnel_p99": 0.001, "tunnel_max": 0.03}}
+windows {'mirror_xor_mm2': 0.0, 'plus_y_mm': [3.11, 144.29, 50.11, 161.64], 'minus_y_mm': [-50.11, 144.29, -3.11, 161.64]}
+stroke nominal (seated pose)              r 4.00: body/frame clearance   4.079 mm at [307.7, 28.5, 144.4] (stroke 13.25 mm, pin +y)
+stroke nominal (seated pose)              r 3.97: body/frame clearance   4.109 mm at [307.7, 28.5, 144.4] (stroke 13.25 mm, pin +y)
+stroke asm_dock pose                      r 4.00: body/frame clearance   4.081 mm at [307.7, 23.0, 144.4] (stroke 13.25 mm, pin +y)
+stroke asm_dock pose                      r 3.97: body/frame clearance   4.111 mm at [307.7, 23.0, 144.4] (stroke 13.25 mm, pin +y)
+stroke capture min + dz min               r 4.00: body/frame clearance   0.581 mm at [307.8, 12.7, 144.4] (stroke 13.25 mm, pin +y)
+stroke capture min + dz min               r 3.97: body/frame clearance   0.611 mm at [307.8, 12.7, 144.4] (stroke 13.25 mm, pin +y)
+stroke capture min + dz max               r 4.00: body/frame clearance   1.130 mm at [304.6, -40.6, 161.5] (stroke -0.0 mm, pin -y)
+stroke capture min + dz max               r 3.97: body/frame clearance   1.160 mm at [304.6, -40.6, 161.5] (stroke -0.0 mm, pin -y)
+stroke capture max + dz min               r 4.00: body/frame clearance   0.581 mm at [307.8, 44.7, 144.4] (stroke 13.25 mm, pin +y)
+stroke capture max + dz min               r 3.97: body/frame clearance   0.611 mm at [307.8, 44.7, 144.4] (stroke 13.25 mm, pin +y)
+stroke capture max + dz max               r 4.00: body/frame clearance   1.129 mm at [304.5, -8.6, 161.5] (stroke -0.0 mm, pin -y)
+stroke capture max + dz max               r 3.97: body/frame clearance   1.159 mm at [304.5, -8.6, 161.5] (stroke -0.0 mm, pin -y)
+stroke lateral 0 + dz min                 r 4.00: body/frame clearance   0.579 mm at [307.7, 28.5, 144.4] (stroke 13.25 mm, pin +y)
+stroke lateral 0 + dz min                 r 3.97: body/frame clearance   0.609 mm at [307.7, 28.5, 144.4] (stroke 13.25 mm, pin +y)
+stroke lateral 0 + dz max                 r 4.00: body/frame clearance   1.129 mm at [304.5, -24.8, 161.5] (stroke -0.0 mm, pin -y)
+stroke lateral 0 + dz max                 r 3.97: body/frame clearance   1.159 mm at [304.5, -24.8, 161.5] (stroke -0.0 mm, pin -y)
+stroke capture min                        r 4.00: body/frame clearance   4.080 mm at [307.8, 12.7, 144.4] (stroke 13.25 mm, pin +y)
+stroke capture min                        r 3.97: body/frame clearance   4.110 mm at [307.8, 12.7, 144.4] (stroke 13.25 mm, pin +y)
+stroke capture max                        r 4.00: body/frame clearance   1.293 mm at [304.5, -3.2, 152.6] (stroke 10.0 mm, pin -y)
+stroke capture max                        r 3.97: body/frame clearance   1.323 mm at [304.5, -3.2, 152.6] (stroke 10.0 mm, pin -y)
+yaw -3.0 deg: worst 0.581 mm (capture min + dz min, crab, pin +y at [307.8, 11.9, 144.4])
+yaw -2.0 deg: worst 0.582 mm (capture min + dz min, heading, pin +y at [307.8, 12.6, 144.4])
+yaw +2.0 deg: worst 0.581 mm (capture min + dz min, heading, pin +y at [307.7, 13.0, 144.4])
+yaw +3.0 deg: worst 0.251 mm (capture max + dz min, crab, pin +y at [312.6, 50.1, 148.9])
+worst over the design box (lateral x dz x yaw +-2.0): 0.579 mm
+chassis {'case': 'seated', 'first_contact_stroke_mm': None, 'tip_x_mm': None, 'at_mm': None, 'pin': None}
+chassis {'case': 'asm_dock', 'first_contact_stroke_mm': np.float64(1.25), 'tip_x_mm': np.float64(291.75), 'at_mm': [292.5, -32.3, 152.6], 'pin': '-y'}
+chassis {'case': 'capture min', 'first_contact_stroke_mm': np.float64(9.25), 'tip_x_mm': np.float64(299.75), 'at_mm': [300.8, 10.2, 152.2], 'pin': '+y'}
+chassis {'case': 'capture max', 'first_contact_stroke_mm': np.float64(9.25), 'tip_x_mm': np.float64(299.75), 'at_mm': [300.8, -6.1, 152.8], 'pin': '-y'}
+drain {'drain_mm': [278.9, 163.1, 180.1], 'hit_z_mm': {'body': None, 'port frame': None, 'chassis': None}, 'first': None}
+drain {'drain_mm': [278.9, -163.1, 180.1], 'hit_z_mm': {'body': None, 'port frame': None, 'chassis': None}, 'first': None}
+mouths {'plus': [8.7, 52.0], 'minus': [-45.4, -4.6]}

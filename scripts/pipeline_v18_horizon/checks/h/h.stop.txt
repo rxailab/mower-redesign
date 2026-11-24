@@ -1,0 +1,230 @@
+{
+ "npz": "h.npz",
+ "A_geometry_20.101.4": {
+  "minor_dimension_mm": 39.99,
+  "min_rect_mm": [
+   39.99,
+   39.99
+  ],
+  "req_minor_dimension_mm": 35.0,
+  "surround_band_z_mm": [
+   278.22,
+   280.36
+  ],
+  "cap_top_mm": 290.75,
+  "cap_z_at_20pct_area_mm": 290.28,
+  "raised_ge_5mm_plan_fraction": 0.997,
+  "req_fraction": 0.2,
+  "height_of_20pct_area_over_band_max_mm": 9.92,
+  "surround_clear_width_min_mm": 60.0,
+  "req_surround_width_mm": 15.0,
+  "highest_point_of_machine": true,
+  "machine_top_without_key_mm": 280.07,
+  "legend": {
+   "width_mm": 28.0,
+   "cap_height_mm": 7.35,
+   "font": "Liberation Sans Bold (SIL OFL 1.1)"
+  },
+  "legend_reads": "rear",
+  "colour": {
+   "stop": "#C1121C",
+   "legend": "#F4F4F2",
+   "contrast_legend_on_red": 5.66,
+   "contrast_red_on_lid": 3.08,
+   "iso3864_4": {
+    "hex": "#C1121C",
+    "x": 0.6146,
+    "y": 0.325,
+    "beta": 0.1185,
+    "inside": true,
+    "edge_distance": 0.0138,
+    "box": "ISO 3864-4 red (ordinary): (0.735, 0.265) (0.681, 0.239) (0.579, 0.341) (0.655, 0.345), beta >= 0.07"
+   }
+  },
+  "flat_face_d_mm": {
+   "slope_lt_10deg": 37.91,
+   "slope_lt_30deg": 38.79
+  },
+  "pass": true
+ },
+ "B_budget": {
+  "worst_case": {
+   "gap_nominal": 1.6,
+   "gap_definition": "minimum vertical distance tip surface -> scanned key surface (stop4.true_gap_tip)",
+   "stack_wc": 1.3,
+   "stack_rss": 0.48,
+   "thermal": [
+    -0.31,
+    0.41
+   ],
+   "gap_range_wc": [
+    -0.01,
+    3.31
+   ],
+   "false_press_at_rest_max": 0.01,
+   "key_act_min": 0.3,
+   "no_false_stop": true,
+   "tip_compression": [
+    0.04,
+    0.1
+   ],
+   "roll_loss_edge_press": 0.219,
+   "plunger_preload_min_over_key_F_max": 0.2,
+   "plunger_yield_before_switch_mm": 0.0,
+   "cap_travel_to_actuate_max": 5.13,
+   "stroke": 5.5,
+   "actuation_margin": 0.37,
+   "always_actuates": true,
+   "grit_on_stop_rim_tolerated_wc_mm": 0.37,
+   "grit_on_stop_rim_tolerated_nominal_mm": 2.93,
+   "F_operate_max": 19.6,
+   "F_operate_min": 3.9,
+   "F_to_cap_stop_max": 27.9,
+   "compliance_travel_max": 5.9,
+   "F_on_real_key_max": 24.9,
+   "F_ret_max": 3.66,
+   "springs": {
+    "F_c0": [
+     15.2,
+     16.8
+    ],
+    "k_c": [
+     1.125,
+     1.375
+    ],
+    "F_ret0": [
+     1.8,
+     2.2
+    ],
+    "k_ret": [
+     0.135,
+     0.165
+    ],
+    "F_fric": [
+     0.0,
+     1.0
+    ]
+   }
+  },
+  "monte_carlo": {
+   "n": 200000,
+   "gap_p001_p999": [
+    0.94,
+    2.37
+   ],
+   "false_stop_fraction": 0.0,
+   "no_actuation_fraction": 0.0,
+   "actuation_margin_p001": 1.62,
+   "F_operate_p50_p999": [
+    12.2,
+    18.6
+   ],
+   "F_operate_gt_30": 0.0,
+   "F_to_stop_p50_p999": [
+    22.3,
+    24.9
+   ],
+   "F_to_stop_gt_30": 0.0,
+   "random": [
+    "stack (normal, 3 sigma = tol)",
+    "thermal",
+    "key travel / force",
+    "F_c0",
+    "k_c",
+    "F_ret0",
+    "k_ret",
+    "friction",
+    "tip compression",
+    "edge-press roll"
+   ]
+  },
+  "latch_order": {
+   "F_lid_over_at_cap_N": {
+    "min": 25.3,
+    "max": 61.8
+   },
+   "seal_I2_m3": 0.011244,
+   "theta_over_deg": 0.438,
+   "seal_I1_m2": 0.07027,
+   "seal_compression_mm": 1.0,
+   "formula": "[fix4-stop2] k (c I1 + theta I2) + F_latch L_latch + (T_spring - T_gravity), at the cap lever",
+   "note": "the lid is opened by pressing the lid at the latch; a press through the STOP cap needs the force to the cap stop + this (a hard STOP press may open the lid; with the lid-closed sensor the open lid is itself a STOP)",
+   "spring_T_closed_Nm": 0.36,
+   "gravity_T_closed_Nm": 0.1444,
+   "net_open_closed_Nm": 0.2156,
+   "spring_source": "lid.h4"
+  },
+  "latch_order_ok": true,
+  "true_gap_check": {
+   "budget_gap_mm": 1.6,
+   "mesh_gap_mm": 1.621,
+   "ok": true,
+   "samples": 2268
+  },
+  "stem_tip_room": {
+   "room_mm": 6.49,
+   "compliance_travel_max_mm": 5.9,
+   "margin_mm": 0.59,
+   "spring_travel_to_block_mm": 6.38,
+   "spring_block_margin_mm": 0.48,
+   "ok": true
+  }
+ },
+ "D_lid_open_real_key": {
+  "key_minor_dimension_mm": 37.73,
+  "key_z_at_20pct_area_mm": 261.01,
+  "panel_in_band_max_mm": 253.57,
+  "kit_in_band_max_mm": {
+   "well": 257.07,
+   "latch": 267.94,
+   "lip": 256.52
+  },
+  "rise_over_panel_mm": 7.44,
+  "rise_over_well_floor_mm": 3.94,
+  "latch_housing_above_key_mm": 6.93,
+  "stop_parts_min_xz_distance_to_key_open_mm": 138.7
+ },
+ "ok": true
+}
+{"slices": 95, "stroke_steps": 23, "lid_angles": [0.0, -0.438], "min_clearance_check_mm": 0.523, "worst_pair": "stop_arm_lower|stop_pcover", "ok_0_5mm": true, "worst_stack_vs_key_mm": {"stop_pin_front|controls": {"nominal": 2.797, "worst": 1.19, "at_stroke_mm": 5.5, "at_lid_deg": -0.438}, "stop_arm_upper|controls": {"nominal": 6.318, "worst": 4.71, "at_stroke_mm": 5.5, "at_lid_deg": -0.438}, "stop_arm_lower|controls": {"nominal": 2.33, "worst": 0.72, "at_stroke_mm": 5.5, "at_lid_deg": -0.438}, "stop_carrier|controls": {"nominal": 2.781, "worst": 1.17, "at_stroke_mm": 5.5, "at_lid_deg": -0.438}, "stop_cspring|controls": {"nominal": 6.249, "worst": 4.64, "at_stroke_mm": 5.5, "at_lid_deg": -0.438}}, "grit_case": {"skirt_min_over_socket_lid_mm": 1.696, "need_mm": 1.52, "ok": true}}
+C2 static lid frame: {"pairs": {"stop_socket|kitm_underside": {"min_mm": 0.0, "cross": true, "cls": "fused"}, "stop_socket|kitm_rib": {"min_mm": 0.0, "cross": true, "cls": "fused"}, "stop_pcover|kitm_underside": {"min_mm": 0.0, "cross": true, "cls": "fused"}, "stop_bracket|kitm_underside": {"min_mm": 0.0, "cross": true, "cls": "fused"}, "stop_post|kitm_underside": {"min_mm": 0.0, "cross": true, "cls": "fused"}, "stop_post|kitm_rib": {"min_mm": 0.0, "cross": true, "cls": "fused"}, "stop_socket|lidskin": {"min_mm": 0.05, "cross": false, "cls": "fused"}, "stop_halo|kitm_underside": {"min_mm": 0.401, "cross": false, "cls": "fused"}, "stop_halo|lidskin": {"min_mm": 0.401, "cross": false, "cls": "fused"}, "stop_halo|kitm_rib": {"min_mm": 0.675, "cross": false, "cls": "check"}, "stop_post|lidskin": {"min_mm": 1.696, "cross": false, "cls": "check"}, "stop_pin_rear|kitm_underside": {"min_mm": 1.718, "cross": false, "cls": "check"}, "stop_pcover|lidskin": {"min_mm": 1.789, "cross": false, "cls": "check"}, "stop_bracket|lidskin": {"min_mm": 1.854, "cross": false, "cls": "check"}}, "min_check_mm": 0.675, "ok_0_5mm": true}
+  stop_carrier|stop_socket           {'min_mm': 0.0, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(17.5), 'hit': True, 'cls': 'designed'}
+  stop_carrier|stop_bumper           {'min_mm': 0.0, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(4.5), 'hit': True, 'cls': 'designed'}
+  stop_arm_upper|stop_bumper         {'min_mm': 0.0, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(6.0), 'hit': True, 'cls': 'designed'}
+  stop_arm_lower|stop_rspring        {'min_mm': 0.0, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(0.5), 'y_mm': np.float64(6.0), 'hit': True, 'cls': 'designed'}
+  stop_arm_upper|stop_bush           {'min_mm': 0.178, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(-6.0), 'hit': False, 'cls': 'designed'}
+  stop_carrier|stop_bush             {'min_mm': 0.248, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(-0.5), 'hit': False, 'cls': 'designed'}
+  stop_arm_upper|stop_bore           {'min_mm': 0.324, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(-6.0), 'hit': False, 'cls': 'designed'}
+  stop_arm_upper|stop_pin_front      {'min_mm': 0.492, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(6.0), 'hit': False, 'cls': 'designed'}
+  stop_arm_upper|stop_pin_rear       {'min_mm': 0.492, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(-6.0), 'hit': False, 'cls': 'designed'}
+  stop_arm_lower|stop_pin_front      {'min_mm': 0.492, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(6.0), 'hit': False, 'cls': 'designed'}
+  stop_arm_lower|stop_pin_rear       {'min_mm': 0.492, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(-6.0), 'hit': False, 'cls': 'designed'}
+  stop_pin_front|stop_bumper         {'min_mm': 0.5, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(6.3), 'hit': False, 'cls': 'designed'}
+  stop_arm_lower|stop_pcover         {'min_mm': 0.523, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(5.5), 'hit': False, 'cls': 'check'}
+  stop_arm_upper|stop_carrier        {'min_mm': 0.672, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(0.0), 'hit': False, 'cls': 'check'}
+  stop_arm_lower|stop_carrier        {'min_mm': 0.672, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(0.0), 'hit': False, 'cls': 'check'}
+  stop_arm_upper|stop_bracket        {'min_mm': 0.672, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(3.0), 'hit': False, 'cls': 'check'}
+  stop_arm_lower|stop_bracket        {'min_mm': 0.672, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(-3.5), 'hit': False, 'cls': 'check'}
+  stop_pin_front|stop_bush           {'min_mm': 0.7, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(-5.5), 'hit': False, 'cls': 'check'}
+  stop_arm_upper|stop_socket         {'min_mm': 0.823, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(-6.0), 'hit': False, 'cls': 'check'}
+  stop_arm_upper|kitm_underside      {'min_mm': 1.119, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(-6.0), 'hit': False, 'cls': 'check'}
+  stop_cspring|stop_bumper           {'min_mm': 1.173, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(0.5), 'hit': False, 'cls': 'check'}
+  stop_arm_lower|stop_arm_upper      {'min_mm': 1.188, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(5.5), 'hit': False, 'cls': 'check'}
+  stop_cspring|stop_bush             {'min_mm': 1.658, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(-0.5), 'hit': False, 'cls': 'check'}
+  stop_cap|stop_socket               {'min_mm': 1.696, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(-19.0), 'hit': False, 'cls': 'check'}
+  stop_arm_upper|stop_pcover         {'min_mm': 1.8, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(-6.0), 'hit': False, 'cls': 'check'}
+  stop_arm_upper|stop_cspring        {'min_mm': 2.079, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(0.0), 'hit': False, 'cls': 'check'}
+  stop_arm_lower|stop_rod            {'min_mm': 2.172, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(0.0), 'hit': False, 'cls': 'check'}
+  stop_carrier|kitm_rib              {'min_mm': 2.223, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(-17.5), 'hit': False, 'cls': 'check'}
+  stop_carrier|stop_bore             {'min_mm': 2.284, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(0.0), 'hit': False, 'cls': 'check'}
+  stop_arm_upper|stop_rod            {'min_mm': 2.322, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(0.0), 'hit': False, 'cls': 'check'}
+  stop_arm_lower|controls            {'min_mm': 2.33, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(6.0), 'hit': False, 'cls': 'check'}
+  stop_arm_upper|stop_halo           {'min_mm': 2.379, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(5.6), 'hit': False, 'cls': 'check'}
+  stop_arm_lower|stop_cspring        {'min_mm': 2.481, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(0.0), 'hit': False, 'cls': 'check'}
+  stop_cap|stop_halo                 {'min_mm': 2.591, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(-0.5), 'hit': False, 'cls': 'check'}
+  stop_carrier|controls              {'min_mm': 2.781, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(3.0), 'hit': False, 'cls': 'check'}
+  stop_pin_front|controls            {'min_mm': 2.797, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(5.0), 'hit': False, 'cls': 'check'}
+  stop_pin_front|stop_bore           {'min_mm': 3.169, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(0.0), 'y_mm': np.float64(-6.5), 'hit': False, 'cls': 'designed'}
+  stop_carrier|stop_halo             {'min_mm': 3.322, 'at_lid_deg': 0.0, 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(-0.5), 'hit': False, 'cls': 'designed'}
+  stop_arm_upper|stop_rspring        {'min_mm': 3.437, 'at_lid_deg': np.float64(-0.438), 'at_stroke_mm': np.float64(5.5), 'y_mm': np.float64(4.5), 'hit': False, 'cls': 'designed'}
+STOPCHECK OK: True

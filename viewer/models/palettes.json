@@ -13,7 +13,7 @@
     "hex": "#2A2C30",
     "finish": "texture"
    },
-   "accent": "#E8552F",
+   "accent": "#C1121C",
    "ring": "#8A9097"
   },
   {
@@ -28,7 +28,7 @@
     "hex": "#2A2C30",
     "finish": "texture"
    },
-   "accent": "#E8552F",
+   "accent": "#C1121C",
    "ring": "#9FD8FF"
   },
   {
@@ -43,7 +43,7 @@
     "hex": "#17181B",
     "finish": "texture"
    },
-   "accent": "#E8552F",
+   "accent": "#C1121C",
    "ring": "#2FC6DC"
   },
   {
@@ -58,7 +58,7 @@
     "hex": "#1D2530",
     "finish": "texture"
    },
-   "accent": "#E8552F",
+   "accent": "#C1121C",
    "ring": "#4E87FF"
   },
   {
@@ -73,7 +73,7 @@
     "hex": "#1F2621",
     "finish": "texture"
    },
-   "accent": "#E8552F",
+   "accent": "#C1121C",
    "ring": "#B4EC8E"
   },
   {
@@ -88,7 +88,7 @@
     "hex": "#26231F",
     "finish": "texture"
    },
-   "accent": "#E8552F",
+   "accent": "#C1121C",
    "ring": "#2FC6DC"
   }
  ]

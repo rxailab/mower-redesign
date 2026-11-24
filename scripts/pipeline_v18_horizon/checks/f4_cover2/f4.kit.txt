@@ -1,0 +1,37 @@
+fixed  well     {'controls_min_mm': 2.97, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 10.3, 'deck_min_mm': 66.25, 'cover_solid_gap_min_mm': 0.04}
+fixed  seal     {'controls_min_mm': 24.68, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 27.2, 'deck_min_mm': 75.0, 'cover_solid_gap_min_mm': 2.29}
+fixed  guide    {'controls_min_mm': 14.59, 'inside_controls': 0, 'under_cover_min_mm': 5.83, 'over_chassis_min_mm': 26.7, 'deck_min_mm': 81.12, 'cover_solid_gap_min_mm': 3.32}
+fixed  pocket   {'controls_min_mm': 15.71, 'inside_controls': 0, 'under_cover_min_mm': 3.1, 'over_chassis_min_mm': 23.9, 'deck_min_mm': 74.82, 'cover_solid_gap_min_mm': 0.59}
+fixed  damper   {'controls_min_mm': 3.49, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 9.9, 'deck_min_mm': 84.17, 'cover_solid_gap_min_mm': None}
+fixed  latch    {'controls_min_mm': 4.14, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 34.8, 'deck_min_mm': 142.29, 'cover_solid_gap_min_mm': 9.16}
+fixed  claw     {'controls_min_mm': 8.82, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 37.6, 'deck_min_mm': 144.9, 'cover_solid_gap_min_mm': None}
+fixed  bumper   {'controls_min_mm': 16.47, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 51.6, 'deck_min_mm': 86.84, 'cover_solid_gap_min_mm': None}
+fixed  drain    {'controls_min_mm': 19.69, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 21.2, 'deck_min_mm': 70.08, 'cover_solid_gap_min_mm': 4.37}
+fixed  lip      {'controls_min_mm': 0.04, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 3.3, 'deck_min_mm': 80.66, 'cover_solid_gap_min_mm': None}
+fixed  spring   {'controls_min_mm': 3.79, 'inside_controls': 0, 'under_cover_min_mm': 11.0, 'over_chassis_min_mm': 14.6, 'deck_min_mm': 84.83, 'cover_solid_gap_min_mm': 8.48}
+fixed  pod      {'controls_min_mm': 2.2, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 6.5, 'deck_min_mm': 79.99, 'cover_solid_gap_min_mm': 7.71}
+fixed  ear      {'controls_min_mm': 30.41, 'inside_controls': 0, 'under_cover_min_mm': 2.58, 'over_chassis_min_mm': 35.9, 'deck_min_mm': 68.06, 'cover_solid_gap_min_mm': 0.09}
+fixed  idler    {'controls_min_mm': 10.36, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 24.6, 'deck_min_mm': 85.8, 'cover_solid_gap_min_mm': None}
+moving underside {'controls_min_mm': 16.0, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 30.1, 'deck_min_mm': 75.52, 'cover_solid_gap_min_mm': 0.77}
+moving rib      {'controls_min_mm': 12.16, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 25.1, 'deck_min_mm': 77.97, 'cover_solid_gap_min_mm': 7.69}
+moving boss     {'controls_min_mm': 14.8, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 27.8, 'deck_min_mm': 90.08, 'cover_solid_gap_min_mm': 9.65}
+moving tongue   {'controls_min_mm': 16.45, 'inside_controls': 0, 'under_cover_min_mm': 7.13, 'over_chassis_min_mm': 34.8, 'deck_min_mm': 83.42, 'cover_solid_gap_min_mm': 4.62}
+moving lug      {'controls_min_mm': 35.38, 'inside_controls': 0, 'under_cover_min_mm': 8.71, 'over_chassis_min_mm': 32.9, 'deck_min_mm': 82.48, 'cover_solid_gap_min_mm': 6.2}
+moving striker  {'controls_min_mm': 14.17, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 41.7, 'deck_min_mm': 147.37, 'cover_solid_gap_min_mm': 7.47}
+moving edge     {'controls_min_mm': 29.94, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 30.4, 'deck_min_mm': 75.53, 'cover_solid_gap_min_mm': 0.79}
+moving blade    {'controls_min_mm': 18.01, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 29.8, 'deck_min_mm': 92.25, 'cover_solid_gap_min_mm': None}
+moving stop_cap {'controls_min_mm': 23.79, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 64.4, 'deck_min_mm': 136.74, 'cover_solid_gap_min_mm': None}
+moving stop_carrier {'controls_min_mm': 6.95, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 57.1, 'deck_min_mm': 140.53, 'cover_solid_gap_min_mm': None}
+moving stop_boot {'controls_min_mm': 20.03, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 60.9, 'deck_min_mm': 144.84, 'cover_solid_gap_min_mm': None}
+moving stop_rod {'controls_min_mm': 3.23, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 53.1, 'deck_min_mm': 146.68, 'cover_solid_gap_min_mm': None}
+moving stop_cspring {'controls_min_mm': 10.94, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 60.7, 'deck_min_mm': 147.03, 'cover_solid_gap_min_mm': None}
+moving stop_tip {'controls_min_mm': 1.83, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 51.7, 'deck_min_mm': 144.38, 'cover_solid_gap_min_mm': None}
+moving stop_arm {'controls_min_mm': 7.04, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 57.6, 'deck_min_mm': 139.8, 'cover_solid_gap_min_mm': None}
+moving stop_pin {'controls_min_mm': 7.7, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 57.8, 'deck_min_mm': 134.72, 'cover_solid_gap_min_mm': None}
+moving stop_rspring {'controls_min_mm': 18.7, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 60.8, 'deck_min_mm': 134.51, 'cover_solid_gap_min_mm': None}
+moving stop_halo {'controls_min_mm': 16.68, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 57.4, 'deck_min_mm': 136.46, 'cover_solid_gap_min_mm': None}
+moving stop_bore {'controls_min_mm': 15.28, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 56.6, 'deck_min_mm': 142.97, 'cover_solid_gap_min_mm': None}
+moving stop_bracket {'controls_min_mm': 14.36, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 56.5, 'deck_min_mm': 140.56, 'cover_solid_gap_min_mm': None}
+moving stop_bumper {'controls_min_mm': 15.08, 'inside_controls': 0, 'under_cover_min_mm': None, 'over_chassis_min_mm': 56.4, 'deck_min_mm': 142.91, 'cover_solid_gap_min_mm': None}
+{"fixed_kit_min_under_cover_A_mm (needs >= 3.0: 2.5 wall + 0.5)": 3.1, "fixed_kit_min_to_controls_mm (lip = designed contact)": 2.2, "kit_samples_inside_controls": 0, "kit_min_over_chassis_mm": 3.3, "kit_min_to_body_deck_mm": 66.25, "fixed_kit_min_gap_to_cover_solid_mm (registration parts well/edge/seal/drain/cover exempt)": 0.59, "well_registration_gap_to_cover_inner_mm": 0.04, "ear_registration_gap_to_cover_inner_mm": 0.09}
+KIT OK: True

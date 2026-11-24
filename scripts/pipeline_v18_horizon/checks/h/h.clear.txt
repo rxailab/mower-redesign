@@ -1,0 +1,4 @@
+chassis samples 1204673 struts cut: pin_trim_L, pin_trim_R, pin_top_L, pin_top_R, hook_L, hook_R
+body: 0 chassis points inside the wall, 0 closer than 1.0 mm; tightest spots (gap < 0 = inside the plastic):
+cover: 0 chassis points inside the wall, 0 closer than 1.0 mm; tightest spots (gap < 0 = inside the plastic):
+ports: 0 chassis points inside the port frame, 0 closer than 1.0 mm; min gap 1.13 mm at [303.4, -49.8, 150.3]

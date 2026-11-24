@@ -1,0 +1,165 @@
+{
+ "clearance": {
+  "cover->body": {
+   "min_mm": 0.56,
+   "at_lift_mm": 0.0,
+   "inside_total": 0,
+   "under_0p5_total": 0,
+   "at_rest_min_mm": 0.56
+  },
+  "body->cover": {
+   "min_mm": 0.701,
+   "at_lift_mm": 0.0,
+   "inside_total": 0,
+   "under_0p5_total": 0,
+   "at_rest_min_mm": 0.701
+  },
+  "cover->deck": {
+   "min_mm": 0.97,
+   "at_lift_mm": 0.0,
+   "inside_total": 0,
+   "under_0p5_total": 0,
+   "at_rest_min_mm": 0.97
+  },
+  "deck->cover": {
+   "min_mm": 1.051,
+   "at_lift_mm": 0.0,
+   "inside_total": 0,
+   "under_0p5_total": 0,
+   "at_rest_min_mm": 1.051
+  },
+  "tested": {
+   "cover_verts": 428879,
+   "body_verts": 681837,
+   "deck_verts": 55084,
+   "stroke_mm": [
+    0,
+    12
+   ],
+   "step_mm": 0.25
+  },
+  "min_over_stroke_mm": 0.56
+ },
+ "stations": {
+  "n": 376,
+  "spacing_mm": 5.0,
+  "rays_per_station": 15,
+  "level_ray_depth_mm": {
+   "max": 3.1,
+   "median": 2.85
+  },
+  "any_ray_depth_mm": {
+   "max": 3.35,
+   "p95": 3.25,
+   "median": 3.05
+  },
+  "stations_with_a_ray_past_6mm": 0,
+  "stations_with_a_ray_past_10mm": 0,
+  "upstand_overlap_above_cover_edge_mm": {
+   "min": 3.17,
+   "p5": 3.18,
+   "median": 3.2,
+   "measured": 376
+  },
+  "deepest_at_mm": [
+   {
+    "at": [
+     260.9,
+     -170.2,
+     180.6
+    ],
+    "depth": 3.35
+   },
+   {
+    "at": [
+     255.9,
+     -170.9,
+     180.6
+    ],
+    "depth": 3.35
+   },
+   {
+    "at": [
+     255.1,
+     170.9,
+     180.6
+    ],
+    "depth": 3.35
+   },
+   {
+    "at": [
+     260.1,
+     170.4,
+     180.6
+    ],
+    "depth": 3.35
+   },
+   {
+    "at": [
+     250.9,
+     -170.9,
+     180.6
+    ],
+    "depth": 3.3
+   },
+   {
+    "at": [
+     240.9,
+     -170.9,
+     180.6
+    ],
+    "depth": 3.3
+   }
+  ],
+  "lowest_overlap_at_mm": [
+   {
+    "at": [
+     -321.3,
+     -10.4,
+     180.8
+    ],
+    "overlap": 3.17
+   },
+   {
+    "at": [
+     -321.3,
+     4.6,
+     180.8
+    ],
+    "overlap": 3.17
+   },
+   {
+    "at": [
+     -321.5,
+     -20.4,
+     180.7
+    ],
+    "overlap": 3.17
+   },
+   {
+    "at": [
+     -321.4,
+     14.7,
+     180.7
+    ],
+    "overlap": 3.17
+   },
+   {
+    "at": [
+     -321.3,
+     -5.5,
+     180.8
+    ],
+    "overlap": 3.17
+   },
+   {
+    "at": [
+     -321.5,
+     19.5,
+     180.7
+    ],
+    "overlap": 3.17
+   }
+  ]
+ }
+}

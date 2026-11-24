@@ -1,0 +1,12 @@
+/*.npz
+!/keep.npz
+!/control.npz
+!/orbit.npz
+chk/
+out/
+r/
+__pycache__/
+*.pyc
+*.log
+*.time
+tail_w*.json

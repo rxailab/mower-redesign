@@ -1,0 +1,24 @@
+{
+ "case": "cheek",
+ "params": "f3_web.json",
+ "F_edge_N": 20.0,
+ "L_edge_mm": 205.0,
+ "design": "f3",
+ "material": "1.4310 plate",
+ "lug_force_N": 120.6,
+ "contact_area_mm2": 3.47,
+ "p_nominal_MPa": 34.8,
+ "bearing_nominal_MPa": 28.8,
+ "engaged_mm": 1.196,
+ "vm_max_MPa": 61.8,
+ "vm_max_at_mm": [
+  11.81,
+  -13.85,
+  0.72
+ ],
+ "min_principal_MPa": -49.7,
+ "mesh": {
+  "nodes": 10131,
+  "tets": 39391
+ }
+}

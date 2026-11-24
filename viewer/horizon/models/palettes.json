@@ -1,0 +1,95 @@
+{
+ "default": "silver",
+ "schemes": [
+  {
+   "id": "silver",
+   "zh": "缎面银",
+   "en": "Satin Silver",
+   "body": {
+    "hex": "#C3C7CC",
+    "finish": "satinmetal"
+   },
+   "deck": {
+    "hex": "#0D0F12",
+    "finish": "glossdark"
+   },
+   "accent": "#C1121C",
+   "ring": "#8A9097"
+  },
+  {
+   "id": "titanium",
+   "zh": "钛灰",
+   "en": "Titanium",
+   "body": {
+    "hex": "#8E9399",
+    "finish": "satinmetal"
+   },
+   "deck": {
+    "hex": "#0D0F12",
+    "finish": "glossdark"
+   },
+   "accent": "#C1121C",
+   "ring": "#2FC6DC"
+  },
+  {
+   "id": "pearl",
+   "zh": "珍珠白",
+   "en": "Pearl White",
+   "body": {
+    "hex": "#E9EAE6",
+    "finish": "gloss"
+   },
+   "deck": {
+    "hex": "#0D0F12",
+    "finish": "glossdark"
+   },
+   "accent": "#C1121C",
+   "ring": "#9FD8FF"
+  },
+  {
+   "id": "graphite",
+   "zh": "石墨",
+   "en": "Graphite",
+   "body": {
+    "hex": "#3B3E44",
+    "finish": "satinmetal"
+   },
+   "deck": {
+    "hex": "#0D0F12",
+    "finish": "glossdark"
+   },
+   "accent": "#C1121C",
+   "ring": "#2FC6DC"
+  },
+  {
+   "id": "champagne",
+   "zh": "香槟金",
+   "en": "Champagne",
+   "body": {
+    "hex": "#B9AA8C",
+    "finish": "satinmetal"
+   },
+   "deck": {
+    "hex": "#14110E",
+    "finish": "glossdark"
+   },
+   "accent": "#C1121C",
+   "ring": "#F2E2B8"
+  },
+  {
+   "id": "glacier",
+   "zh": "冰川蓝",
+   "en": "Glacier Blue",
+   "body": {
+    "hex": "#9DB3C8",
+    "finish": "satinmetal"
+   },
+   "deck": {
+    "hex": "#0D1420",
+    "finish": "glossdark"
+   },
+   "accent": "#C1121C",
+   "ring": "#4E87FF"
+  }
+ ]
+}

@@ -246,10 +246,10 @@ let DESIGN = null;                  // models/design.json: lid hinge axis, openi
 let CUT = null;                     // models/chassis_cut.json (v18): the exact cuts of the two old mudguard features per side
 // finish presets: [roughness, metalness, clearcoat, clearcoatRoughness] (same values as the Blender renders)
 const FINISH = {
-  body: { gloss: [0.30, 0, 0.8, 0.06], metallic: [0.36, 0.55, 1.0, 0.05], satin: [0.50, 0, 0.15, 0.2], matte: [0.75, 0, 0, 0.3], satincoat: [0.42, 0, 0.45, 0.06] },
-  deck: { gloss: [0.26, 0, 0.8, 0.06], metallic: [0.36, 0.55, 1.0, 0.05], satin: [0.5, 0, 0.1, 0.2], matte: [0.72, 0, 0, 0.3], texture: [0.62, 0, 0, 0.3] },
+  body: { gloss: [0.30, 0, 0.8, 0.06], metallic: [0.36, 0.55, 1.0, 0.05], satin: [0.50, 0, 0.15, 0.2], matte: [0.75, 0, 0, 0.3], satincoat: [0.42, 0, 0.45, 0.06], satinmetal: [0.36, 0.55, 0.35, 0.06] },
+  deck: { gloss: [0.26, 0, 0.8, 0.06], metallic: [0.36, 0.55, 1.0, 0.05], satin: [0.5, 0, 0.1, 0.2], matte: [0.72, 0, 0, 0.3], texture: [0.62, 0, 0, 0.3], glossdark: [0.12, 0, 1.0, 0.05] },
 };
-const FINISH_ZH = { gloss: '亮面', metallic: '金属漆', satin: '缎面', matte: '哑光', satincoat: '缎面清漆', texture: '细纹理' };
+const FINISH_ZH = { gloss: '亮面', metallic: '金属漆', satin: '缎面', matte: '哑光', satincoat: '缎面清漆', texture: '细纹理', satinmetal: '缎面金属', glossdark: '烟色亮面' };
 // state.wheel: + = rolling forward; state.swivel: 0 = caster trailing behind its pivot
 const state = { wheel: { L: 0, R: 0 }, swivel: { L: 0, R: 0 }, spin: { L: 0, R: 0 }, explode: 0, dock: 0, lid: 0 };
 const LIFT = { lid: 0.5, cover: 0.4, body: 0.24, lower: 0 };      // the front bumper stays on the chassis
@@ -275,7 +275,7 @@ function setup(hotspotData, paletteData) {
   for (const n of ['BodyPaint', 'LidPaint']) for (const m of matsAll[n] || []) m.envMapIntensity = 0.8;
   for (const n of ['DeckPaint', 'Glass', 'LensGlass']) for (const m of matsAll[n] || []) m.envMapIntensity = 0.9;
   for (const n of ['Visor', 'SkirtPaint', 'Dark', 'KitDark', 'KitRubber']) for (const m of matsAll[n] || []) m.envMapIntensity = 0.5;
-  for (const n of ['CorePaint', 'InnerSkin', 'Inner']) for (const m of matsAll[n] || []) m.envMapIntensity = 0.6;      // v18: dark one-piece body, inside of the walls
+  for (const n of ['CorePaint', 'BasePaint', 'InnerSkin', 'Inner']) for (const m of matsAll[n] || []) m.envMapIntensity = 0.6;      // v18: dark one-piece body, inside of the walls
   for (const m of matsAll.Visor || []) m.envMapIntensity = 1.0;                                                   // v18: smoked lens bands read as glass
   addInnerSkins();
   trimChassis();
@@ -392,8 +392,10 @@ function applyFinish(m, hex, finish, part) {
 function setPaint(id) {
   const p = PALETTES.find((x) => x.id === id); if (!p) return;
   paletteId = p.id;
-  for (const n of ['BodyPaint', 'LidPaint']) for (const m of matsAll[n] || []) applyFinish(m, p.body.hex, p.body.finish, 'body');
-  for (const n of ['DeckPaint', 'CorePaint']) for (const m of matsAll[n] || []) applyFinish(m, p.deck.hex, p.deck.finish, 'deck');      // v18: the dark body takes the second colour
+  // which materials take the two scheme colours: v18 Orbit = cover + lid / dark body; Horizon (design.json paint_map) = canopy / spine + lid
+  const PM = (DESIGN && DESIGN.paint_map) || { body: ['BodyPaint', 'LidPaint'], deck: ['DeckPaint', 'CorePaint'] };
+  for (const n of PM.body) for (const m of matsAll[n] || []) applyFinish(m, p.body.hex, p.body.finish, 'body');
+  for (const n of PM.deck) for (const m of matsAll[n] || []) applyFinish(m, p.deck.hex, p.deck.finish, 'deck');
   for (const m of matsAll.Accent || []) m.color.set(p.accent);
   // wheel light ring: emissive LED colour normalised to full brightness, dim base colour underneath
   const e = new THREE.Color(p.ring || '#2fc6dc'); const mx = Math.max(e.r, e.g, e.b) || 1; e.multiplyScalar(1 / mx);
@@ -408,7 +410,7 @@ function setPaint(id) {
     const en = document.createElement('span'); en.textContent = p.en;
     const dot = document.createElement('i'); dot.className = 'ring-dot'; dot.style.background = '#' + e.getHexString(THREE.SRGBColorSpace);
     lab.replaceChildren(nm, ' ', en, document.createElement('br'),
-      `上盖 ${FINISH_ZH[p.body.finish] || ''} · 车身 ${FINISH_ZH[p.deck.finish] || ''} · 轮毂灯环 `, dot);
+      `上盖 ${FINISH_ZH[p.body.finish] || ''} · ${DESIGN && DESIGN.variant === 'horizon' ? '中脊饰带' : '车身'} ${FINISH_ZH[p.deck.finish] || ''} · 轮毂灯环 `, dot);
   }
   requestRender();
 }

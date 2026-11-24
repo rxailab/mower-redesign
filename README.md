@@ -10,6 +10,15 @@
 - 盖板上是符合 EN 50636-2-107 的红色凸起 STOP 键；
 - 底盘只切两处旧挡泥板件。
 
+另有一个独立方案 v18“Horizon”：
+
+- 缎面银上盖罩在深色车身上；
+- 离地 180 mm 的一条水平分缝，下方有一条细灯线；
+- 一条烟色中脊饰带，盖板是饰带的一段；
+- 后看是梯形的姿态。
+
+它沿用 Orbit 第 4 轮的全部工程（STOP 键、铰链、卡扣、防水迷宫、底盘切割）。灯线后面的导光件、摄像头模组和充电口内部结构还没做。查看器里在 `/horizon/` 页面。
+
 v17 的模型和生成器还保留在仓库里。
 
 - 公开查看器：<https://mower-3d-viewer.vercel.app>（原版设计在 `/original/`）
@@ -34,6 +43,14 @@ v17 的模型和生成器还保留在仓库里。
 FULL=1 NAME=mower_new_v18_orbit BASE=../../viewer/models/base.glb blender -b --factory-startup -P export_web.py -- f4.json f4.npz ../../new_design/v18_orbit
 ```
 
+[new_design/v18_horizon/](new_design/v18_horizon/) 是 v18 Horizon 的全分辨率装配模型：
+
+- `mower_new_v18_horizon.blend`：300 MB；
+- `mower_new_v18_horizon.glb`：20 MB，用 Draco 压缩；
+- `preview.png`。
+
+生成器在 `scripts/pipeline_v18_horizon/`：参数 `h.json` 由 `mkh.sh` 合成，说明见 `CHANGES_horizon.txt`，检查结果在 `checks/h/`。
+
 [new_design/v17_top_cover/](new_design/v17_top_cover/) 是 v17 的全分辨率装配模型，可以直接用 Blender 或任何支持 glTF 的软件打开：
 
 - `mower_new_v17.blend`（89 MB）：按零件分成 6 个集合，分别是车身（含下裙、台面、14 颗螺丝）、卡扣式上盖、盖板（含铰链）、前保险杠、控制面板（STOP 键、显示屏），以及原有的底盘、驱动轮和万向轮。
@@ -52,9 +69,11 @@ FULL=1 NAME=mower_new_v17 BASE=viewer/models/base.glb blender -b --factory-start
 
 | 路径 | 内容 |
 | --- | --- |
+| `scripts/pipeline_v18_horizon/` | v18 Horizon 生成器（同一套代码，多了 Horizon 的参数和功能），参数 `h.json`，说明见 `CHANGES_horizon.txt` |
+| `viewer/horizon/` | v18 Horizon 的查看器页面（共用 `app.js`，模型和配色单独） |
 | `scripts/pipeline_v18/` | v18“Orbit”生成器、全部检查和渲染脚本。最终参数是 `f4.json`（由 `mk_f3.py` 从 `f2.json` 和 `fix3_*.json`、`fix4_*.json` 合成）。说明见 `CHANGES.txt`：第 6 节是第 3 轮修复，第 7 节是第 4 轮修复。检查结果在 `checks/` |
 | `renders/redesign/v18_orbit/`、`v18_orbit_f4/` | v18 f2 和 f4 的渲染图（不在仓库里，`renders/` 被忽略） |
-| `new_design/` | 新设计的完整模型（.blend / .glb）：v18 Orbit 和 v17 |
+| `new_design/` | 新设计的完整模型（.blend / .glb）：v18 Orbit、v18 Horizon 和 v17 |
 | `viewer/` | three.js 网页查看器（静态文件）。说明见 [viewer/README.md](viewer/README.md) |
 | `viewer/models/` | 查看器用的 glb 模型、`design.json`、`hotspots.json`、配色表 |
 | `viewer/original/` | 原版设计的查看器页面 |
@@ -113,6 +132,7 @@ cd viewer && vercel deploy --prod
 | `scripts/pipeline/a_one.npz` | 85 MB | v16（一体式车身）全分辨率设计网格 |
 | `scripts/pipeline/a_pro.npz` | 69 MB | v15 全分辨率设计网格 |
 | `new_design/v18_orbit/mower_new_v18_orbit.blend` | 234 MB | v18 Orbit 全分辨率装配模型 |
+| `new_design/v18_horizon/mower_new_v18_horizon.blend` | 300 MB | v18 Horizon 全分辨率装配模型 |
 
 网页查看器里的 glb 是减面或压缩后的版本，不走 LFS。`scripts/pipeline_v18/` 里的输入网格（`keep.npz`、`control.npz`、`dev/base_parts.npz`、`base.glb`）也用 LFS 存放。
 

@@ -1,0 +1,445 @@
+{
+ "frame": {
+  "components": [
+   {
+    "faces": 11440,
+    "boundary": 0,
+    "nonmanifold": 0,
+    "unpaired": 0,
+    "vol_mm3": 2742.0
+   },
+   {
+    "faces": 39100,
+    "boundary": 0,
+    "nonmanifold": 0,
+    "unpaired": 0,
+    "vol_mm3": 1655.9
+   },
+   {
+    "faces": 1912,
+    "boundary": 0,
+    "nonmanifold": 0,
+    "unpaired": 0,
+    "vol_mm3": 921.4
+   },
+   {
+    "faces": 1912,
+    "boundary": 0,
+    "nonmanifold": 0,
+    "unpaired": 0,
+    "vol_mm3": 921.4
+   },
+   {
+    "faces": 3272,
+    "boundary": 0,
+    "nonmanifold": 0,
+    "unpaired": 0,
+    "vol_mm3": 382.1
+   },
+   {
+    "faces": 3272,
+    "boundary": 0,
+    "nonmanifold": 0,
+    "unpaired": 0,
+    "vol_mm3": 382.1
+   }
+  ],
+  "all_closed": true,
+  "all_positive": true,
+  "mirror_dev_mm": {
+   "web_ducts_max": 0.0003,
+   "tunnel_p99": 0.0,
+   "tunnel_max": 0.0
+  }
+ },
+ "windows": {
+  "mirror_xor_mm2": 0.0,
+  "plus_y_mm": [
+   3.86,
+   144.27,
+   49.32,
+   161.19
+  ],
+  "minus_y_mm": [
+   -49.32,
+   144.27,
+   -3.86,
+   161.19
+  ]
+ },
+ "stroke": [
+  {
+   "case": "nominal (seated pose)",
+   "dy_mm": 0.0,
+   "dz_mm": 0.0,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 4.079,
+   "at_mm": [
+    307.7,
+    28.6,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "nominal (seated pose)",
+   "dy_mm": 0.0,
+   "dz_mm": 0.0,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 4.109,
+   "at_mm": [
+    307.7,
+    28.6,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "asm_dock pose",
+   "dy_mm": -5.8,
+   "dz_mm": 0.0,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 4.08,
+   "at_mm": [
+    307.7,
+    22.6,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "asm_dock pose",
+   "dy_mm": -5.8,
+   "dz_mm": 0.0,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 4.11,
+   "at_mm": [
+    307.7,
+    22.6,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "capture min + dz min",
+   "dy_mm": -15.8,
+   "dz_mm": -3.5,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 0.58,
+   "at_mm": [
+    307.7,
+    12.7,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "capture min + dz min",
+   "dy_mm": -15.8,
+   "dz_mm": -3.5,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 0.61,
+   "at_mm": [
+    307.7,
+    12.7,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "capture min + dz max",
+   "dy_mm": -15.8,
+   "dz_mm": 3.5,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 0.676,
+   "at_mm": [
+    307.9,
+    -40.5,
+    161.1
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y"
+  },
+  {
+   "case": "capture min + dz max",
+   "dy_mm": -15.8,
+   "dz_mm": 3.5,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 0.706,
+   "at_mm": [
+    307.9,
+    -40.5,
+    161.1
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y"
+  },
+  {
+   "case": "capture max + dz min",
+   "dy_mm": 16.1,
+   "dz_mm": -3.5,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 0.571,
+   "at_mm": [
+    307.7,
+    48.3,
+    146.1
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "capture max + dz min",
+   "dy_mm": 16.1,
+   "dz_mm": -3.5,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 0.601,
+   "at_mm": [
+    307.7,
+    48.3,
+    146.1
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "capture max + dz max",
+   "dy_mm": 16.1,
+   "dz_mm": 3.5,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 0.579,
+   "at_mm": [
+    304.7,
+    49.2,
+    155.9
+   ],
+   "stroke_mm": 10.25,
+   "pin": "+y"
+  },
+  {
+   "case": "capture max + dz max",
+   "dy_mm": 16.1,
+   "dz_mm": 3.5,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 0.609,
+   "at_mm": [
+    304.7,
+    49.2,
+    155.9
+   ],
+   "stroke_mm": 10.25,
+   "pin": "+y"
+  },
+  {
+   "case": "lateral 0 + dz min",
+   "dy_mm": 0.0,
+   "dz_mm": -3.5,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 0.58,
+   "at_mm": [
+    307.7,
+    28.6,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "lateral 0 + dz min",
+   "dy_mm": 0.0,
+   "dz_mm": -3.5,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 0.61,
+   "at_mm": [
+    307.7,
+    28.6,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "lateral 0 + dz max",
+   "dy_mm": 0.0,
+   "dz_mm": 3.5,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 0.673,
+   "at_mm": [
+    307.9,
+    -24.8,
+    161.1
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y"
+  },
+  {
+   "case": "lateral 0 + dz max",
+   "dy_mm": 0.0,
+   "dz_mm": 3.5,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 0.703,
+   "at_mm": [
+    307.9,
+    -24.8,
+    161.1
+   ],
+   "stroke_mm": -0.0,
+   "pin": "-y"
+  },
+  {
+   "case": "capture min",
+   "dy_mm": -15.8,
+   "dz_mm": 0.0,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 4.079,
+   "at_mm": [
+    307.7,
+    12.7,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "capture min",
+   "dy_mm": -15.8,
+   "dz_mm": 0.0,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 4.109,
+   "at_mm": [
+    307.7,
+    12.7,
+    144.4
+   ],
+   "stroke_mm": 13.25,
+   "pin": "+y"
+  },
+  {
+   "case": "capture max",
+   "dy_mm": 16.1,
+   "dz_mm": 0.0,
+   "pin_r_mm": 4.0,
+   "min_clear_mm": 0.579,
+   "at_mm": [
+    304.7,
+    -3.9,
+    152.8
+   ],
+   "stroke_mm": 10.25,
+   "pin": "-y"
+  },
+  {
+   "case": "capture max",
+   "dy_mm": 16.1,
+   "dz_mm": 0.0,
+   "pin_r_mm": 3.97,
+   "min_clear_mm": 0.609,
+   "at_mm": [
+    304.7,
+    -3.9,
+    152.8
+   ],
+   "stroke_mm": 10.25,
+   "pin": "-y"
+  }
+ ],
+ "chassis_contact": [
+  {
+   "case": "seated",
+   "first_contact_stroke_mm": null,
+   "tip_x_mm": null,
+   "at_mm": null,
+   "pin": null
+  },
+  {
+   "case": "asm_dock",
+   "first_contact_stroke_mm": 1.25,
+   "tip_x_mm": 291.75,
+   "at_mm": [
+    292.5,
+    -32.3,
+    152.6
+   ],
+   "pin": "-y"
+  },
+  {
+   "case": "capture min",
+   "first_contact_stroke_mm": 9.25,
+   "tip_x_mm": 299.75,
+   "at_mm": [
+    300.8,
+    10.2,
+    152.2
+   ],
+   "pin": "+y"
+  },
+  {
+   "case": "capture max",
+   "first_contact_stroke_mm": 9.25,
+   "tip_x_mm": 299.75,
+   "at_mm": [
+    300.8,
+    -6.1,
+    152.8
+   ],
+   "pin": "-y"
+  }
+ ],
+ "drains": [
+  {
+   "drain_mm": [
+    305.7,
+    -89.9,
+    191.8
+   ],
+   "hit_z_mm": {
+    "body": null,
+    "port frame": null,
+    "chassis": null
+   },
+   "first": null
+  },
+  {
+   "drain_mm": [
+    307.1,
+    0.0,
+    191.5
+   ],
+   "hit_z_mm": {
+    "body": null,
+    "port frame": null,
+    "chassis": 140.9
+   },
+   "first": "chassis"
+  },
+  {
+   "drain_mm": [
+    305.7,
+    89.9,
+    191.8
+   ],
+   "hit_z_mm": {
+    "body": null,
+    "port frame": null,
+    "chassis": null
+   },
+   "first": null
+  }
+ ],
+ "mouths_mm": {
+  "plus": [
+   8.7,
+   52.0
+  ],
+  "minus": [
+   -45.4,
+   -4.6
+  ]
+ }
+}

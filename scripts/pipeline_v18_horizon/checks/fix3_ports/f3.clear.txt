@@ -1,0 +1,4 @@
+chassis samples 1181767 kill z 0.135
+body: 0 chassis points inside the wall, 0 closer than 1.0 mm; tightest spots (gap < 0 = inside the plastic):
+cover: 0 chassis points inside the wall, 0 closer than 1.0 mm; tightest spots (gap < 0 = inside the plastic):
+ports: 0 chassis points inside the port frame, 0 closer than 1.0 mm; min gap 1.06 mm at [303.5, -49.1, 150.1]

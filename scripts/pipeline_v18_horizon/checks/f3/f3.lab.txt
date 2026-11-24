@@ -1,0 +1,166 @@
+{
+ "clearance": {
+  "cover->body": {
+   "min_mm": 0.584,
+   "at_lift_mm": 0.0,
+   "inside_total": 0,
+   "under_0p5_total": 0,
+   "at_rest_min_mm": 0.584
+  },
+  "body->cover": {
+   "min_mm": 0.697,
+   "at_lift_mm": 0.0,
+   "inside_total": 0,
+   "under_0p5_total": 0,
+   "at_rest_min_mm": 0.697
+  },
+  "cover->deck": {
+   "min_mm": 0.578,
+   "at_lift_mm": 0.0,
+   "inside_total": 0,
+   "under_0p5_total": 0,
+   "at_rest_min_mm": 0.578
+  },
+  "deck->cover": {
+   "min_mm": 0.967,
+   "at_lift_mm": 4.0,
+   "inside_total": 0,
+   "under_0p5_total": 0,
+   "at_rest_min_mm": 1.0
+  },
+  "tested": {
+   "cover_verts": 432272,
+   "body_verts": 719186,
+   "deck_verts": 39530,
+   "stroke_mm": [
+    0,
+    12
+   ],
+   "step_mm": 0.25
+  },
+  "min_over_stroke_mm": 0.578
+ },
+ "stations": {
+  "n": 417,
+  "spacing_mm": 5.0,
+  "rays_per_station": 15,
+  "level_ray_depth_mm": {
+   "max": 2.75,
+   "median": 2.75
+  },
+  "any_ray_depth_mm": {
+   "max": 2.95,
+   "p95": 2.95,
+   "median": 2.9
+  },
+  "stations_with_a_ray_past_6mm": 0,
+  "stations_with_a_ray_past_10mm": 0,
+  "upstand_overlap_above_cover_edge_mm": {
+   "min": 3.08,
+   "p5": 3.13,
+   "median": 3.2,
+   "measured": 417
+  },
+  "deepest_at_mm": [
+   {
+    "at": [
+     258.4,
+     -171.1,
+     190.5
+    ],
+    "depth": 2.95
+   },
+   {
+    "at": [
+     300.4,
+     148.2,
+     190.6
+    ],
+    "depth": 2.95
+   },
+   {
+    "at": [
+     -314.2,
+     -122.0,
+     190.6
+    ],
+    "depth": 2.95
+   },
+   {
+    "at": [
+     -309.3,
+     -141.3,
+     190.6
+    ],
+    "depth": 2.95
+   },
+   {
+    "at": [
+     -304.0,
+     -155.6,
+     190.6
+    ],
+    "depth": 2.95
+   },
+   {
+    "at": [
+     -301.9,
+     -159.9,
+     190.6
+    ],
+    "depth": 2.95
+   }
+  ],
+  "lowest_overlap_at_mm": [
+   {
+    "at": [
+     -314.2,
+     -122.0,
+     190.6
+    ],
+    "overlap": 3.08
+   },
+   {
+    "at": [
+     -314.0,
+     122.7,
+     190.6
+    ],
+    "overlap": 3.08
+   },
+   {
+    "at": [
+     -310.5,
+     137.3,
+     190.6
+    ],
+    "overlap": 3.1
+   },
+   {
+    "at": [
+     -310.7,
+     -136.6,
+     190.6
+    ],
+    "overlap": 3.11
+   },
+   {
+    "at": [
+     -307.5,
+     146.7,
+     190.6
+    ],
+    "overlap": 3.11
+   },
+   {
+    "at": [
+     -301.5,
+     160.7,
+     190.6
+    ],
+    "overlap": 3.11
+   }
+  ]
+ }
+}
+LAB_DONE

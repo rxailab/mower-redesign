@@ -1,0 +1,109 @@
+{
+ "info": {
+  "npz": "<scratch>",
+  "parts": 387,
+  "faces": 8059887,
+  "lid_pivot": [
+   -0.15100000000000002,
+   0.0,
+   0.27786920312720387
+  ],
+  "lid_open": 75.0,
+  "lid_over_deg": -0.4385,
+  "stop_stroke_mm": 5.0,
+  "stop_tip_gap_mm": 1.45
+ },
+ "summary": {
+  "VIOLATION": 20,
+  "RENDER": 3,
+  "ALLOWED": 741,
+  "NEAR": 191
+ },
+ "n_violations": 20,
+ "violation_groups": [
+  {
+   "a": "ckit.leg",
+   "b": "hw.chassis",
+   "n": 2,
+   "crossings": 28,
+   "deepest_mm": 1.931,
+   "ref": "G1"
+  },
+  {
+   "a": "hw.chassis",
+   "b": "mount.bracket",
+   "n": 4,
+   "crossings": 283,
+   "deepest_mm": 1.5,
+   "ref": "new: rear socket boss / bracket plate x chassis apron"
+  },
+  {
+   "a": "ckit.barb",
+   "b": "hw.chassis",
+   "n": 2,
+   "crossings": 26,
+   "deepest_mm": 1.431,
+   "ref": "G1"
+  },
+  {
+   "a": "lid",
+   "b": "stop.rspring",
+   "n": 4,
+   "crossings": 367,
+   "deepest_mm": 1.095,
+   "ref": "G2"
+  },
+  {
+   "a": "hw.chassis",
+   "b": "mount.pad",
+   "n": 2,
+   "crossings": 253,
+   "deepest_mm": 1.058,
+   "ref": "new: seat pad under the scanned post top (mounts.json post z)"
+  },
+  {
+   "a": "ckit.pin",
+   "b": "mount.deck",
+   "n": 1,
+   "crossings": 213,
+   "deepest_mm": 1.008,
+   "ref": "new: nose pin x deck hole"
+  },
+  {
+   "a": "stop.carrier",
+   "b": "stop.tip",
+   "n": 1,
+   "crossings": 801,
+   "deepest_mm": 0.887,
+   "ref": "S6 (stem on the tip: compliance travel used up)"
+  },
+  {
+   "a": "halo_feed",
+   "b": "lid",
+   "n": 1,
+   "crossings": 82,
+   "deepest_mm": 0.827,
+   "ref": "G3"
+  },
+  {
+   "a": "ckit.barb",
+   "b": "mount.deck",
+   "n": 2,
+   "crossings": 41,
+   "deepest_mm": 0.189,
+   "ref": "G1 region (x 118 legs)"
+  },
+  {
+   "a": "hw.chassis",
+   "b": "mount.rib",
+   "n": 1,
+   "crossings": 10,
+   "deepest_mm": 0.164,
+   "ref": "new: body kit x real chassis"
+  }
+ ],
+ "tip_landing_gap_mm": {
+  "0": 1.858,
+  "-0.4385": 0.666
+ }
+}

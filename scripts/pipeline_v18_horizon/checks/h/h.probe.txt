@@ -1,0 +1,19 @@
+part 0 inner verts 408174 outside outer 0 wall < 1.5 mm 0
+   inner faces facing outwards (dot > 0.2 with the nearest outer face): 15
+        1 faces near [-335.3  -35.2  122.5]
+        1 faces near [-324.6 -137.6  122.4]
+        1 faces near [-283.3  194.5  122.5]
+        1 faces near [-278.1  196.9  122.5]
+        1 faces near [-262.   201.7  122.5]
+        1 faces near [-173.3  190.2  122.5]
+        1 faces near [-162.8  187.7  122.5]
+        1 faces near [-156.5 -186.1  122.5]
+        1 faces near [-132.4 -180.5  122.5]
+        1 faces near [-118.7 -177.7  122.5]
+        2 faces near [ -85.8 -172.9  122.5]
+        2 faces near [-87.2 173.  122.5]
+part 1 inner verts 742282 outside outer 0 wall < 1.5 mm 0
+   inner faces facing outwards (dot > 0.2 with the nearest outer face): 3
+        1 faces near [104.2  94.3 269.2]
+        1 faces near [128.9  94.3 266.4]
+        1 faces near [293.3 -95.9 213.5]

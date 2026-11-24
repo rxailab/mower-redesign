@@ -1,0 +1,23 @@
+{
+  "//": "[fix3-stop] STOP button compliance (EN 50636-2-107:2015/A3:2021 20.101.4 = IEC 60335-2-107:2017+A1:2020; marking 7.9). The flush 18 mm pad (0 mm raised, orange, icon only) is replaced by a raised, parallel-guided d 40 red STOP key with a white STOP legend on the flush lid; see stopkit.py.",
+  "lid": {
+    "stop_pad": null,
+    "//stop_pad": "the f2 flush pad, its halo paint and its plunger are gone (stop_pad null switches them off)",
+    "stop_key": {
+      "//": "geometry in m, forces in N / (N/mm), tolerances in mm; every key not listed takes stopkit.DEFAULTS",
+      "x": null, "//x": "null = centre of the real STOP key's top (bbox) = x 4.4 mm; y 0",
+      "r": 0.020, "//r": "cap d 40: geometric minor dimension 40 >= 35 (5 mm margin)",
+      "stroke": 0.0050, "//stroke": "cap travel to its own stop (parallel guide: the same at every point of the cap) - covers tip gap worst case 3.16 + key switch travel <= 1.5",
+      "clear": 0.0005, "//clear": "skirt clearance to the lid at full stroke -> cap floats 5.5 over the lid",
+      "gap": 0.00145, "//gap": "tip to scanned key, closed lid: worst case -0.16 (key pre-pressed 0.16 < 0.3 switch travel) .. 3.16",
+      "side": 0.0011, "roll": 0.0025, "dome": 0.0004, "wall": 0.0016,
+      "arm_L": 0.070, "arm_d": 0.0055, "arm_t": 0.0008, "//arm": "parallel links 70 long, 5.5 apart, stainless U-channels 12.2 x 2.8 x 0.8 (Euler 2450 N vs 223 N at the 1 J impact): the cap translates, never tilts (no drawer jam, no edge-force factor)",
+      "legend_w": 0.028, "legend_front": true, "//legend_w": "STOP inlay 28 x 7.4 mm (Liberation Sans Bold), white 2K, reads from in front of the mower (the rear-hinged lid is operated from the front / side)",
+      "F_ret0": 2.5, "k_ret": 0.4, "k_boot": 0.1, "F_c0": 16.0, "k_c": 1.6,
+      "key_act": [0.3, 1.5], "key_full_min": 0.8, "key_F": [3.0, 15.0], "//key": "ASSUMED range of the real STOP key (fixed hardware, scanned): switch travel 0.3..1.5, full travel >= 0.8, switch force 3..15 N - supplier to confirm"
+    },
+    "//spring_N": "[fix3-int] removed (was 5.2): the f2 constant-force band is superseded by fix-hinge's tape + spiral-spring drum (lid.h3). The STOP parts' mass now enters the lid balance from their meshes (stopkit.mass_mesh -> lidmech extra_mass) and the h3 spiral spring is retuned for the total lid in fix3_hinge.json"
+  },
+  "colors": {"stop": "#C8102E", "//stop": "STOP red (ISO 3864-4 safety red / RAL 3020 range) for the lid key, the real key and its stand-in; the old orange accent is not used anywhere any more",
+             "halo": "#F2FBFF", "halo_emit": 1.2}
+}

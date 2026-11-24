@@ -1,0 +1,50 @@
+v18 "HORIZON" (second v18 variant next to Orbit) - stage 1, exterior.  Code tags [hz]; branch 'horizon'.
+Units: metres in code / parameters, mm here. World: +X forward, +Y left, Z up.
+
+PARAMETERS   h.json = f3 parameters (f2.json + fix3_*.json) + horizon.json (mk_f3.py; '//' keys are comments).  Web: + web.json -> h_web.json.
+  ../mkh.sh builds both.  Orbit (f3.json / f3_web.json) builds bit-identically: every new behaviour is switched on by a horizon.json key.
+RUN (inside design/)
+  ../mkh.sh;  ../venv/bin/python design_gen.py h_web.json h_web.npz > h_web.check.json          (~1.5 min, 2.7 M faces)
+  flock ../../heavy.lock ../venv/bin/python design_gen.py h.json h.npz > h.check.json             (~5 min, 6.7 M faces, ~4 GB)
+  checks as Orbit (CHANGES.txt 6.8) on h.npz + draftcheck.py h.npz (draft vs +Z pull) + foldloc.py h.npz (where inner faces fold / skins open)
+  renders: ./hz_renders.sh P|C|S OUTDIR [PARAMS NPZ PREFIX]  (Orbit: f3.json ../../base3/f3.npz o);  python hz_sheet.py OUTDIR (contact sheets)
+
+LANGUAGE / GEOMETRY (horizon.json)
+  K1   cover.orbit.level 0.180: ONE level part line all round (partline.py mode 'level'); joint as Orbit (0.8 gap, cover R0.8 / body R0.5,
+       cover 0.5 proud, labyrinth along the actual line). Beside the wheels the cover stands wheel_proud 1.0 proud (its 1.2 deg draft restarts
+       at the 171 line); zone_sink off.  Why 180 not 190: chassis post 10 fills z 186..211 at |y| <= 167.9 - at 190 no labyrinth fits there.
+  shape  section.draft_deg 1.2 (pinched body: wall leans 1.2 deg from the belt, 171.0 max at the belt), section_wide 12.7 deg (rear flanks /
+       tail: trapezoid), section_wide_front 1.2 deg blended over x 0.05..0.20 (nose), nose_rake k 0.208 (12.7 deg total), tail_rake off,
+       waist_tuck 0, skirt.flare_z: the 12.7 deg lean continues to K2 (z 123), the base below flares 2.5 deg; flare_z_x fades it at the wheel zone.
+  spine  spine {y 0.094, quintic groove half_w 1.2 depth 0.9, run_out 4.5..10 mm above K1}: the 2K smoked-gloss band |y| < 94 on the cover,
+       colour = lab 'roof'; lid (unchanged 202 x 164 R20) sits inside it, 10.8 mm clear each side.
+  K2   baseline {z 0.123, step 0.5, r 0.5, arc_r 0.128 about the hub, fillet 0.02}: textured base (lab 11 'base') 0.5 proud below K2.
+  light  hzlight {z 0.1705, h 0.003, gap 0.4, orbit_r 0.128, front_y / rear_y 0.012, pupil_r 0.004, dot_r 0.0025, roll_body 0.5, draft 1 deg}:
+       flush lens stand-ins (npz hzl_v / hzl_f / hzl_lab, renderer object HzLight), body openings = wall loop 'light_opening'.
+  Orbit lens bands OFF: bands [], lights.on false (no lightkit lens / lamp modules / harness / halo feed).  port_slot z +0.5 (142.2..162.2),
+       charger_port loop R0.8 + 1 deg draft.  wall.thin: cover 1.55 at post 10, 1.85 at the trimmed pin / rim (x 70..168), body 2.1 at the
+       front hooks.  cover.deck_fall {1 deg to 6 weep notches, ridge 175, chassis_floor (real cut chassis + 3.5, soft 1.5)}, cover.inset_normal
+       1.2, datum.pin_slope 0.09, pre_weld, rib_chassis_clear 1.2.
+NEW CODE  design_gen.py ([hz]): section_wide_front blend, flare_z, wheel_proud, baseline, spine, hzlight + lens stand-in, deck_fall /
+  chassis floor / weeps, inset_normal, pin_slope, pre_weld, rib_chassis_clear.  partline.py 'level'.  shell_wall.py loop_r draft_deg.
+  design_render.py finishes satinmetal / glossdark / matte_tex, base material (slot 11), HzLight.  deckcheck.py re-signs suspects by ray parity.
+  New: draftcheck.py, foldloc.py, hz_renders.sh, hz_sheet.py, mkh.sh.
+STAGE 3 (lights / camera / charger) must build: light guides + LEDs behind the 3 mm line (~2 x 0.75 m, segmented, sealed; room behind the
+  wall 13..35 mm), the camera module behind the d8 pupil (x 317, z 170.5), ToF / status, the rear dot, bosses on the body wall, harness +
+  deck grommets, and the STOP key's halo feed (pipe + panel emitter - lost with lightkit). The deck land at the nose sits at z 181..183 (weeps
+  at the front corners): lamp housings stay below ~176 or notch it. hzlight.* / hzl_* are the exterior interface; portskit is unchanged.
+
+ROUND 4 MERGED (2026-11-24) - Horizon carries Orbit's fix-round-4 engineering
+  Merged integrate c5fe18a (Orbit f4): STOP key v4 (stop4.py: dark socket, flush opal ring, box links, lid-closed magnet / hall provision),
+  geared spring / two-way damper hinge h4, cover kit / deck v4 (legs clear of the cut chassis, exact-offset deck, mid-length x-datum,
+  thermal labyrinth), interfere.py / solidaudit.py. One conflict (design_gen rib(): Horizon chassis skip + fix4-cover2 rib_clear, both kept).
+  h.json = f3 files + fix4_stop2 / hinge2 / front2 / cover2 / int + horizon.json (mkh.sh). Horizon keeps bands [] / lights off.
+  Full h.npz: generator ok, 6.82 M faces; topo 0 / 0 both parts; wallprobe 0 outside, 0 < 1.5; lidsim ALL >= 0.5; kitcheck OK; kitclear
+  1.125 mm; lifttest 0 colliding; deckcheck closed; labcheck exit 0; labthermal no contact (min 0.452); wall_clear 0 inside / none < 1.0;
+  interfere 0 violations; portcheck worst 0.58 mm incl. +-2 / 3 deg yaw; stopcheck OK (20.101.4 raised 99.7 %); strutcheck exit 0.
+  Open: solidaudit - well.well (the lid well tub) and well.lip are not closed solids (same as Orbit f4; no interference).
+  stopcheck: skips the halo-feed pairs - Horizon has no halo feed / panel emitter yet (part of stage 3).
+  Web: export_web.py ([hz]: Horizon finishes, BasePaint, HzLight, anchors from hzl_*, spine hotspot, design.json paint_map / variant)
+  -> viewer/horizon/ (own models, palettes, texts). Full model: new_design/v18_horizon/ (.blend + Draco .glb).
+STILL TO DO: stage 3 (light guides + LEDs behind the 3 mm line, camera / ToF / status behind the pupil, rear dot, bosses, harness, the STOP
+  key's halo feed + panel emitter) and an independent design / engineering review round like Orbit's.
