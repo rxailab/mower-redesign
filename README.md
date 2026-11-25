@@ -22,7 +22,7 @@
 
 v17 的模型和生成器还保留在仓库里。
 
-- 产品介绍页：<https://mower-3d-viewer.vercel.app>（滚动动画展示外观、回充、盖板、STOP 键、防水和结构）
+- 产品介绍页：<https://mower-3d-viewer.vercel.app>（以割草性能为主：割草、路径、避障、地形、回充、安全；标 * 的性能数值是设计目标）
 - 3D 查看器：<https://mower-3d-viewer.vercel.app/viewer.html>（Horizon 在 `/horizon/`，原版设计在 `/original/`）
 
 ## 新设计的完整模型
@@ -77,7 +77,7 @@ FULL=1 NAME=mower_new_v17 BASE=viewer/models/base.glb blender -b --factory-start
 | `renders/redesign/v18_orbit/`、`v18_orbit_f4/` | v18 f2 和 f4 的渲染图（不在仓库里，`renders/` 被忽略） |
 | `new_design/` | 新设计的完整模型（.blend / .glb）：v18 Orbit、v18 Horizon 和 v17 |
 | `viewer/` | 网站（静态文件）：`index.html` 是产品介绍页（样式、脚本和图片在 `viewer/site/`），`viewer.html` 是 three.js 3D 查看器。说明见 [viewer/README.md](viewer/README.md) |
-| `scripts/site/` | 产品介绍页的图片：`render_site.sh` 渲染 f5，`bake_site.py` 把渲染图烘焙到页面底色并转成 WebP；`*_shoot.mjs` 用无头 Chrome 截图检查页面 |
+| `scripts/site/` | 产品介绍页的图片：`render_site.sh` 渲染 f5（含 3D 分解序列），`bake_site.py` 把渲染图烘焙到页面底色并转成 WebP（车身边缘保持原始合成，不出白边）；`*_shoot.mjs` 用无头 Chrome 截图检查页面 |
 | `viewer/models/` | 查看器用的 glb 模型、`design.json`、`hotspots.json`、配色表 |
 | `viewer/original/` | 原版设计的查看器页面 |
 | `scripts/pipeline/` | 参数化生成器和检查、渲染脚本（当前版本） |

@@ -1,8 +1,7 @@
-// Orbit product page: scroll-driven image sequences, exploded layers, text scrub, reveals, counters, colour picker.
+// Orbit product page: scroll-driven image sequences, the lawn-path drawing, reveals, counters, colour picker.
 (() => {
   const reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
   const clamp = (x, a = 0, b = 1) => Math.min(b, Math.max(a, x));
-  const smooth = (x) => x * x * (3 - 2 * x);
   const vh = () => window.innerHeight;
   const pad2 = (i) => String(i).padStart(2, '0');
 
@@ -21,13 +20,6 @@
     el.textContent = (0).toFixed(dec); requestAnimationFrame(step);
   }), { threshold: 0.6 });
   document.querySelectorAll('.num[data-to]').forEach((el) => cio.observe(el));
-
-  // ---------------------------------------------- text scrub (characters light up while the paragraph scrolls past)
-  const scrub = document.getElementById('scrub'); let chars = [];
-  if (scrub) {
-    const txt = scrub.textContent; scrub.textContent = '';
-    for (const ch of txt) { const s = document.createElement('span'); s.textContent = ch; scrub.appendChild(s); chars.push(s); }
-  }
 
   // ---------------------------------------------- image sequences on a sticky canvas
   const seqs = [...document.querySelectorAll('.seq')].map((sec) => {
@@ -60,9 +52,74 @@
     for (const c of list) { const [a, b] = c.dataset.range.split(',').map(Number); c.classList.toggle('show', p >= a && p <= b); }
   }
 
-  // ---------------------------------------------- exploded layers
-  const ex = document.querySelector('.explode'), layers = ex ? [...ex.querySelectorAll('.layer')] : [], exCaps = ex ? [...ex.querySelectorAll('.cap')] : [];
-  const LIFT = [0, 0.2, 0.42, 0.62];          // fraction of the layer box height each layer rises at full explode
+  // ---------------------------------------------- lawn path: edge loop first, then parallel rows, around the flower bed
+  const lawnSec = document.getElementById('path'), lawn = document.getElementById('lawn');
+  let lawnSegs = [], lawnTotal = 0, mower = null, nogo = null, lawnCaps = [];
+  if (lawnSec && lawn) {
+    const NS = 'http://www.w3.org/2000/svg';
+    // lawn outline, clockwise on screen; the notch at the top right is the flower bed
+    const P = [[96, 150], [180, 104], [330, 82], [520, 74], [700, 80], [700, 246], [930, 246], [950, 330], [946, 450], [912, 532],
+      [760, 560], [520, 566], [300, 560], [150, 540], [84, 470], [70, 340], [76, 230]];
+    const dOf = (pts, close) => 'M' + pts.map((p) => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' L') + (close ? ' Z' : '');
+    document.getElementById('lawnShape').setAttribute('d', dOf(P, true));
+    document.getElementById('lawnClipPath').setAttribute('d', dOf(P, true));
+    const offset = (pts, o) => {                      // inward offset (mitred); inward normal of a clockwise screen polygon is (-dy, dx)
+      const n = pts.length, lines = [];
+      for (let i = 0; i < n; i++) {
+        const a = pts[i], b = pts[(i + 1) % n], dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy), nx = -dy / L, ny = dx / L;
+        lines.push([[a[0] + nx * o, a[1] + ny * o], [dx, dy]]);
+      }
+      return pts.map((_, i) => {
+        const [p1, d1] = lines[(i - 1 + n) % n], [p2, d2] = lines[i], den = d1[0] * d2[1] - d1[1] * d2[0];
+        if (Math.abs(den) < 1e-9) return p2;
+        const t = ((p2[0] - p1[0]) * d2[1] - (p2[1] - p1[1]) * d2[0]) / den;
+        return [p1[0] + d1[0] * t, p1[1] + d1[1] * t];
+      });
+    };
+    const BAND = 44, ROW = 26;
+    const E = offset(P, BAND / 2), I = offset(P, BAND - 2);
+    // 1 from the dock up the left side to the top-left corner, then once round the edge
+    const start = [E[15][0] + 4, 346];
+    const edge = [start, E[16], ...E, E[0]];
+    // 2 rows inside the edge band, alternating direction
+    const xsAt = (poly, y) => {
+      const xs = [];
+      for (let i = 0; i < poly.length; i++) {
+        const a = poly[i], b = poly[(i + 1) % poly.length];
+        if ((a[1] - y) * (b[1] - y) < 0) xs.push(a[0] + (b[0] - a[0]) * (y - a[1]) / (b[1] - a[1]));
+      }
+      return xs.sort((p, q) => p - q);
+    };
+    const yTop = Math.min(...I.map((p) => p[1])) + ROW / 2, yBot = Math.max(...I.map((p) => p[1])) - ROW / 2;
+    const segs = [{ d: dOf(edge), cls: 'edge', w: BAND }];
+    let prev = E[0], k = 0;
+    for (let y = yTop; y <= yBot + 0.1; y += ROW, k++) {
+      const xs = xsAt(I, y); if (xs.length < 2) continue;
+      const a = [xs[0] + ROW / 2, y], b = [xs[xs.length - 1] - ROW / 2, y], row = k % 2 ? [b, a] : [a, b];
+      segs.push({ d: dOf([prev, ...row]), cls: k % 2 ? 'rb' : 'ra', w: ROW + 2 });
+      prev = row[1];
+    }
+    const g = document.getElementById('mowed');
+    lawnSegs = segs.map((s) => {
+      const el = document.createElementNS(NS, 'path'); el.setAttribute('d', s.d); el.setAttribute('class', s.cls); el.setAttribute('stroke-width', s.w);
+      g.appendChild(el); const len = el.getTotalLength(); el.style.strokeDasharray = `${len} ${len + 1}`; el.style.strokeDashoffset = len;
+      const r = { el, len, c0: lawnTotal }; lawnTotal += len; return r;
+    });
+    mower = document.getElementById('mower'); nogo = document.getElementById('nogo'); lawnCaps = [...lawnSec.querySelectorAll('.cap')];
+  }
+  let lawnLast = -1;
+  function drawLawn(p) {
+    const D = clamp((p - 0.02) / 0.9) * lawnTotal; if (Math.abs(D - lawnLast) < 0.5) return; lawnLast = D;
+    let at = null;
+    for (const s of lawnSegs) {
+      const vis = clamp(D - s.c0, 0, s.len); s.el.style.strokeDashoffset = s.len - vis;
+      if (!at && D <= s.c0 + s.len) at = { s, l: vis };
+    }
+    if (!at) { const s = lawnSegs[lawnSegs.length - 1]; at = { s, l: s.len }; }
+    const p1 = at.s.el.getPointAtLength(at.l), p0 = at.s.el.getPointAtLength(Math.max(0, at.l - 6)), p2 = at.s.el.getPointAtLength(Math.min(at.s.len, at.l + 6));
+    const ang = Math.atan2(p2.y - p0.y, p2.x - p0.x) * 180 / Math.PI;
+    mower.setAttribute('transform', `translate(${p1.x.toFixed(1)} ${p1.y.toFixed(1)}) rotate(${(isFinite(ang) ? ang : -90).toFixed(1)})`);
+  }
 
   // ---------------------------------------------- nav colour over dark sections
   const nav = document.getElementById('gnav'), darks = [...document.querySelectorAll('.dark')];
@@ -75,17 +132,9 @@
       const r = s.sec.getBoundingClientRect(); if (r.bottom < -vh() || r.top > 2 * vh()) continue;
       sizeCanvas(s); const p = progress(s.sec); draw(s, Math.round(p * (s.n - 1))); caps(s.caps, p);
     }
-    if (ex) {
-      const r = ex.getBoundingClientRect();
-      if (r.bottom > -vh() && r.top < 2 * vh()) {
-        const p = progress(ex), q = smooth(clamp((p - 0.1) / 0.55)), H = layers[0].getBoundingClientRect().height;
-        layers.forEach((l, i) => { l.style.transform = `translate3d(0, ${(-LIFT[i] * q * H).toFixed(1)}px, 0)`; });
-        caps(exCaps, p);
-      }
-    }
-    if (chars.length) {
-      const r = scrub.getBoundingClientRect(), p = clamp((vh() * 0.85 - r.top) / (r.height + vh() * 0.45)), n = Math.round(p * chars.length);
-      chars.forEach((c, i) => c.classList.toggle('lit', i < n));
+    if (lawnSegs.length) {
+      const r = lawnSec.getBoundingClientRect();
+      if (r.bottom > -vh() && r.top < 2 * vh()) { const p = progress(lawnSec); drawLawn(p); caps(lawnCaps, p); nogo.classList.toggle('on', p >= 0.72); }
     }
     if (hero && !reduce) { const y = window.scrollY; if (y < vh() * 1.5) hero.style.transform = `translate3d(0, ${(y * 0.12).toFixed(1)}px, 0) scale(${(1 - y * 0.00008).toFixed(4)})`; }
     const onDark = darks.some((d) => { const r = d.getBoundingClientRect(); return r.top <= 26 && r.bottom >= 26; });

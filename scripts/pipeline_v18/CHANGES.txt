@@ -295,3 +295,5 @@ except the two chassis cuts per side of 6.2. Body half-width beside the wheels 1
    solids, as in f4 (no part touches them).
  Renderer ([web], design_render.py): WEBBG (transparent film + shadow catcher), LAYER (lid / cover / body / base layers for the exploded
    view), LIDMAP ("view=deg,..." per-view lid angle), MATVIEWS ("view|Mat=#hex:finish,..." per-view recolour) - used for the product site.
+   EXMAP ("view=body:cover:lid" lifts in m per view): the exploded view rendered in 3D as a frame sequence, so occlusion and shadows are
+   right at every step (the stacked LAYER images showed the cover's hidden snap legs over the body and had no body shadow under it).

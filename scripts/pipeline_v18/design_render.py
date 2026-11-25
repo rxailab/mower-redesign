@@ -349,10 +349,21 @@ def recolour_(pairs):
     for mn_, mv_ in pairs:
         hx_, fin_ = (mv_.split(':') + ['satin'])[:2]; m_ = bpy.data.materials.get(mn_)
         if m_: b_ = m_.node_tree.nodes['Principled BSDF']; b_.inputs['Base Color'].default_value = (*lin(hx_), 1); b_.inputs['Roughness'].default_value = FIN[fin_][0]; b_.inputs['Metallic'].default_value = FIN[fin_][1]; b_.inputs['Coat Weight'].default_value = FIN[fin_][2]
+EXMAP_ = {k_: [float(x_) for x_ in v_.split(':')] for k_, v_ in (t_.split('=') for t_ in filter(None, os.environ.get('EXMAP', '').split(',')))}      # [web] per-view exploded view in 3D: "view=body:cover:lid" lifts in m (replaces the stacked LAYER images)
+EXSETS_ = (('NewShell', 'Camera', 'PortSleeves', 'Mount', 'Section', 'LightLens', 'LightKit', 'Harness', 'LightCaps', 'HzLight'),
+           ('TopCover', 'CoverKit', 'LidWell', 'HingePod', 'HingePinion'), ('Lid', 'LidKit', 'StopKey', 'LightHalo', 'LightHaloCap', 'Struts'))
+def explode_(*lifts):
+    global lid_state
+    set_lid(0.0)
+    for names_, dz_ in zip(EXSETS_, lifts):
+        for n_ in names_:
+            if bpy.data.objects.get(n_): bpy.data.objects[n_].matrix_world = mathutils.Matrix.Translation((0, 0, dz_))
+    lid_state = None          # the lid group moved: the next set_lid() rebuilds it
 for v in VIEWS:
     if dock is not None: dock.hide_render = not v.startswith('dock'); cyc.location.z = -DOCK_LIFT if v.startswith('dock') else 0.0
     set_lid((float(os.environ['LIDDEG']) if os.environ.get('LIDDEG') else OPEN) if 'lid' in v else 0.0)      # LIDDEG: any lid angle (review / animation)
     if v in LIDMAP_: set_lid(LIDMAP_[v])      # [web]
+    if v in EXMAP_: explode_(*EXMAP_[v])      # [web]
     if v in MATVIEWS_: recolour_(MATVIEWS_[v])      # [web]
     loc, tgt, lens = VW[v]; cam.location = loc; cam.data.lens = lens
     if os.environ.get('HEADLIGHT'):                                      # views into the body from below: a soft light travelling with the camera

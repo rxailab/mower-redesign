@@ -3,12 +3,12 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Orbit · 机器人割草机外壳设计 v18</title>
-<meta name="description" content="v18 Orbit：浅陶瓷灰卡扣上盖罩在深石墨色一体车身上，全车一条分缝，隐藏铰链盖板与凸起的红色 STOP 键。概念设计展示。">
+<title>Orbit 自动割草机器人</title>
+<meta name="description" content="Orbit 自动割草机器人：200 mm 割幅，沿边一圈再平行往返，摄像头和红外测距避障，229 mm 驱动轮，自动回充。概念设计。">
 <meta name="theme-color" content="#f5f5f7">
 <link rel="preload" as="image" href="site/img/hero.webp">
 <link rel="icon" href="data:,">
-<link rel="stylesheet" href="site/site.css?v=20261125">
+<link rel="stylesheet" href="site/site.css?v=20261125b">
 </head>
 <body>
 
@@ -16,160 +16,212 @@
   <div class="gnav-inner">
     <a class="brand" href="#top">Orbit</a>
     <div class="gnav-links">
-      <a href="#duty">功能</a>
-      <a href="#design">设计</a>
-      <a href="#lid">盖板</a>
-      <a href="#stop">STOP</a>
-      <a href="#build">工程</a>
-      <a href="#colors">配色</a>
-      <a href="#horizon">Horizon</a>
+      <a href="#mow">割草</a>
+      <a href="#path">路径</a>
+      <a href="#sense">避障</a>
+      <a href="#terrain">地形</a>
+      <a href="#dock">回充</a>
+      <a href="#safety">安全</a>
+      <a href="#build">维护</a>
+      <a href="#design">外观</a>
       <a href="#specs">规格</a>
     </div>
-    <a class="pill" href="viewer.html">3D 体验</a>
+    <a class="pill" href="viewer.html">3D 模型</a>
   </div>
 </nav>
 
 <main id="top">
 
-<!-- 1 hero -->
+<!-- hero -->
 <section class="hero" aria-labelledby="heroTitle">
-  <p class="eyebrow hero-in" style="--d:.05s">全新 v18 外壳设计</p>
+  <p class="eyebrow hero-in" style="--d:.05s">自动割草机器人</p>
   <h1 id="heroTitle" class="hero-title hero-in" style="--d:.15s">Orbit</h1>
-  <p class="hero-tag hero-in" style="--d:.3s">一条线，勾勒整台车。</p>
+  <p class="hero-spec hero-in" style="--d:.3s"><span>200 mm 割幅</span><span>30–60 mm 割草高度<sup>*</sup></span><span>草坪最大 1000 m²<sup>*</sup></span></p>
   <p class="cta-row hero-in" style="--d:.45s">
-    <a class="btn" href="viewer.html">在 3D 中探索</a>
-    <a class="link" href="#horizon">看看 Horizon</a>
+    <a class="btn" href="viewer.html">查看 3D 模型</a>
+    <a class="link" href="#specs">规格</a>
   </p>
   <div class="hero-shot" id="heroShot">
-    <img src="site/img/hero.webp" alt="v18 Orbit 割草机：浅陶瓷灰上盖、深石墨色车身、前部烟色灯带与红色 STOP 键" width="2400" height="1600" fetchpriority="high">
+    <img src="site/img/hero.webp" alt="Orbit 割草机器人：浅灰色上盖、深色车身、车头灯带与红色 STOP 键" width="2400" height="1600" fetchpriority="high">
   </div>
 </section>
 
-<!-- 1b duties -->
-<section class="light duty" id="duty">
-  <p class="eyebrow center reveal">它的本职工作</p>
-  <h2 class="big center reveal">外观之外，<br>它首先是一台割草机。</h2>
-  <p class="lead center reveal">让草坪自己保持整齐：自己出门工作，自己回家充电，下雨也不怕，需要时一按即停。好看的外壳，是为这些事服务的。</p>
-  <div class="duty-grid">
-    <a class="duty-card reveal" href="#dock"><span class="duty-k">01</span><h3>自己回家充电</h3><p>割完草或电量不足时，它自己开回充电座，两根充电针对准车头的对称窗口插入。</p></a>
-    <a class="duty-card reveal" style="--d:.06s" href="#dock"><span class="duty-k">02</span><h3>看清前方</h3><p>车头镜片后面是摄像头、红外测距和指示灯，为识别前方的障碍留好了位置。</p></a>
-    <a class="duty-card reveal" style="--d:.12s" href="#weather"><span class="duty-k">03</span><h3>风雨无阻</h3><p>分缝里的防水迷宫、密封灯组、带排水口的集水槽，雨水有路可走。</p></a>
-    <a class="duty-card reveal" style="--d:.18s" href="#stop"><span class="duty-k">04</span><h3>一按即停</h3><p>凸起的红色 STOP 键，从任何方向都能按到；盖板打开时也预留了停机信号。</p></a>
-    <a class="duty-card reveal" style="--d:.24s" href="#stop"><span class="duty-k">05</span><h3>状态一眼可见</h3><p>STOP 键外圈的乳白色光环和前后灯带，离得远也能看到它的状态。</p></a>
-    <a class="duty-card reveal" style="--d:.3s" href="#build"><span class="duty-k">06</span><h3>维护方便</h3><p>上盖竖直取下，灯组可以整体更换；拔下两个维修插头、拧下 14 颗螺丝，就能拆下车身。</p></a>
+<!-- mowing -->
+<section class="mow" id="mow">
+  <div class="mow-grid">
+    <div class="mow-copy">
+      <p class="eyebrow reveal">割草</p>
+      <h2 class="big reveal">一次割 200 mm 宽</h2>
+      <p class="lead reveal">刀盘在底盘正中，三片刀片用销轴挂在刀盘边上。转起来时离心力把刀片甩直；碰到石头或树根，刀片会向后折回，不会崩口。刀片两面开刃，一面钝了翻过来再用。</p>
+      <p class="lead reveal">割草高度在屏幕或 App 里设定，刀盘电机整体升降，每档 5 mm。<sup>*</sup></p>
+    </div>
+    <figure class="disc reveal" aria-label="刀盘俯视示意：直径 200 mm 的割草范围，三片铰接刀片">
+      <svg viewBox="0 0 420 440" role="img" aria-hidden="true">
+        <circle cx="210" cy="200" r="168" class="d-cut"/>
+        <g class="d-rot">
+          <circle cx="210" cy="200" r="138" class="d-disc"/>
+          <circle cx="210" cy="200" r="138" class="d-rim"/>
+          <g class="d-blade"><rect x="314" y="192" width="58" height="16" rx="3"/><circle cx="322" cy="200" r="4.5"/></g>
+          <g class="d-blade" transform="rotate(120 210 200)"><rect x="314" y="192" width="58" height="16" rx="3"/><circle cx="322" cy="200" r="4.5"/></g>
+          <g class="d-blade" transform="rotate(240 210 200)"><rect x="314" y="192" width="58" height="16" rx="3"/><circle cx="322" cy="200" r="4.5"/></g>
+          <circle cx="210" cy="200" r="34" class="d-hub"/>
+          <polygon points="210,182 225.6,191 225.6,209 210,218 194.4,209 194.4,191" class="d-nut"/>
+        </g>
+        <line x1="42" y1="412" x2="378" y2="412" class="d-dim"/>
+        <line x1="42" y1="402" x2="42" y2="422" class="d-dim"/><line x1="378" y1="402" x2="378" y2="422" class="d-dim"/>
+        <text x="210" y="404" class="d-txt">Ø 200 mm</text>
+      </svg>
+    </figure>
+  </div>
+  <div class="kpis">
+    <div class="kpi reveal"><span class="num" data-to="200">200</span><span class="unit">mm</span><p>割幅</p></div>
+    <div class="kpi reveal" style="--d:.08s"><span class="num-txt">30–60</span><span class="unit">mm</span><p>割草高度，7 档<sup>*</sup></p></div>
+    <div class="kpi reveal" style="--d:.16s"><span class="num" data-to="3">3</span><span class="unit">片</span><p>铰接刀片，可翻面</p></div>
   </div>
 </section>
 
-<!-- 2 turntable -->
-<section class="seq light" id="design" data-seq="tt" data-frames="72" style="--h:420vh" aria-label="外观旋转展示">
+<!-- path -->
+<section class="seq-x light" id="path" style="--h:380vh" aria-label="割草路径示意">
   <div class="seq-stick">
-    <canvas class="seq-canvas" aria-hidden="true"></canvas>
-    <div class="cap" data-range="0.03,0.27"><h2>两个零件，两种颜色。</h2><p>浅陶瓷灰的卡扣上盖，罩在深石墨色的一体车身上。颜色的分界，就是零件的分缝。</p></div>
-    <div class="cap" data-range="0.36,0.60"><h2>一条分缝，绕车一周。</h2><p>车头和车尾是同高的水平眉线，绕驱动轮是与轮毂同心的 R128 圆弧，所有转角统一 R20。</p></div>
-    <div class="cap" data-range="0.69,0.95"><h2>前后，同一个表情。</h2><p>车头和车尾是同一条烟色镜面灯带。车头正中，摄像头、红外传感器和指示灯藏在镜片后面。</p></div>
+    <div class="lawn-wrap">
+      <svg class="lawn" id="lawn" viewBox="0 0 1000 620" role="img" aria-label="草坪俯视示意：先沿边割一圈，再平行往返，绕开花坛">
+        <defs><clipPath id="lawnClip"><path id="lawnClipPath"/></clipPath></defs>
+        <path class="lawn-bed" id="lawnShape"/>
+        <g id="mowed" clip-path="url(#lawnClip)"></g>
+        <g class="nogo" id="nogo">
+          <rect x="716" y="70" width="196" height="160" rx="22"/>
+          <circle cx="760" cy="118" r="9"/><circle cx="812" cy="102" r="7"/><circle cx="862" cy="132" r="9"/><circle cx="782" cy="178" r="8"/><circle cx="846" cy="190" r="7"/>
+          <text x="814" y="258">花坛 · 禁区</text>
+        </g>
+        <g class="dockmark"><rect x="40" y="318" width="34" height="56" rx="6"/><text x="57" y="400">充电座</text></g>
+        <g id="mower" class="mower"><rect x="-19" y="-14" width="38" height="28" rx="9"/><rect x="-12" y="-9" width="22" height="18" rx="6" class="m-top"/><circle cx="6" cy="0" r="2.6" class="m-stop"/></g>
+      </svg>
+    </div>
+    <div class="cap left" data-range="0.02,0.30"><h2>先割一圈边</h2><p>从充电座出发，先沿草坪边界割一圈，把边和角割整齐。</p></div>
+    <div class="cap left" data-range="0.36,0.66"><h2>再一行一行往返</h2><p>中间按平行线往返，相邻两行重叠 2 cm，不留没割到的草带。每次换一个方向割，草坪上不会压出固定的车辙。</p></div>
+    <div class="cap left" data-range="0.72,0.99"><h2>绕开设好的禁区</h2><p>花坛、水池、菜地在 App 里画成禁区，规划路线时直接绕开。</p></div>
+  </div>
+</section>
+<section class="kband">
+  <div class="kpis">
+    <div class="kpi reveal"><span class="pre">约</span><span class="num" data-to="130">130</span><span class="unit">m²/小时</span><p>割草效率<sup>*</sup></p></div>
+    <div class="kpi reveal" style="--d:.08s"><span class="num" data-to="90">90</span><span class="unit">分钟</span><p>一次充电的工作时间<sup>*</sup></p></div>
+    <div class="kpi reveal" style="--d:.16s"><span class="num" data-to="1000">1000</span><span class="unit">m²</span><p>草坪最大面积<sup>*</sup></p></div>
   </div>
 </section>
 
-<!-- 3 statement + details -->
-<section class="dark statement">
-  <p class="scrub" id="scrub">没有多余的线。顶部的两条凸起取消了，装饰线取消了，层层叠叠的托盘和凸台也取消了。留下的每一条线，都是一个零件的边，或者一束光。</p>
-  <div class="tiles">
-    <figure class="tile reveal"><img loading="lazy" src="site/img/pupil.webp" alt="车头灯带正中的摄像头、红外传感器和指示灯" width="1600" height="1066"><figcaption><b>烟色镜面灯带</b>17.5 mm 高的独立镜片，平嵌在车身里；摄像头、红外与指示灯共用一块镜片。</figcaption></figure>
-    <figure class="tile reveal" style="--d:.1s"><img loading="lazy" src="site/img/orbit.webp" alt="绕驱动轮、与轮毂同心的圆弧分缝" width="1600" height="1066"><figcaption><b>同心圆弧</b>分缝绕驱动轮走一段 R128 圆弧，与轮毂同心。缝宽 0.8 mm，上盖高出 0.5 mm。</figcaption></figure>
-    <figure class="tile reveal" style="--d:.2s"><img loading="lazy" src="site/img/rband.webp" alt="车尾的烟色灯带" width="1600" height="1066"><figcaption><b>车尾</b>同样的灯带，两段尾灯，中间一个点。</figcaption></figure>
+<!-- sensing -->
+<section class="dark sense" id="sense">
+  <div class="split">
+    <div>
+      <p class="eyebrow reveal">避障</p>
+      <h2 class="big reveal">看见障碍，提前绕开</h2>
+      <p class="lead reveal">车头的烟色镜片后面是摄像头和红外测距。摄像头分辨草坪的边界，也认得出地上的玩具、水管和宠物；红外测距补上近处的距离。万一还是碰上了，前保险杠里的碰撞开关会让它马上停下，后退，换个方向。</p>
+      <ul class="facts">
+        <li class="reveal"><b>摄像头</b>识别草坪边界和障碍物，用来导航，不需要埋边界线。<sup>*</sup></li>
+        <li class="reveal"><b>红外测距</b>测量前方近处物体的距离，光线暗时也能用。</li>
+        <li class="reveal"><b>碰撞开关</b>前保险杠浮动安装，被推动就触发停车。</li>
+      </ul>
+    </div>
+    <img class="tile-img reveal" loading="lazy" src="site/img/pupil.webp" alt="车头镜片后面的摄像头、红外测距和指示灯" width="1600" height="1066">
   </div>
 </section>
 
-<!-- 3b dock -->
+<!-- terrain -->
+<section class="light terrain" id="terrain">
+  <div class="head">
+    <p class="eyebrow reveal">地形</p>
+    <h2 class="big reveal">大轮子，上得了坡</h2>
+    <p class="lead reveal">两个驱动轮直径 229 mm、宽 54 mm，胎面是深齿纹，湿草和松土上也抓得住。两个轮子各有一个电机，可以原地转向，在窄的地方也能掉头。车尾是两个 100 mm 的万向轮。</p>
+  </div>
+  <img class="wide-img reveal" loading="lazy" src="site/img/side.webp" alt="Orbit 侧面：229 mm 深齿纹驱动轮" width="2400" height="1600">
+  <div class="kpis">
+    <div class="kpi reveal"><span class="num" data-to="229">229</span><span class="unit">mm</span><p>驱动轮直径</p></div>
+    <div class="kpi reveal" style="--d:.08s"><span class="num" data-to="35">35</span><span class="unit">%</span><p>最大坡度，约 19°<sup>*</sup></p></div>
+    <div class="kpi reveal" style="--d:.16s"><span class="num" data-to="20">20</span><span class="unit">mm</span><p>能越过的台阶<sup>*</sup></p></div>
+  </div>
+</section>
+
+<!-- docking -->
 <section class="dark dock" id="dock">
-  <div class="dock-head">
-    <p class="eyebrow reveal">自动回充</p>
-    <h2 class="big reveal">自己出门，<br>自己回家。</h2>
-    <p class="lead reveal">工作结束或电量不足时，它自己开回充电座，车头朝前停进去。车头长圆形开口后面是两个左右对称的窗口，充电针穿过窗口，插到底盘的充电触点上。</p>
+  <div class="head">
+    <p class="eyebrow reveal">回充</p>
+    <h2 class="big reveal">电量低了，自己回去充</h2>
+    <p class="lead reveal">电量不够或到了计划的结束时间，它沿边界开回充电座，车头朝前停进去。充满电后回到中断的那一行，接着割。</p>
   </div>
   <img class="dock-img reveal" loading="lazy" src="site/img/dockwide.webp" alt="割草机停在充电座上" width="2400" height="1600">
   <div class="dock-row">
-    <figure class="tile reveal"><img loading="lazy" src="site/img/dockport.webp" alt="充电针穿过车头的对称窗口" width="1600" height="1066"><figcaption><b>对称的充电窗口</b>两个窗口按对接偏差设计：左右约 ±16 mm、上下 ±3.5 mm、航向 ±2° 时，充电针都不会碰到外壳。</figcaption></figure>
-    <figure class="tile reveal" style="--d:.1s"><img loading="lazy" src="site/img/pupil.webp" alt="车头镜片后的摄像头、红外测距和指示灯" width="1600" height="1066"><figcaption><b>看清前方</b>摄像头、红外测距和状态指示灯共用一块烟色镜片。镜片对红外透明，可见光下是一片深色。</figcaption></figure>
+    <figure class="tile reveal"><img loading="lazy" src="site/img/dockport.webp" alt="充电针穿过车头的对称窗口" width="1600" height="1066"><figcaption><b>停偏了也能充</b>车头开口后面是左右对称的两个窗口。左右偏 ±16 mm、上下偏 ±3.5 mm、斜 2° 停进来，充电针都碰不到外壳。</figcaption></figure>
+    <div class="tile tile-num reveal" style="--d:.1s">
+      <div><span class="num" data-to="75">75</span><span class="unit">分钟</span><p>充满电<sup>*</sup></p></div>
+      <div><span class="num" data-to="90">90</span><span class="unit">分钟</span><p>充一次电的工作时间<sup>*</sup></p></div>
+    </div>
   </div>
 </section>
 
-<!-- 4 lid -->
-<section class="seq light" id="lid" data-seq="lid" data-frames="31" style="--h:340vh" aria-label="盖板开启展示">
-  <div class="seq-stick">
-    <canvas class="seq-canvas" aria-hidden="true"></canvas>
-    <div class="cap left" data-range="0.02,0.32"><h2>隐藏铰链。</h2><p>铰链藏在后缝下面，盖板绕后缝外侧的一根虚拟转轴转动。合上时，外面看不到任何五金件。</p></div>
-    <div class="cap left" data-range="0.38,0.66"><h2>自己打开，平稳停住。</h2><p>舌片上的扇形齿带动钢壳卷簧和双向阻尼器。盖板自己升起，开到 75° 被轻轻卡住。</p></div>
-    <div class="cap left" data-range="0.72,0.98"><h2>四周密封。</h2><p>一圈连续的压缩密封条，下面是带排水口的集水槽。显示屏和控制键都在里面。</p></div>
-  </div>
-</section>
-
-<!-- 5 stop -->
-<section class="dark stop" id="stop">
+<!-- safety -->
+<section class="dark stop" id="safety">
   <div class="stop-grid">
     <div class="stop-copy">
-      <p class="eyebrow red reveal">STOP</p>
-      <h2 class="big reveal">需要它的时候，<br>它就在那里。</h2>
-      <p class="lead reveal">盖板上凸起的红色停止键，从任何方向都一眼可见。按下，割草机立即停止；继续往下按，盖板弹开。盖板里还预留了磁铁，控制面板上预留了霍尔传感器，让“盖板打开”也能作为停机信号。它按照 EN 50636-2-107 第 20.101.4 条对停止键的几何与颜色要求设计。</p>
+      <p class="eyebrow red reveal">安全</p>
+      <h2 class="big reveal">抬起、翻倒或按下 STOP，刀盘都会停</h2>
+      <p class="lead reveal">车里有抬起和倾翻传感器，割草机被抬离地面或翻倒时，刀盘立即停转。盖板上的红色 STOP 键从各个方向都按得到；按下即停，再往下按，盖板弹开。盖板打开时同样不能割草，重新启动要在屏幕上确认。</p>
+      <p class="lead reveal">STOP 键按 EN 50636-2-107 第 20.101.4 条对尺寸和颜色的要求设计。</p>
     </div>
-    <img class="stop-img reveal" loading="lazy" src="site/img/stop.webp" alt="盖板上凸起的红色 STOP 键和外圈乳白色状态光环" width="2400" height="1600">
+    <img class="stop-img reveal" loading="lazy" src="site/img/stop.webp" alt="盖板上凸起的红色 STOP 键和外圈的状态光环" width="2400" height="1600">
   </div>
   <div class="stats">
     <div class="stat reveal"><span class="num" data-to="40">40</span><span class="unit">mm</span><p>键帽直径</p></div>
     <div class="stat reveal" style="--d:.08s"><span class="num" data-to="10.7" data-dec="1">10.7</span><span class="unit">mm</span><p>高出盖板</p></div>
-    <div class="stat reveal" style="--d:.16s"><span class="pre">≤</span><span class="num" data-to="30">30</span><span class="unit">N</span><p>任何位置的按压力</p></div>
-    <div class="stat reveal" style="--d:.24s"><span class="num" data-to="5">5</span><span class="unit">mm</span><p>平行导向行程</p></div>
+    <div class="stat reveal" style="--d:.16s"><span class="pre">≤</span><span class="num" data-to="30">30</span><span class="unit">N</span><p>按在任何位置所需的力</p></div>
+    <div class="stat reveal" style="--d:.24s"><span class="num" data-to="5">5</span><span class="unit">mm</span><p>按键行程</p></div>
   </div>
 </section>
 
-<!-- 5b weather -->
-<section class="light weather" id="weather">
-  <div class="wx-grid">
-    <div>
-      <p class="eyebrow reveal">风雨无阻</p>
-      <h2 class="big reveal">雨水，<br>有路可走。</h2>
-      <p class="lead reveal">割草机常年待在室外。分缝下面藏着一道防水迷宫，雨水进到 0.8 mm 的缝里，会顺着导水槽流到外面的低点。</p>
-      <ul class="facts">
-        <li class="reveal"><b>防水迷宫</b>上盖内侧的台阶、车身边上的挡水立边，绕分缝一整圈。</li>
-        <li class="reveal"><b>密封灯组</b>镜片与灯壳激光焊接，四周一圈密封泡棉，带透气膜防起雾。</li>
-        <li class="reveal"><b>盖板集水槽</b>盖板四周压缩密封，下面的集水槽有排水口。</li>
-        <li class="reveal"><b>车内排水</b>台面最低处开有排水槽，水不会积在车身里。</li>
-      </ul>
-    </div>
-    <img class="wx-img reveal" loading="lazy" src="site/img/sec_wall.webp" alt="分缝剖面：上盖台阶、车身挡水立边和导水槽" width="1600" height="1066">
-  </div>
-  <p class="fine reveal">防水结构按设计几何检查；实际防护等级需要样机喷淋试验确认。</p>
-</section>
-
-<!-- 6 explode -->
-<section class="explode light" id="build" style="--h:320vh" aria-label="分解展示">
+<!-- lid -->
+<section class="seq light" id="lid" data-seq="lid" data-frames="31" style="--h:340vh" aria-label="盖板开启">
   <div class="seq-stick">
-    <div class="layers" id="layers">
-      <img class="layer" data-k="0" src="site/img/ex_base.webp" alt="" width="1600" height="1066">
-      <img class="layer" data-k="1" src="site/img/ex_body.webp" alt="" width="1600" height="1066">
-      <img class="layer" data-k="2" src="site/img/ex_cover.webp" alt="" width="1600" height="1066">
-      <img class="layer" data-k="3" src="site/img/ex_lid.webp" alt="" width="1600" height="1066">
-    </div>
-    <div class="cap right" data-range="0.05,0.42"><h2>2.5 mm，实打实。</h2><p>上盖和车身都是 2.5 mm 壁厚的封闭实体，每条外露的边只倒一次圆，分缝里看得见真实的壁厚。</p></div>
-    <div class="cap right" data-range="0.52,0.97"><h2>看不到一颗螺丝。</h2><p>14 颗螺丝把车身固定在底盘上，扣上上盖后全部隐藏。10 个卡脚、2 个定位销，上盖竖直取下。</p></div>
+    <canvas class="seq-canvas" aria-hidden="true"></canvas>
+    <div class="cap left" data-range="0.02,0.32"><h2>屏幕和按键在盖板下面</h2><p>平时盖板合着，雨水和草屑进不去。</p></div>
+    <div class="cap left" data-range="0.38,0.66"><h2>盖板自己打开</h2><p>按下 STOP 后，弹簧把盖板顶起，阻尼让它慢慢停在 75°。</p></div>
+    <div class="cap left" data-range="0.72,0.98"><h2>四周有密封条</h2><p>盖板下面一圈密封条，再下面是带排水口的集水槽。</p></div>
   </div>
 </section>
 
-<!-- 7 engineering -->
-<section class="dark eng">
-  <h2 class="big center reveal">看不见的地方，<br>同样讲究。</h2>
-  <div class="cards">
-    <article class="card reveal"><img loading="lazy" src="site/img/sec_wall.webp" alt="分缝剖面：上盖与车身的实体壁和防水迷宫" width="1600" height="1066"><h3>防水迷宫</h3><p>上盖内侧一道台阶，车身边上一道挡水立边，中间 0.8 mm 导水槽绕分缝一整圈，水顺着槽流向外面的低点。</p></article>
-    <article class="card reveal" style="--d:.08s"><img loading="lazy" src="site/img/sec_hinge.webp" alt="铰链剖面：弧形导轨、扇形齿和小齿轮" width="1600" height="1066"><h3>齿轮铰链</h3><p>不锈钢舌片在弧形导轨里转动，限位凸耳落在钢板槽里。有限元分析安全系数 2.1 以上。</p></article>
-    <article class="card reveal" style="--d:.16s"><img loading="lazy" src="site/img/sec_stop.webp" alt="STOP 键剖面：平行连杆和柔性顶杆" width="1600" height="1066"><h3>平行导向</h3><p>一对平行连杆让键帽平着落下，按在边缘和按在中间，力和行程都一样；柔性顶杆保护下面的真实按键。</p></article>
-    <article class="card reveal" style="--d:.24s"><img loading="lazy" src="site/img/sec_lamp.webp" alt="车头剖面：镜片、灯组和充电口通道" width="1600" height="1066"><h3>密封灯组</h3><p>镜片与灯壳激光焊接成一个密封模块，用螺丝装进车身；线束经维修插头接到底盘，拆车身时拔下即可。</p></article>
+<!-- maintenance: exploded sequence -->
+<section class="seq light" id="build" data-seq="ex" data-frames="24" style="--h:320vh" aria-label="外壳分解">
+  <div class="seq-stick">
+    <canvas class="seq-canvas" aria-hidden="true"></canvas>
+    <div class="cap right" data-range="0.03,0.40"><h2>换刀片不用拆外壳</h2><p>把割草机侧放，每片刀用一颗螺丝固定在刀盘上，拧下来就能换。<sup>*</sup></p></div>
+    <div class="cap right" data-range="0.50,0.98"><h2>外壳也能整个取下</h2><p>上盖直接向上拔下。拧下 14 颗螺丝、拔下两个插头，车身也能取下，底盘上的部件全部露出来。</p></div>
   </div>
 </section>
 
-<!-- 8 colours -->
+<!-- outdoors -->
+<section class="outdoor">
+  <h2 class="mid center reveal">常年放在室外</h2>
+  <div class="cols">
+    <div class="reveal"><h3>分缝防水</h3><p>上盖和车身之间只有一条 0.8 mm 的分缝，缝下面是一道防水迷宫，进来的水顺着槽流到外面。</p></div>
+    <div class="reveal" style="--d:.08s"><h3>灯组密封</h3><p>镜片和灯壳焊成一个整体，四周有密封泡棉，带透气膜，不会起雾。</p></div>
+    <div class="reveal" style="--d:.16s"><h3>车内排水</h3><p>盖板下的集水槽和车身台面最低处都开了排水口，水不会积在车里。</p></div>
+  </div>
+  <p class="fine center reveal">防护等级需要样机喷淋测试确认。</p>
+</section>
+
+<!-- appearance -->
+<section class="seq light" id="design" data-seq="tt" data-frames="72" style="--h:420vh" aria-label="外观旋转">
+  <div class="seq-stick">
+    <canvas class="seq-canvas" aria-hidden="true"></canvas>
+    <div class="cap" data-range="0.03,0.27"><h2>浅色上盖，深色车身</h2><p>上盖和车身是两个零件，颜色的分界就是分缝。</p></div>
+    <div class="cap" data-range="0.36,0.60"><h2>分缝绕驱动轮一圈</h2><p>缝宽 0.8 mm，和轮毂同心。</p></div>
+    <div class="cap" data-range="0.69,0.95"><h2>前后同样的灯带</h2><p>17.5 mm 高的烟色镜片。车头这段后面是摄像头和指示灯。</p></div>
+  </div>
+</section>
+
+<!-- colours -->
 <section class="light colors" id="colors">
-  <h2 class="big center reveal">六种配色。</h2>
-  <p class="lead center reveal">上盖和车身一起换色，红色只留给 STOP。</p>
+  <h2 class="mid center reveal">六种配色</h2>
+  <p class="lead center reveal">上盖和车身一起换色，STOP 键始终是红色。</p>
   <div class="color-stage reveal">
     <img id="colorImg" src="site/img/c_orbit.webp" alt="陶瓷灰配色" width="2400" height="1600">
     <img id="colorImg2" src="site/img/c_orbit.webp" alt="" aria-hidden="true" width="2400" height="1600">
@@ -184,50 +236,88 @@
   </div>
 </section>
 
-<!-- 9 horizon -->
+<!-- horizon -->
 <section class="dark horizon" id="horizon">
-  <p class="eyebrow reveal">另一种表达</p>
-  <h2 class="big center reveal">Horizon</h2>
-  <p class="lead center reveal">缎面银上盖，离地 180 mm 的一条水平分缝，分缝下一条 3 mm 的细灯线，一条烟色中脊饰带从车头越过车顶落到车尾。同样的工程，不同的气质。</p>
+  <p class="eyebrow reveal">同一底盘的另一款外观</p>
+  <h2 class="mid center reveal">Horizon</h2>
+  <p class="lead center reveal">缎面银上盖，离地 180 mm 一条水平分缝，分缝下面一条细灯线。割草、导航和回充部分与 Orbit 相同。</p>
   <div class="hz-pair">
-    <img class="reveal" loading="lazy" src="site/img/h_hero.webp" alt="v18 Horizon 前三分之四视角" width="2400" height="1600">
-    <img class="reveal" style="--d:.1s" loading="lazy" src="site/img/h_rear.webp" alt="v18 Horizon 后三分之四视角" width="2400" height="1600">
+    <img class="reveal" loading="lazy" src="site/img/h_hero.webp" alt="Horizon 前三分之四视角" width="2400" height="1600">
+    <img class="reveal" style="--d:.1s" loading="lazy" src="site/img/h_rear.webp" alt="Horizon 后三分之四视角" width="2400" height="1600">
   </div>
-  <p class="cta-row center reveal"><a class="btn light" href="horizon/">在 3D 中查看 Horizon</a></p>
+  <p class="cta-row center reveal"><a class="btn light" href="horizon/">查看 Horizon 3D 模型</a></p>
 </section>
 
-<!-- 10 specs -->
-<section class="light specs" id="specs">
-  <h2 class="big center reveal">规格</h2>
-  <dl class="spec-grid">
-    <div class="reveal"><dt>外形尺寸</dt><dd>666 × 471 × 291 mm<small>长 × 宽 × 高，含 STOP 键</small></dd></div>
-    <div class="reveal"><dt>车顶高度</dt><dd>280 mm</dd></div>
-    <div class="reveal"><dt>外壳</dt><dd>卡扣式上盖 + 一体式车身<small>2.5 mm 实体壁，全车一条分缝</small></dd></div>
-    <div class="reveal"><dt>分缝</dt><dd>0.8 mm<small>上盖高出 0.5 mm，两侧倒圆，内设防水迷宫</small></dd></div>
-    <div class="reveal"><dt>盖板</dt><dd>隐藏齿轮弧轨铰链<small>弹簧自动开启，双向阻尼，75° 限位</small></dd></div>
-    <div class="reveal"><dt>STOP 键</dt><dd>Ø40 mm，红色<small>高出盖板 10.7 mm，按压力 ≤ 30 N，行程 5 mm</small></dd></div>
-    <div class="reveal"><dt>固定</dt><dd>14 颗隐藏螺丝<small>10 个卡脚、2 个定位销</small></dd></div>
-    <div class="reveal"><dt>灯带</dt><dd>前后同款烟色 PC 镜片<small>17.5 mm 高，激光焊接密封灯组</small></dd></div>
-    <div class="reveal"><dt>回充</dt><dd>两针式充电座<small>120 × 20 mm 长圆开口，左右对称窗口；对接容差约 ±16 mm / ±3.5 mm / ±2°</small></dd></div>
-    <div class="reveal"><dt>感知</dt><dd>摄像头 + 红外测距<small>与状态指示灯共用车头烟色镜片</small></dd></div>
-    <div class="reveal"><dt>防水</dt><dd>防水迷宫 + 密封灯组<small>盖板集水槽和台面排水槽</small></dd></div>
-    <div class="reveal"><dt>状态指示</dt><dd>STOP 外圈光环<small>前后灯带，前部状态指示灯</small></dd></div>
-  </dl>
-  <p class="fine center">规格为外壳设计数据。底盘、驱动轮、万向轮、前保险杠与控制面板沿用原有部件。</p>
+<!-- specs -->
+<section class="specs" id="specs">
+  <h2 class="mid center reveal">规格</h2>
+  <div class="spec-groups">
+    <div class="spec-group reveal">
+      <h3>割草</h3>
+      <dl>
+        <div><dt>割幅</dt><dd>200 mm<small>刀盘居中，3 片铰接刀片，两面开刃</small></dd></div>
+        <div><dt>割草高度</dt><dd>30–60 mm<sup>*</sup><small>7 档，电动调节</small></dd></div>
+        <div><dt>草坪面积</dt><dd>最大 1000 m²<sup>*</sup><small>割草效率约 130 m²/小时</small></dd></div>
+        <div><dt>路径</dt><dd>沿边一圈 + 平行往返<small>相邻两行重叠 2 cm，每次换方向</small></dd></div>
+      </dl>
+    </div>
+    <div class="spec-group reveal">
+      <h3>导航与避障</h3>
+      <dl>
+        <div><dt>导航</dt><dd>视觉导航<sup>*</sup><small>摄像头识别草坪边界，不需要埋边界线</small></dd></div>
+        <div><dt>避障</dt><dd>摄像头 + 红外测距<small>前保险杠碰撞开关</small></dd></div>
+        <div><dt>禁区</dt><dd>在 App 中设置<sup>*</sup></dd></div>
+      </dl>
+    </div>
+    <div class="spec-group reveal">
+      <h3>行走</h3>
+      <dl>
+        <div><dt>驱动轮</dt><dd>Ø229 × 54 mm<small>深齿纹胎面，双电机，可原地转向</small></dd></div>
+        <div><dt>万向轮</dt><dd>Ø100 mm × 2</dd></div>
+        <div><dt>坡度</dt><dd>35%<sup>*</sup><small>约 19°</small></dd></div>
+        <div><dt>越障</dt><dd>20 mm<sup>*</sup></dd></div>
+      </dl>
+    </div>
+    <div class="spec-group reveal">
+      <h3>电池与回充</h3>
+      <dl>
+        <div><dt>工作时间</dt><dd>90 分钟<sup>*</sup></dd></div>
+        <div><dt>充电时间</dt><dd>75 分钟<sup>*</sup></dd></div>
+        <div><dt>回充</dt><dd>两针式充电座<small>对准容差：左右 ±16 mm，上下 ±3.5 mm，偏斜 2°</small></dd></div>
+      </dl>
+    </div>
+    <div class="spec-group reveal">
+      <h3>安全</h3>
+      <dl>
+        <div><dt>STOP 键</dt><dd>Ø40 mm，红色<small>高出盖板 10.7 mm，按压力 ≤ 30 N</small></dd></div>
+        <div><dt>停机条件</dt><dd>抬起、倾翻、盖板打开、碰撞<small>刀盘立即停转</small></dd></div>
+      </dl>
+    </div>
+    <div class="spec-group reveal">
+      <h3>机身</h3>
+      <dl>
+        <div><dt>尺寸</dt><dd>666 × 471 × 291 mm<small>长 × 宽 × 高</small></dd></div>
+        <div><dt>噪音</dt><dd>≤ 60 dB(A)<sup>*</sup></dd></div>
+        <div><dt>防水</dt><dd>分缝防水迷宫 + 密封灯组<small>防护等级待样机测试</small></dd></div>
+      </dl>
+    </div>
+  </div>
+  <p class="fine center">标 * 的是设计目标值，需要样机测试确认。尺寸、轮径和充电对准容差取自设计模型；底盘、驱动轮、万向轮和前保险杠沿用原有部件。</p>
 </section>
 
-<!-- 11 cta -->
+<!-- cta -->
 <section class="cta-final">
-  <h2 class="big center reveal">在 3D 中，<br>看清每一个细节。</h2>
-  <p class="cta-row center reveal"><a class="btn" href="viewer.html">打开 3D 体验</a><a class="link" href="horizon/">Horizon</a><a class="link" href="original/">原版设计</a></p>
+  <h2 class="mid center reveal">3D 模型</h2>
+  <p class="lead center reveal">可以旋转、打开盖板、把外壳拆开看。</p>
+  <p class="cta-row center reveal"><a class="btn" href="viewer.html">打开 3D 模型</a><a class="link" href="horizon/">Horizon</a><a class="link" href="original/">原版设计</a></p>
 </section>
 
 </main>
 
 <footer class="foot">
-  <p>概念设计展示，非商业产品。v18 外壳为重新设计；所有图片均由设计模型渲染。</p>
+  <p>概念设计，非在售产品。图片由设计模型渲染。</p>
 </footer>
 
-<script src="site/site.js" defer></script>
+<script src="site/site.js?v=20261125b" defer></script>
 </body>
 </html>
