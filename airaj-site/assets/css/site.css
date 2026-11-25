@@ -59,7 +59,7 @@ sup { font-size: 0.6em; line-height: 0; }
 .hero::after { content: ""; position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,11,12,.72) 0%, rgba(10,11,12,.35) 38%, rgba(10,11,12,0) 62%), linear-gradient(180deg, rgba(10,11,12,.35), rgba(10,11,12,0) 40%); }
 .hero-copy { position: relative; z-index: 1; max-width: var(--w); width: 100%; margin: 0 auto; padding: clamp(48px, 9vh, 110px) var(--pad) 48px; }
 .hero h1 { font-size: clamp(44px, 7vw, 92px); font-weight: 800; margin: 14px 0 18px; text-wrap: balance; }
-.hero-sub { max-width: 520px; font-size: clamp(16px, 1.4vw, 19px); color: rgba(255,255,255,.88); }
+.hero-sub { max-width: 460px; font-size: clamp(16px, 1.4vw, 19px); color: rgba(255,255,255,.88); }
 .hero-ctas { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 30px; }
 
 /* quick links */
@@ -204,9 +204,17 @@ fieldset label:has(input:checked) { border-color: var(--orange); box-shadow: ins
 /* responsive */
 @media (max-width: 1080px) {
   .nav { gap: 18px; }
-  .quick { grid-template-columns: repeat(5, minmax(120px, 1fr)); overflow-x: auto; scroll-snap-type: x mandatory; padding-bottom: 8px; }
+  .quick { grid-template-columns: repeat(5, minmax(120px, 1fr)); overflow-x: auto; scroll-snap-type: x mandatory; scroll-padding-inline: var(--pad); padding-bottom: 8px; }
   .quick a { scroll-snap-align: start; }
   .why-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 1200px) {      /* tablets, small laptops and phones: the photo on top (mower in full view), the headline below it on the dark ground */
+  .hero { display: block; min-height: 0; }
+  .hero::after { content: none; }
+  .hero picture { position: relative; display: block; height: auto; }
+  .hero picture::after { content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 28%; background: linear-gradient(180deg, rgba(17,18,20,0), var(--dark)); }
+  .hero-img { position: static; height: auto; aspect-ratio: 16 / 9; object-fit: cover; }
+  .hero-copy { margin-top: -28px; padding: 0 var(--pad) 72px; }
 }
 @media (max-width: 900px) {
   .burger { display: block; }
@@ -225,14 +233,11 @@ fieldset label:has(input:checked) { border-color: var(--orange); box-shadow: ins
   .nums { grid-template-columns: repeat(2, 1fr); row-gap: 28px; }
 }
 @media (max-width: 760px) {
-  .hero { min-height: 92svh; align-items: flex-start; }
-  .hero-copy { padding-top: 28px; }
+  .hero-img { aspect-ratio: 4 / 3; }
   .hero h1 { margin: 10px 0 12px; }
   .hero-sub { font-size: 15.5px; }
   .hero-ctas { margin-top: 20px; }
   .hero-ctas .btn { min-height: 44px; padding: 0 20px; }
-  .hero::after { background: linear-gradient(180deg, rgba(10,11,12,.72) 0%, rgba(10,11,12,.35) 45%, rgba(10,11,12,0) 70%); }
-  .hero-img { object-position: 50% 75%; }
   .quick { margin-top: -30px; grid-template-columns: repeat(5, 132px); }
   .quick a { min-height: 128px; }
   .hdr-cta { display: none; }

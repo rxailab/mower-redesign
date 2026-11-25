@@ -10,8 +10,9 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Barlow:wght@600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-<link rel="preload" as="image" href="assets/img/hero.webp" imagesrcset="assets/img/hero-1280.webp 1280w, assets/img/hero.webp 2304w" imagesizes="100vw">
-<link rel="stylesheet" href="assets/css/site.css?v=2">
+<link rel="preload" as="image" media="(min-width: 761px)" href="assets/img/hero.webp" imagesrcset="assets/img/hero-1280.webp 1280w, assets/img/hero.webp 2048w" imagesizes="100vw">
+<link rel="preload" as="image" media="(max-width: 760px)" href="assets/img/hero-mobile.webp">
+<link rel="stylesheet" href="assets/css/site.css?v=6">
 </head>
 <body>
 <a class="skip" href="#main">Skip to content</a>
@@ -40,8 +41,8 @@
 <!-- hero -->
 <section class="hero" aria-label="AIRAJ R1">
   <picture>
-    <source media="(max-width: 760px)" srcset="assets/img/hero-portrait.webp">
-    <img class="hero-img" src="assets/img/hero.webp" srcset="assets/img/hero-1280.webp 1280w, assets/img/hero.webp 2304w" sizes="100vw" alt="AIRAJ R1 robot mower in Obsidian Black on a striped lawn in a back garden at sunset" width="2304" height="1296" fetchpriority="high">
+    <source media="(max-width: 760px)" srcset="assets/img/hero-mobile.webp" width="960" height="720">
+    <img class="hero-img" src="assets/img/hero.webp" srcset="assets/img/hero-1280.webp 1280w, assets/img/hero.webp 2048w" sizes="100vw" alt="AIRAJ R1 robot mower in Obsidian Black on a freshly striped lawn in a hedged garden at sunset" width="2048" height="1152" fetchpriority="high">
   </picture>
   <div class="hero-copy">
     <p class="eyebrow">AIRAJ R1 Robot Lawn Mower</p>

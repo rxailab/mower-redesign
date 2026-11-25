@@ -1,5 +1,5 @@
 # Bake the AIRAJ site images (airaj-site/assets/img) from the renders and composites.
-# usage: python bake.py RENDERS_DIR HERO_COMPOSITE.png SLOPE_COMPOSITE.png OUT_DIR
+# usage: python bake.py RENDERS_DIR HERO_PHOTO.png SLOPE_COMPOSITE.png OUT_DIR
 #   RENDERS_DIR: render_r1.py outputs c_<id>_hero.png (all palettes), k_panel2 / k_sensor2 / k_stopr / k_side.png, d_dockhero.png
 import sys, os
 import numpy as np
@@ -38,10 +38,13 @@ def studio(src, w, h):
     b = Image.fromarray(bg.astype(np.uint8)).convert('RGBA'); b.alpha_composite(a); return b.convert('RGB')
 
 
-# hero (16:9 desktop, portrait for phones)
-H = Image.open(HERO).convert('RGB'); W_, H_ = H.size
-hero = H.crop((0, 120, W_, 120 + int(W_ * 9 / 16))); save(hero, 'hero.webp', 80); save(hero.resize((1280, 720), Image.LANCZOS), 'hero-1280.webp', 80)
-save(H.crop((1180, 0, 2180, H_)).resize((900, int(900 * H_ / 1000)), Image.LANCZOS), 'hero-portrait.webp', 80)      # phones: round the mower (right of centre)
+# hero: the generated garden photo (src/hero_generated.png, 1536 x 1024, mower right of centre)
+#   desktop: 16:9 crop, upscaled to 2048 wide; phones: 4:3 crop round the mower (the headline sits below the picture)
+from PIL import ImageFilter
+H = Image.open(HERO).convert('RGB'); W_, H_ = H.size; f = W_ / 1536
+hero = H.crop((0, int(80 * f), W_, int(80 * f) + int(W_ * 9 / 16)))
+save(hero.resize((2048, 1152), Image.LANCZOS).filter(ImageFilter.UnsharpMask(1.0, 35, 2)), 'hero.webp', 82); save(hero.resize((1280, 720), Image.LANCZOS), 'hero-1280.webp', 80)
+save(H.crop(tuple(int(v * f) for v in (520, 280, 1480, 1000))), 'hero-mobile.webp', 80)
 # colour cards + quick links
 for i in IDS: save(cutout(os.path.join(R, f'c_{i}_hero.png'), 1200, 800), f'r1-{i}.webp', 84)
 save(cutout(os.path.join(R, 'c_black_hero.png'), 320, 213, 0.03), 'q-r1.webp', 84)
