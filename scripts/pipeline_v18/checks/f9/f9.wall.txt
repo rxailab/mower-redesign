@@ -1,0 +1,20 @@
+body deck / screws vs cover: 0 of 263962 vertices outside the skin (worst 0.00 mm)
+cover legs / flange vs body: 0 of 8296 vertices outside the skin (worst 0.00 mm)
+body inner parts vs body skin: 0 of 267526 vertices outside the skin (worst 0.00 mm)
+--- hidden parts vs the walls (closed solids). inside = vertices inside the plastic (fused parts: expected in their own moulding),
+    depth = deepest, gap_min = smallest air gap of the rest (mm)
+body deck            {'cover': {'inside': 0, 'depth_max_mm': 0.0, 'gap_min_mm': 1.09, 'gap_under_0p3': 0}, 'body': {'inside': 1865, 'depth_max_mm': 0.66, 'gap_min_mm': -0.1, 'gap_under_0p3': 1345}}
+body pad             {'cover': {'inside': 0, 'depth_max_mm': 0.0, 'gap_min_mm': 3.75, 'gap_under_0p3': 0}, 'body': {'inside': 0, 'depth_max_mm': 0.0, 'gap_min_mm': 0.8, 'gap_under_0p3': 0}}
+body screw           {'cover': {'inside': 0, 'depth_max_mm': 0.0, 'gap_min_mm': 5.64, 'gap_under_0p3': 0}, 'body': {'inside': 0, 'depth_max_mm': 0.0, 'gap_min_mm': 3.3, 'gap_under_0p3': 0}}
+body boss            {}
+body rib             {}
+body bracket         {'body': {'inside': 24, 'depth_max_mm': 1.03, 'gap_min_mm': 2.9, 'gap_under_0p3': 0}}
+body pilot           {}
+body clip            {'body': {'inside': 40, 'depth_max_mm': 1.25, 'gap_min_mm': 1.43, 'gap_under_0p3': 0}}
+body seat            {'body': {'inside': 393, 'depth_max_mm': 0.6, 'gap_min_mm': 0.0, 'gap_under_0p3': 401}}
+cover leg            {'cover': {'inside': 100, 'depth_max_mm': 0.61, 'gap_min_mm': -0.07, 'gap_under_0p3': 16}, 'body': {'inside': 0, 'depth_max_mm': 0.0, 'gap_min_mm': 5.66, 'gap_under_0p3': 0}}
+cover barb           {'cover': {'inside': 0, 'depth_max_mm': 0.0, 'gap_min_mm': 7.82, 'gap_under_0p3': 0}, 'body': {'inside': 0, 'depth_max_mm': 0.0, 'gap_min_mm': 6.71, 'gap_under_0p3': 0}}
+cover pin            {'cover': {'inside': 300, 'depth_max_mm': 1.23, 'gap_min_mm': 0.42, 'gap_under_0p3': 0}, 'body': {'inside': 0, 'depth_max_mm': 0.0, 'gap_min_mm': 4.47, 'gap_under_0p3': 0}}
+cover seatpad        {'cover': {'inside': 2400, 'depth_max_mm': 0.65, 'gap_min_mm': 5.8, 'gap_under_0p3': 0}, 'body': {'inside': 0, 'depth_max_mm': 0.0, 'gap_min_mm': 3.93, 'gap_under_0p3': 0}}
+cover stake          {'cover': {'inside': 288, 'depth_max_mm': 0.9, 'gap_min_mm': -0.06, 'gap_under_0p3': 144}}
+lid well kit         {'cover': {'inside': 0, 'depth_max_mm': 0.0, 'gap_min_mm': 0.04, 'gap_under_0p3': 4392}}

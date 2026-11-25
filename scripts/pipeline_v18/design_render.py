@@ -119,7 +119,7 @@ kc = k['v'][k['f']].mean(1); kk = ~((kl == 6) & (kc[:, 0] > 0.27))
 if P.get('nose'): kk &= ~((kl == 0) & (kc[:, 0] > 0.255))
 if P.get('skirt'): kk &= (kl != 0)                               # one-piece shell: the scanned skirt is gone, only the front bumper is kept      # old shell's front rim: replaced by the new nose, which sits on the bumper        # charger-opening internals are replaced by clean sleeves
 sys.path.insert(0, HERE); import tail as _tail; kv = k['v'].copy(); kv[:, 1] = _tail.make(P)(kv[:, 0], kv[:, 1])
-obj('Skirt', kv, k['f'][kk], [M['skirt'], M['dark']], np.where((kl == 7) | (kl == 6), 1, 0)[kk])
+obj('Skirt', kv, k['f'][kk], [M['skirt'], M['dark'], mat('Bumper', col['bumper'], col.get('bumper_finish', 'satin')) if col.get('bumper') else M['dark']], np.where(kl == 7, 2, np.where(kl == 6, 1, 0))[kk])      # [v21] colors.bumper: the front bumper in the base colour
 M['glow'] = mat('Glow', col.get('visor', '#0A0B0D'), col.get('visor_finish', 'smoke'))      # [orbit] diffused light behind the smoked lens round each light line
 _gb = M['glow'].node_tree.nodes['Principled BSDF']; _gb.inputs['Emission Color'].default_value = (*lin(col.get('light', '#F2FBFF')), 1); _gb.inputs['Emission Strength'].default_value = float(col.get('glow', 0.5))
 M['ring'] = mat('SensorRing', col.get('ring_sensor', '#5E646C'), 'metallic')      # [v18] sensor rims seen through the smoked lens
@@ -371,7 +371,7 @@ def explode_(*lifts):
     lid_state = None          # the lid group moved: the next set_lid() rebuilds it
 # [web] motion and plan views for the product site
 _mp = lambda e_: {k_: [float(x_) for x_ in v_.split(':')] for k_, v_ in (t_.split('=') for t_ in filter(None, os.environ.get(e_, '').split(',')))}
-POSE_ = _mp('POSEMAP')        # "view=dx:dz:pitch_deg:s": the whole mower moved by (dx, 0, dz), pitched nose-up about y through the origin; wheels spun for s m rolled
+POSE_ = _mp('POSEMAP')        # "view=dx:dz:pitch_deg:s[:yaw_deg]": the whole mower moved by (dx, 0, dz), pitched nose-up about y through the origin; wheels spun for s m rolled
 ORTHO_ = _mp('ORTHO')         # "view=ortho_scale": orthographic camera for that view (plan views)
 if os.environ.get('ONLY'):    # render only these objects (e.g. the dock alone for the plan view); the floor stays
     _keep = set(os.environ['ONLY'].split(','))
@@ -402,10 +402,10 @@ for o_ in sc.objects:
     if o_.type == 'MESH' and o_.name.startswith(('Wheel_', 'RingDecal_', 'Caster_')):
         bb_ = [o_.matrix_world @ mathutils.Vector(c_) for c_ in o_.bound_box]; c_ = sum(bb_, mathutils.Vector()) / 8
         _SPIN.append((o_, c_, 0.1145 if not o_.name.startswith('Caster_') else (max(v_.z for v_ in bb_) - min(v_.z for v_ in bb_)) / 2))
-def pose_(dx, dz, pitch, s):
+def pose_(dx, dz, pitch, s, yaw=0.0):      # [v21] yaw (deg, about z through the origin, applied first): 180 = the mower drives towards -x (visor first)
     global lid_state
     lid_state = None; set_lid(0.0)
-    T = mathutils.Matrix.Translation((dx, 0, dz)) @ mathutils.Matrix.Rotation(math.radians(-pitch), 4, 'Y')
+    T = mathutils.Matrix.Translation((dx, 0, dz)) @ mathutils.Matrix.Rotation(math.radians(-pitch), 4, 'Y') @ mathutils.Matrix.Rotation(math.radians(yaw), 4, 'Z')
     for o_ in _ROOTS: o_.matrix_world = T @ (o_.matrix_world if o_.name in _LIDSET else _M0[o_.name])
     bpy.context.view_layer.update()
     for o_, c_, r_ in _SPIN:

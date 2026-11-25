@@ -1,0 +1,59 @@
+{
+ "deck_topology": {
+  "faces": 516624,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0
+ },
+ "ckit_leg": {
+  "samples": 1956,
+  "inside_deck": 0,
+  "min_gap_mm": 0.085
+ },
+ "ckit_barb": {
+  "samples": 260,
+  "inside_deck": 0,
+  "min_gap_mm": 0.085
+ },
+ "ckit_pin": {
+  "samples": 2480,
+  "inside_deck": 0,
+  "min_gap_mm": 0.182
+ },
+ "ckit_seatpad": {
+  "samples": 15200,
+  "inside_deck": 0,
+  "min_gap_mm": 0.019
+ },
+ "chassis_vs_deck": {
+  "inside": 0,
+  "min_gap_mm": 0.27
+ },
+ "deck_selfx": {
+  "pairs": 0,
+  "closed": true,
+  "inverted": false,
+  "oriented": true,
+  "mode": "full"
+ },
+ "deck_thickness_probe_mm": {
+  "p1": 2.5,
+  "median": 2.5
+ },
+ "nose_floor": {
+  "faces": 8168,
+  "boundary_edges": 0,
+  "nonmanifold_edges": 0,
+  "bbox_mm": [
+   260.4,
+   -206.6,
+   111.0,
+   297.9,
+   206.6,
+   117.0
+  ],
+  "to_bumper_mm": 1.64,
+  "to_body_outer_mm": 1.1,
+  "to_chassis_mm": 32.61,
+  "mirror_asym_mm": 0.0
+ }
+}

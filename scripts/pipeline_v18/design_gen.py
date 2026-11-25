@@ -498,6 +498,11 @@ if OB:
     # (proud shell rather than a sunk core: beside the wheels the core wall must keep its full width over chassis post 10)
     if rc_ and not WALL_: roll_edge('cv', gapc, 1, rc_)        # [v18c] with a real wall: shell_wall (loop_r 'cover_seam')
     lab[(fmean('cv') < gapc * 0.5) & (lab == 0)] = KL['core']
+    TT2_ = g('two_tone', None)
+    if TT2_:      # [v21] two-tone body: above the paint line [[x, z], ...] the body takes the shell colour (one white shell look), the core colour
+        #           stays as a band round the bottom; the line is cut exactly
+        tk2_ = np.array(sorted(TT2_['line'])); A['tt'] = V[:, 2] - np.interp(V[:, 0], tk2_[:, 0], tk2_[:, 1]); split('tt', 0.0)
+        lab[(fmean('tt') > 0) & (lab == KL['core']) & (fmean('cv') < gapc * 0.5)] = KL['body']
 def panel_poly(pn):
     if 'poly' in pn:
         pg = Polygon(pn['poly']); pg = shapely.union(pg, affinity.scale(pg, 1, -1, origin=(0, 0))); r_ = pn.get('r', 0.004); return pg.buffer(-r_).buffer(r_, quad_segs=16)
@@ -590,7 +595,8 @@ for bd_ in g('bands', []):
     # R = h/2) in the dark core face just under the brow, held by a fine groove (its part line). Behind it: straight light segments
     # (stadiums, level, concentric ends = one constant margin) and, at the centre, the sensor 'pupil' (front) or a dot (rear).
     sg_b = 1.0 if bd_.get('side', 'front') == 'front' else -1.0; zc_b = bd_['z']; h_b = bd_['h']; w_b = bd_['w']
-    bp_ = shapely.box(-w_b / 2, zc_b - h_b / 2, w_b / 2, zc_b + h_b / 2).buffer(-h_b / 2 + 1e-6).buffer(h_b / 2 - 1e-6, quad_segs=48)
+    rb_ = min(bd_.get('r', h_b / 2), h_b / 2)      # [v21] corner radius (default: stadium ends R = h/2); a visor is a rounded rectangle
+    bp_ = shapely.box(-w_b / 2, zc_b - h_b / 2, w_b / 2, zc_b + h_b / 2).buffer(-rb_ + 1e-6).buffer(rb_ - 1e-6, quad_segs=48)
     fb_ = lambda bp_=bp_, sg_b=sg_b: np.maximum(sd(bp_, V[:, 1], V[:, 2]), 0.22 - sg_b * V[:, 0])
     gw_ = bd_.get('groove_w', 0.0005); gd_ = bd_.get('groove_d', 0.0003)
     A['bd'] = fb_(); fine('bd', fb_, -gw_ - 0.0015, gw_ + 0.0015, bd_.get('fine', 0.00025))
@@ -605,15 +611,27 @@ for bd_ in g('bands', []):
     elif gd_ > 0:        # the groove: a U section centred on the lens outline, pushed in along the body normal
         cuts('bd', [-gw_ / 2, -gw_ / 4, 0.0, gw_ / 4, gw_ / 2]); u_ = np.clip(A['bd'] / (gw_ / 2), -1, 1)
         V = V - nrm_() * (gd_ * (1 - u_ * u_) * (np.abs(A['bd']) < gw_ / 2) * (sg_b * V[:, 0] > 0.22))[:, None]
-    paint('bd', bd_.get('kind', 'visor'), iso=0.0)
+    VZ_ = bd_.get('visor')
+    if VZ_:      # [v21] the visible visor: a larger rounded rectangle (front-view y, z) round the lens, wrapping round the nose corners, in the lens colour
+        vp_ = shapely.box(-VZ_['w'] / 2, VZ_['z0'], VZ_['w'] / 2, VZ_['z1']).buffer(-VZ_['r']).buffer(VZ_['r'], quad_segs=48)
+        fv_ = lambda vp_=vp_, sg_b=sg_b: np.maximum(sd(vp_, V[:, 1], V[:, 2]), 0.22 - sg_b * V[:, 0]); A['vz'] = fv_()
+        fine('vz', fv_, -0.0012, 0.0012, VZ_.get('fine', 0.0003)); paint('vz', bd_.get('kind', 'visor'))
+    paint('bd', bd_.get('kind', 'visor'), iso=bd_.get('frame', 0.0))      # [v21] frame: the body round the lens painted in the lens colour too (a larger visor look)
     for ls_ in bd_.get('lights', []):        # light segments [y0, y1] (mirrored), height hl, stadium ends
-        hl_ = ls_.get('h', 0.004); lp_ = shapely.box(ls_['y0'], zc_b - hl_ / 2, ls_['y1'], zc_b + hl_ / 2).buffer(-hl_ / 2 + 1e-7).buffer(hl_ / 2 - 1e-7, quad_segs=24)
-        if ls_.get('mirror', True): lp_ = shapely.union(lp_, affinity.scale(lp_, -1, 1, origin=(0, 0)))
+        hl_ = ls_.get('h', 0.004); zl_ = ls_.get('z', zc_b)      # [v21] z: the segment's own height
+        cen_ = ls_.get('mirror', True) and ls_['y0'] <= 0      # [v21] one segment across the centre line: a single stadium, no pinch at y = 0
+        lp_ = shapely.box(-ls_['y1'] if cen_ else ls_['y0'], zl_ - hl_ / 2, ls_['y1'], zl_ + hl_ / 2).buffer(-hl_ / 2 + 1e-7).buffer(hl_ / 2 - 1e-7, quad_segs=24)
+        if ls_.get('mirror', True) and not cen_: lp_ = shapely.union(lp_, affinity.scale(lp_, -1, 1, origin=(0, 0)))
         fl_ = lambda lp_=lp_, sg_b=sg_b: np.maximum(sd(lp_, V[:, 1], V[:, 2]), 0.22 - sg_b * V[:, 0]); A['bl'] = fl_()
+        if VZ_: fine('bl', fl_, -0.012, 0.012, 0.0015, extra=lambda sg_b=sg_b: sg_b * V[F][:, :, 0].mean(1) > 0.225)      # [v21] visor bands: coarse pass first (band face only), a strip thinner than the body grid can pass between the vertices
         fine('bl', fl_, -0.0008, 0.0008, ls_.get('fine', 0.0003)); paint('bl', ls_.get('kind', 'light'))
     for el_ in bd_.get('elements', []):      # round elements on the band axis: disc (r) or ring (r, w)
         cy_ = el_.get('y', 0.0); cz_ = el_.get('z', zc_b)
-        fe_ = lambda cy_=cy_, cz_=cz_, el_=el_, sg_b=sg_b: np.maximum(np.hypot(V[:, 1] - cy_, V[:, 2] - cz_) - el_['r'], 0.22 - sg_b * V[:, 0]); A['be'] = fe_()
+        if el_.get('rect'):      # [v21] rounded rectangle [w, h, r] (e.g. the centre camera module of a visor)
+            ew_, eh_, er_ = el_['rect']; ep_ = shapely.box(cy_ - ew_ / 2, cz_ - eh_ / 2, cy_ + ew_ / 2, cz_ + eh_ / 2).buffer(-er_).buffer(er_, quad_segs=24)
+            fe_ = lambda ep_=ep_, sg_b=sg_b: np.maximum(sd(ep_, V[:, 1], V[:, 2]), 0.22 - sg_b * V[:, 0])
+        else: fe_ = lambda cy_=cy_, cz_=cz_, el_=el_, sg_b=sg_b: np.maximum(np.hypot(V[:, 1] - cy_, V[:, 2] - cz_) - el_['r'], 0.22 - sg_b * V[:, 0])
+        A['be'] = fe_()
         wr_ = el_.get('w', 0.0)
         fine('be', fe_, -max(wr_, 0.0005) - 0.0006, max(wr_, 0.0005) + 0.0006, el_.get('fine', 0.00015))
         if wr_: paint('be', el_['kind'], iso=wr_ / 2, lo=-wr_ / 2)

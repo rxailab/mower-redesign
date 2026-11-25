@@ -1,0 +1,35 @@
+topology {"front": {"boundary_edges": 0, "nonmanifold_edges": 0}, "rear": {"boundary_edges": 0, "nonmanifold_edges": 0}} {"kit_topology": 0, "harness_topology": 0}
+lens None see below
+lens gap {'min': 0.36, 'at_mm': [-325.4, -119.7, 125.1], 'p1': 0.403, 'median': 0.531}
+housing       {'body': 0.3, 'cover': 4.9, 'deck': 1.24, 'body_kit': 10.4, 'cover_kit': 8.78, 'sleeves': 1.28, 'chassis': 1.51, 'lens': -0.36}
+gasket        {'body': -0.27, 'cover': 5.43, 'deck': 2.18, 'body_kit': 10.65, 'cover_kit': 10.35, 'sleeves': 2.47, 'chassis': 7.26, 'lens': 0.74}
+bar           {'body': 4.14, 'cover': 13.37, 'deck': 10.03, 'body_kit': 23.58, 'cover_kit': 18.98, 'sleeves': 9.32, 'chassis': 6.9, 'lens': 0.24}
+carrier       {'body': 3.21, 'cover': 12.46, 'deck': 9.14, 'body_kit': 21.63, 'cover_kit': 15.57, 'sleeves': 8.28, 'chassis': 5.56, 'lens': 0.09}
+pcb           {'body': 5.51, 'cover': 11.45, 'deck': 7.33, 'body_kit': 18.7, 'cover_kit': 12.79, 'sleeves': 5.4, 'chassis': 3.83, 'lens': 1.85}
+led           {'body': 8.72, 'cover': 16.17, 'deck': 12.21, 'body_kit': 24.02, 'cover_kit': 18.11, 'sleeves': 11.18, 'chassis': 6.02, 'lens': 1.27}
+camera        {'chassis': 12.4, 'lens': 0.16}
+tof           {'chassis': 18.14, 'lens': 0.31}
+pipe          {'body': 6.74, 'cover': 13.79, 'deck': 10.41, 'body_kit': 22.64, 'cover_kit': 16.53, 'sleeves': 9.41, 'chassis': 6.4, 'lens': 0.07}
+foam          {'chassis': 19.0, 'lens': 0.01}
+boss          {'body': -1.25, 'cover': 10.47, 'deck': 7.54, 'body_kit': 9.74, 'sleeves': 22.35, 'chassis': 10.85, 'lens': 4.7}
+screw         {'body': 1.1, 'cover': 14.04, 'deck': 9.98, 'body_kit': 11.01, 'sleeves': 22.87, 'chassis': 6.49, 'lens': 8.64}
+ear           {'body': 1.31, 'cover': 11.69, 'deck': 7.66, 'body_kit': 9.19, 'sleeves': 20.77, 'chassis': 8.09, 'lens': 4.28}
+shroud        {'body': 11.21, 'cover': 15.09, 'deck': 10.68, 'body_kit': 27.68, 'cover_kit': 24.69, 'chassis': 4.14, 'lens': 10.89}
+vent          {'body': 7.71, 'cover': 12.93, 'deck': 8.73, 'body_kit': 21.56, 'cover_kit': 14.6, 'sleeves': 12.55, 'chassis': 5.05, 'lens': 6.9}
+emitter       {'lid_well': 2.09, 'lid_kit': 16.38, 'controls': 0.0, 'ctl_standin': 1.34}
+pad           {'body': -0.06, 'cover': 13.95, 'deck': 10.71, 'body_kit': 26.36, 'sleeves': 25.08, 'chassis': 15.45, 'lens': 1.22}
+plug          {'body': 11.27, 'cover': 13.77, 'deck': 8.87, 'body_kit': 26.29, 'cover_kit': 22.86, 'chassis': 3.58}
+cable         {'body': 9.08, 'cover': 4.82, 'deck': 0.41, 'body_kit': 7.85, 'cover_kit': 14.6, 'chassis': 8.7}
+grommet       {'body': 7.72, 'cover': 3.74, 'deck': -1.03, 'body_kit': 19.24, 'cover_kit': 17.3, 'chassis': 11.65}
+clip          {'body': 21.96, 'cover': 7.96, 'deck': -0.76, 'body_kit': 6.72, 'cover_kit': 13.76, 'chassis': 10.49}
+svc           {'cover': 12.27, 'deck': 1.93, 'body_kit': 6.65, 'cover_kit': 22.91, 'chassis': 8.03}
+cradle        {'cover': 13.19, 'deck': -1.25, 'body_kit': 4.24, 'cover_kit': 24.2, 'chassis': 2.65}
+chassis_lead  {'cover': 23.16, 'deck': 10.6, 'body_kit': 19.81, 'chassis': 2.04}
+chassis vs kit {'samples': 1219978, 'inside': 0, 'min_gap_mm': 1.51} boss/screw behind outer skin 0.39 3.6
+violations []
+sight front {'gap_rays': {'kit:housing': 576, 'lens': 1277, 'body': 547}, 'gap_leaks': 0, 'leak_examples': [], 'behind_windows': {'kit:bar/light': 270, 'kit:pipe/light': 30}}
+sight rear {'gap_rays': {'lens': 1296, 'kit:housing': 538, 'body': 556, 'lens window': 10}, 'gap_leaks': 0, 'leak_examples': [], 'behind_windows': {'kit:bar/light': 95, 'kit:housing/glass': 99, 'kit:pcb/glass': 63, 'kit:tof/glass': 2, 'kit:housing/light': 37, 'kit:carrier/light': 1, 'kit:pcb/light': 1, 'kit:pipe/glass': 2}}
+lightcheck.py:233: RuntimeWarning: All-NaN slice encountered
+  rows[str(deg)] = {tg: round(float(np.nanmin(np.where(np.isfinite(sdist(tg, P2)), sdist(tg, P2), np.nan))) * 1000, 2) for tg in ('controls', 'ctl_standin', 'emitter', 'lid_well')}
+halo sweep {'-0.438': {'controls': 2.5, 'ctl_standin': 2.17, 'emitter': 1.03, 'lid_well': 4.55}, '0.0': {'controls': 2.75, 'ctl_standin': 2.34, 'emitter': 2.4, 'lid_well': 5.29}, '2.0': {'controls': 6.24, 'ctl_standin': 4.56, 'emitter': 8.6, 'lid_well': 7.44}, '5.0': {'controls': 14.28, 'ctl_standin': 12.68, 'emitter': 17.93, 'lid_well': 8.63}, '10.0': {'controls': 28.99, 'ctl_standin': 27.72, 'emitter': nan, 'lid_well': 21.54}, '20.0': {'controls': nan, 'ctl_standin': nan, 'emitter': nan, 'lid_well': nan}, '40.0': {'controls': nan, 'ctl_standin': nan, 'emitter': nan, 'lid_well': nan}, '75.0': {'controls': nan, 'ctl_standin': nan, 'emitter': nan, 'lid_well': nan}}
+LIGHTS OK: True

@@ -3,7 +3,7 @@
 #   GARDEN.png       top-down photo of the garden (generated with an image model; the lawn is found by colour)
 #   SHORT_GRASS.png  top-down photo of freshly mowed grass (texture of the mowed stripes)
 #   *_PLAN.png       orthographic plan renders (render_site.sh: mplan / dockplan, 1.2 m wide, mower origin 0.15 m right of the
-#                    image centre, nose pointing left)
+#                    image centre, the back (charging port) pointing left, the visor right; site.js turns the sprite so the visor leads)
 # Writes OUTDIR/garden.webp, mowed_a.webp, mowed_b.webp (light / dark stripes, lawn only), mower.webp, dock.webp and lawn.json:
 #   {"size": [w, h], "pxm": px per metre, "mower": {...}, "dock": {...}, "segs": [{"d": svg path, "mow": bool, "rev": bool, "cls": "a"|"b", "w": px}]}
 import sys, json, os
@@ -16,6 +16,7 @@ CUT = 0.20 * PXM            # cutting width
 ROW = 0.18 * PXM            # row pitch: 2 cm overlap
 EDGE = 0.13 * PXM           # blade centre from the lawn edge on the edge pass
 PLAN_W, PLAN_PX, PLAN_CX = 1.2, 1200, 0.15      # plan renders: width (m), width (px), image centre in mower x (m)
+DOCK_X1 = 0.31 * PXM        # dock footprint: right edge (lawn side) from the docked mower origin
 
 
 def lawn_mask(im):
@@ -42,6 +43,11 @@ def extents(dist, level, step=3):
 def dstr(pts): return 'M' + ' L'.join(f'{x:.1f} {y:.1f}' for x, y in pts)
 
 
+def cbez(a, c1, c2, b, n=32):
+    t = np.linspace(0, 1, n)[:, None]; a, c1, c2, b = map(np.array, (a, c1, c2, b))
+    return (1 - t) ** 3 * a + 3 * (1 - t) ** 2 * t * c1 + 3 * (1 - t) * t * t * c2 + t ** 3 * b
+
+
 def bez(a, c, b, n=24):
     t = np.linspace(0, 1, n)[:, None]; a, c, b = map(np.array, (a, c, b)); return list(map(tuple, (1 - t) ** 2 * a + 2 * (1 - t) * t * c + t * t * b))
 
@@ -49,32 +55,43 @@ def bez(a, c, b, n=24):
 def main():
     G, SH, OUT = sys.argv[1:4]; os.makedirs(OUT, exist_ok=True)
     im = Image.open(G).convert('RGB'); W, H = im.size; m = lawn_mask(im); dist = nd.distance_transform_edt(m)
-    # --- dock on the left edge, part way down; the pillar stands just off the lawn, the mower faces left into it
+    # --- dock on the left edge, part way down; the pillar stands just off the lawn, the mower backs into it (port at the back)
     yd = int(H * 0.585); xe = int(np.nonzero(m[yd])[0].min())
     O = (xe - 4 + 0.25 * PXM, float(yd)); A = (O[0] + 0.50 * PXM, float(yd))
     # --- edge loop (clockwise on screen), starting on the left side above the dock
     ys, L, R = extents(dist, EDGE)
+    # the dock is an obstacle: plate + pillar footprint (dockplan render) x -0.49..+0.31 m, y +-0.26 m about O; the mower is +-0.34 x +-0.245 m.
+    # Along the left edge the pass bends round it; rows beside it start clear of it.
+    w_ = np.clip((1.0 - np.abs(ys - yd) / PXM) / 0.35, 0, 1); w_ = w_ * w_ * (3 - 2 * w_)
+    L = np.maximum(L, L + (O[0] + DOCK_X1 + 0.295 * PXM - L) * w_)
     loop = [(L[0], ys[0])] + [(R[i], ys[i]) for i in range(len(ys))] + [(L[i], ys[i]) for i in range(len(ys) - 1, -1, -1)]
-    js = int(np.argmin(np.abs(ys - (yd - 0.55 * PXM)))); S = (L[js], ys[js])
+    js = int(np.argmin(np.abs(ys - (yd - 0.65 * PXM)))); S = (L[js], ys[js])
     edge = [(L[i], ys[i]) for i in range(js, -1, -1)] + loop[1:]          # up to the top-left corner, once round, back at the top-left
     # --- rows inside the edge band, alternating direction
     lev = EDGE + 0.5 * ROW; yr, Lr, Rr = extents(dist, lev, step=1)          # rows reach into the edge band: no long-grass corners left
     rows = []; y = yr.min() + 1; k = 0
     while y <= yr.max() - 1:
-        i = int(np.argmin(np.abs(yr - y))); a, b = (Lr[i], yr[i]), (Rr[i], yr[i]); rows.append((a, b) if k % 2 == 0 else (b, a)); y += ROW; k += 1
-    segs = [{'d': dstr([O, A]), 'mow': False, 'rev': True}]
-    segs.append({'d': dstr(bez(A, (S[0] + 0.25 * PXM, A[1]), S)), 'mow': True, 'cls': 'a', 'w': CUT})
+        i = int(np.argmin(np.abs(yr - y))); la_ = Lr[i] if abs(yr[i] - yd) > 0.555 * PXM else max(Lr[i], O[0] + DOCK_X1 + 0.39 * PXM)
+        a, b = (la_, yr[i]), (Rr[i], yr[i]); rows.append((a, b) if k % 2 == 0 else (b, a)); y += ROW; k += 1
+    segs = [{'d': dstr([O, A]), 'mow': False, 'rev': False}]                     # out of the dock visor first
+    r_ = (A[1] - S[1]) / 2; th_ = np.linspace(np.pi / 2, -np.pi / 2, 40)          # a U-turn up and back over the dock, then along to the edge
+    turn = [(A[0] + r_ * np.cos(t_), A[1] - r_ + r_ * np.sin(t_)) for t_ in th_]
+    segs.append({'d': dstr(turn + [S]), 'mow': False, 'rev': False})            # blade off until the edge pass
     segs.append({'d': dstr(edge), 'mow': True, 'cls': 'a', 'w': CUT})
     prev = edge[-1]
     for k, (a, b) in enumerate(rows):
         segs.append({'d': dstr([prev, a]), 'mow': False, 'rev': False})          # the turn: over the mowed headland, no new stripe
         segs.append({'d': dstr([a, b]), 'mow': True, 'cls': 'a' if k % 2 == 0 else 'b', 'w': CUT + 1}); prev = b
-    # --- home: along the bottom / left edge (already mowed), then a hook into the dock, nose first
-    jb = int(np.argmin(np.abs(ys - (yd + 0.6 * PXM)))); home = [prev]
+    # --- home: along the bottom / left edge (already mowed), a hook out past the dock, then backwards onto it
+    # forwards past the dock to A2 (heading up and right), then backwards on a curve that straightens onto the dock axis at A3
+    jb = int(np.argmin(np.abs(ys - (yd + 1.15 * PXM)))); home = [prev]
     if prev[0] > W / 2: home += [(R[-1], ys[-1])]
     home += [(L[-1], ys[-1])] + [(L[i], ys[i]) for i in range(len(ys) - 1, jb - 1, -1)]
-    P1 = home[-1]; segs.append({'d': dstr(home + bez(P1, (A[0] + 0.35 * PXM, P1[1] - 0.1 * PXM), A)[1:]), 'mow': False, 'rev': False})
-    segs.append({'d': dstr([A, O]), 'mow': False, 'rev': False})
+    P1 = home[-1]; A2 = (O[0] + 1.05 * PXM, O[1] - 0.30 * PXM); A3 = (O[0] + 0.45 * PXM, O[1]); k_ = 0.30 * PXM / np.sqrt(2)
+    fwd = [tuple(p) for p in cbez(P1, (P1[0] + 0.15 * PXM, P1[1] - 0.30 * PXM), (A2[0] - k_, A2[1] + k_), A2)]
+    segs.append({'d': dstr(home + fwd[1:]), 'mow': False, 'rev': False})
+    back = [tuple(p) for p in cbez(A2, (A2[0] - k_, A2[1] + k_), (A3[0] + 0.25 * PXM, A3[1]), A3)]
+    segs.append({'d': dstr(back + [O]), 'mow': False, 'rev': True})
     # --- mowed lawn: the same photo, the long-grass detail smoothed away, a fine short-grass texture added; light / dark stripe
     base = np.asarray(im).astype(np.float32)
     sm = np.asarray(im.filter(ImageFilter.GaussianBlur(1.6))).astype(np.float32)

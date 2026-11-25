@@ -73,7 +73,7 @@
   <section>
     <h2>充电座</h2>
     <button id="dockBtn" class="primary wide">驶离充电座</button>
-    <p class="note">割草机默认停在充电座上，前脸下方长圆形开口里的两个充电口套在充电针上。点击后它会自动倒车驶离，再点一次开回充电座。</p>
+    <p class="note">割草机默认停在充电座上，车尾下方长圆形开口里的两个充电口套在充电针上。点击后它会自动向前驶离，再点一次倒车开回充电座。</p>
   </section>
 
   <section>
@@ -83,7 +83,7 @@
       <output id="lidVal" for="lid">0°</output>
     </div>
     <button id="lidBtn" class="primary wide">打开盖板</button>
-    <p class="note">盖板与上盖同色、和车顶齐平，下面是显示屏和 STOP 键。铰链藏在后缝下面，外面看不到；盖板开到 75° 停住，开启有阻尼，没有气撑杆。前缘是按压式锁扣，四周一圈密封条。盖板上凸起的红色 STOP 键可以直接按：它会压下面真正的 STOP 键让割草机停下，继续往下按盖板就会弹开。</p>
+    <p class="note">盖板与上盖同色、和车顶齐平，下面是显示屏和 STOP 键。铰链藏在前缝下面，外面看不到；盖板开到 75° 停住，开启有阻尼，没有气撑杆。后缘是按压式锁扣，四周一圈密封条。盖板上凸起的红色 STOP 键可以直接按：它会压下面真正的 STOP 键让割草机停下，继续往下按盖板就会弹开。</p>
   </section>
 
   <section>
@@ -93,14 +93,14 @@
       <output id="explodeVal" for="explode">0%</output>
     </div>
     <button id="explodeBtn" class="primary wide">展开分解</button>
-    <p class="note">盖板、上盖、车身依次升起，露出上盖下面固定车身的 14 颗螺丝和 2.5 mm 厚的实体外壳；前保险杠、控制面板和车轮留在底盘上。</p>
+    <p class="note">盖板、上盖、车身依次升起，露出上盖下面固定车身的 14 颗螺丝和 2.5 mm 厚的实体外壳；保险杠、控制面板和车轮留在底盘上。</p>
   </section>
 
   <section>
     <h2>配色方案</h2>
     <div id="swatches" role="radiogroup" aria-label="配色方案（上盖、车身与轮毂灯环一起变色）"></div>
     <p class="note scheme-name" id="schemeName" aria-live="polite"></p>
-    <p class="note">上盖与盖板、深色车身、轮毂灯环一起换色；底盘、前保险杠和红色 STOP 键颜色不变。</p>
+    <p class="note">上盖与盖板、车身、裙边、轮毂灯环一起换色；底盘、保险杠和红色 STOP 键颜色不变。</p>
   </section>
 
   <section>
@@ -113,7 +113,7 @@
       <label class="switch"><input type="checkbox" id="drive"><span>行驶演示</span></label>
       <button id="resetWheels" class="ghost-btn">车轮复位</button>
     </div>
-    <p class="note">在模型上按住驱动轮拖动即可转动；万向轮在车尾底部，打开“透视外壳”或展开分解后即可直接拖动调整朝向。转角为正表示向前滚动，朝向 0° 表示跟随行驶方向。</p>
+    <p class="note">在模型上按住驱动轮拖动即可转动；万向轮在车头底部，打开“透视外壳”或展开分解后即可直接拖动调整朝向。转角为正表示朝车尾方向滚动（倒车），朝向 180° 是前进时万向轮跟随的方向。</p>
   </section>
 
   <section>
@@ -121,7 +121,7 @@
     <label class="check"><input type="checkbox" id="showLid" checked> 盖板</label>
     <label class="check"><input type="checkbox" id="showCover" checked> 上盖（卡扣固定，盖住螺丝）</label>
     <label class="check"><input type="checkbox" id="showBody" checked> 车身（一体式，含下裙、灯带、摄像头）</label>
-    <label class="check"><input type="checkbox" id="showLower" checked> 前保险杠</label>
+    <label class="check"><input type="checkbox" id="showLower" checked> 保险杠</label>
     <label class="check"><input type="checkbox" id="showBase" checked> 底盘（含控制面板、驱动轮、万向轮）</label>
     <label class="check"><input type="checkbox" id="showDock" checked> 充电座</label>
     <label class="check"><input type="checkbox" id="ghost"> 透视外壳（看清底盘和万向轮）</label>
@@ -147,6 +147,6 @@
   </div>
 </div>
 
-<script type="module" src="app.js"></script>
+<script type="module" src="app.js?v=2026-11-25f9"></script>
 </body>
 </html>

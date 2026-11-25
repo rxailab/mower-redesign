@@ -1,0 +1,314 @@
+{
+ "npz": "f9.npz",
+ "chassis": "cut: pin_trim_L, pin_trim_R, pin_top_L, pin_top_R, hook_L, hook_R",
+ "features": {
+  "rim_flange_L": {
+   "samples": 24432,
+   "reach_abs_y_mm": 166.94,
+   "top_z_mm": 225.83,
+   "body": {
+    "min_gap_mm": 1.46,
+    "inside": 0
+   },
+   "cover": {
+    "min_gap_mm": 5.68,
+    "inside": 0
+   },
+   "kit_deck": {
+    "min_gap_mm": 1.28,
+    "inside": 0
+   },
+   "kit_screw": {
+    "min_gap_mm": 2.78,
+    "inside": 0
+   },
+   "past_inner_skin_mm": -1.46,
+   "past_outer_skin_mm": -3.96
+  },
+  "rim_flange_R": {
+   "samples": 30150,
+   "reach_abs_y_mm": 166.17,
+   "top_z_mm": 224.99,
+   "body": {
+    "min_gap_mm": 2.23,
+    "inside": 0
+   },
+   "cover": {
+    "min_gap_mm": 6.51,
+    "inside": 0
+   },
+   "kit_deck": {
+    "min_gap_mm": 1.11,
+    "inside": 0
+   },
+   "kit_screw": {
+    "min_gap_mm": 3.04,
+    "inside": 0
+   },
+   "past_inner_skin_mm": -2.23,
+   "past_outer_skin_mm": -4.73
+  },
+  "rim_flange_front_L": {
+   "samples": 29712,
+   "reach_abs_y_mm": 167.9,
+   "top_z_mm": 221.01,
+   "body": {
+    "min_gap_mm": 1.05,
+    "inside": 0
+   },
+   "cover": {
+    "min_gap_mm": 14.95,
+    "inside": 0
+   },
+   "kit_deck": {
+    "min_gap_mm": 0.73,
+    "inside": 0
+   },
+   "kit_screw": {
+    "min_gap_mm": 2.95,
+    "inside": 0
+   },
+   "past_inner_skin_mm": -1.05,
+   "past_outer_skin_mm": -3.0
+  },
+  "rim_flange_front_R": {
+   "samples": 32511,
+   "reach_abs_y_mm": 166.09,
+   "top_z_mm": 220.65,
+   "body": {
+    "min_gap_mm": 2.31,
+    "inside": 0
+   },
+   "cover": {
+    "min_gap_mm": 15.0,
+    "inside": 0
+   },
+   "kit_deck": {
+    "min_gap_mm": 0.77,
+    "inside": 0
+   },
+   "kit_screw": {
+    "min_gap_mm": 2.94,
+    "inside": 0
+   },
+   "past_inner_skin_mm": -2.31,
+   "past_outer_skin_mm": -4.81
+  },
+  "pin_L": {
+   "samples": 7174,
+   "reach_abs_y_mm": 167.2,
+   "top_z_mm": 223.18,
+   "body": {
+    "min_gap_mm": 1.2,
+    "inside": 0
+   },
+   "kit_deck": {
+    "min_gap_mm": 1.72,
+    "inside": 0
+   },
+   "past_inner_skin_mm": -1.2,
+   "past_outer_skin_mm": -3.7
+  },
+  "pin_R": {
+   "samples": 9515,
+   "reach_abs_y_mm": 167.2,
+   "top_z_mm": 221.61,
+   "body": {
+    "min_gap_mm": 1.2,
+    "inside": 0
+   },
+   "kit_deck": {
+    "min_gap_mm": 1.21,
+    "inside": 0
+   },
+   "past_inner_skin_mm": -1.2,
+   "past_outer_skin_mm": -3.7
+  },
+  "drive_housing_L": {
+   "samples": 106256,
+   "reach_abs_y_mm": 178.04,
+   "top_z_mm": 165.0,
+   "body": {
+    "min_gap_mm": 2.04,
+    "inside": 0
+   },
+   "kit_seat": {
+    "min_gap_mm": 1.59,
+    "inside": 0
+   }
+  },
+  "drive_housing_R": {
+   "samples": 96627,
+   "reach_abs_y_mm": 176.35,
+   "top_z_mm": 165.0,
+   "body": {
+    "min_gap_mm": 1.99,
+    "inside": 0
+   },
+   "kit_seat": {
+    "min_gap_mm": 1.51,
+    "inside": 0
+   }
+  },
+  "hook_L": {
+   "samples": 14267,
+   "reach_abs_y_mm": 165.0,
+   "top_z_mm": 175.75,
+   "body": {
+    "min_gap_mm": 1.48,
+    "inside": 0
+   },
+   "cover": {
+    "min_gap_mm": 17.41,
+    "inside": 0
+   },
+   "kit_deck": {
+    "min_gap_mm": 17.99,
+    "inside": 0
+   },
+   "kit_rib": {
+    "min_gap_mm": 5.04,
+    "inside": 0
+   },
+   "kit_pilot": {
+    "min_gap_mm": 7.72,
+    "inside": 0
+   },
+   "past_inner_skin_mm": -1.48,
+   "past_outer_skin_mm": -3.98
+  },
+  "hook_R": {
+   "samples": 12013,
+   "reach_abs_y_mm": 165.0,
+   "top_z_mm": 175.69,
+   "body": {
+    "min_gap_mm": 1.46,
+    "inside": 0
+   },
+   "cover": {
+    "min_gap_mm": 19.42,
+    "inside": 0
+   },
+   "kit_deck": {
+    "min_gap_mm": 18.04,
+    "inside": 0
+   },
+   "kit_rib": {
+    "min_gap_mm": 7.36,
+    "inside": 0
+   },
+   "kit_pilot": {
+    "min_gap_mm": 11.11,
+    "inside": 0
+   },
+   "past_inner_skin_mm": -1.46,
+   "past_outer_skin_mm": -3.97
+  }
+ },
+ "drive_housing_vs_seat": {
+  "L": {
+   "housing_crest_z_mm": 155.5,
+   "body_edge_z_over_housing_mm": 156.98,
+   "seat_flange_min_z_mm": 156.5,
+   "vertical_gap_min_mm": 2.04,
+   "at_mm": [
+    117.2,
+    168.7,
+    155.0
+   ]
+  },
+  "R": {
+   "housing_crest_z_mm": 155.01,
+   "body_edge_z_over_housing_mm": 156.98,
+   "seat_flange_min_z_mm": 156.5,
+   "vertical_gap_min_mm": 1.99,
+   "at_mm": [
+    119.5,
+    -169.9,
+    155.0
+   ]
+  }
+ },
+ "body_to_wheel_min_mm": {
+  "Wheel_L": 10.53,
+  "Wheel_R": 8.35
+ },
+ "cuts": {
+  "pin_trim_L": {
+   "cap_area_mm2": 35.3,
+   "removed_vertices": 50,
+   "removal_depth_mm": 2.73,
+   "cap_bounds_mm": [
+    112.0,
+    214.7,
+    122.6,
+    218.5
+   ]
+  },
+  "pin_trim_R": {
+   "cap_area_mm2": 30.1,
+   "removed_vertices": 39,
+   "removal_depth_mm": 1.47,
+   "cap_bounds_mm": [
+    115.5,
+    214.4,
+    123.4,
+    218.5
+   ]
+  },
+  "pin_top_L": {
+   "cap_area_mm2": 97.3,
+   "removed_vertices": 142,
+   "removal_depth_mm": 17.87,
+   "cap_bounds_mm": [
+    111.1,
+    157.2,
+    123.0,
+    167.2
+   ]
+  },
+  "pin_top_R": {
+   "cap_area_mm2": 99.6,
+   "removed_vertices": 136,
+   "removal_depth_mm": 17.34,
+   "cap_bounds_mm": [
+    113.7,
+    -167.2,
+    125.3,
+    -156.8
+   ]
+  },
+  "hook_L": {
+   "cap_area_mm2": 115.9,
+   "removed_vertices": 101,
+   "removal_depth_mm": 6.57,
+   "cap_bounds_mm": [
+    258.0,
+    149.5,
+    272.3,
+    163.3
+   ]
+  },
+  "hook_R": {
+   "cap_area_mm2": 83.6,
+   "removed_vertices": 34,
+   "removal_depth_mm": 3.02,
+   "cap_bounds_mm": [
+    265.1,
+    149.3,
+    272.7,
+    163.3
+   ]
+  }
+ },
+ "air_check": {
+  "pin_trim_L": 0,
+  "pin_trim_R": 0,
+  "pin_top_L": 0,
+  "pin_top_R": 0,
+  "hook_L": 0,
+  "hook_R": 0
+ },
+ "legacy_kill_vertices": 2593,
+ "removed_vertices_total": 442
+}

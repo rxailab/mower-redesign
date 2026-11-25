@@ -273,7 +273,8 @@ def build(X, log=print):
         if len(bag.F) > n0: rec.append((len(f), KINDS.index(kind)))
     for pt in X['patches']:
         sgn = 1.0 if pt['side'] == 'front' else -1.0; bd = pt['band']; zc = bd['z']; h = bd['h']; w = bd['w']; nm = pt['side']; R = {}
-        outline = LineString([(-w / 2 + h / 2, zc), (w / 2 - h / 2, zc)]).buffer(h / 2, quad_segs=48)      # the lens outline (stadium, R = h / 2), as design_gen's band
+        rb = min(bd.get('r', h / 2), h / 2)      # [v21] corner radius as design_gen's band (default: stadium, R = h / 2)
+        outline = shapely.box(-w / 2, zc - h / 2, w / 2, zc + h / 2).buffer(-rb + 1e-6).buffer(rb - 1e-6, quad_segs=48)      # the lens outline
         # ---- 1. lens solid: the cut-out A-surface patch made a closed 2.5 mm solid by shell_wall (edge rolled R roll_lens, inner round edge_ri)
         Wl = shell_wall.build(pt['v'], pt['f'], pt['lab'], np.zeros(len(pt['f']), np.int16), {}, dict(t=LENS['t'], edge_r=LENS['roll_lens'], edge_ri=LENS['edge_ri'],
                               loop_r=[], thin=[], smooth_r=0.004, blend=0.002), log=lambda *a: None)
@@ -282,27 +283,35 @@ def build(X, log=print):
                          wall_max_mm=ck.get('wall_max_mm'), outline_mm=[round(w * 1000, 1), round(h * 1000, 1)], gap_mm=LENS['gap'] * 1000)
         LZ.add(Wl.V, Wl.F, 0); LZs.append(Wl.side.astype(np.uint8)); LZid.append(np.full(len(Wl.F), 0 if sgn > 0 else 1, np.uint8)); LZ.L[-1] = Wl.lab.astype(np.int8)
         # ---- 2. band coordinates
-        sb = np.abs(BV[:, 1]) < 0.158; sb &= (BV[:, 2] > 0.145) & (BV[:, 2] < 0.1875) & (sgn * BV[:, 0] > 0.25)
+        zlo_ = min(0.145, zc - h / 2 - 0.003) if bd.get('map_low') else 0.145      # [v21] map_low: tall visor band, the map also covers the body below the lens (gasket, lower flange)
+        sb = np.abs(BV[:, 1]) < 0.158; sb &= (BV[:, 2] > zlo_) & (BV[:, 2] < 0.1875) & (sgn * BV[:, 0] > 0.25)
         dB = shapely.distance(outline.boundary, shapely.points(BV[sb][:, 1:3])); Bs = BV[sb][dB > 0.0015]
         M = BandMap(np.r_[pt['v'][::2], Bs[::2]], sgn, zc, log=log); R['map_residual_mm'] = [round(M.res_rms * 1000, 4), round(M.res_max * 1000, 4)]
         Ym = np.linspace(-w / 2 + h / 2, w / 2 - h / 2, 41); am = -M.normal(Ym, np.full_like(Ym, zc)).mean(0); am /= np.linalg.norm(am)     # module axis (inward)
         R['axis'] = np.round(am, 4).tolist()
         def mapped(v, f, maxlen=0.002):
             v2, f2 = refine(np.asarray(v, float), f, maxlen); return M(v2), f2
-        H = P['housing']; ub_k = np.array(H['u_back'][nm])
+        H = dict(P['housing'], **bd.get('housing', {})); ub_k = np.array(bd.get('u_back') or H['u_back']['front' if bd.get('module', 'pupil' if sgn > 0 else 'dot') == 'pupil' else 'rear'])      # [v21] depth by module (the camera needs the deeper centre)
         ub = lambda y: np.interp(np.abs(y), ub_k[:, 0], ub_k[:, 1])
         # ---- 3. housing: one closed swept section round the outline (weld land / step / gasket flange / wall), back plate = two caps
         ring = lidmech.resample(outline, 0.0015); ring = ring[::-1] if Polygon(ring).exterior.is_ccw is False else ring
         Nl = lidmech.lnormals(ring)                                                            # CCW -> inward
         if shapely.contains_xy(outline, *(ring[0] + Nl[0] * 0.001)) is False: Nl = -Nl
         Nout = -Nl; yy = ring[:, 0]; zz = ring[:, 1]
-        bottom = zz < zc - 1e-4; top = zz > zc + 1e-4; ends = np.abs(yy) > w / 2 - h / 2
+        bottom = zz < zc - 1e-4; top = zz > zc + 1e-4; ends = np.abs(yy) > w / 2 - rb
         dout = np.where(top & ~ends, H['d_out_top'], np.where(bottom & ~ends, H['d_out_bot'], H['d_out']))
         trap = bottom & (np.abs(yy) < H['trap_y']); dout = np.where(trap, H['d_trap'], dout)
         dout = np.convolve(np.r_[dout[-20:], dout, dout[:20]], np.ones(21) / 21, 'same')[20:-20]          # smooth transitions (no steps in the flange)
         ubr = ub(yy); BT = H['back_t']
         uc_ = np.full(len(ring), 0.5 * (H['step_u'] + H['frame_t'] + ubr.min() - BT))      # [fix3-int] chamfer start of the bottom wall over the port frame (collinear elsewhere)
-        secs = [(-H['weld_in'], ubr - BT), (-H['weld_in'], uc_), (-H['weld_in'], H['weld_u']), (H['step_d'], H['weld_u']), (H['step_d'], H['step_u']), (dout, H['step_u']), (dout, H['step_u'] + H['frame_t']),
+        sdp = H['step_d']
+        if 'step_d_low' in H or 'step_d_top' in H:      # [v21] tall lens on a face that curves away at its lower corners and rakes back at its top: the light-trap
+            #                                              step moves in on the lower part and along the top edge; it stays at step_d round the upper ends
+            sm_ = lambda t_: np.clip(t_, 0.0, 1.0) ** 2 * (3 - 2 * np.clip(t_, 0.0, 1.0))
+            wl_ = sm_((zc - zz) / (0.2 * h)); wt_ = sm_((zz - zc) / (0.2 * h)) * sm_((w / 2 - 0.5 * rb - np.abs(yy)) / (0.5 * rb))
+            sdp = H['step_d'] + (H.get('step_d_low', H['step_d']) - H['step_d']) * wl_ + (H.get('step_d_top', H['step_d']) - H['step_d']) * wt_
+            sdp = np.convolve(np.r_[sdp[-20:], sdp, sdp[:20]], np.ones(21) / 21, 'same')[20:-20]
+        secs = [(-H['weld_in'], ubr - BT), (-H['weld_in'], uc_), (-H['weld_in'], H['weld_u']), (sdp, H['weld_u']), (sdp, H['step_u']), (dout, H['step_u']), (dout, H['step_u'] + H['frame_t']),
                 (-H['weld_out'], H['step_u'] + H['frame_t']), (-H['weld_out'], uc_), (-H['weld_out'], ubr)]      # [fix3-int] + the two chamfer points
         secs = [(np.broadcast_to(np.asarray(d_, float), len(ring)).copy(), np.broadcast_to(np.asarray(u_, float), len(ring)).copy()) for d_, u_ in secs]      # [fix3-int]
         PF3 = X.get('ports')      # [fix3-int] fix-ports' closed port frame (tunnel top wall 1.5 at z ~162.7, hood back to x ~304.5) runs right under the bottom of the
@@ -343,7 +352,7 @@ def build(X, log=print):
         R['housing'] = dict(u_back_mm=[round(float(ub(0.0)) * 1000, 1), round(float(ub(0.05)) * 1000, 1), round(float(ub(0.12)) * 1000, 1)],
                             flange_mm=dict(top=H['d_out_top'] * 1000, bottom=H['d_out_bot'] * 1000, ends=H['d_out'] * 1000, light_trap_over_slot=H['d_trap'] * 1000))
         # gasket (compressed 1.0 -> 0.6 mm) between the body's inner skin (u = t) and the flange, open over the charger slot (drain)
-        PDS = pads_(P.get('pads'), w, h, zc, H)      # [fix4-front2] crush pads (flush datums) on the flange: (polygon in band (y, z), kind)
+        Pd_ = dict(P.get('pads') or {}, **bd.get('pads', {})) if (P.get('pads') or bd.get('pads')) else None; PDS = pads_(Pd_, w, h, zc, H)      # [v21] per-band pad layout      # [fix4-front2] crush pads (flush datums) on the flange: (polygon in band (y, z), kind)
         if H.get('gasket_continuous'):      # [fix4-front2] gasket = the flange as built minus gasket_edge, closed round the lens (also over the slot), notched round the pads and
             dfl_ = np.asarray(secs[5][0], float); gpg = Polygon(ring + Nout * (dfl_ - H['gasket_edge'])[:, None]).buffer(0)      # [fix4-front2]   at the drain breaks
             gpg = gpg.difference(outline.buffer(H['gasket_in'], quad_segs=24))      # [fix4-front2]
@@ -358,12 +367,13 @@ def build(X, log=print):
             if gp_.area < 1e-6: continue
             v_, f_ = ext(gp_, LENS['t'], H['step_u'], 'yz'); v3, f3 = mapped(v_, f_); add(KB, KK, 'gasket', v3, f3, MAT['foam'])
         for pp_, _ in PDS:      # [fix4-front2] crush pads moulded on the flange face (u = step_u) out to the body's inner skin (u = t): the module is pushed onto them
-            v_, f_ = ext(pp_, LENS['t'] - float(P['pads'].get('crush', 0.0)), H['step_u'] + 0.0002, 'yz'); v3, f3 = mapped(v_, f_, 0.0005); add(KB, KK, 'pad', v3, f3, MAT['housing'])
+            v_, f_ = ext(pp_, LENS['t'] - float(Pd_.get('crush', 0.0)), H['step_u'] + 0.0002, 'yz'); v3, f3 = mapped(v_, f_, 0.0005); add(KB, KK, 'pad', v3, f3, MAT['housing'])
         if PDS: R['pads'] = dict(n=len(PDS), at_mm=[np.round(np.array(pp_.centroid.coords[0]) * 1000, 1).tolist() for pp_, _ in PDS], height_mm=round((H['step_u'] - LENS['t']) * 1000, 2))      # [fix4-front2]
         # vent membrane (ePTFE, adhesive) on the back plate
         vy, vz, vr = H['vent']; v_, f_ = rev((vy, vz, ub(vy)), (0, 0, 1.0), [(0, 0), (0, vr), (0.0004, vr), (0.0004, 0)], 24); v3, f3 = mapped(v_, orient_out(v_, f_)); add(KB, KK, 'vent', v3, f3, MAT['tpe'])
         # ---- 4. light bars, carriers, LED end boards (both sides)
-        Bp = P['bar']; Bd = P['board']; zb0, zb1 = zc + Bp['z0'], zc + Bp['z1']; ct = Bp['carrier_t']
+        Bp = dict(P['bar'], **bd.get('bar', {})); Bd = dict(P['board'], **bd.get('board', {}));      # [v21] per-band overrides (the visor's bar runs along its top)
+        zb0, zb1 = zc + Bp['z0'], zc + Bp['z1']; ct = Bp['carrier_t']
         for s in (1, -1):
             pg = Polygon([(Bp['y0'], Bp['u0']), (Bp['leg_y'], Bp['u0']), (Bp['y1'], Bp['u0'] + (Bp['y1'] - Bp['leg_y'])), (Bp['y1'], Bp['leg_u']),
                           (Bp['leg_y'], Bp['leg_u']), (Bp['leg_y'], Bp['u1']), (Bp['y0'], Bp['u1'])])
@@ -375,16 +385,17 @@ def build(X, log=print):
             v_, f_ = ext(cu, ya, yb, 'zu'); v3, f3 = mapped(v_, f_); add(KB, KK, 'carrier', v3, f3, MAT['white'])
             ye = s * (Bp['y0'] - 0.0001 - ct / 2); v_, f_ = ext(shapely.box(ye - ct / 2, zb0 - 0.0001 - ct, ye + ct / 2, zb1 + 0.0001 + ct), Bp['u0'] - 0.00015, Bp['u1'] + 0.0001 + ct, 'yz')
             v3, f3 = mapped(v_, f_); add(KB, KK, 'carrier', v3, f3, MAT['white'])
-            bpg = shapely.box(Bd['y0'], zc - Bd['z_half'], Bd['y1'], zc + Bd['z_half']).intersection(outline.buffer(-H['weld_in'] - 0.0003, quad_segs=24))
+            zcb = zc + Bd.get('z_off', 0.0)      # [v21] the LED board level with its light bar (a visor's bar runs along the top)
+            bpg = shapely.box(Bd['y0'], zcb - Bd['z_half'], Bd['y1'], zcb + Bd['z_half']).intersection(outline.buffer(-H['weld_in'] - 0.0003, quad_segs=24))
             bpg = bpg.buffer(-0.0005).buffer(0.0005, quad_segs=6)
             if s < 0: bpg = affinity.scale(bpg, -1, 1, origin=(0, 0))
             v_, f_ = ext(bpg, Bd['u0'], Bd['u0'] + Bd['t'], 'yz'); v3, f3 = mapped(v_, f_); add(KB, KK, 'pcb', v3, f3, MAT['pcb'])
             ly = s * 0.5 * (Bp['leg_y'] + Bp['y1']); lw, lh, lt = Bd['led']
-            v_, f_ = ext(shapely.box(ly - lw / 2, zc - lh / 2, ly + lw / 2, zc + lh / 2), Bd['u0'] - lt, Bd['u0'], 'yz'); v3, f3 = mapped(v_, f_); add(KB, KK, 'led', v3, f3, MAT['led'])
+            v_, f_ = ext(shapely.box(ly - lw / 2, zcb - lh / 2, ly + lw / 2, zcb + lh / 2), Bd['u0'] - lt, Bd['u0'], 'yz'); v3, f3 = mapped(v_, f_); add(KB, KK, 'led', v3, f3, MAT['led'])
         R['light_bar'] = dict(section_mm=[round((Bp['z1'] - Bp['z0']) * 1000, 1), round((Bp['u1'] - Bp['u0']) * 1000, 2)], y_mm=[Bp['y0'] * 1000, Bp['y1'] * 1000],
                               air_to_lens_mm=round((Bp['u0'] - LENS['t']) * 1000, 2), led='3030 mid-power at the outboard end, 45 deg TIR leg')
         # ---- 5. centre: front pupil (camera, ToF, status LED) / rear dot
-        if sgn > 0:
+        if bd.get('module', 'pupil' if sgn > 0 else 'dot') == 'pupil':      # [v21] the camera module goes where band.module says (default: the nose)
             Pu = P['pupil']; bw, bh, bu = Pu['board']
             pb = shapely.box(-bw, zc - bh, bw, zc + bh).buffer(-0.001).buffer(0.001, quad_segs=6).difference(Point(0.0, zc).buffer(0.0032, quad_segs=24))
             v_, f_ = ext(pb, bu, bu + 0.001, 'yz'); v3, f3 = mapped(v_, f_); add(KB, KK, 'pcb', v3, f3, MAT['pcb'])
@@ -394,12 +405,12 @@ def build(X, log=print):
             add(KB, KK, 'camera', v3, f3, MAT['metal'])
             v_, f_ = rev((0.0, zc, cu0 - 0.00005), (0, 0, 1.0), [(0, 0.0021), (0, 0.0024), (0.0001, 0.0024), (0.0001, 0.0021)], 40); v3, f3 = mapped(v_, orient_out(v_, f_))
             add(KB, KK, 'camera', v3, f3, MAT['sensor'])                                    # glass of the camera lens
-            v_, f_ = rev((0.0, zc, LENS['t'] + 0.00002), (0, 0, 1.0), [(0, cr + 0.0002), (0, cr + 0.0012), (cu0 - LENS['t'], cr + 0.0012), (cu0 - LENS['t'], cr + 0.0002)], 40)
+            v_, f_ = rev((0.0, zc, LENS['t'] + 0.00006), (0, 0, 1.0), [(0, cr + 0.0002), (0, cr + 0.0012), (cu0 - LENS['t'] - 0.00004, cr + 0.0012), (cu0 - LENS['t'] - 0.00004, cr + 0.0002)], 40)      # [v21] 60 um off the lens (band-map residual up to 35 um)
             v3, f3 = mapped(v_, orient_out(v_, f_)); add(KB, KK, 'foam', v3, f3, MAT['foam'])          # anti-flare foam ring between the barrel and the lens
             tw, th_, tt = Pu['tof']; ty = Pu['tof_y']
             v_, f_ = ext(shapely.box(ty - tw / 2, zc - th_ / 2, ty + tw / 2, zc + th_ / 2), bu - tt, bu, 'yz'); v3, f3 = mapped(v_, f_); add(KB, KK, 'tof', v3, f3, MAT['sensor'])
             fg = shapely.box(ty - tw / 2 - 0.0008, zc - th_ / 2 - 0.0008, ty + tw / 2 + 0.0008, zc + th_ / 2 + 0.0008).difference(Point(ty, zc).buffer(0.0016, quad_segs=16))
-            v_, f_ = ext(fg, LENS['t'] + 0.00002, bu - tt + 0.0001, 'yz'); v3, f3 = mapped(v_, f_); add(KB, KK, 'foam', v3, f3, MAT['foam'])   # ToF crosstalk gasket
+            v_, f_ = ext(fg, LENS['t'] + 0.00006, bu - tt + 0.0001, 'yz'); v3, f3 = mapped(v_, f_); add(KB, KK, 'foam', v3, f3, MAT['foam'])   # ToF crosstalk gasket
             ly = Pu['led_y']; v_, f_ = ext(shapely.box(ly - 0.0008, zc - 0.0004, ly + 0.0008, zc + 0.0004), bu - 0.0006, bu, 'yz'); v3, f3 = mapped(v_, f_); add(KB, KK, 'led', v3, f3, MAT['led'])
             v_, f_ = rev((ly, zc, LENS['t'] + 0.0001), (0, 0, 1.0), [(0, 0), (0, Pu['pipe_r']), (bu - 0.0006 - LENS['t'] - 0.00015, Pu['pipe_r']), (bu - 0.0006 - LENS['t'] - 0.00015, 0)], 32)
             v3, f3 = mapped(v_, orient_out(v_, f_)); add(KB, KK, 'pipe', v3, f3, MAT['pmma'])
@@ -424,7 +435,7 @@ def build(X, log=print):
         hood_top = c1 - ax * 0.0035 + np.array([0, 0, 1.0]) * (Cn['h'] / 2)                   # right-angle cable exit (upwards) at the plug's back end
         R['connector'] = dict(at_mm=(pc * 1000).round(1).tolist(), axis=np.round(ax, 3).tolist(), cable_exit_mm=(hood_top * 1000).round(1).tolist())
         # ---- 7. bosses on the body wall + ears + screws (parallel to the module axis am)
-        Bo = P['bosses']; axb = np.array([-sgn, 0.0, 0.0]) if Bo.get('axis', 'module') == 'x' else am      # [fix4-front2] M6: 'x' = horizontal boss axes (one internal slide per end)
+        Bo = dict(P['bosses'], **bd.get('bosses', {})); axb = np.array([-sgn, 0.0, 0.0]) if Bo.get('axis', 'module') == 'x' else am      # [fix4-front2] M6: 'x' = horizontal boss axes (one internal slide per end)
         e1b, e2b, _ = frame3(axb); cth = float(axb @ am); flt = float(Bo.get('float', 0.0)); Rb = []      # [fix4-front2] float: ear-to-boss gap (the ear slides on the screw's sleeve)
         for (by, bz_off) in Bo['at']:
             for s in (1, -1):

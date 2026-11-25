@@ -3,6 +3,9 @@
 import sys, math
 kind, N = sys.argv[1], int(sys.argv[2])
 LIFT = 0.0173; XF, XR = 0.117, -0.200            # drive-wheel and caster contact x (mower frame)
+# [v21] docking: the charging port is at the drive-wheel end (+x), the back of the visor design: the mower reverses onto the plate.
+#       Camera on the visor side, a little behind the dock line, so the face and the dock pins are both in view.
+CAM_DOCK = '-0.85:-2.55:1.05:-0.42:0.0:0.14:44'
 def h(x):                                          # dock plate top (dock views: floor at -LIFT, plate top at 0); rear ramp 40 mm
     return -LIFT + LIFT * min(1, max(0, (x + 0.345) / 0.04))
 views, poses, names = [], [], []
@@ -12,9 +15,10 @@ for i in range(N):
         e = 1 - (1 - t) ** 2.2                       # slows down as it docks
         dx = -1.05 * (1 - e); zf, zr = h(XF + dx), h(XR + dx)
         p = math.degrees(math.atan2(zf - zr, XF - XR)); dz = zr - XR * math.sin(math.radians(p))
-        n = f'dockin{i:02d}'; views.append(f'{n}=1.05:-1.80:0.95:-0.45:0.0:0.12:44'); poses.append(f'{n}={dx:.5f}:{dz:.5f}:{p:.4f}:{dx + 1.05:.5f}')
+        n = f'dockin{i:02d}'; views.append(f'{n}={CAM_DOCK}'); poses.append(f'{n}={dx:.5f}:{dz:.5f}:{p:.4f}:{dx + 1.05:.5f}')
     else:
         th = 19.29; s = -0.60 + 1.20 * t; c, sn = math.cos(math.radians(th)), math.sin(math.radians(th))
-        n = f'slope{i:02d}'; views.append(f'{n}=0.55:-3.15:0.80:0.0:0.0:0.02:50'); poses.append(f'{n}={s * c:.5f}:{s * sn:.5f}:{th:.3f}:{s + 0.60:.5f}')
+        # [v21] the visor end (-x) is the front: the mower is turned 180 deg about z and climbs visor first (wheels roll the other way)
+        n = f'slope{i:02d}'; views.append(f'{n}=0.55:-3.15:0.80:0.0:0.0:0.02:50'); poses.append(f'{n}={s * c:.5f}:{s * sn:.5f}:{th:.3f}:{-(s + 0.60):.5f}:180')
     names.append(n)
 print(';'.join(views)); print(','.join(poses)); print(','.join(names))

@@ -1,5 +1,6 @@
 // 割草机 3D 查看器 — three.js r160
-// Coordinates (glTF, metres): +X = front of the mower, +Y = up, -Z = the mower's left side.
+// Coordinates (glTF, metres): +X = the drive-wheel / charging-port end, +Y = up, Z = -y of the design files.
+// [v21] Orbit f9: the visor end (-X, casters) is the front, so the mower's left side is +Z.
 import * as THREE from 'three';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
@@ -51,12 +52,12 @@ controls.maxPolarAngle = Math.PI * 0.495;
 controls.autoRotateSpeed = 1.2;
 
 const VIEWS = {
-  iso:   { cam: [1.08, 0.74, 1.0], target: [0, 0.11, 0] },
-  front: { cam: [1.55, 0.38, 0.0], target: [0, 0.12, 0] },
-  rear:  { cam: [-1.55, 0.42, 0.0], target: [0, 0.12, 0] },
-  left:  { cam: [0.0, 0.34, -1.6], target: [0, 0.12, 0] },
-  right: { cam: [0.0, 0.34, 1.6], target: [0, 0.12, 0] },
-  top:   { cam: [-0.0015, 1.75, 0.0], target: [0, 0.1, 0] },     // front of the mower at the top of the screen
+  iso:   { cam: [-1.08, 0.74, 1.0], target: [0, 0.11, 0] },
+  front: { cam: [-1.55, 0.38, 0.0], target: [0, 0.12, 0] },
+  rear:  { cam: [1.55, 0.42, 0.0], target: [0, 0.12, 0] },
+  left:  { cam: [0.0, 0.34, 1.6], target: [0, 0.12, 0] },
+  right: { cam: [0.0, 0.34, -1.6], target: [0, 0.12, 0] },
+  top:   { cam: [0.0015, 1.75, 0.0], target: [0, 0.1, 0] },     // front of the mower (the visor) at the top of the screen
 };
 
 // narrow / portrait screens need the camera further away to keep the whole mower in frame
@@ -168,11 +169,11 @@ canvas.addEventListener('webglcontextlost', (e) => e.preventDefault());
 canvas.addEventListener('webglcontextrestored', () => { buildEnv(); requestRender(); });
 
 // ---------------------------------------------------------------- loading
-const MODEL_VERSION = '2026-11-25b';     // bump when the models change, so browsers do not reuse cached copies
+const MODEL_VERSION = '2026-11-25f9';     // bump when the models change, so browsers do not reuse cached copies
 const FILES = ['body', 'cover', 'lid', 'lower', 'panel', 'base', 'dock'].map((k) => [k, `models/${k}.glb?v=${MODEL_VERSION}`]);
 const GROUP_OF = { panel: 'base' };      // the control panel (STOP key, display) is fixed to the chassis
 // the host compresses the models and sends no Content-Length: use the known sizes as the progress total
-const SIZES = { body: 9296088, cover: 2913656, lid: 1015532, lower: 730608, panel: 266068, base: 13671280, dock: 5486764 };
+const SIZES = { body: 13246416, cover: 2876740, lid: 1012412, lower: 730884, panel: 266068, base: 13671280, dock: 5486764 };
 const prog = {};
 for (const k in SIZES) prog[k] = [0, SIZES[k]];
 function updateBar() {
@@ -271,7 +272,8 @@ function setup(hotspotData, paletteData) {
   if (mats.DisplayGlass) { mats.DisplayGlass.envMapIntensity = 0.55; mats.DisplayGlass.roughness = 0.22; }
   if (mats.CyanRing) mats.CyanRing.emissiveIntensity = 0.8;   // colour comes from the scheme (setPaint)
   if (mats.StopButton) mats.StopButton.envMapIntensity = 0.5;
-  for (const m of matsAll.LampLight || []) { m.emissive.set(0xf2fbff); m.emissiveIntensity = 1.15; m.color.set(0xf2fbff); }
+  const lampHex = new THREE.Color(DESIGN && DESIGN.light_hex ? DESIGN.light_hex : 0xf2fbff);      // f9: warm (design.json light_hex), Horizon: cool white
+  for (const m of matsAll.LampLight || []) { m.emissive.copy(lampHex); m.emissiveIntensity = 1.15; m.color.copy(lampHex); }
   for (const n of ['BodyPaint', 'LidPaint']) for (const m of matsAll[n] || []) m.envMapIntensity = 0.8;
   for (const n of ['DeckPaint', 'Glass', 'LensGlass']) for (const m of matsAll[n] || []) m.envMapIntensity = 0.9;
   for (const n of ['Visor', 'SkirtPaint', 'Dark', 'KitDark', 'KitRubber']) for (const m of matsAll[n] || []) m.envMapIntensity = 0.5;
@@ -738,7 +740,7 @@ window.addEventListener('keydown', (e) => { if (e.key === 'Escape' && !$('info')
 const partLabels = [];
 function buildPartLabels(boxes) {
   const host = $('partlabels');
-  const defs = [['lid', '盖板（含 STOP 键）'], ['cover', '卡扣式上盖'], ['body', '一体式车身（14 颗螺丝）'], ['base', '底盘（含前保险杠）']];
+  const defs = [['lid', '盖板（含 STOP 键）'], ['cover', '卡扣式上盖'], ['body', '一体式车身（14 颗螺丝）'], ['base', '底盘（含保险杠）']];
   for (const [k, text] of defs) {
     const el = document.createElement('div'); el.className = 'plabel'; el.textContent = text; host.appendChild(el);
     const b = boxes[k]; const corners = [];
@@ -1057,14 +1059,15 @@ if (window.matchMedia('(pointer: coarse)').matches) $('hint').textContent = '单
 // ---------------------------------------------------------------- loop
 const clock = new THREE.Clock();
 const DRIVE_SPEED = 0.25;            // m/s of the (virtual) ground
+const DRIVE_DIR = -1;                // [v21] f9: the visor end (-X) leads, the casters run in front and swing round to trail
 function driveStep(dt) {
   for (const s of ['L', 'R']) {
     const w = rig[`wheel${s}`]; if (!w) continue;
-    state.wheel[s] += dt * DRIVE_SPEED / w.radius;
-    const sw = rig[`swivel${s}`], c = rig[`caster${s}`];
-    state.swivel[s] += Math.atan2(Math.sin(-state.swivel[s]), Math.cos(-state.swivel[s])) * Math.min(1, dt * 2.5);  // casters swing to trail
+    state.wheel[s] += dt * DRIVE_DIR * DRIVE_SPEED / w.radius;
+    const sw = rig[`swivel${s}`], c = rig[`caster${s}`], e = (DRIVE_DIR > 0 ? 0 : Math.PI) - state.swivel[s];
+    state.swivel[s] += Math.atan2(Math.sin(e), Math.cos(e)) * Math.min(1, dt * 2.5);  // casters swing to trail
     const axisNow = c.axis.clone().applyAxisAngle(UP, sw.neutral + state.swivel[s]);
-    state.spin[s] += dt * (DRIVE_SPEED / c.radius) * axisNow.dot(FWD_SPIN);
+    state.spin[s] += dt * (DRIVE_DIR * DRIVE_SPEED / c.radius) * axisNow.dot(FWD_SPIN);
   }
   applyRig();
 }

@@ -1,8 +1,23 @@
 {
- "default": "orbit",
+ "default": "studio",
  "schemes": [
   {
-   "id": "orbit",
+   "id": "studio",
+   "zh": "象牙白",
+   "en": "Studio White",
+   "body": {
+    "hex": "#F7F7F4",
+    "finish": "gloss"
+   },
+   "deck": {
+    "hex": "#6E6D69",
+    "finish": "satin"
+   },
+   "accent": "#C1121C",
+   "ring": "#C9CCD0"
+  },
+  {
+   "id": "ceramic",
    "zh": "陶瓷灰",
    "en": "Ceramic Grey",
    "body": {
@@ -10,26 +25,11 @@
     "finish": "satincoat"
    },
    "deck": {
-    "hex": "#2A2C30",
+    "hex": "#3A3B3E",
     "finish": "texture"
    },
    "accent": "#C1121C",
    "ring": "#8A9097"
-  },
-  {
-   "id": "lunar",
-   "zh": "月光白",
-   "en": "Lunar White",
-   "body": {
-    "hex": "#ECEDEA",
-    "finish": "gloss"
-   },
-   "deck": {
-    "hex": "#2A2C30",
-    "finish": "texture"
-   },
-   "accent": "#C1121C",
-   "ring": "#9FD8FF"
   },
   {
    "id": "graphite",
@@ -55,7 +55,7 @@
     "finish": "satincoat"
    },
    "deck": {
-    "hex": "#1D2530",
+    "hex": "#2E3A45",
     "finish": "texture"
    },
    "accent": "#C1121C",
@@ -70,7 +70,7 @@
     "finish": "satincoat"
    },
    "deck": {
-    "hex": "#1F2621",
+    "hex": "#3A4236",
     "finish": "texture"
    },
    "accent": "#C1121C",
@@ -85,7 +85,7 @@
     "finish": "satincoat"
    },
    "deck": {
-    "hex": "#26231F",
+    "hex": "#5A5144",
     "finish": "texture"
    },
    "accent": "#C1121C",

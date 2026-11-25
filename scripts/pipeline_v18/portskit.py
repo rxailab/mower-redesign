@@ -154,6 +154,12 @@ def build(Qin, p0, x_w, Xc=None, log=print, p_out=None):
         for _ in range(3): dsp_ = 0.25 * np.roll(dsp_, 1, 0) + 0.5 * dsp_ + 0.25 * np.roll(dsp_, -1, 0)      # [fix4-front2] smoothed along the loop (rim-loop jitter)
         p0 = p0 + dsp_; yz = p0[:, 1:]      # [fix4-front2] bore lifted along m by the lift; its front end moves out to the crest gradually (no fold where the lift fades)
         rep['lip_fill_mm'] = dict(max_lift=round(float(lift_.max()) * 1e3, 3), points=int(sel_.sum()), floor_front_z=round(float(p0[sel_, 2].min()) * 1e3, 2) if sel_.any() else None)      # [fix4-front2]
+    if Q.get('rim_min_step'):      # [v21] f9: on the more raked face the (lifted) rim loop bunches into 0.1-0.4 mm zigzags at the lower end rounds -> crossing
+        #                            tunnel faces; keep only rim points at least rim_min_step (end view) from the last kept one
+        k_ = [0]
+        for i_ in range(1, len(p0)):
+            if np.linalg.norm(yz[i_] - yz[k_[-1]]) >= Q['rim_min_step'] and np.linalg.norm(yz[i_] - yz[0]) >= 0.5 * Q['rim_min_step']: k_.append(i_)
+        rep['rim_min_step_dropped'] = len(p0) - len(k_); p0 = p0[k_]; yz = p0[:, 1:]
     # ---- tunnel: rim -> back face of the web, 1 deg draft (opening shrinks going in), wall ts outward, front end buried in the body wall
     nT = _outward(yz); dT = (p0[:, 0] - xb) * tg
     inF = p0.copy(); inB = np.c_[np.full(len(p0), xb), yz - nT * dT[:, None]]

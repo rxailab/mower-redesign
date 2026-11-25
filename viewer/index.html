@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#f5f5f7">
 <link rel="preload" as="image" href="site/img/hero.webp">
 <link rel="icon" href="data:,">
-<link rel="stylesheet" href="site/site.css?v=20261125c">
+<link rel="stylesheet" href="site/site.css?v=20261125f9">
 </head>
 <body>
 
@@ -42,7 +42,7 @@
     <a class="link" href="#specs">规格</a>
   </p>
   <div class="hero-shot" id="heroShot">
-    <img src="site/img/hero.webp" alt="Orbit 割草机器人：浅灰色上盖、深色车身、车头灯带与红色 STOP 键" width="2400" height="1600" fetchpriority="high">
+    <img src="site/img/hero.webp" alt="Orbit 割草机器人：白色车身、灰色裙边、车头深色玻璃面罩与红色 STOP 键" width="2400" height="1600" fetchpriority="high">
   </div>
 </section>
 
@@ -117,14 +117,14 @@
     <div>
       <p class="eyebrow reveal">避障</p>
       <h2 class="big reveal">看见障碍，提前绕开</h2>
-      <p class="lead reveal">车头的烟色镜片后面是摄像头和红外测距。摄像头分辨草坪的边界，也认得出地上的玩具、水管和宠物；红外测距补上近处的距离。万一还是碰上了，前保险杠里的碰撞开关会让它马上停下，后退，换个方向。</p>
+      <p class="lead reveal">车头一整块深色玻璃面罩，左右两个摄像头看两侧，中间的模组里是正前方的摄像头和红外测距。摄像头分辨草坪的边界，也认得出地上的玩具、水管和宠物；红外测距补上近处的距离。倒车回座时，车尾保险杠里的碰撞开关一碰到东西就让它停下。</p>
       <ul class="facts">
-        <li class="reveal"><b>摄像头</b>识别草坪边界和障碍物，用来导航，不需要埋边界线。<sup>*</sup></li>
+        <li class="reveal"><b>三个摄像头</b>识别草坪边界和障碍物，用来导航，不需要埋边界线。<sup>*</sup></li>
         <li class="reveal"><b>红外测距</b>测量前方近处物体的距离，光线暗时也能用。</li>
-        <li class="reveal"><b>碰撞开关</b>前保险杠浮动安装，被推动就触发停车。</li>
+        <li class="reveal"><b>碰撞开关</b>车尾保险杠浮动安装，被推动就触发停车。</li>
       </ul>
     </div>
-    <img class="tile-img reveal" loading="lazy" src="site/img/pupil.webp" alt="车头镜片后面的摄像头、红外测距和指示灯" width="1600" height="1066">
+    <img class="tile-img reveal" loading="lazy" src="site/img/pupil.webp" alt="车头面罩里的摄像头和暖光灯带" width="1600" height="1066">
   </div>
 </section>
 
@@ -133,7 +133,7 @@
   <div class="seq-stick">
     <canvas class="seq-canvas" aria-hidden="true"></canvas>
     <div class="cap" data-range="0.02,0.45"><p class="eyebrow">地形</p><h2>大轮子，上得了坡</h2><p>两个驱动轮直径 229 mm、宽 54 mm，胎面是深齿纹，湿草和松土上也抓得住。</p></div>
-    <div class="cap" data-range="0.52,0.98"><h2>35% 的坡，照样往上走</h2><p>两个轮子各有一个电机，可以原地转向；车尾是两个 100 mm 的万向轮。<sup>*</sup></p></div>
+    <div class="cap" data-range="0.52,0.98"><h2>35% 的坡，照样往上走</h2><p>两个轮子各有一个电机，可以原地转向；车头下面是两个 100 mm 的万向轮。<sup>*</sup></p></div>
   </div>
 </section>
 <section class="kband">
@@ -148,13 +148,13 @@
 <section class="seq light" id="dock" data-seq="dock" data-frames="36" style="--h:320vh" aria-label="自动回充">
   <div class="seq-stick">
     <canvas class="seq-canvas" aria-hidden="true"></canvas>
-    <div class="cap" data-range="0.02,0.45"><p class="eyebrow">回充</p><h2>电量低了，自己回去充</h2><p>电量不够或到了计划的结束时间，它沿边界开回充电座，车头朝前停进去。</p></div>
-    <div class="cap" data-range="0.55,0.98"><h2>充满了，接着割</h2><p>两根充电针插进车头的窗口。充满电后，它回到中断的那一行继续割。</p></div>
+    <div class="cap" data-range="0.02,0.45"><p class="eyebrow">回充</p><h2>电量低了，自己回去充</h2><p>电量不够或到了计划的结束时间，它沿边界开回充电座，在座前掉头，倒车停进去。</p></div>
+    <div class="cap" data-range="0.55,0.98"><h2>充满了，接着割</h2><p>两根充电针插进车尾的窗口。充满电后，它回到中断的那一行继续割。</p></div>
   </div>
 </section>
 <section class="dark dock">
   <div class="dock-row">
-    <figure class="tile reveal"><img loading="lazy" src="site/img/dockport.webp" alt="充电针穿过车头的对称窗口" width="1600" height="1066"><figcaption><b>停偏了也能充</b>车头开口后面是左右对称的两个窗口。左右偏 ±16 mm、上下偏 ±3.5 mm、斜 2° 停进来，充电针都碰不到外壳。</figcaption></figure>
+    <figure class="tile reveal"><img loading="lazy" src="site/img/dockport.webp" alt="充电针穿过车尾的对称窗口" width="1600" height="1066"><figcaption><b>停偏了也能充</b>车尾开口后面是左右对称的两个窗口。左右偏 ±16 mm、上下偏 ±3.5 mm、斜 2° 停进来，充电针都碰不到外壳。</figcaption></figure>
     <div class="tile tile-num reveal" style="--d:.1s">
       <div><span class="num" data-to="75">75</span><span class="unit">分钟</span><p>充满电<sup>*</sup></p></div>
       <div><span class="num" data-to="90">90</span><span class="unit">分钟</span><p>充一次电的工作时间<sup>*</sup></p></div>
@@ -215,27 +215,27 @@
 <section class="seq light" id="design" data-seq="tt" data-frames="72" style="--h:420vh" aria-label="外观旋转">
   <div class="seq-stick">
     <canvas class="seq-canvas" aria-hidden="true"></canvas>
-    <div class="cap" data-range="0.03,0.27"><h2>浅色上盖，深色车身</h2><p>上盖和车身是两个零件，颜色的分界就是分缝。</p></div>
-    <div class="cap" data-range="0.36,0.60"><h2>翼子板高过车头中间</h2><p>驱动轮上方的两侧比中间高，越往车头越明显，最多高出 27 mm。从正面看，两边高、中间低。</p></div>
-    <div class="cap" data-range="0.69,0.95"><h2>车尾下沿抬高</h2><p>车尾裙边的下沿抬到离地 92 mm，底盘后围上一排竖向导流槽露在下面，两角收到 70 mm。</p></div>
+    <div class="cap" data-range="0.03,0.27"><h2>白色车身，灰色裙边</h2><p>上部是一整片亮白色，下面一圈暖灰色裙边，车顶上只留一个红色 STOP 键。</p></div>
+    <div class="cap" data-range="0.36,0.60"><h2>车尾灯带</h2><p>车尾一条细灯带，中间一个状态灯；下面是浮动保险杠和充电口。</p></div>
+    <div class="cap" data-range="0.69,0.95"><h2>车头一整块面罩</h2><p>350 mm 宽的深色玻璃面罩横贯车头，两端包过转角，里面三个摄像头，上沿一条暖光灯带。</p></div>
   </div>
 </section>
 
 <!-- colours -->
 <section class="light colors" id="colors">
   <h2 class="mid center reveal">六种配色</h2>
-  <p class="lead center reveal">上盖和车身一起换色，STOP 键始终是红色。</p>
+  <p class="lead center reveal">车身和裙边一起换色，STOP 键始终是红色。</p>
   <div class="color-stage reveal">
-    <img id="colorImg" src="site/img/c_orbit.webp" alt="陶瓷灰配色" width="2400" height="1600">
+    <img id="colorImg" src="site/img/c_orbit.webp" alt="象牙白配色" width="2400" height="1600">
     <img id="colorImg2" src="site/img/c_orbit.webp" alt="" aria-hidden="true" width="2400" height="1600">
   </div>
   <div class="swatches" role="radiogroup" aria-label="配色">
-    <button class="sw on" role="radio" aria-checked="true" data-img="c_orbit" style="--a:#CDD0CF;--b:#2A2C30">陶瓷灰</button>
-    <button class="sw" role="radio" aria-checked="false" data-img="c_lunar" style="--a:#ECEDEA;--b:#2A2C30">月光白</button>
+    <button class="sw on" role="radio" aria-checked="true" data-img="c_orbit" style="--a:#F7F7F4;--b:#6E6D69">象牙白</button>
+    <button class="sw" role="radio" aria-checked="false" data-img="c_lunar" style="--a:#CDD0CF;--b:#3A3B3E">陶瓷灰</button>
     <button class="sw" role="radio" aria-checked="false" data-img="c_graphite" style="--a:#3B3E44;--b:#17181B">石墨黑</button>
-    <button class="sw" role="radio" aria-checked="false" data-img="c_glacier" style="--a:#A9BCCB;--b:#1D2530">冰川蓝</button>
-    <button class="sw" role="radio" aria-checked="false" data-img="c_sage" style="--a:#9AA58F;--b:#1F2621">鼠尾草</button>
-    <button class="sw" role="radio" aria-checked="false" data-img="c_sand" style="--a:#C9BB9E;--b:#26231F">大漠沙</button>
+    <button class="sw" role="radio" aria-checked="false" data-img="c_glacier" style="--a:#A9BCCB;--b:#2E3A45">冰川蓝</button>
+    <button class="sw" role="radio" aria-checked="false" data-img="c_sage" style="--a:#9AA58F;--b:#3A4236">鼠尾草</button>
+    <button class="sw" role="radio" aria-checked="false" data-img="c_sand" style="--a:#C9BB9E;--b:#5A5144">大漠沙</button>
   </div>
 </section>
 
@@ -268,7 +268,7 @@
       <h3>导航与避障</h3>
       <dl>
         <div><dt>导航</dt><dd>视觉导航<sup>*</sup><small>摄像头识别草坪边界，不需要埋边界线</small></dd></div>
-        <div><dt>避障</dt><dd>摄像头 + 红外测距<small>前保险杠碰撞开关</small></dd></div>
+        <div><dt>避障</dt><dd>摄像头 + 红外测距<small>车尾保险杠碰撞开关</small></dd></div>
         <div><dt>禁区</dt><dd>在 App 中设置<sup>*</sup></dd></div>
       </dl>
     </div>
@@ -305,7 +305,7 @@
       </dl>
     </div>
   </div>
-  <p class="fine center">标 * 的是设计目标值，需要样机测试确认。尺寸、轮径和充电对准容差取自设计模型；底盘、驱动轮、万向轮和前保险杠沿用原有部件。</p>
+  <p class="fine center">标 * 的是设计目标值，需要样机测试确认。尺寸、轮径和充电对准容差取自设计模型；底盘、驱动轮、万向轮和保险杠沿用原有部件。</p>
 </section>
 
 <!-- cta -->
@@ -321,6 +321,6 @@
   <p>概念设计，非在售产品。图片由设计模型渲染。</p>
 </footer>
 
-<script src="site/site.js?v=20261125c" defer></script>
+<script src="site/site.js?v=20261125f9" defer></script>
 </body>
 </html>

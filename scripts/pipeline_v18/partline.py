@@ -63,7 +63,7 @@ def build(OB, WX=0.119, WZ=0.1145):
                    tail_brow_tangent_x_mm=round(t4l[0] * 1000, 2), tail_circle_span_mm=[(t3c * 1000).round(2).tolist(), (t4c * 1000).round(2).tolist()])
         xbrow = t4l[0]
     else:                    # 'sweep': convex arc tangent to the brow at x_top
-        Rt = TL.get('R', 0.09); xt = TL['x_top']; Ct = np.array([xt, zn - Rt])
+        Rt = TL.get('R', 0.09); xt = TL['x_top']; zt = TL.get('z', zn); Ct = np.array([xt, zt - Rt])      # [v21] tail brow at its own height (f9: above the visor)
         c3, t3l, t3c = _fillet_line_circle(zb, Ct, Rt, frt, +1)
         pts.append(np.array([t2l, t3l])); prims.append(('seg', t3l, t2l))
         a0, a1 = ang(c3, t3l), ang(c3, t3c)
@@ -74,10 +74,11 @@ def build(OB, WX=0.119, WZ=0.1145):
         rep.update(tail_mode='sweep', tail_centre_mm=(Ct * 1000).round(2).tolist(), tail_R_mm=Rt * 1000, tail_base_tangent_x_mm=round(t3l[0] * 1000, 2),
                    tail_brow_tangent_x_mm=round(xt * 1000, 2))
         xbrow = xt
-    pts.append(np.array([[xbrow, zn], [-1.0, zn]])); prims.append(('seg', np.array([-1.0, zn]), np.array([xbrow, zn])))
+    zt = TL.get('z', zn) if mode != 'orbit' else zn
+    pts.append(np.array([[xbrow, zt], [-1.0, zt]])); prims.append(('seg', np.array([-1.0, zt]), np.array([xbrow, zt])))
     line = np.concatenate(pts)
     core = Polygon(np.r_[line, [[-1.0, -1.0], [1.0, -1.0]]]).buffer(0); shapely.prepare(core)
-    return dict(prims=prims, line=line, core=core, report=rep)
+    return dict(prims=prims, line=line, core=core, report=rep, z_tail=zt)
 
 
 def sdist(PL, x, z):
@@ -100,5 +101,5 @@ def sdist(PL, x, z):
 
 def x_line(PL, z):
     """Tail rise in the side view: x of the part line at height z (rear half, between base and brow); for the draft check."""
-    L = PL['line']; m = (L[:, 0] < -0.1) & (L[:, 0] > -0.5) & (L[:, 1] > 0.1231) & (L[:, 1] < 0.1899)
+    L = PL['line']; m = (L[:, 0] < -0.1) & (L[:, 0] > -0.5) & (L[:, 1] > 0.1231) & (L[:, 1] < PL.get('z_tail', 0.19) - 0.0001)
     seg = L[m]; o = np.argsort(seg[:, 1]); return np.interp(z, seg[o, 1], seg[o, 0])

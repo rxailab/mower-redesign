@@ -33,6 +33,7 @@ M = {'BodyPaint': mat('BodyPaint', col.get('body', '#CDD0CF'), col.get('body_fin
      'Accent': mat('Accent', col.get('accent', '#FF6A2B'), 'satin'),
      'Glass': mat('Glass', '#0A0B0D', 'gloss'),
      'CorePaint': mat('CorePaint', col.get('core', '#2A2C30'), col.get('core_finish', 'texture')),
+     **({'BumperPaint': mat('BumperPaint', col['bumper'], col.get('bumper_finish', 'satin'))} if col.get('bumper') else {}),
      'Glow': mat('Glow', col.get('visor', '#0A0B0D'), col.get('visor_finish', 'smoke'), emit=float(col.get('glow', 0.5)), emit_hex=col.get('light', '#F2FBFF')),
      'SensorRing': mat('SensorRing', col.get('ring_sensor', '#5E646C'), 'metallic'),
      'InnerSkin': mat('InnerSkin', col.get('kit', col.get('inner', '#34373C')), col.get('kit_finish', 'satin')),
@@ -113,7 +114,7 @@ k = np.load(os.path.join(HERE, 'keep.npz')); kl = k['lab']; kc = k['v'][k['f']].
 if P.get('nose'): kk &= ~((kl == 0) & (kc[:, 0] > 0.255))
 if P.get('skirt'): kk &= (kl != 0)
 kv = k['v'].copy(); kv[:, 1] = _tail.make(P)(kv[:, 0], kv[:, 1]); v_, f_ = sub(kv, k['f'], kk)
-obj('Bumper', v_, f_, ['SkirtPaint', 'Dark'], np.where((kl == 7) | (kl == 6), 1, 0)[kk], smooth_deg=40, weld=False, ratio=None if FULL else 0.085).parent = lower
+obj('Bumper', v_, f_, ['SkirtPaint', 'Dark', 'BumperPaint' if 'BumperPaint' in M else 'Dark'], np.where(kl == 7, 2, np.where(kl == 6, 1, 0))[kk], smooth_deg=40, weld=False, ratio=None if FULL else 0.085).parent = lower      # [v21] colors.bumper
 if 'plinth_v' in d.files: obj('Plinth', d['plinth_v'], d['plinth_f'], ['SkirtPaint'], smooth_deg=30).parent = lower
 if P.get('chassis_lip'):      # [v20] clean stand-in for the chassis's finned rear apron (the viewer drops the scanned apron's faces: design.json chassis_lip)
     import chassislip; _lv, _lf = chassislip.build(P['chassis_lip'], na=801, nz=41); obj('ChassisLip', _lv, _lf, ['Dark'], smooth_deg=40, weld=False).parent = lower
@@ -206,6 +207,7 @@ info = {'version': 'v18', 'wall': True, 'wall_t': float(d['wall_t'][0]),
         'sizes': {n: os.path.getsize(os.path.join(OUT, n + '.glb')) for n in ROOTS}}
 info['dock_dy'] = float((P.get('ports3') or {}).get('dock_dy', 0.0))
 if P.get('chassis_lip'): info['chassis_lip'] = {k_: v_ for k_, v_ in P['chassis_lip'].items() if not k_.startswith('//')}      # [v20] the viewer drops the scanned apron      # [web] seated docking pose (fix3-ports): the viewer shifts the charging base by this in y
+if col.get('light'): info['light_hex'] = col['light']      # [v21] lamp colour for the viewer (f9: warm)
 json.dump(info, open(os.path.join(OUT, 'design.json'), 'w'), indent=1)
 if P.get('struts'):          # [web] the exact chassis cuts for the viewer (chassis_cut.js): same spec and caps as the renderer
     import subprocess          # strutskit needs shapely, which Blender's Python lacks: run it with the design venv
@@ -220,7 +222,8 @@ else: stop = at(lidm & (d['lid_paint'] == 1)); stop[2] = float(V[np.unique(F[lid
 if not (lab == 9).any() and 'lights_lens_v' in d.files:      # [fix3-int] band faces live in the lens solids: anchors from their outer faces
     V = np.r_[V, d['lights_lens_v']]; F = np.r_[F, d['lights_lens_f'] + len(d['v'])]; FC = V[F].mean(1); n_ = len(d['lights_lens_f'])
     lab = np.r_[lab, d['lights_lens_lab']]; part = np.r_[part, np.zeros(n_, part.dtype)]; o0 = np.r_[o0, d['lights_lens_side'] == 0]; lidm = np.r_[lidm, np.zeros(n_, bool)]
-pupil = at(o0 & (lab == 9) & (FC[:, 0] > 0.2)); pupil[0] = float(V[np.unique(F[o0 & (lab == 9) & (FC[:, 0] > 0.2)])][:, 0].max())
+VIS_REAR = any(b_.get('side') == 'rear' and b_.get('module') == 'pupil' for b_ in P.get('bands', []))      # [v21] f9: the camera module is in the visor at -x
+if not VIS_REAR: pupil = at(o0 & (lab == 9) & (FC[:, 0] > 0.2)); pupil[0] = float(V[np.unique(F[o0 & (lab == 9) & (FC[:, 0] > 0.2)])][:, 0].max())
 def band(front, sgn):          # light segment of a lens band
     m = o0 & (lab == 3) & ((FC[:, 0] > 0.2) if front else (FC[:, 0] < -0.2)) & (sgn * FC[:, 1] > 0.03); p = at(m)
     vv = V[np.unique(F[m])]; p[0] = float(vv[:, 0].max() if front else vv[:, 0].min()); return p
@@ -241,7 +244,7 @@ A = {'lid': dict(part='lid', pos=g2([lidc[0] - 0.04, 0.035, lidz]), normal=[0, 1
      'stop': dict(part='lid', pos=g2(stop), normal=[0, 1, 0]),
      'display': dict(part='base', pos=[-0.0689, 0.2545, -0.0032], normal=[0, 1, 0], lid=True),
      'hinge': dict(part='cover', pos=g2(hinge), normal=[-0.5, 0.85, 0], lid=True),
-     'pupil': dict(part='body', front=True, pos=g2(pupil), normal=[1, 0, 0], lift=0.03, liftDir=[0.6, 0.8, 0]),
+     **({} if VIS_REAR else {'pupil': dict(part='body', front=True, pos=g2(pupil), normal=[1, 0, 0], lift=0.03, liftDir=[0.6, 0.8, 0])}),
      'ledL': dict(part='body', front=True, pos=g2(band(True, 1)), normal=[1, 0, -0.25], lift=0.03),
      'ledR': dict(part='body', front=True, pos=g2(band(True, -1)), normal=[1, 0, 0.25], lift=0.03),
      'slot': dict(part='body', front=True, pos=g2(slot), normal=[1, 0, 0], lift=0.03, liftDir=[0.7, -0.5, 0.5]),
@@ -249,6 +252,12 @@ A = {'lid': dict(part='lid', pos=g2([lidc[0] - 0.04, 0.035, lidz]), normal=[0, 1
      'cover': dict(part='cover', pos=g2(cvp), normal=[-0.25, 0.9, 0.35], lift=0.035),
      'partline': dict(part='body', pos=g2(orbp), normal=[0, 0.6, 0.8], lift=0.03),
      'screws': dict(part='body', explode=True, pos=g2([sp_[0], sp_[1], top_z(SCV, sp_[0], sp_[1], 0.006)]), normal=[0, 1, 0], lift=0.04)}
+if VIS_REAR:      # [v21] f9: the visor (cameras) at -x is the front
+    mv_ = o0 & (lab == 9) & (FC[:, 0] < -0.2); pv_ = at(mv_); pv_[0] = float(V[np.unique(F[mv_])][:, 0].min())
+    for k_ in ('ledL', 'ledR', 'tail'): A.pop(k_, None)
+    A.update({'pupil': dict(part='body', pos=g2(pv_), normal=[-1, 0, 0], lift=0.03, liftDir=[-0.6, 0.8, 0]),
+              'visorlight': dict(part='body', pos=g2(band(False, -1)), normal=[-1, 0, 0.25], lift=0.03),
+              'rearlight': dict(part='body', front=True, pos=g2(band(True, 1)), normal=[1, 0, -0.25], lift=0.03)})      # 'front': the +x end (the dock tower side)
 TX = json.load(open(os.path.join(HERE, 'hotspots_text.json')))
 HS = [dict(id=k_, **A[k_], **TX[k_]) for k_ in TX if k_ in A]
 old = json.load(open(os.path.join(OUT, 'hotspots_base.json')))           # wheels, casters, charging base: unchanged parts

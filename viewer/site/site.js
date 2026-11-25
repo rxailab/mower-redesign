@@ -53,7 +53,8 @@
   }
 
   // ---------------------------------------------- lawn path: a top-down photo of the garden; the mowed stripes are revealed along the
-  // planned route (lawn.json from scripts/site/lawn_assets.py): out of the dock, once round the edge, rows back and forth, home again
+  // planned route (lawn.json from scripts/site/lawn_assets.py): out of the dock visor first, once round the edge (round the dock),
+  // rows back and forth, home again and backwards onto the dock
   const lawnSec = document.getElementById('path'), lawn = document.getElementById('lawn');
   let lawnSegs = [], lawnTotal = 0, mower = null, nogo = null, lawnCaps = [], lawnReady = false;
   if (lawnSec && lawn) {
@@ -83,7 +84,7 @@
     }
     const g = at.s.el, l = at.l, p1 = g.getPointAtLength(l), p0 = g.getPointAtLength(Math.max(0, l - 4)), p2 = g.getPointAtLength(Math.min(at.s.len, l + 4));
     let ang = Math.atan2(p2.y - p0.y, p2.x - p0.x) * 180 / Math.PI; if (at.s.rev) ang += 180;
-    mower.setAttribute('transform', `translate(${p1.x.toFixed(1)} ${p1.y.toFixed(1)}) rotate(${(ang - 180).toFixed(1)})`);
+    mower.setAttribute('transform', `translate(${p1.x.toFixed(1)} ${p1.y.toFixed(1)}) rotate(${ang.toFixed(1)})`);      // the sprite's visor points right (+x of the image): it leads; 'rev' segments back up
   }
 
   // ---------------------------------------------- nav colour over dark sections

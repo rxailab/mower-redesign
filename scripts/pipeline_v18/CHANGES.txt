@@ -333,3 +333,64 @@ except the two chassis cuts per side of 6.2. Body half-width beside the wheels 1
    part itself is unchanged and every check uses the scan.
  Results (checks/f7): all pass - interference 0, lid sweep >= 0.5 mm, STOP, lights, ports, struts, kit clearance 1.43 mm, labyrinth no
  contact (0.42 mm), lift 0 collisions; the five snap hooks unchanged (z 98.3-108.3 mm, 6 mm over the hem); solidaudit: the two well parts as in f5.
+
+11. VISOR DESIGN (f8)  (tag [v21]) - replaces the Orbit look; chassis, wheels, casters and front bumper unchanged
+-------------------------------------------------------------------------------------------------------------------------------
+ Request: build the user's reference image (a white shell with a dark glass visor across the nose holding three cameras and a warm light bar
+ along its top, a warm-grey band round the bottom, the red STOP on top) without changing the lowest layer. The visor sits at the existing
+ nose (charger end), the user's choice. Parameters: f8.json = f7.json with:
+ - bumps []: the f6 fenders and hood dip are gone (smooth top as in the reference); the f7 tail (raised hem over the finned apron) stays.
+ - Front band = visor. The lens and its lamp module must stay under the body's top deck, which sits on the chassis's front screw posts
+   (z 193.3 mm, lowest layer: fixed); a first build with a 32 mm lens up to z 204 put the lamp housing, LED board and bar 1.25 mm into the
+   deck (20 interferences), the board onto the harness plug and stretched the lens over the brow (1421 self-intersections). Final: lens
+   262 x 23 mm (z 167-190, the most the deck and the charger slot below allow), corner R9 (bands[].r, also lightkit.py's lens outline), and a
+   2 mm frame of the body round it painted in the lens colour (bands[].frame): the visible visor is 266 x 27 mm and hides the lens joint.
+   Light segments in its upper part (lights[].z 185.5, y 25.5-124.5 each side), the LED bar and board raised 5.5 mm with them (per-band
+   'bar' / 'board' overrides in lightkit.py; the rear band keeps the shared values). Artwork: a rounded-rect centre module 24 x 16.5 mm round
+   the existing camera / ToF pupil (elements[].rect) and two side camera rings at y +-78 mm, painted on the lens (design artwork; no modules
+   behind them yet).
+ - cover.orbit.z_nose 0.190 -> 0.199: the nose seam sits above the visor frame.
+ - two_tone (design_gen.py): above a paint line (nose 164.5 mm = the visor's lower edge, sides 138 mm, ramp x 180-270) the body takes the
+   shell colour; below it the core colour stays as a band; the charger slot (z 141.7-161.7) sits in the band.
+ - Colours: shell / lid #F7F7F4 gloss, band #6E6D69 satin, light #FFD08A (warm). Colour schemes: shell + band pairs.
+
+12. VISOR AT THE CASTER END (f9)  (tag [v21]) - supersedes f8; chassis, wheels, casters and bumper unchanged
+-------------------------------------------------------------------------------------------------------------------------------
+ Review of f8: "nothing like the reference". At the charger end the deck (front screw posts, z 193.3) leaves only a 23 mm lens, so the
+ visor could not be the tall glass face of the reference. The caster end has room (deck ~223, tail clips below 107, the chassis rear wall
+ ~8 mm behind a 14 mm deep module at z >= 120), so the visor moves there and that end becomes the FRONT; the charger end is the back.
+ f9.json = f7.json with:
+ - bumps [] and f8's section (smooth top, rounder shoulders); f8's lowered hood only at the visor half: from x >= 0.1 (now the back)
+   the roof is f7's again (f8's low hood put the back band's top edge on a strongly curved face: sight leaks through the lens gap).
+   Roof point x -50 raised 0.2 mm (279.7): the lid sits 0.1 mm lower on this mesh and the STOP stack wants it back (worst 0.61).
+   skirt.hem_tail removed: a plain grey base round the visor end as in the reference (the f7 raised tail hem over the finned apron goes).
+ - Rear band (x < 0) = the visor: lens 280 x 73 mm (z 124-197, R28), the camera module there (bands[].module 'pupil', lightkit.py), a
+   painted visor 350 x 81 mm round it (bands[].visor {w, z0, z1, r}: z 120-201, R28, wraps round the corners), three cameras as artwork
+   (centre rounded-rect module 40 x 29 mm + glass + ring, side rings at y +-88 mm), one warm light strip along its top (lights[] y0 0 ->
+   one stadium across the centre, z 191.5, h 3.2), LED bar / board with it (bar z 29.3-32.7 over the band centre, u0 2.9, ends at
+   y 110 / leg 106.5; board y 98.5-112, z_off 31). The lens top stops at 197: higher up the face rakes back and the light-trap step
+   came within 0.14 mm of the opening's rolled edge.
+ - Front band (x > 0, now the back) = a slim lamp band with a centre dot (module 'dot').
+ - Part line: the tail brow has its own height (partline.py: cover.orbit.tail.z in 'sweep' mode; f7 had z = z_nose so nothing changes
+   there): 214 mm, 13 mm above the visor paint, so the lens opening lies wholly in the body; the sweep moved back (x_top -300, R 92:
+   centre at the base line, so the rise never leans forward and the cover still lifts straight off).
+ - two_tone line: visor end 110 mm, sides 138, back 163 (above the charger slot).
+ - Light strips thinner than the body grid were lost where no vertex fell inside them (the visor strip only showed at its ends):
+   design_gen.py refines round the strips of a visor band at 1.5 mm first (band face only), then at the strip's own 'fine'. The stadium
+   ends of light segments were commented out by an earlier edit; restored (a segment from y0 0 is one stadium across the centre).
+ - lightkit.py, per band: bars / boards / bosses / pads / housing values can be overridden (bands[].bar, .board, .bosses, .pads,
+   .housing); the housing depth profile (u_back) follows the module (camera -> the deeper 'front' profile, dot -> 'rear'), so the camera
+   behind the visor clears its housing and the dot band at the back clears the chassis (was 0.53 mm into it). Visor: bosses beyond the
+   lens ends (y +-152 on the band axis) and 10 mm under it (y +-100); light-trap step 0.1 inside the outline as before, 0.4 on the
+   lower part and 0.3 along the top run (step_d_low / step_d_top: the face curves away at the lower corners and rakes back at the
+   top), flange 1.7 over the top and 2.5 under the bottom; map_low: the band map also takes the body skin down to 3 mm under the lens
+   (the gasket at the lower corners was placed on an extrapolated skin: 0.44 mm extra squeeze). Back band: weld land 1.2 wide (the
+   lens tilts up to ~30 deg off the module axis along its top edge, the 2.0 land cut 0.47 into it), end pads 1.4 beyond the lens ends,
+   gasket 0.9 short of the flange edge (gasket_edge: over the top run the body wall thickens towards the seam 5 mm above and the
+   gasket's top corner was squeezed 0.38; now 0.27).
+   Foam rings 60 um off the lens (band-map residual up to 35 um).
+ - portskit.py rim_min_step 0.5 mm: on the rounder back face the lifted rim loop bunched into 0.1-0.4 mm zigzags at the slot's lower
+   end rounds and the port frame crossed itself (50 pairs); rim points closer than 0.5 mm to the last kept one are dropped.
+ - design_render.py: POSEMAP takes an optional 5th value, yaw (deg about z, applied first): the site's slope sequence turns the mower
+   180 deg so it climbs visor first.
+ - Checks: checks/f9 (same suite as f7; solidaudit fails only on the two well parts, as in f5-f7).

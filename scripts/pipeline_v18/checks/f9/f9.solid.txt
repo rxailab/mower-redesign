@@ -1,0 +1,117 @@
+chassis cut: {"pin_trim_L": {"faces_near": 144, "removed": 112, "faces_left_in_box": 0, "cap_area_mm2": 35.3}, "pin_trim_R": {"faces_near": 101, "removed": 90, "faces_left_in_box": 0, "cap_area_mm2": 30.1}, "pin_top_L": {"faces_near": 178, "removed": 163, "faces_left_in_box": 0, "cap_area_mm2": 97.3}, "pin_top_R": {"faces_near": 224, "removed": 215, "faces_left_in_box": 0, "cap_area_mm2": 99.6}, "hook_L": {"faces_near": 196, "removed": 164, "faces_left_in_box": 0, "cap_area_mm2": 115.9}, "hook_R": {"faces_near": 65, "removed": 62, "faces_left_in_box": 0, "cap_area_mm2": 83.6}, "open_edges_on_cut_planes": 0}
+parts 422, built 9.9 s
+audited 101.2 s
+
+=== SOLID AUDIT f9.npz: 422 components, 2 design parts failing, 10 hardware / render stand-ins not clean (info)
+component                   faces   bound nonman unpair  degen     vol mm3   selfx  frame  center mm / self-x at
+well.well                   38982     638      0   4706     31  -1230904.1    1887  fixed  [48.77, 65.33, 259.49] OPEN+INVERTED+WINDING+SELF-X
+well.lip                     8592       0      0      0      0      1956.9       7  fixed  [-126.91, 60.82, 250.87] SELF-X
+render.ctl_standin#0          160       0      0     80      0   1713019.0       0  fixed  [-68.87, 0.0, 253.49] WINDING (hw/render, info)
+render.ctl_standin#1          624      48      0     48      0    347067.5       0  fixed  [4.44, 0.98, 257.58] OPEN+WINDING (hw/render, info)
+hw.controls                184473    1377      0   1377      6   1731681.9       0  fixed  [-47.01, -0.01, 253.1] OPEN+WINDING (hw/render, info)
+hw.wheel_l                 117293    4649      0   4649      0   2429562.5       5  fixed  [79.21, 228.62, 30.55] OPEN+WINDING+SELF-X (hw/render, info)
+hw.wheel_r                  95680    6682      0   6682      0   2018393.4      20  fixed  [70.18, -225.86, 192.69] OPEN+WINDING+SELF-X (hw/render, info)
+hw.caster_l                 28275      69      0     69      0    341977.5       0  fixed  [-179.4, 118.96, 49.73] OPEN+WINDING (hw/render, info)
+hw.caster_r                 23469      97      0     97      0    341326.8       0  fixed  [-222.5, -115.63, 49.83] OPEN+WINDING (hw/render, info)
+hw.chassis#0                  625     189      0    189      0     88120.6       0  fixed  [-142.06, -107.11, 113.99] OPEN+WINDING (hw/render, info)
+hw.chassis#1               257324   22494      0  22494      1   9669421.6      46  fixed  [-80.72, 109.62, 204.11] OPEN+WINDING+SELF-X (hw/render, info)
+hw.bumper                 1129024    2742      0   2742      0   2762952.6       0  fixed  [288.24, -3.61, 87.64] OPEN+WINDING (hw/render, info)
+
+group                  comps     faces  open   inv  wind selfx   degen
+body                       1   3315502     0     0     0     0     110
+ckit.barb                 10       160     0     0     0     0       0
+ckit.leg                  30      1264     0     0     0     0       0
+ckit.pin                   6      1584     0     0     0     0       0
+ckit.seatpad              20      9600     0     0     0     0       0
+ckit.stake                 6      1728     0     0     0     0     576
+cover                      1   1669704     0     0     0     0       9
+halo_feed                  1      2080     0     0     0     0       0
+harn.cable                 2      6336     0     0     0     0       0
+harn.chassis_lead          4      8800     0     0     0     0       0
+harn.clip                  4       408     0     0     0     0       0
+harn.cradle                8        96     0     0     0     0       0
+harn.grommet               2      1152     0     0     0     0       0
+harn.plug                  4       456     0     0     0     0       0
+harn.svc                  10      1064     0     0     0     0       0
+hw.bumper                  1   1129024     1     0     1     0       0
+hw.caster_l                1     28275     1     0     1     0       0
+hw.caster_r                1     23469     1     0     1     0       0
+hw.chassis                 2    257949     2     0     2     1       1
+hw.controls                1    184473     1     0     1     0       6
+hw.wheel_l                 1    117293     1     0     1     1       0
+hw.wheel_r                 1     95680     1     0     1     1       0
+lamp.bar                   4     30248     0     0     0     0       0
+lamp.boss                 24      3328     0     0     0     0       0
+lamp.camera                3      1192     0     0     0     0       0
+lamp.carrier               9     55376     0     0     0     0       0
+lamp.ear                   8      2800     0     0     0     0       0
+lamp.emitter               4       336     0     0     0     0       0
+lamp.foam                  2       968     0     0     0     0       0
+lamp.gasket                6    542942     0     0     0     0       0
+lamp.housing               2    498534     0     0     0     0       0
+lamp.led                   6       248     0     0     0     0       0
+lamp.pad                   8      2816     0     0     0     0       0
+lamp.pcb                   6     25096     0     0     0     0       0
+lamp.pipe                  2       448     0     0     0     0       0
+lamp.screw                 8      3840     0     0     0     0       0
+lamp.shroud                4      4144     0     0     0     0       0
+lamp.tof                   1        96     0     0     0     0       0
+lamp.vent                  2       384     0     0     0     0       0
+lens.front                 1    478816     0     0     0     0   31758
+lens.rear                  1   1890040     0     0     0     0   47285
+lid                        1    214192     0     0     0     0      21
+lid.blade                  2      1084     0     0     0     0       0
+lid.boss                   2      1560     0     0     0     0       0
+lid.lug                    4      1568     0     0     0     0       0
+lid.rib                   16     43040     0     0     0     0       0
+lid.striker                2      4212     0     0     0     0       0
+lid.tongue                 2     18264     0     0     0     0       0
+mount.boss                 3       960     0     0     0     0       0
+mount.bracket              8       720     0     0     0     0       0
+mount.clip                15       180     0     0     0     0       0
+mount.deck                 1    516624     0     0     0     0       0
+mount.pad                 14      3360     0     0     0     0    2240
+mount.pilot                5       800     0     0     0     0       0
+mount.rib                 12       336     0     0     0     0       0
+mount.screw               14      6720     0     0     0     0       0
+mount.seat                 4      3712     0     0     0     0       0
+nosefloor                  6      8168     0     0     0     0       0
+portframe                  4     25236     0     0     0     0       0
+render.ctl_standin         2       784     1     0     2     0       0
+render.ctl_tower           1        12     0     0     0     0       0
+stop.arm                   8      1376     0     0     0     0       0
+stop.boot                  1      2240     0     0     0     0       0
+stop.bore                  1      1920     0     0     0     0       0
+stop.bracket               1       112     0     0     0     0       0
+stop.bumper                1      3200     0     0     0     0       0
+stop.bush                  1       904     0     0     0     0       0
+stop.cap                   1     12186     0     0     0     0       0
+stop.carrier               1     46080     0     0     0     0       0
+stop.cspring               1      6220     0     0     0     0       0
+stop.halo                  1      4800     0     0     0     0       0
+stop.magnet                1       128     0     0     0     0       0
+stop.pcover                5       124     0     0     0     0       0
+stop.pin                   6       480     0     0     0     0       0
+stop.post                  2       800     0     0     0     0       0
+stop.rod                   1      1040     0     0     0     0       0
+stop.rspring              10      5184     0     0     0     0       0
+stop.socket                1     13760     0     0     0     0       0
+stop.tip                   1       800     0     0     0     0       0
+well.bumper                4      2448     0     0     0     0       0
+well.cartridge             2      3960     0     0     0     0       0
+well.claw                  2      2028     0     0     0     0      64
+well.damper                2      4268     0     0     0     0       0
+well.drain                 6      2560     0     0     0     0       0
+well.ear                   6      1056     0     0     0     0       0
+well.guide                 8     33112     0     0     0     0       0
+well.latch                 1      1428     0     0     0     0       0
+well.lip                   1      8592     0     0     0     1       0
+well.pinion                2      4280     0     0     0     0       0
+well.pocket                2       136     0     0     0     0       0
+well.pod                   2     11196     0     0     0     0       0
+well.seal                  1     78176     0     0     0     0       0
+well.spring                2     20912     0     0     0     0       0
+well.well                  1     38982     1     1     1     1      31
+wrote chk/f9.solid.json
+SOLIDAUDIT FAIL: 2 design components fail (111 s)
+Blender 4.2.3 LTS (hash 0e22e4fcea03 built 2024-10-14 23:31:34)
