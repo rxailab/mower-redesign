@@ -1,5 +1,5 @@
 #!/bin/bash
-# Product-site renders of Orbit f6 (PARAMS / NPZ / WEB_PARAMS / WEB_NPZ override; P = design folder for rv.sh) (transparent film + shadow catcher; see CHANGES.txt section 8 for WEBBG / LIDMAP / MATVIEWS / EXMAP).
+# Product-site renders of Orbit (default f6 files; the site uses f7: PARAMS=f7.json NPZ=f7.npz WEB_PARAMS=f7_web.json WEB_NPZ=f7_web.npz) (PARAMS / NPZ / WEB_PARAMS / WEB_NPZ override; P = design folder for rv.sh) (transparent film + shadow catcher; see CHANGES.txt section 8 for WEBBG / LIDMAP / MATVIEWS / EXMAP).
 # Needs f6.npz / f6_web.npz in the design folder (CHANGES.txt sections 4, 7, 8, 9). Output: $O (default scripts/site/r), then run bake_site.py.
 HERE=$(cd "$(dirname "$0")" && pwd); O=${O:-$HERE/r}; mkdir -p $O
 export WEBBG=1

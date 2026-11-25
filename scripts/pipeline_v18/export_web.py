@@ -115,6 +115,8 @@ if P.get('skirt'): kk &= (kl != 0)
 kv = k['v'].copy(); kv[:, 1] = _tail.make(P)(kv[:, 0], kv[:, 1]); v_, f_ = sub(kv, k['f'], kk)
 obj('Bumper', v_, f_, ['SkirtPaint', 'Dark'], np.where((kl == 7) | (kl == 6), 1, 0)[kk], smooth_deg=40, weld=False, ratio=None if FULL else 0.085).parent = lower
 if 'plinth_v' in d.files: obj('Plinth', d['plinth_v'], d['plinth_f'], ['SkirtPaint'], smooth_deg=30).parent = lower
+if P.get('chassis_lip'):      # [v20] clean stand-in for the chassis's finned rear apron (the viewer drops the scanned apron's faces: design.json chassis_lip)
+    import chassislip; _lv, _lf = chassislip.build(P['chassis_lip'], na=801, nz=41); obj('ChassisLip', _lv, _lf, ['Dark'], smooth_deg=40, weld=False).parent = lower
 
 # controls (fixed on the chassis): the scanned panel, the clean stand-in over it, the tower under it and the STOP legend on the real key
 c = np.load(os.path.join(HERE, 'control.npz')); cl = c['lab']
@@ -176,6 +178,14 @@ if FULL:
     if BASE:
         before = set(bpy.data.objects); bpy.ops.import_scene.gltf(filepath=BASE); new = [o for o in bpy.data.objects if o not in before]
         ch = bpy.data.objects.get('Chassis'); chassis_cut([ch, *ch.children_recursive] if ch else [])
+        if ch and P.get('chassis_lip'):      # [v20] the scanned apron's faces go; the clean stand-in (ChassisLip, front-bumper collection) shows instead
+            import bmesh, chassislip
+            for o_ in [ch, *ch.children_recursive]:
+                if o_.type != 'MESH': continue
+                bm_ = bmesh.new(); bm_.from_mesh(o_.data); bm_.faces.ensure_lookup_table(); mw_ = o_.matrix_world.copy()
+                C_ = np.array([tuple(mw_ @ f_.calc_center_median()) for f_ in bm_.faces]) if len(bm_.faces) else np.zeros((0, 3))
+                dm_ = chassislip.drop_mask(C_, P['chassis_lip']) if len(C_) else np.zeros(0, bool)
+                bmesh.ops.delete(bm_, geom=[bm_.faces[i] for i in np.nonzero(dm_)[0]], context='FACES'); bm_.to_mesh(o_.data); bm_.free(); o_.data.update()
         to_col(new, 'Chassis, drive wheels, casters (original)')
     bpy.ops.object.select_all(action='DESELECT')
     bpy.ops.wm.save_as_mainfile(filepath=os.path.join(OUT, NAME + '.blend'), compress=True)
@@ -194,7 +204,8 @@ info = {'version': 'v18', 'wall': True, 'wall_t': float(d['wall_t'][0]),
         'lid': {'pivot': [round(float(pv[0]), 5), round(float(pv[1]), 5), 0.0], 'open_deg': float(d['lid_open'][0])},
         'posts': [g2(p_[:3]) for p_ in MJ['posts']], 'under': [g2([u_['x'], u_['y'], u_['z']]) for u_ in MJ.get('under', [])],
         'sizes': {n: os.path.getsize(os.path.join(OUT, n + '.glb')) for n in ROOTS}}
-info['dock_dy'] = float((P.get('ports3') or {}).get('dock_dy', 0.0))      # [web] seated docking pose (fix3-ports): the viewer shifts the charging base by this in y
+info['dock_dy'] = float((P.get('ports3') or {}).get('dock_dy', 0.0))
+if P.get('chassis_lip'): info['chassis_lip'] = {k_: v_ for k_, v_ in P['chassis_lip'].items() if not k_.startswith('//')}      # [v20] the viewer drops the scanned apron      # [web] seated docking pose (fix3-ports): the viewer shifts the charging base by this in y
 json.dump(info, open(os.path.join(OUT, 'design.json'), 'w'), indent=1)
 if P.get('struts'):          # [web] the exact chassis cuts for the viewer (chassis_cut.js): same spec and caps as the renderer
     import subprocess          # strutskit needs shapely, which Blender's Python lacks: run it with the design venv

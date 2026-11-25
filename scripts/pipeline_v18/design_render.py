@@ -220,6 +220,16 @@ if 'lights_kit_v' in d.files:      # [fix3-lights] separate smoked lens, sealed 
         cl_ = d['lights_cap_lab'].astype(np.int64); hc_ = cl_ == 98; cl_ = np.where(cl_ == 99, len(LKC_) - 1, np.where(hc_, 12, cl_))      # [fix3-lights] [fix3-int] 98 = halo feed cap
         for nm_, m_ in (('LightCaps', ~hc_), ('LightHaloCap', hc_)):      # [fix3-int] the halo feed's cap is on the lid (moves in set_lid)
             if m_.any(): u_ = np.unique(d['lights_cap_f'][m_]); r_ = -np.ones(len(d['lights_cap_v']), np.int64); r_[u_] = np.arange(len(u_)); obj(nm_, d['lights_cap_v'][u_], r_[d['lights_cap_f'][m_]], LKC_, cl_[m_], smooth_deg=1)      # [fix3-int]
+LIP_ = P.get('chassis_lip')
+if LIP_ and ch is not None and not os.environ.get('NOLIP'):      # [v20] the chassis's finned apron, on show under the raised tail hem: the lumpy scan
+    import bmesh, chassislip                                      #        is replaced by a clean stand-in (same outline, channels at the measured pitch)
+    bm_ = bmesh.new(); bm_.from_mesh(ch.data); mw_ = ch.matrix_world.copy(); bm_.faces.ensure_lookup_table()
+    C_ = np.array([tuple(mw_ @ f_.calc_center_median()) for f_ in bm_.faces]); dm_ = chassislip.drop_mask(C_, LIP_)
+    bmesh.ops.delete(bm_, geom=[bm_.faces[i] for i in np.nonzero(dm_)[0]], context='FACES'); bm_.to_mesh(ch.data); bm_.free(); ch.data.update()
+    LV_, LF_ = chassislip.build(LIP_); lme_ = bpy.data.meshes.new('ChassisLip'); lme_.from_pydata(LV_.tolist(), [], LF_.tolist()); lme_.update()
+    lob_ = bpy.data.objects.new('ChassisLip', lme_); sc.collection.objects.link(lob_)
+    for m_ in ch.data.materials: lme_.materials.append(m_)
+    lob_.select_set(True); bpy.context.view_layer.objects.active = lob_; bpy.ops.object.shade_smooth_by_angle(angle=math.radians(40)); lob_.select_set(False)
 # cyclorama, lights, camera (same studio as the product renders)
 R = 0.6; pts = [(y, 0.0) for y in np.linspace(-4, 1.0, 10)] + [(1.0 + R * math.sin(math.radians(q)), R - R * math.cos(math.radians(q))) for q in range(5, 91, 5)] + [(1.0 + R, z) for z in np.linspace(R + 0.3, 4, 6)]
 verts = []; faces = []

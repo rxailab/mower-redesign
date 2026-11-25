@@ -168,11 +168,11 @@ canvas.addEventListener('webglcontextlost', (e) => e.preventDefault());
 canvas.addEventListener('webglcontextrestored', () => { buildEnv(); requestRender(); });
 
 // ---------------------------------------------------------------- loading
-const MODEL_VERSION = '2026-11-25a';     // bump when the models change, so browsers do not reuse cached copies
+const MODEL_VERSION = '2026-11-25b';     // bump when the models change, so browsers do not reuse cached copies
 const FILES = ['body', 'cover', 'lid', 'lower', 'panel', 'base', 'dock'].map((k) => [k, `models/${k}.glb?v=${MODEL_VERSION}`]);
 const GROUP_OF = { panel: 'base' };      // the control panel (STOP key, display) is fixed to the chassis
 // the host compresses the models and sends no Content-Length: use the known sizes as the progress total
-const SIZES = { body: 9303724, cover: 2955016, lid: 1016052, lower: 479300, panel: 266068, base: 13671280, dock: 5486764 };
+const SIZES = { body: 9296088, cover: 2913656, lid: 1015532, lower: 730608, panel: 266068, base: 13671280, dock: 5486764 };
 const prog = {};
 for (const k in SIZES) prog[k] = [0, SIZES[k]];
 function updateBar() {
@@ -547,7 +547,7 @@ function addInnerSkins() {
 function trimChassis() {
   const ch = groups.base.getObjectByName('Chassis'); if (!ch) return;
   ch.updateWorldMatrix(true, true);
-  if (CUT) { cutChassisMeshes(ch); return; }
+  if (CUT) { cutChassisMeshes(ch); if (DESIGN && DESIGN.chassis_lip) dropApron(ch, DESIGN.chassis_lip); return; }
   const v = new THREE.Vector3(), posts = (DESIGN && DESIGN.posts) || [];
   const nearPost = (p) => posts.some((q) => (p.x - q[0]) ** 2 + (p.z - q[2]) ** 2 < 0.0068 ** 2);
   ch.traverse((o) => {
@@ -563,6 +563,29 @@ function trimChassis() {
       keep[n++] = idx[i]; keep[n++] = idx[i + 1]; keep[n++] = idx[i + 2];
     }
     o.geometry.setIndex(new THREE.BufferAttribute(keep.slice(0, n), 1));
+  });
+}
+
+// v20: under the raised tail hem the chassis's finned rear apron is on show. The scan of it is lumpy, so its faces are dropped here and
+// the clean stand-in (lower.glb, ChassisLip) shows instead. Same test as chassislip.py drop_mask: centroid in the apron's height band,
+// outside the tub wall r_wall(theta) about c, within +-ang_max. World frame: +X forward, +Y left, Z up (glTF base frame: x, Z, -Y).
+function dropApron(ch, L) {
+  const toBase = new THREE.Matrix4().copy(groups.base.matrixWorld).invert(), v = new THREE.Vector3();
+  const ak = L.ang_deg.map((d) => d * Math.PI / 180), wk = L.r_wall, amax = (L.ang_max || 80) * Math.PI / 180, [cx, cy] = L.c, [zb, zt] = L.z;
+  const wf = (a) => { if (a <= ak[0]) return wk[0]; for (let i = 1; i < ak.length; i++) if (a <= ak[i]) return wk[i - 1] + (wk[i] - wk[i - 1]) * (a - ak[i - 1]) / (ak[i] - ak[i - 1]); return wk[wk.length - 1]; };
+  ch.traverse((o) => {
+    if (!o.isMesh || !o.geometry.index) return;
+    const g = o.geometry, rel = toBase.clone().multiply(o.matrixWorld), pos = g.attributes.position, idx = g.index.array;
+    const keep = new idx.constructor(idx.length); let n = 0;
+    for (let i = 0; i < idx.length; i += 3) {
+      let X = 0, Y = 0, Z = 0;
+      for (let k = 0; k < 3; k++) { v.fromBufferAttribute(pos, idx[i + k]).applyMatrix4(rel); X += v.x; Y += -v.z; Z += v.y; }
+      X /= 3; Y /= 3; Z /= 3;
+      const a = Math.atan2(Y - cy, -(X - cx)), r = Math.hypot(X - cx, Y - cy);
+      if (Z > zb - 0.004 && Z < zt + 0.0008 && Math.abs(a) <= amax + 0.03 && r > wf(a) + 0.0012) continue;
+      keep[n++] = idx[i]; keep[n++] = idx[i + 1]; keep[n++] = idx[i + 2];
+    }
+    g.setIndex(new THREE.BufferAttribute(keep.slice(0, n), 1));
   });
 }
 

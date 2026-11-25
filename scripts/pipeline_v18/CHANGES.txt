@@ -317,3 +317,19 @@ except the two chassis cuts per side of 6.2. Body half-width beside the wheels 1
  Renderer ([web], design_render.py): POSEMAP ("view=dx:dz:pitch_deg:s": the whole mower moved / pitched, wheels and casters spun for s m
    rolled), ORTHO ("view=ortho_scale"), ONLY (render only the named objects, e.g. the dock), RAMP (a 35 % lawn block with a grass photo on top
    and soil sides; RAMP_L / _W / _T / _SOIL / _TEX / _GAIN / _FILL) - for the docking and slope sequences and the lawn-plan sprites.
+
+10. TAIL: NO HIPS, RAISED HEM OVER THE FINNED APRON (f7)  (tag [v20])
+-------------------------------------------------------------------------------------------------------------------------------
+ Request: no raised bumps at the tail, the tail skirt not reaching so low, and the tail designed together with the chassis's channels
+ (the finned rear apron). Parameters: f7.json = f6 files + fix7_tail.json.
+ - The f6 rear hips and the fastback dip are gone (the tail roof is f5's again); the f6 front fenders and hood stay.
+ - skirt.hem_tail (design_gen.py): across the tail the hem rises from the side hem (50 mm) to 92 mm - 2 mm over the top of the chassis's
+   finned apron (z 48.5-94 mm, 28 channels at a 16 mm pitch along its arc) and 4.5 mm under the five snap-hook windows (z 96.5-106 mm) - by
+   |y| (centre 92, corners 73 down to 70 mm over the rear screw sockets at z 76), blended in between x -235 and -300 mm. The apron's
+   channels now show under the tail like a diffuser.
+ - chassis_lip / chassislip.py: the scanned apron is lumpy, and it is on show now, so renders and the web viewer drop its faces and show a
+   clean stand-in: the same outline (envelope about c = (-215, 0) mm, measured on the scan and mirrored, +0.8 mm), channels 4.5 x 2.5 mm
+   at the measured pitch (FFT of the scan: 15.96 mm), rolled lower edge, ledge back to the tub wall. A visual stand-in only: the chassis
+   part itself is unchanged and every check uses the scan.
+ Results (checks/f7): all pass - interference 0, lid sweep >= 0.5 mm, STOP, lights, ports, struts, kit clearance 1.43 mm, labyrinth no
+ contact (0.42 mm), lift 0 collisions; the five snap hooks unchanged (z 98.3-108.3 mm, 6 mm over the hem); solidaudit: the two well parts as in f5.

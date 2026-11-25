@@ -1,0 +1,1904 @@
+{
+ "roof": [
+  [
+   -0.3345,
+   0.19
+  ],
+  [
+   -0.3295,
+   0.207
+  ],
+  [
+   -0.321,
+   0.2225
+  ],
+  [
+   -0.3085,
+   0.237
+  ],
+  [
+   -0.291,
+   0.2495
+  ],
+  [
+   -0.268,
+   0.2595
+  ],
+  [
+   -0.235,
+   0.2675
+  ],
+  [
+   -0.19,
+   0.273
+  ],
+  [
+   -0.15,
+   0.2765
+  ],
+  [
+   -0.05,
+   0.2795
+  ],
+  [
+   0.06,
+   0.2765
+  ],
+  [
+   0.14,
+   0.2685
+  ],
+  [
+   0.2,
+   0.259
+  ],
+  [
+   0.245,
+   0.247
+  ],
+  [
+   0.275,
+   0.233
+  ],
+  [
+   0.297,
+   0.2165
+  ],
+  [
+   0.316,
+   0.194
+  ]
+ ],
+ "crown": 0.003,
+ "profile": [
+  [
+   0,
+   0,
+   0
+  ],
+  [
+   0.28,
+   0.006,
+   0.82
+  ],
+  [
+   0.39,
+   0.05,
+   0.95
+  ],
+  [
+   0.52,
+   0.19,
+   0.995
+  ],
+  [
+   1,
+   1,
+   1
+  ]
+ ],
+ "profile_mode": "smooth",
+ "smooth_deg": 70,
+ "fair": 90,
+ "min_radius": 8.0,
+ "spine_scale": 0.62,
+ "spine_center": -0.03,
+ "y_pinch": 0.1709,
+ "rear_rake": 0.0,
+ "rear_blend": 0.26,
+ "rear_sweep": 0.3,
+ "front_rake": 0.15,
+ "front_blend": 0.03,
+ "front_sweep": 0.25,
+ "lid": {
+  "shape": "rrect",
+  "cx": -0.047,
+  "length": 0.202,
+  "width": 0.164,
+  "r": 0.02,
+  "gap": 0.0008,
+  "open_deg": 75.0,
+  "roll": 0.0008,
+  "hinge_y": 0.054,
+  "undercut_deg": 5.0,
+  "cover_wall": false,
+  "gutter_setback": 0.0005,
+  "stop_mark": null,
+  "stakes": {
+   "ear": 0.006,
+   "ear_w": 0.008,
+   "pin_r": 0.00075
+  },
+  "stop_pad": null,
+  "rib_layout": "v2",
+  "ring_off": [
+   0.03,
+   0.05
+  ],
+  "stop_key": {
+   "//": "geometry in m, forces in N / (N/mm), tolerances in mm; every key not listed takes stopkit.DEFAULTS",
+   "x": null,
+   "//x": "null = centre of the real STOP key's top (bbox) = x 4.4 mm; y 0",
+   "r": 0.02,
+   "//r": "cap d 40: geometric minor dimension 40 >= 35 (5 mm margin)",
+   "stroke": 0.0055,
+   "//stroke": "cap travel to its own stop (parallel guide: the same at every point of the cap) - covers tip gap worst case 3.16 + key switch travel <= 1.5",
+   "clear": 0.002,
+   "//clear": "skirt clearance to the lid at full stroke -> cap floats 5.5 over the lid",
+   "gap": 0.0016,
+   "//gap": "tip to scanned key, closed lid: worst case -0.16 (key pre-pressed 0.16 < 0.3 switch travel) .. 3.16",
+   "side": 0.002,
+   "roll": 0.0012,
+   "dome": -0.0006,
+   "wall": 0.0016,
+   "arm_L": 0.07,
+   "arm_d": 0.004,
+   "arm_t": 0.0004,
+   "//arm": "parallel links 70 long, 5.5 apart, stainless U-channels 12.2 x 2.8 x 0.8 (Euler 2450 N vs 223 N at the 1 J impact): the cap translates, never tilts (no drawer jam, no edge-force factor)",
+   "legend_w": 0.028,
+   "legend_front": false,
+   "//legend_w": "STOP inlay 28 x 7.4 mm (Liberation Sans Bold), white 2K, reads from in front of the mower (the rear-hinged lid is operated from the front / side)",
+   "F_ret0": 2.0,
+   "k_ret": 0.15,
+   "k_boot": 0.1,
+   "F_c0": 16.0,
+   "k_c": 1.25,
+   "key_act": [
+    0.3,
+    1.5
+   ],
+   "key_full_min": 0.8,
+   "key_F": [
+    3.0,
+    15.0
+   ],
+   "//key": "ASSUMED range of the real STOP key (fixed hardware, scanned): switch travel 0.3..1.5, full travel >= 0.8, switch force 3..15 N - supplier to confirm",
+   "v4": true,
+   "tip_h": 0.0015,
+   "bush": 0.0022,
+   "head_t": 0.0008,
+   "stem_above_key": 0.0095,
+   "arm_h": 0.0028,
+   "arm_y": 0.0057,
+   "arm_top": -0.0032,
+   "F_c0_tol": 0.8,
+   "k_c_tol": 0.1,
+   "F_ret0_tol": 0.2,
+   "k_ret_tol": 0.1,
+   "F_fric": 1.0,
+   "tip_comp": [
+    0.04,
+    0.1
+   ]
+  },
+  "arc_t": 0.004,
+  "lug_d": 0.0035,
+  "bumper": 0.0012,
+  "band_t": 0.0,
+  "exit_a": -48.0,
+  "h3": {
+   "//": "hingekit.DEF3 holds the defaults; keys here override them",
+   "lug_both": true,
+   "lug_fillet": 0.00025,
+   "lug_eng": 0.92,
+   "cheek_metal": true,
+   "rail_split": [
+    -15.0,
+    15.0
+   ],
+   "blade": {
+    "x1": 0.04,
+    "z_deep": -0.008,
+    "drop_clr": 0.0008,
+    "top": 0.0002,
+    "fillet": 0.001
+   },
+   "keel": {
+    "w": 0.011,
+    "x1": 0.068,
+    "z_deep": -0.01,
+    "taper": 0.012,
+    "rib": 0.004
+   },
+   "spine": {
+    "t": 0.0015,
+    "x0": 0.062,
+    "x1": 0.122,
+    "h": [
+     0.008,
+     0.005
+    ],
+    "taper": 0.012
+   },
+   "idler": {
+    "r": 0.003,
+    "w": 0.0044,
+    "pin_r": 0.00075,
+    "dz": 0.0098
+   },
+   "drum": {
+    "r": 0.005,
+    "w": 0.007,
+    "flange": 0.0005
+   },
+   "spring": {
+    "T0": 0.2175,
+    "T75": 0.1,
+    "strip": [
+     0.006,
+     0.00018
+    ],
+    "arbor_r": 0.0016,
+    "turns": 9.5
+   },
+   "//int": "[fix3-int] retuned for the TOTAL lid: fix-hinge 140.6 g + the STOP key parts from their meshes (26.0 g net incl. the skin they replace, stopkit.mass_mesh -> lidmech extra_mass) = 166.6 g; gravity torque 0.109 -> 0.141 N m closed, 0.032 -> 0.040 at 75 deg. With the fix-hinge spring (0.165 / 0.075 N m) the net opening torque incl. rail friction would be -0.008 N m closed and -0.017 at 20 deg: the lid would not open. No spiral in the 5.5 mm wide r 5 drum reaches +0.0134 at <= 897 MPa / fill <= 0.62 / <= 45 % of the available turns; a r 6 drum does not fit the pod (back flange 1.2 mm through the pod wall into the pocket). So the drum widens 5.5 -> 7.0 mm (r, tape lever, idler, drum position unchanged; still inside the 7.1 mm pod half-width; the pod's damper box follows, lidmech [fix3-int]) and the strip widens 4.5 -> 6.0 at the same 0.18 thickness: T 0.2175 -> 0.100 N m, rate 3.13 N mm/rad, L 180 mm, 0.67 turn preload open, sigma 887 / 408 MPa (<= 897, stress ratio 0.46 >= 0.455), fill 0.61, 44 % of the available turns. Net opening torque incl. friction +0.035 closed, min +0.021 at 25 deg (fix-hinge +0.0134), +0.052 at 75; with 5 % relaxation min +0.013. turns: drawn spiral length ~ L"
+  },
+  "well_weep": [
+   0.0015,
+   0.0012,
+   0.03
+  ],
+  "clr_r": 7e-05,
+  "h4": {
+   "//": "hingekit4.DEF4 holds every default; keys here override them (dicts merge). Spring T0 / T75 = torque at the lid of both springs together before losses.",
+   "gear": {
+    "m": 0.0005,
+    "z_w": 72,
+    "z_p": 16,
+    "x_p": 0.1,
+    "band": 0.003,
+    "pinion_w": 0.0024,
+    "zone": [
+     -87.0,
+     12.0
+    ],
+    "//zone": "teeth from phi_p - 87 to phi_p + 12 (tongue frame): the pinion tip circle reaches inside the tongue band within +-10 deg of the line of centres, so the band is toothed 10 deg beyond the mesh at closed (+ 1.5 over-travel) and at 75 deg",
+    "runout": 5.5,
+    "//band": "toothed band 3.0 of the 8.0 tongue (pinion 2.4 + 0.3 each side): Lewis 46 MPa / Hertz 490 MPa at the largest tooth force (16.7 N); keeps 2 x 2.5 mm full side lands: tongue section in the zone Z 15.1 mm3 (full 21.3) -> LC3 SF 2.1 with the tooth-root Kt 1.7 on the full corner moment",
+    "//runout": "the cut rises from the root circle to the full tongue radius over 5.5 deg at both zone ends (inside the pinion tip-circle clearance incl. the 1.5 deg bottom over-travel): no step at the root-side end"
+   },
+   "spring": {
+    "T0": 0.36,
+    "T75": 0.21,
+    "strip": [
+     0.008,
+     0.00019
+    ],
+    "cup_r_in": 0.0058
+   },
+   "damper": {
+    "c_Q": 0.12
+   },
+   "detent": {
+    "delta": 5e-05
+   }
+  },
+  "closed_well_kit": true
+ },
+ "colors": {
+  "body": "#CDD0CF",
+  "body_finish": "satincoat",
+  "lid": "#CDD0CF",
+  "lid_finish": "satincoat",
+  "core": "#2A2C30",
+  "core_finish": "texture",
+  "visor": "#0A0B0D",
+  "visor_finish": "smoke",
+  "roof": "#0A0B0D",
+  "skirt": "#25272B",
+  "light": "#F2FBFF",
+  "ring": "#8A9097",
+  "accent": "#FF6A2B",
+  "inner": "#2E3035",
+  "arm": "#3A3D42",
+  "arm_finish": "metallic",
+  "liner": "#2E3035",
+  "ring_sensor": "#474C53",
+  "kit": "#34373C",
+  "stop": "#C1121C",
+  "halo": "#F2FBFF",
+  "halo_emit": 2.0,
+  "stop_finish": "texture"
+ },
+ "n_outline": 640,
+ "n_rows": 170,
+ "nose": {
+  "width": [
+   [
+    0.262,
+    0.168
+   ],
+   [
+    0.275,
+    0.164
+   ],
+   [
+    0.285,
+    0.144
+   ],
+   [
+    0.295,
+    0.122
+   ],
+   [
+    0.305,
+    0.096
+   ],
+   [
+    0.312,
+    0.076
+   ],
+   [
+    0.316,
+    0.06
+   ]
+  ],
+  "tiers": [],
+  "cap_z": 0.1172,
+  "plinth": false,
+  "corner_floor": {
+   "z_top": 0.1135,
+   "t": 0.0025,
+   "y_min": 0.12,
+   "x_min": 0.245,
+   "clear": 0.0015,
+   "z_bump": 0.1105,
+   "v2": true,
+   "hull_in": 0.001,
+   "under": 0.002,
+   "roll": 0.0005
+  }
+ },
+ "belt_drop_front": 0.0035,
+ "port_margin": 0.0005,
+ "tail_plan": {
+  "x_tip": -0.3345,
+  "x_c": -0.215,
+  "w": 0.204,
+  "n": 3.3,
+  "width": [
+   [
+    -0.215,
+    0.204
+   ],
+   [
+    -0.13,
+    0.206
+   ],
+   [
+    -0.034,
+    0.204
+   ]
+  ]
+ },
+ "skirt": {
+  "n": 40,
+  "depth": 0.09,
+  "flare": [
+   [
+    -0.4,
+    -0.003
+   ],
+   [
+    0.4,
+    -0.003
+   ]
+  ],
+  "bulge": 0.0,
+  "hem": [
+   [
+    0.0,
+    0.05
+   ],
+   [
+    0.3,
+    0.05
+   ]
+  ],
+  "arch_r": 0.128,
+  "pocket_r": 0.1,
+  "seat": {
+   "x": [
+    0.066,
+    0.166
+   ],
+   "ramp": [
+    0.018,
+    0.024
+   ],
+   "z": 0.157,
+   "y_min": 0.14,
+   "flange": {
+    "w": 0.004,
+    "t": 0.0025,
+    "end": 0.004,
+    "tpe": {
+     "x": [
+      0.104,
+      0.132
+     ],
+     "t": 0.001,
+     "proud": 0.0005,
+     "out": 0.001,
+     "r": 0.0015,
+     "bev": 0.0003
+    }
+   }
+  },
+  "hem_round": 0.003,
+  "hem_tail": {
+   "x0": -0.235,
+   "x1": -0.3,
+   "y": [
+    [
+     0.0,
+     0.092
+    ],
+    [
+     0.09,
+     0.092
+    ],
+    [
+     0.15,
+     0.081
+    ],
+    [
+     0.19,
+     0.073
+    ],
+    [
+     0.3,
+     0.07
+    ]
+   ]
+  }
+ },
+ "mounts": {
+  "well_r": 0.00375,
+  "well_chamfer": 0.0006,
+  "seat": 0.003
+ },
+ "tail_rake": {
+  "k": 0.2,
+  "z0": 0.12,
+  "z1": 0.19,
+  "b": 0.01,
+  "x_a": -0.345,
+  "x_b": -0.14
+ },
+ "cover": {
+  "gap": 0.0008,
+  "wall": 0.0025,
+  "fine": 0.0005,
+  "orbit": {
+   "r": 0.128,
+   "z_base": 0.123,
+   "z_nose": 0.19,
+   "x_nose": 0.15,
+   "fillet": 0.02,
+   "step": 0.0005,
+   "roll": 0.0008,
+   "roll_core": 0.0005,
+   "tail": {
+    "x": -0.3,
+    "k": 0.24,
+    "z": 0.19,
+    "fillet_top": 0.025,
+    "fillet": 0.02,
+    "mode": "sweep",
+    "x_top": -0.262,
+    "R": 0.09
+   },
+   "zone_sink": true,
+   "zone_by_normal": true,
+   "explicit": true,
+   "zone_ny": [
+    0.15,
+    0.995
+   ],
+   "zone_x_ramp": 0.08
+  },
+  "legs": {
+   "w": 0.008,
+   "t_root": 0.002,
+   "t_tip": 0.0014,
+   "hook": 0.0012,
+   "lead_in_deg": 30.0,
+   "ret_deg": 45.0,
+   "L_min": 0.016,
+   "deck_t": 0.0025,
+   "L_flex": 0.016,
+   "t_stem": 0.0032,
+   "t_neck": 0.0015,
+   "move": [
+    {
+     "//": "G1: the legs between posts 8 / 10 and 9 / 7 (default site x ~118) stood on the kept rim flange + pin stub (z 218.5); at x 157 the flange has fallen to <= 209.5 under the leg",
+     "x": [
+      0.1,
+      0.14
+     ],
+     "ay": [
+      0.15,
+      0.175
+     ],
+     "to_x": 0.157
+    },
+    {
+     "//": "M5: the legs between posts 6 / 8 and 7 / 5 (default x 9.7 / 7.5) become the x-locators of the cover (window +-0.1 along the edge, corner R0.1 so the leg's corners clear it) at x 2: thermal datum at mid-length",
+     "x": [
+      -0.03,
+      0.04
+     ],
+     "ay": [
+      0.15,
+      0.175
+     ],
+     "to_x": 0.002,
+     "window_half": 0.0041,
+     "window_r": 0.0001
+    }
+   ],
+   "follow_deck": true
+  },
+  "legs_min": 6,
+  "datum": {
+   "inset": 0.006,
+   "r": 0.002,
+   "post_clear": 0.01,
+   "pad_r": 0.003,
+   "pad_inset": 0.004,
+   "pad_max": 0.03,
+   "pad_x_max": -0.2,
+   "drains": {
+    "brow_y": [
+     -0.09,
+     0.0,
+     0.09
+    ],
+    "flank_x": [
+     -0.06,
+     -0.2
+    ]
+   },
+   "slot": 0.009,
+   "wall": 0.001,
+   "slot_nose": 0.003
+  },
+  "kit2": true,
+  "deck_cell": 0.0016,
+  "deck_edge": 0.001,
+  "deck_notch": [
+   [
+    0.103,
+    0.1535,
+    0.144,
+    0.0062
+   ]
+  ],
+  "deck_envelope": true,
+  "deck_refine": 2,
+  "deck_refine_slope": 1.0,
+  "deck_refine_h": 0.00025,
+  "deck_clear": 0.00105,
+  "deck_push": false,
+  "orient_kits": true,
+  "pad_on_scan": true,
+  "deck_refine_near": 0.008,
+  "deck_refine_max": 20000,
+  "deck_clear_thermal": {
+   "x0": 0.002,
+   "r0": 0.15,
+   "k": 0.0015
+  },
+  "mount_chassis_clear": 0.0008
+ },
+ "profile_wide": [
+  [
+   0,
+   0,
+   0
+  ],
+  [
+   0.28,
+   0.028,
+   0.82
+  ],
+  [
+   0.39,
+   0.07,
+   0.95
+  ],
+  [
+   0.52,
+   0.2,
+   0.995
+  ],
+  [
+   1,
+   1,
+   1
+  ]
+ ],
+ "panels": [],
+ "waist_tuck": {
+  "amount": 0.2,
+  "z0": 0.15,
+  "z1": 0.27
+ },
+ "nose_plan": {
+  "x_c": 0.262,
+  "w": 0.168,
+  "n": 3.3
+ },
+ "nose_rake": {
+  "k": 0.17900000000000002,
+  "z0": 0.12,
+  "z1": 0.19,
+  "b": 0.01,
+  "d0": 0.012
+ },
+ "bands": [
+  {
+   "side": "front",
+   "z": 0.17575,
+   "h": 0.0175,
+   "w": 0.26,
+   "lights": [
+    {
+     "y0": 0.0265,
+     "y1": 0.122,
+     "h": 0.004
+    }
+   ],
+   "elements": [
+    {
+     "kind": "glass",
+     "r": 0.0031
+    },
+    {
+     "kind": "ring",
+     "r": 0.0036,
+     "w": 0.0007
+    },
+    {
+     "kind": "ring",
+     "r": 0.0017,
+     "w": 0.0003
+    },
+    {
+     "kind": "glass",
+     "y": -0.0165,
+     "r": 0.0015
+    },
+    {
+     "kind": "ring",
+     "y": -0.0165,
+     "r": 0.0019,
+     "w": 0.0005
+    },
+    {
+     "kind": "light",
+     "y": 0.0165,
+     "r": 0.0012
+    },
+    {
+     "kind": "ring",
+     "y": 0.0165,
+     "r": 0.0019,
+     "w": 0.0005
+    }
+   ],
+   "groove_profile": "smooth",
+   "groove_w": 0.0006,
+   "groove_d": 0.0003,
+   "fine": 0.00025,
+   "groove_rows": [
+    0.0,
+    0.25,
+    0.5,
+    0.7,
+    0.85,
+    1.0
+   ]
+  },
+  {
+   "side": "rear",
+   "z": 0.17575,
+   "h": 0.0175,
+   "w": 0.26,
+   "lights": [
+    {
+     "y0": 0.0265,
+     "y1": 0.122,
+     "h": 0.004
+    }
+   ],
+   "elements": [
+    {
+     "kind": "light",
+     "r": 0.002
+    }
+   ],
+   "groove_profile": "smooth",
+   "groove_w": 0.0006,
+   "groove_d": 0.0003,
+   "fine": 0.00025,
+   "groove_rows": [
+    0.0,
+    0.25,
+    0.5,
+    0.7,
+    0.85,
+    1.0
+   ]
+  }
+ ],
+ "pinch_soft": 0.03,
+ "wall": {
+  "t": 0.0025,
+  "edge_r": 0.0008,
+  "edge_ri": 0.0003,
+  "min_clear": 0.0,
+  "loop_r": [
+   {
+    "name": "cover_seam",
+    "attr": "cv",
+    "iso": 0.0008,
+    "part": 1,
+    "r": 0.0008
+   },
+   {
+    "name": "core_seam",
+    "attr": "cv",
+    "iso": 0.0,
+    "part": 0,
+    "r": 0.0005
+   },
+   {
+    "name": "lid_opening",
+    "attr": "lid",
+    "iso": 0.0008,
+    "part": 1,
+    "r": 0.0008
+   },
+   {
+    "name": "hem",
+    "attr": "hem",
+    "iso": 0.0,
+    "part": 0,
+    "r": 0.001
+   },
+   {
+    "name": "charger_port",
+    "attr": "pt",
+    "iso": 0.0,
+    "part": 0,
+    "r": 0.0005
+   }
+  ],
+  "thin": [
+   {
+    "why": "chassis post 10 (177.1, 163.0, r 4.65) is 2.8 mm inside the outer skin: wall 1.8 there (0.72 t, spec 5.3)",
+    "part": 0,
+    "c": [
+     0.1771,
+     0.169,
+     0.193
+    ],
+    "c2": [
+     0.1771,
+     0.169,
+     0.215
+    ],
+    "r": 0.0065,
+    "t": 0.0018
+   }
+  ],
+  "push_clear": 0.001,
+  "labyrinth": {
+   "cover_seam": {
+    "//": "cover LIP: 1.55 wall (>= 1.5) for 3.3 mm from the cut line, 45 deg taper back to 2.5 over 1.0 mm = the rebate the body upstand stands in; r_frac keeps the R0.8 roll",
+    "t_edge": 0.00155,
+    "t_len": 0.0033,
+    "t_taper": 0.001,
+    "splits": 4,
+    "r_frac": 0.55
+   },
+   "core_seam": {
+    "//": "body UPSTAND: outer face 1.85 under the body skin (0.8 channel to the cover lip = the gap width), top 4.0 above the cut line (3.2 above the cover edge), >= 1.2 thick, 1 deg draft; ledge raised <= 0.5 for a 5 deg outward drain; inner skin thickened at the edge (t_edge derived), back to 2.5 over 3 mm",
+    "t_len": 0.0006,
+    "t_taper": 0.0015,
+    "splits": 4,
+    "upstand": {
+     "w_o": 0.00185,
+     "h": 0.004,
+     "t_top": 0.0012,
+     "draft_deg": 1.0,
+     "fillet": 0.0003,
+     "ledge_slope_deg": 5.0,
+     "ledge_dmax": 0.0005,
+     "n_fillet": 3,
+     "n_top": 8,
+     "relief": {
+      "//": "M5: the upstand outer face (and the body edge with it, the upstand keeps 1.2) moves dw further in at the nose / tail ends, smoothstep over |x - x0| = r0 .. r1: channel 0.8 -> 0.95 where the 0.45 mm thermal shift (sun: dark body 75 C / light cover 50 C) closes it",
+      "x0": 0.002,
+      "r": [
+       0.19,
+       0.27
+      ],
+      "dw": 0.00015
+     }
+    }
+   },
+   "kit_cv_min": 0.007,
+   "//kit": "kit_cv_min: datum-pin gusset feet (fused into the cover's inner skin) stay >= 7 mm (side-view distance) above the part line, i.e. clear of the 1.55 lip, its taper (ends at 5.1) and the upstand top (4.0)",
+   "deck_inset": {
+    "extra": 0.00063,
+    "below": [
+     0.0006,
+     0.0021
+    ],
+    "above": [
+     0.0055,
+     0.007
+    ]
+   },
+   "//deck": "deck_inset: the deck edge (plan offset from the body edge, deck_into_wall 0.8 = 0.5 into the 2.5 wall, unchanged) stops `extra` 0.63 further in where it meets the thickened body edge / the upstand: deck edge between 1.0 (full) .. 4.0 (none) mm below the part line (follows the 3.13 -> 2.5 taper) and up to 5.5 (full) .. 7.0 (none) above it"
+  }
+ },
+ "fix1_outline": true,
+ "roof_spline": "cubic",
+ "controls_standin": {
+  "margin": 0.0004,
+  "glass_r": 0.004,
+  "key_r": 0.004,
+  "key_edge": 0.0012,
+  "symmetric": true,
+  "plunger_gap": 0.0005
+ },
+ "weld_final": true,
+ "rear_recess": [],
+ "section": {
+  "a": 0.034,
+  "b": 0.0265,
+  "n": 3.4,
+  "t1": 0.28,
+  "t2": 0.52,
+  "draft_deg": 0.0
+ },
+ "section_wide": {
+  "draft_deg": 1.5
+ },
+ "port_slot": {
+  "y": 0.06,
+  "z0": 0.1417,
+  "z1": 0.1617,
+  "web": 0.003
+ },
+ "struts": {
+  "mode": "cut",
+  "cuts": [
+   {
+    "id": "pin_trim",
+    "feature": "old mudguard locating pin (rim flange, above the hub)",
+    "//": "trim the pin's outboard overhang flush with the rim flange's outer edge line (|y| 165.9..167.0): leaves |y| <= 167.2 = 1.2 mm from the body inner skin (168.4)",
+    "box": {
+     "x": [
+      0.1085,
+      0.128
+     ],
+     "ay": [
+      0.1672,
+      0.176
+     ],
+     "z": [
+      0.212,
+      0.242
+     ]
+    },
+    "plane": {
+     "axis": "ay",
+     "at": 0.1672
+    }
+   },
+   {
+    "id": "pin_top",
+    "feature": "old mudguard locating pin (rim flange, above the hub)",
+    "//": "cut the pin off <= 1.0 mm above the rim flange top face (flange top z 217.5 at the pin, level behind it, falling to 216.9 just ahead): stub top 218.5 (+0 / -1.0, flush allowed) = 1.0 / 1.5 mm (R / L) under the deck",
+    "box": {
+     "x": [
+      0.1085,
+      0.128
+     ],
+     "ay": [
+      0.156,
+      0.176
+     ],
+     "z": [
+      0.2185,
+      0.242
+     ]
+    },
+    "plane": {
+     "axis": "z",
+     "at": 0.2185,
+     "remove": "+"
+    }
+   },
+   {
+    "id": "hook",
+    "feature": "old mudguard front hook (L-bracket ahead of the wheel)",
+    "//": "straight cut parallel to the centre line at |y| 165.0: >= 1.2 mm from the nose-corner inner skin (166.2..168.0 over x 260..276)",
+    "box": {
+     "x": [
+      0.254,
+      0.278
+     ],
+     "ay": [
+      0.165,
+      0.178
+     ],
+     "z": [
+      0.146,
+      0.168
+     ]
+    },
+    "plane": {
+     "axis": "ay",
+     "at": 0.165
+    }
+   }
+  ]
+ },
+ "ports3": {
+  "//pins": "dock pin axis fits in the asm_dock pose (x, y, z at x = 298.5 mm; dy, dz = slope per x), docked z (DOCK_LIFT 17.3)",
+  "pins": [
+   {
+    "x": 0.2985,
+    "y": 0.02274,
+    "z": 0.15249,
+    "dy": -0.0043,
+    "dz": 0.0139
+   },
+   {
+    "x": 0.2985,
+    "y": -0.03047,
+    "z": 0.15283,
+    "dy": -0.0107,
+    "dz": 0.0099
+   }
+  ],
+  "//pin_r": "d 8 nominal (scan 7.90 / 7.94)",
+  "pin_r": 0.004,
+  "//tip_x": "seated pin tip (domed) x",
+  "tip_x": 0.2905,
+  "//seat_dy": "asm_dock -> seated pose: pins centred in the chassis V pockets (pocket centres +28.8 / -24.9 at x 288)",
+  "seat_dy": 0.0058,
+  "//capture": "lateral misalignment both funnels accept (d 8 pin inside the mouths y 8.7..52.0 / -45.4..-4.6 at the chassis face x 302)",
+  "capture": [
+   -0.0158,
+   0.0161
+  ],
+  "//dz": "vertical misalignment design range (tyre wear / load lever 1.57 to the nose, debris on the plate, cleats, tolerances; RSS)",
+  "dz": [
+   -0.0035,
+   0.0035
+  ],
+  "margin": 0.0005,
+  "//snap": "a window closer than this to the slot tunnel runs out to it (no hair-thin web); fillet: convex window corners",
+  "snap": 0.0012,
+  "fillet": 0.003,
+  "//walls": "web plate, tunnel and duct walls 1.5 (0.6 t, rib rule), front window edges R0.4, 1 deg draft (front slider pulls +x)",
+  "web_t": 0.0015,
+  "wall_t": 0.0015,
+  "bev": 0.0004,
+  "draft_deg": 1.0,
+  "//duct": "ducts end duct_clear in front of the chassis (ledge under the mouths: full ring; above zb + hood_lift: top + sides on to the face)",
+  "duct_clear": 0.001,
+  "hood_lift": 0.0006,
+  "//dock_dy": "renderer: dock drawn in the seated pose (y + 5.8 mm vs asm_dock); pin_standin: clean d 7.94 pins (the pin model of portcheck.py) over the open-bottom pin scan",
+  "dock_dy": 0.0058,
+  "pin_standin": true,
+  "yaw_deg": 2.0,
+  "square": true,
+  "scarf": [
+   0.0,
+   0.003
+  ],
+  "ts_simplify": 1e-05,
+  "pocket_standin": true,
+  "lip_fill": 0.0005
+ },
+ "lights": {
+  "lens": {
+   "gap": 0.0004,
+   "roll_body": 0.0003,
+   "roll_lens": 0.0002,
+   "t": 0.0025,
+   "edge_ri": 0.0002
+  },
+  "housing": {
+   "weld_in": 0.002,
+   "weld_out": 0.0005,
+   "weld_u": 0.0023,
+   "step_d": -0.0001,
+   "step_u": 0.0033,
+   "frame_t": 0.0015,
+   "d_out": 0.0025,
+   "d_out_top": 0.002,
+   "d_out_bot": 0.003,
+   "d_trap": 0.002,
+   "trap_y": 0.064,
+   "gasket_in": 0.0007,
+   "gasket_edge": 0.0003,
+   "u_back": {
+    "front": [
+     [
+      0.0,
+      0.0108
+     ],
+     [
+      0.022,
+      0.0108
+     ],
+     [
+      0.03,
+      0.0094
+     ],
+     [
+      0.074,
+      0.0094
+     ],
+     [
+      0.084,
+      0.0139
+     ],
+     [
+      0.2,
+      0.0139
+     ]
+    ],
+    "rear": [
+     [
+      0.0,
+      0.0098
+     ],
+     [
+      0.014,
+      0.0098
+     ],
+     [
+      0.022,
+      0.0094
+     ],
+     [
+      0.074,
+      0.0094
+     ],
+     [
+      0.084,
+      0.0139
+     ],
+     [
+      0.2,
+      0.0139
+     ]
+    ]
+   },
+   "back_t": 0.0015,
+   "vent": [
+    0.06,
+    0.178,
+    0.0035
+   ],
+   "port_clear": 0,
+   "gasket_continuous": true,
+   "gasket_drains": [
+    [
+     0.1,
+     0.003
+    ]
+   ]
+  },
+  "bar": {
+   "y0": 0.0255,
+   "y1": 0.1245,
+   "z0": -0.0022,
+   "z1": 0.0022,
+   "u0": 0.00275,
+   "u1": 0.00625,
+   "leg_y": 0.121,
+   "leg_u": 0.0099,
+   "carrier_t": 0.0008
+  },
+  "board": {
+   "y0": 0.113,
+   "y1": 0.1265,
+   "z_half": 0.007,
+   "u0": 0.0106,
+   "t": 0.001,
+   "led": [
+    0.003,
+    0.003,
+    0.0006
+   ]
+  },
+  "pupil": {
+   "board": [
+    0.023,
+    0.00625,
+    0.0044
+   ],
+   "cam": [
+    0.0085,
+    0.004,
+    0.003,
+    0.00275
+   ],
+   "tof": [
+    0.0049,
+    0.0025,
+    0.00156
+   ],
+   "tof_y": -0.0165,
+   "led_y": 0.0165,
+   "pipe_r": 0.0014
+  },
+  "dot": {
+   "board": [
+    0.008,
+    0.006,
+    0.007
+   ],
+   "pipe_r": 0.0023,
+   "led": [
+    0.0016,
+    0.0008,
+    0.0006
+   ]
+  },
+  "bosses": {
+   "at": [
+    [
+     0.139,
+     0.0
+    ],
+    [
+     0.086,
+     -0.02
+    ]
+   ],
+   "od": 0.0049,
+   "hole": 0.002,
+   "seat_u": 0.009,
+   "ear_t": 0.002,
+   "ear_w": 0.009,
+   "gusset_t": 0.0012,
+   "sink": 0.001,
+   "screw": [
+    0.0025,
+    0.007,
+    0.0045,
+    0.0016
+   ],
+   "fit_hole": 0.0031,
+   "slot": 0.001,
+   "clear_hole": 0.0036,
+   "axis": "x",
+   "float": 0.0004,
+   "sleeve": [
+    0.003,
+    0.0055,
+    0.0005
+   ]
+  },
+  "connector": {
+   "y": 0.112,
+   "dz": 0.001,
+   "w": 0.016,
+   "h": 0.011,
+   "wall": 0.0012,
+   "len": 0.006,
+   "plug_len": 0.008
+  },
+  "harness": {
+   "cable_d": {
+    "front": 0.005,
+    "rear": 0.0042
+   },
+   "grommet_holes": [
+    [
+     0.2905,
+     0.11,
+     0.0035,
+     0.0035
+    ],
+    [
+     -0.289,
+     0.11,
+     0.0035,
+     0.0035
+    ]
+   ],
+   "front": {
+    "path": [
+     [
+      0.2918,
+      0.1092,
+      0.184
+     ],
+     [
+      0.291,
+      0.1097,
+      0.193
+     ],
+     [
+      0.2905,
+      0.11,
+      0.1985
+     ],
+     [
+      0.289,
+      0.1088,
+      0.2002
+     ],
+     [
+      0.282,
+      0.103,
+      0.2
+     ],
+     [
+      0.274,
+      0.0955,
+      0.2
+     ],
+     [
+      0.266,
+      0.089,
+      0.201
+     ],
+     [
+      0.2633,
+      0.087,
+      0.2023
+     ]
+    ],
+    "grommet": [
+     0.2905,
+     0.11,
+     0.1961,
+     0.0035,
+     0.0025
+    ],
+    "clips": [
+     [
+      0.274,
+      0.0955,
+      0.2,
+      0.0,
+      0.0,
+      -1.0,
+      0.0006
+     ]
+    ],
+    "service": [
+     0.262,
+     0.086,
+     0.203,
+     -0.76,
+     -0.65,
+     0.0,
+     0.003,
+     0.009,
+     0.1962
+    ],
+    "chassis_lead": [
+     [
+      0.2385,
+      0.066,
+      0.203
+     ],
+     [
+      0.2345,
+      0.064,
+      0.193
+     ],
+     [
+      0.232,
+      0.066,
+      0.16
+     ],
+     [
+      0.231,
+      0.07,
+      0.116
+     ]
+    ]
+   },
+   "rear": {
+    "path": [
+     [
+      -0.298,
+      0.1091,
+      0.184
+     ],
+     [
+      -0.2965,
+      0.1094,
+      0.195
+     ],
+     [
+      -0.293,
+      0.1098,
+      0.21
+     ],
+     [
+      -0.2895,
+      0.11,
+      0.222
+     ],
+     [
+      -0.289,
+      0.11,
+      0.2285
+     ],
+     [
+      -0.2875,
+      0.109,
+      0.2295
+     ],
+     [
+      -0.281,
+      0.1035,
+      0.2295
+     ],
+     [
+      -0.274,
+      0.0975,
+      0.2305
+     ],
+     [
+      -0.27,
+      0.0943,
+      0.2318
+     ]
+    ],
+    "grommet": [
+     -0.289,
+     0.11,
+     0.2255,
+     0.0035,
+     0.0025
+    ],
+    "clips": [
+     [
+      -0.281,
+      0.1035,
+      0.2295,
+      0.0,
+      0.0,
+      -1.0,
+      0.0006
+     ]
+    ],
+    "service": [
+     -0.2688,
+     0.0933,
+     0.2323,
+     0.78,
+     -0.62,
+     0.0,
+     0.003,
+     0.009,
+     0.2256
+    ],
+    "chassis_lead": [
+     [
+      -0.2468,
+      0.0758,
+      0.2323
+     ],
+     [
+      -0.244,
+      0.076,
+      0.222
+     ],
+     [
+      -0.243,
+      0.079,
+      0.16
+     ],
+     [
+      -0.243,
+      0.08,
+      0.114
+     ]
+    ]
+   },
+   "service_sealed": true
+  },
+  "halo": {
+   "on": true,
+   "boss_r": 0.0015,
+   "gap_closed": 0.0024,
+   "emitter": [
+    0.005,
+    0.008,
+    0.001
+   ],
+   "led_h": 0.0006
+  },
+  "on": true,
+  "// lens": "separate smoke PC lens (IR-transparent tint, hard-coat outside, dead-front IR-transparent black print inside except the light windows / pupil, silver ring print); gap = real joint to the body opening (was a 0.6 x 0.3 groove); roll_body / roll_lens = edge radii; t = lens thickness = wall",
+  "// housing": "black PC/ABS lamp housing, laser-welded to the lens back face (inner / outer wall faces weld_in / weld_out inside the outline (wall 1.5, the weld land between them) at u = weld_u); step_d / step_u = light trap step behind the gap and gasket face; d_out* = flange width beyond the outline (top / bottom / ends), d_trap over the charger slot (|y| < trap_y: no gasket, drain); gasket_in / gasket_edge = gasket band; u_back = back-plate depth by |y| (under the A-surface) per module; back_t; vent = [y, z, r] ePTFE vent",
+  "// bar": "PMMA light bar behind each light window: y0..y1, z0..z1 about the band axis, u0..u1 depth; 45 deg TIR periscope leg at leg_y..y1 down to leg_u; carrier_t = white PC carrier channel wall",
+  "// board": "LED end board (FR4) y0..y1, +-z_half, front face at u0, thickness t; led = [w, h, t] of the 3030 LED",
+  "// pupil": "front centre: board [half width, half height, front-face u], cam = [holder size, depth, barrel r, barrel front u], tof = [w, h, t], tof_y, led_y, pipe_r",
+  "// dot": "rear centre: board [half w, half h, front-face u], pipe_r, led",
+  "// bosses": "screw bosses on the body wall [|y|, dz] (dz 0: on the band axis at the lens end, else under the lens), od / hole (PT K25), seat_u = ear seat depth, ear_t / ear_w, gusset_t, sink = base fused into the wall, screw = [d, length, head d, head h]; fit_hole / slot = the locating holes of the two end ears (left round, right slot along y), clear_hole = lower ears",
+  "// connector": "sealed module connector on the back plate: y, dz, w, h, wall, shroud len, plug_len (right-angle plug, cable exits upward)",
+  "// harness": "cable_d per module; per module: path waypoints (world m) from the plug exit, grommet [x, y, z deck top, hole r, deck t], clips [x, y, z, foot direction, foot h], service [x, y, z, axis, cradle offsets 2x, deck z], chassis_lead waypoints; grommet_holes [x, y, rx, ry] are cut into the deck by design_gen",
+  "// halo": "status halo feed: clear boss r on the lid underside at the halo ring's front point, gap_closed to the emitter LED (lid closed), emitter = [x, y, t] LED board on the control panel's front strip, led_h; panel_z = panel top there",
+  "pads": {
+   "//": "m9: four crush pads per module at the outer edge of the flange (two beyond the stadium ends on the band axis, two on the bottom run at |y| 86 over the lower ears) bear on the body's inner skin: they set the lens flushness and the gasket stand-off (0.8)",
+   "at": [
+    [
+     "end",
+     0.00205
+    ],
+    [
+     "bottom",
+     0.086,
+     0.00245
+    ]
+   ],
+   "len": 0.003,
+   "wid": 0.0008,
+   "crush": 0.0
+  },
+  "stack": {
+   "//": "m9 tolerance chains (mm, +-): flushness of the lens to the body A-surface; gasket installed height",
+   "f3_ear_seat": [
+    [
+     "lens thickness",
+     0.05
+    ],
+    [
+     "weld collapse 0.05..0.10",
+     0.075
+    ],
+    [
+     "housing ear seat to weld land",
+     0.08
+    ],
+    [
+     "body boss seat (lifter) to A-surface",
+     0.15
+    ]
+   ],
+   "f4_crush_pad": [
+    [
+     "lens thickness",
+     0.05
+    ],
+    [
+     "weld collapse 0.20 (displacement-controlled)",
+     0.05
+    ],
+    [
+     "housing pad face to weld land (one cavity)",
+     0.05
+    ],
+    [
+     "pad crush / creep",
+     0.03
+    ],
+    [
+     "body wall at the opening (inner skin to A-surface)",
+     0.1
+    ]
+   ],
+   "gasket": {
+    "free": 1.3,
+    "chain": [
+     [
+      "pad crush / creep",
+      0.03
+     ],
+     [
+      "flange flatness",
+      0.05
+     ],
+     [
+      "inner-skin waviness at the opening",
+      0.05
+     ]
+    ],
+    "limit_pct": [
+     25,
+     55
+    ]
+   },
+   "weld_collapse": "0.20 +- 0.05"
+  }
+ },
+ "tail_round": {
+  "n2": 2.4,
+  "z_lo": 0.09,
+  "z_hi": 0.2,
+  "v0": 0.72,
+  "v1": 0.88
+ },
+ "stride": 2,
+ "fine_scale": 2.2,
+ "bumps": [
+  {
+   "ax": [
+    [
+     -0.06,
+     0.0
+    ],
+    [
+     0.0,
+     0.0016799999999999999
+    ],
+    [
+     0.06,
+     0.0042
+    ],
+    [
+     0.14,
+     0.0133
+    ],
+    [
+     0.2,
+     0.0203
+    ],
+    [
+     0.245,
+     0.0245
+    ],
+    [
+     0.285,
+     0.0224
+    ],
+    [
+     0.32,
+     0.0
+    ]
+   ],
+   "out": [
+    0.085,
+    0.135
+   ],
+   "zw": [
+    0.19,
+    0.235
+   ]
+  },
+  {
+   "ax": [
+    [
+     0.1,
+     0.0
+    ],
+    [
+     0.16,
+     -0.0028
+    ],
+    [
+     0.24,
+     -0.0042
+    ],
+    [
+     0.3,
+     -0.0028
+    ],
+    [
+     0.33,
+     0.0
+    ]
+   ],
+   "y_in": 0.05,
+   "y_out": 0.11
+  }
+ ],
+ "bump_fair": 4,
+ "chassis_lip": {
+  "//": "[v20] clean stand-in for the scanned finned apron of the chassis (render only): envelope r(theta) about c, measured on base.glb (97th percentile, mirrored); fins at a 16 mm pitch along the arc (FFT of the scan: 15.96 mm)",
+  "c": [
+   -0.215,
+   0.0
+  ],
+  "ang_deg": [
+   -82.0,
+   -80.0,
+   -78.0,
+   -76.0,
+   -74.0,
+   -72.0,
+   -70.0,
+   -68.0,
+   -66.0,
+   -64.0,
+   -62.0,
+   -60.0,
+   -58.0,
+   -56.0,
+   -54.0,
+   -52.0,
+   -50.0,
+   -48.0,
+   -46.0,
+   -44.0,
+   -42.0,
+   -40.0,
+   -38.0,
+   -36.0,
+   -34.0,
+   -32.0,
+   -30.0,
+   -28.0,
+   -26.0,
+   -24.0,
+   -22.0,
+   -20.0,
+   -18.0,
+   -16.0,
+   -14.0,
+   -12.0,
+   -10.0,
+   -8.0,
+   -6.0,
+   -4.0,
+   -2.0,
+   0.0,
+   2.0,
+   4.0,
+   6.0,
+   8.0,
+   10.0,
+   12.0,
+   14.0,
+   16.0,
+   18.0,
+   20.0,
+   22.0,
+   24.0,
+   26.0,
+   28.0,
+   30.0,
+   32.0,
+   34.0,
+   36.0,
+   38.0,
+   40.0,
+   42.0,
+   44.0,
+   46.0,
+   48.0,
+   50.0,
+   52.0,
+   54.0,
+   56.0,
+   58.0,
+   60.0,
+   62.0,
+   64.0,
+   66.0,
+   68.0,
+   70.0,
+   72.0,
+   74.0,
+   76.0,
+   78.0,
+   80.0,
+   82.0
+  ],
+  "r": [
+   0.19377,
+   0.19355,
+   0.19295,
+   0.19194,
+   0.19066,
+   0.18927,
+   0.18789,
+   0.18681,
+   0.18627,
+   0.18584,
+   0.1844,
+   0.18157,
+   0.17817,
+   0.17478,
+   0.17088,
+   0.16632,
+   0.16154,
+   0.15675,
+   0.15223,
+   0.14838,
+   0.1453,
+   0.14221,
+   0.13884,
+   0.13581,
+   0.13306,
+   0.13047,
+   0.12828,
+   0.12623,
+   0.1241,
+   0.12214,
+   0.12015,
+   0.11828,
+   0.11715,
+   0.11633,
+   0.11503,
+   0.11373,
+   0.11331,
+   0.11323,
+   0.1127,
+   0.11212,
+   0.11212,
+   0.11228,
+   0.11212,
+   0.11212,
+   0.1127,
+   0.11323,
+   0.11331,
+   0.11373,
+   0.11503,
+   0.11633,
+   0.11715,
+   0.11828,
+   0.12015,
+   0.12214,
+   0.1241,
+   0.12623,
+   0.12828,
+   0.13047,
+   0.13306,
+   0.13581,
+   0.13884,
+   0.14221,
+   0.1453,
+   0.14838,
+   0.15223,
+   0.15675,
+   0.16154,
+   0.16632,
+   0.17088,
+   0.17478,
+   0.17817,
+   0.18157,
+   0.1844,
+   0.18584,
+   0.18627,
+   0.18681,
+   0.18789,
+   0.18927,
+   0.19066,
+   0.19194,
+   0.19295,
+   0.19355,
+   0.19377
+  ],
+  "r_wall": [
+   0.13446,
+   0.15754,
+   0.17734,
+   0.18333,
+   0.18265,
+   0.18109,
+   0.17968,
+   0.17784,
+   0.17539,
+   0.17238,
+   0.16876,
+   0.16475,
+   0.16076,
+   0.15709,
+   0.15378,
+   0.15038,
+   0.14669,
+   0.14291,
+   0.13889,
+   0.1346,
+   0.13057,
+   0.12724,
+   0.12463,
+   0.12251,
+   0.12058,
+   0.11863,
+   0.11662,
+   0.11467,
+   0.11303,
+   0.11155,
+   0.10999,
+   0.10842,
+   0.10699,
+   0.10578,
+   0.10495,
+   0.10446,
+   0.10401,
+   0.10349,
+   0.10299,
+   0.10253,
+   0.1022,
+   0.1021,
+   0.1022,
+   0.10253,
+   0.10299,
+   0.10349,
+   0.10401,
+   0.10446,
+   0.10495,
+   0.10578,
+   0.10699,
+   0.10842,
+   0.10999,
+   0.11155,
+   0.11303,
+   0.11467,
+   0.11662,
+   0.11863,
+   0.12058,
+   0.12251,
+   0.12463,
+   0.12724,
+   0.13057,
+   0.1346,
+   0.13889,
+   0.14291,
+   0.14669,
+   0.15038,
+   0.15378,
+   0.15709,
+   0.16076,
+   0.16475,
+   0.16876,
+   0.17238,
+   0.17539,
+   0.17784,
+   0.17968,
+   0.18109,
+   0.18265,
+   0.18333,
+   0.17734,
+   0.15754,
+   0.13446
+  ],
+  "z": [
+   0.0485,
+   0.094
+  ],
+  "ang_max": 80.0,
+  "pitch": 0.016,
+  "groove": {
+   "w": 0.0045,
+   "d": 0.0025,
+   "z": [
+    0.056,
+    0.088
+   ]
+  },
+  "proud": 0.0008
+ }
+}

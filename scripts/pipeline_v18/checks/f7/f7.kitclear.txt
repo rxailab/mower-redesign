@@ -1,0 +1,3 @@
+rest {"min_gap_mm": 1.431, "inside_total": 0, "lifts": 121} tightest: [(np.float64(0.0), 1.431, [-280.2, -0.2, 220.1]), (np.float64(0.25), 1.658, [-280.2, -0.2, 220.4]), (np.float64(0.5), 1.884, [-280.2, -0.2, 220.6]), (np.float64(0.75), 2.111, [-280.2, -0.2, 220.9])]
+deflected {"min_gap_mm": 1.431, "inside_total": 0, "lifts": 121} tightest: [(np.float64(0.0), 1.431, [-280.2, -0.2, 220.1]), (np.float64(0.25), 1.658, [-280.2, -0.2, 220.4]), (np.float64(0.5), 1.884, [-280.2, -0.2, 220.6]), (np.float64(0.75), 2.111, [-280.2, -0.2, 220.9])]
+leg sites: 10  worst: {'gap_mm': 1.431, 'state': 'rest', 'lift_mm': np.float64(0.0), 'at_mm': [-280.2, -0.2, 220.1]}  KITCLEAR OK (>= 0.50 mm over 0..30 mm lift)

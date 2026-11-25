@@ -424,6 +424,11 @@ if SK:
     hk_ = np.array(sorted(SK['hem'])); Ra_ = SK.get('arch_r', 0.128)
     hq_ = np.abs(V[:, 1]) if SK.get('hem_by', 'y') == 'y' else V[:, 0]            # hem height by |y| (corners low, centre of the tail cut out) or by x
     zh_ = PchipInterpolator(hk_[:, 0], hk_[:, 1])(np.clip(hq_, hk_[0, 0], hk_[-1, 0])); arch_ = np.hypot(V[:, 0] - WX, V[:, 2] - WZ) - Ra_
+    HT_ = SK.get('hem_tail')
+    if HT_:      # [v20] across the tail the hem rises over the finned chassis apron (the diffuser): height by |y| (centre high, corners lower
+        #          over the rear screw sockets), blended in from the side hem between x0 and x1 (towards the tail)
+        tk_ = np.array(sorted(HT_['y'])); zt_ = PchipInterpolator(tk_[:, 0], tk_[:, 1])(np.clip(np.abs(V[:, 1]), tk_[0, 0], tk_[-1, 0]))
+        zh_ = zh_ + (zt_ - zh_) * sm5(-HT_['x0'], -HT_['x1'], -V[:, 0])
     if SK.get('pocket_r'): arch_ = np.hypot(V[:, 0] - WX, V[:, 2] - WZ) - SK['pocket_r']      # [v18] wheel pocket: behind the tyre the core wall carries on down inside the orbit (hides the chassis), its edge an arc about the hub
     if SK.get('hem_round', 0.0) > 0:      # [fix1] D8: the hem loop's corners rounded (smooth min / max of the three fields), so the R1 roll cannot fold
         rh_ = SK['hem_round']

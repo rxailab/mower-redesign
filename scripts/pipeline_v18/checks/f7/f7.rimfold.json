@@ -1,0 +1,35 @@
+{
+ "p0_s2xs2": {
+  "pairs": 2,
+  "clusters": [
+   {
+    "n": 2,
+    "at_mm": [
+     18.9,
+     -168.4,
+     106.3
+    ]
+   }
+  ]
+ },
+ "p0_s0xs2": {
+  "pairs": 0,
+  "clusters": []
+ },
+ "p0_s1xs2": {
+  "pairs": 0,
+  "clusters": []
+ },
+ "p1_s2xs2": {
+  "pairs": 0,
+  "clusters": []
+ },
+ "p1_s0xs2": {
+  "pairs": 0,
+  "clusters": []
+ },
+ "p1_s1xs2": {
+  "pairs": 0,
+  "clusters": []
+ }
+}
