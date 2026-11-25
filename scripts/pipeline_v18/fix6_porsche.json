@@ -1,0 +1,134 @@
+{
+ "//": "[v19] Porsche-inspired cover (user's pick: variant E): front fenders over the drive wheels stand 10-27 mm above the hood centre (outboard step 85 -> 135 mm, amplitude table along x, most near the nose), the hood centre drops up to 4 mm ahead of the lid, rear hips 12-16 mm above a fastback centre that is up to 6 mm lower behind x -195 mm (the lid well / hinge area keeps the f5 surface). The fender and hip lift ramps up between z 190 and 235 mm (zw), so the lamp bands below and the shoulder corner above keep their shape (min radius 12 mm). z-only moves after fairing (shape_bumps); plan outline, belt, lid outline and STOP stay.",
+ "bumps": [
+  {
+   "ax": [
+    [
+     -0.06,
+     0.0
+    ],
+    [
+     0.0,
+     0.0016799999999999999
+    ],
+    [
+     0.06,
+     0.0042
+    ],
+    [
+     0.14,
+     0.0133
+    ],
+    [
+     0.2,
+     0.0203
+    ],
+    [
+     0.245,
+     0.0245
+    ],
+    [
+     0.285,
+     0.0224
+    ],
+    [
+     0.32,
+     0.0
+    ]
+   ],
+   "out": [
+    0.085,
+    0.135
+   ],
+   "zw": [
+    0.19,
+    0.235
+   ]
+  },
+  {
+   "ax": [
+    [
+     0.1,
+     0.0
+    ],
+    [
+     0.16,
+     -0.0028
+    ],
+    [
+     0.24,
+     -0.0042
+    ],
+    [
+     0.3,
+     -0.0028
+    ],
+    [
+     0.33,
+     0.0
+    ]
+   ],
+   "y_in": 0.05,
+   "y_out": 0.11
+  },
+  {
+   "ax": [
+    [
+     -0.345,
+     0.0
+    ],
+    [
+     -0.3,
+     0.006999999999999999
+    ],
+    [
+     -0.24,
+     0.012599999999999998
+    ],
+    [
+     -0.15,
+     0.0084
+    ],
+    [
+     -0.06,
+     0.0
+    ]
+   ],
+   "out": [
+    0.11,
+    0.17
+   ],
+   "zw": [
+    0.19,
+    0.235
+   ]
+  },
+  {
+   "ax": [
+    [
+     -0.345,
+     0.0
+    ],
+    [
+     -0.29,
+     -0.0056
+    ],
+    [
+     -0.25,
+     -0.0056
+    ],
+    [
+     -0.215,
+     -0.00112
+    ],
+    [
+     -0.195,
+     0.0
+    ]
+   ],
+   "y_in": 0.06,
+   "y_out": 0.125
+  }
+ ],
+ "bump_fair": 4
+}

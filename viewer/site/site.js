@@ -52,73 +52,38 @@
     for (const c of list) { const [a, b] = c.dataset.range.split(',').map(Number); c.classList.toggle('show', p >= a && p <= b); }
   }
 
-  // ---------------------------------------------- lawn path: edge loop first, then parallel rows, around the flower bed
+  // ---------------------------------------------- lawn path: a top-down photo of the garden; the mowed stripes are revealed along the
+  // planned route (lawn.json from scripts/site/lawn_assets.py): out of the dock, once round the edge, rows back and forth, home again
   const lawnSec = document.getElementById('path'), lawn = document.getElementById('lawn');
-  let lawnSegs = [], lawnTotal = 0, mower = null, nogo = null, lawnCaps = [];
+  let lawnSegs = [], lawnTotal = 0, mower = null, nogo = null, lawnCaps = [], lawnReady = false;
   if (lawnSec && lawn) {
     const NS = 'http://www.w3.org/2000/svg';
-    // lawn outline, clockwise on screen; the notch at the top right is the flower bed
-    const P = [[96, 150], [180, 104], [330, 82], [520, 74], [700, 80], [700, 246], [930, 246], [950, 330], [946, 450], [912, 532],
-      [760, 560], [520, 566], [300, 560], [150, 540], [84, 470], [70, 340], [76, 230]];
-    const dOf = (pts, close) => 'M' + pts.map((p) => p[0].toFixed(1) + ' ' + p[1].toFixed(1)).join(' L') + (close ? ' Z' : '');
-    document.getElementById('lawnShape').setAttribute('d', dOf(P, true));
-    document.getElementById('lawnClipPath').setAttribute('d', dOf(P, true));
-    const offset = (pts, o) => {                      // inward offset (mitred); inward normal of a clockwise screen polygon is (-dy, dx)
-      const n = pts.length, lines = [];
-      for (let i = 0; i < n; i++) {
-        const a = pts[i], b = pts[(i + 1) % n], dx = b[0] - a[0], dy = b[1] - a[1], L = Math.hypot(dx, dy), nx = -dy / L, ny = dx / L;
-        lines.push([[a[0] + nx * o, a[1] + ny * o], [dx, dy]]);
-      }
-      return pts.map((_, i) => {
-        const [p1, d1] = lines[(i - 1 + n) % n], [p2, d2] = lines[i], den = d1[0] * d2[1] - d1[1] * d2[0];
-        if (Math.abs(den) < 1e-9) return p2;
-        const t = ((p2[0] - p1[0]) * d2[1] - (p2[1] - p1[1]) * d2[0]) / den;
-        return [p1[0] + d1[0] * t, p1[1] + d1[1] * t];
+    fetch('site/img/lawn/lawn.json').then((r) => r.json()).then((L) => {
+      const gA = document.getElementById('gA'), gB = document.getElementById('gB'), gT = document.getElementById('gT');
+      const di = document.getElementById('dockImg'), mi = document.getElementById('mowerImg');
+      di.setAttribute('x', L.dock.x + L.dockimg.ox); di.setAttribute('y', L.dock.y + L.dockimg.oy); di.setAttribute('width', L.dockimg.w); di.setAttribute('height', L.dockimg.h);
+      mi.setAttribute('x', L.mower.ox); mi.setAttribute('y', L.mower.oy); mi.setAttribute('width', L.mower.w); mi.setAttribute('height', L.mower.h);
+      nogo = document.getElementById('nogo'); nogo.setAttribute('d', L.bed);
+      lawnSegs = L.segs.map((sg) => {
+        const el = document.createElementNS(NS, 'path'); el.setAttribute('d', sg.d);
+        if (sg.mow) { el.setAttribute('stroke-width', sg.w); (sg.cls === 'b' ? gB : gA).appendChild(el); } else gT.appendChild(el);
+        const len = el.getTotalLength(); if (sg.mow) { el.style.strokeDasharray = `${len} ${len + 1}`; el.style.strokeDashoffset = len; }
+        const r = { el, len, c0: lawnTotal, mow: sg.mow, rev: !!sg.rev }; lawnTotal += len; return r;
       });
-    };
-    const BAND = 44, ROW = 26;
-    const E = offset(P, BAND / 2), I = offset(P, BAND - 2);
-    // 1 from the dock up the left side to the top-left corner, then once round the edge
-    const start = [E[15][0] + 4, 346];
-    const edge = [start, E[16], ...E, E[0]];
-    // 2 rows inside the edge band, alternating direction
-    const xsAt = (poly, y) => {
-      const xs = [];
-      for (let i = 0; i < poly.length; i++) {
-        const a = poly[i], b = poly[(i + 1) % poly.length];
-        if ((a[1] - y) * (b[1] - y) < 0) xs.push(a[0] + (b[0] - a[0]) * (y - a[1]) / (b[1] - a[1]));
-      }
-      return xs.sort((p, q) => p - q);
-    };
-    const yTop = Math.min(...I.map((p) => p[1])) + ROW / 2, yBot = Math.max(...I.map((p) => p[1])) - ROW / 2;
-    const segs = [{ d: dOf(edge), cls: 'edge', w: BAND }];
-    let prev = E[0], k = 0;
-    for (let y = yTop; y <= yBot + 0.1; y += ROW, k++) {
-      const xs = xsAt(I, y); if (xs.length < 2) continue;
-      const a = [xs[0] + ROW / 2, y], b = [xs[xs.length - 1] - ROW / 2, y], row = k % 2 ? [b, a] : [a, b];
-      segs.push({ d: dOf([prev, ...row]), cls: k % 2 ? 'rb' : 'ra', w: ROW + 2 });
-      prev = row[1];
-    }
-    const g = document.getElementById('mowed');
-    lawnSegs = segs.map((s) => {
-      const el = document.createElementNS(NS, 'path'); el.setAttribute('d', s.d); el.setAttribute('class', s.cls); el.setAttribute('stroke-width', s.w);
-      g.appendChild(el); const len = el.getTotalLength(); el.style.strokeDasharray = `${len} ${len + 1}`; el.style.strokeDashoffset = len;
-      const r = { el, len, c0: lawnTotal }; lawnTotal += len; return r;
+      mower = document.getElementById('mower'); lawnCaps = [...lawnSec.querySelectorAll('.cap')]; lawnReady = true; lawnLast = -1; req();
     });
-    mower = document.getElementById('mower'); nogo = document.getElementById('nogo'); lawnCaps = [...lawnSec.querySelectorAll('.cap')];
   }
   let lawnLast = -1;
   function drawLawn(p) {
-    const D = clamp((p - 0.02) / 0.9) * lawnTotal; if (Math.abs(D - lawnLast) < 0.5) return; lawnLast = D;
+    const D = clamp((p - 0.02) / 0.94) * lawnTotal; if (Math.abs(D - lawnLast) < 0.3) return; lawnLast = D;
     let at = null;
     for (const s of lawnSegs) {
-      const vis = clamp(D - s.c0, 0, s.len); s.el.style.strokeDashoffset = s.len - vis;
-      if (!at && D <= s.c0 + s.len) at = { s, l: vis };
+      const vis = clamp(D - s.c0, 0, s.len); if (s.mow) s.el.style.strokeDashoffset = s.len - vis;
+      if (!at && (D < s.c0 + s.len || s === lawnSegs[lawnSegs.length - 1])) at = { s, l: vis };
     }
-    if (!at) { const s = lawnSegs[lawnSegs.length - 1]; at = { s, l: s.len }; }
-    const p1 = at.s.el.getPointAtLength(at.l), p0 = at.s.el.getPointAtLength(Math.max(0, at.l - 6)), p2 = at.s.el.getPointAtLength(Math.min(at.s.len, at.l + 6));
-    const ang = Math.atan2(p2.y - p0.y, p2.x - p0.x) * 180 / Math.PI;
-    mower.setAttribute('transform', `translate(${p1.x.toFixed(1)} ${p1.y.toFixed(1)}) rotate(${(isFinite(ang) ? ang : -90).toFixed(1)})`);
+    const g = at.s.el, l = at.l, p1 = g.getPointAtLength(l), p0 = g.getPointAtLength(Math.max(0, l - 4)), p2 = g.getPointAtLength(Math.min(at.s.len, l + 4));
+    let ang = Math.atan2(p2.y - p0.y, p2.x - p0.x) * 180 / Math.PI; if (at.s.rev) ang += 180;
+    mower.setAttribute('transform', `translate(${p1.x.toFixed(1)} ${p1.y.toFixed(1)}) rotate(${(ang - 180).toFixed(1)})`);
   }
 
   // ---------------------------------------------- nav colour over dark sections
@@ -132,9 +97,9 @@
       const r = s.sec.getBoundingClientRect(); if (r.bottom < -vh() || r.top > 2 * vh()) continue;
       sizeCanvas(s); const p = progress(s.sec); draw(s, Math.round(p * (s.n - 1))); caps(s.caps, p);
     }
-    if (lawnSegs.length) {
+    if (lawnReady) {
       const r = lawnSec.getBoundingClientRect();
-      if (r.bottom > -vh() && r.top < 2 * vh()) { const p = progress(lawnSec); drawLawn(p); caps(lawnCaps, p); nogo.classList.toggle('on', p >= 0.72); }
+      if (r.bottom > -vh() && r.top < 2 * vh()) { const p = progress(lawnSec); drawLawn(p); caps(lawnCaps, p); nogo.classList.toggle('on', p >= 0.70 && p <= 0.97); }
     }
     if (hero && !reduce) { const y = window.scrollY; if (y < vh() * 1.5) hero.style.transform = `translate3d(0, ${(y * 0.12).toFixed(1)}px, 0) scale(${(1 - y * 0.00008).toFixed(4)})`; }
     const onDark = darks.some((d) => { const r = d.getBoundingClientRect(); return r.top <= 26 && r.bottom >= 26; });

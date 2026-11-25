@@ -251,6 +251,24 @@ def ridges(V):
         V[..., 2] += rd.get('amp', 0.004) * prof_ * env
     return V
 if g('ridges', []): VL = fair(ridges(VL), int(g('ridge_fair', 3)))
+def shape_bumps(V):
+    """[v19] Sculpted volumes on the faired body, moved in z only (plan outline and belt stay): each bump = a smooth trapezoid window in x
+    (x0 -> x1 rise, x2 -> x3 fall; or 'ax': a table [[x, amp], ...]) x a band in |y| (gaussian about y_c with half-width y_w, 'out': a step up outboard,
+    or 'y_in'/'y_out': full inboard of y_in, 0 outboard of y_out) x a vertical window (rows t0 -> t1, or 'zw': absolute height z0 -> z1). amp > 0 lifts (front fenders over the drive wheels, rear hips), < 0 lowers
+    (the hood between the fenders)."""
+    for b_ in g('bumps', []):
+        x_ = V[..., 0]; ay_ = np.abs(V[..., 1])
+        if b_.get('ax') is not None:      # amplitude along x as a table [[x, amp], ...] (monotone cubic, 0 outside the table)
+            ak_ = np.array(sorted(b_['ax'])); fx_ = np.where((x_ >= ak_[0, 0]) & (x_ <= ak_[-1, 0]), PchipInterpolator(ak_[:, 0], ak_[:, 1])(np.clip(x_, ak_[0, 0], ak_[-1, 0])), 0.0); amp_ = 1.0
+        else: fx_ = sm5(b_['x0'], b_['x1'], x_) * (1 - sm5(b_['x2'], b_['x3'], x_)); amp_ = b_['amp']
+        if b_.get('y_w') is not None: fy_ = np.exp(-((ay_ - b_['y_c']) / b_['y_w']) ** 2)
+        elif b_.get('out') is not None: fy_ = sm5(b_['out'][0], b_['out'][1], ay_)          # step up OUTBOARD: 0 inboard of out[0], full outboard of out[1]
+        elif b_.get('y_in') is not None: fy_ = 1 - sm5(b_['y_in'], b_['y_out'], ay_)
+        else: fy_ = 1.0
+        fv_ = sm5(b_['zw'][0], b_['zw'][1], V[..., 2]) if b_.get('zw') else sm5(b_.get('t0', 0.25), b_.get('t1', 0.55), TT)      # zw: window in absolute height (keeps the lamp bands below it untouched)
+        V[..., 2] += amp_ * fx_ * fy_ * fv_
+    return V
+if g('bumps', []): VL = fair(shape_bumps(VL), int(g('bump_fair', 4)))
 VLb = VL.copy()                                                    # the faired body form (used by the continuity check)
 import os as _os
 if _os.environ.get('FORM_ONLY'):      # [fix1] fast form probe: save the faired body grid and stop

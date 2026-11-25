@@ -151,7 +151,7 @@ section { position: relative; }
   .cap { transition: none; }
 }
 
-.dock { padding: 150px 22px 140px; }
+.dock { padding: 120px 22px 130px; }
 .dock-head { max-width: 980px; margin: 0 auto; }
 .dock-head .lead { margin-top: 22px; }
 .dock-img { max-width: 1200px; width: 100%; margin: 50px auto 0; border-radius: 28px; }
@@ -203,33 +203,22 @@ sup { font-size: .55em; vertical-align: super; line-height: 0; margin-left: 1px;
 .kband { background: var(--paper); padding: 10px 22px 140px; }
 .kband .kpis { margin-top: 0; }
 
-/* ------------------------------------------------ lawn path (scroll-driven svg) */
-.lawn-wrap { width: min(62vw, 900px, 120vh); transform: translateX(26%); }
+/* ------------------------------------------------ lawn path (garden photo + revealed stripes) */
+.lawn-wrap { width: min(60vw, 960px, 118vh); transform: translateX(28%); border-radius: 28px; overflow: hidden; box-shadow: 0 30px 60px rgba(0, 0, 0, .12); }
 @media (min-width: 834px) and (max-width: 1100px) { .lawn-wrap { width: 56vw; transform: translateX(30%); } #path .cap.left { width: 34vw; } }
-.lawn { width: 100%; height: auto; display: block; overflow: visible; }
-.lawn-bed { fill: #d8e8c6; stroke: #a9c98f; stroke-width: 3; stroke-linejoin: round; }
-#mowed path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
-#mowed .edge { stroke: #8fbd72; }
-#mowed .ra { stroke: #a5cc86; }
-#mowed .rb { stroke: #98c27a; }
-.nogo rect { fill: #efe6d6; stroke: #c1121c; stroke-width: 2.5; stroke-dasharray: 9 7; transition: stroke-width .4s; }
-.nogo circle { fill: #e28aa0; }
-.nogo text, .dockmark text { font: 600 17px var(--sans); fill: var(--ink2); text-anchor: middle; }
-.nogo.on rect { stroke-width: 5; }
-.dockmark rect { fill: #2b2d31; }
-.mower rect { fill: #2b2d31; }
-.mower .m-top { fill: #d3d6d5; }
-.mower .m-stop { fill: #c1121c; }
+.lawn { width: 100%; height: auto; display: block; }
+#gA path, #gB path { fill: none; stroke: #fff; stroke-linecap: round; stroke-linejoin: round; }
+#gT path { fill: none; stroke: none; }
+.nogo { fill: none; stroke: #ff453a; stroke-width: 5; stroke-dasharray: 16 12; stroke-linejoin: round; opacity: 0; transition: opacity .5s var(--ease); }
+.nogo.on { opacity: 1; }
 
 /* ------------------------------------------------ sensing, terrain */
-.sense, .terrain { padding: 150px 22px 140px; }
+.sense { padding: 150px 22px 140px; }
 .split { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1.15fr; gap: 56px; align-items: center; }
 .split .lead { margin-top: 22px; }
 .tile-img { width: 100%; border-radius: 28px; }
 .dark .facts li { color: var(--nightink2); border-left-color: #424245; }
 .dark .facts b { color: var(--nightink); }
-.wide-img { max-width: 1100px; width: 100%; margin: 40px auto 0; }
-.terrain .kpis { margin-top: 30px; }
 
 /* ------------------------------------------------ dock numbers tile */
 .tile-num { display: grid; align-content: center; gap: 40px; padding: 40px; text-align: center; }
@@ -257,7 +246,8 @@ sup { font-size: .55em; vertical-align: super; line-height: 0; margin-left: 1px;
 @media (max-width: 833px) {
   .mow-grid, .split { grid-template-columns: 1fr; gap: 40px; }
   .kpis { grid-template-columns: 1fr; gap: 34px; margin-top: 70px; }
-  .lawn-wrap { width: 100vw; transform: translateY(-6vh); }
+  .lawn-wrap { width: 94vw; transform: translateY(-8vh); border-radius: 18px; }
+  #dock .seq-canvas { width: 100vw; }
   #build .seq-canvas { transform: none; margin-top: -12vh; }
   .cols { grid-template-columns: 1fr; gap: 30px; }
   .spec-group { grid-template-columns: 1fr; gap: 18px; }
@@ -266,3 +256,6 @@ sup { font-size: .55em; vertical-align: super; line-height: 0; margin-left: 1px;
 }
 @media (max-width: 480px) { .spec-group dl { grid-template-columns: 1fr; } }
 @media (prefers-reduced-motion: reduce) { .d-rot { animation: none; } }
+
+/* captions with an eyebrow inside the sticky sequences */
+.cap .eyebrow { font-size: 17px; margin-bottom: 6px; }

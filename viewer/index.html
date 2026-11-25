@@ -8,7 +8,7 @@
 <meta name="theme-color" content="#f5f5f7">
 <link rel="preload" as="image" href="site/img/hero.webp">
 <link rel="icon" href="data:,">
-<link rel="stylesheet" href="site/site.css?v=20261125b">
+<link rel="stylesheet" href="site/site.css?v=20261125c">
 </head>
 <body>
 
@@ -84,17 +84,18 @@
 <section class="seq-x light" id="path" style="--h:380vh" aria-label="割草路径示意">
   <div class="seq-stick">
     <div class="lawn-wrap">
-      <svg class="lawn" id="lawn" viewBox="0 0 1000 620" role="img" aria-label="草坪俯视示意：先沿边割一圈，再平行往返，绕开花坛">
-        <defs><clipPath id="lawnClip"><path id="lawnClipPath"/></clipPath></defs>
-        <path class="lawn-bed" id="lawnShape"/>
-        <g id="mowed" clip-path="url(#lawnClip)"></g>
-        <g class="nogo" id="nogo">
-          <rect x="716" y="70" width="196" height="160" rx="22"/>
-          <circle cx="760" cy="118" r="9"/><circle cx="812" cy="102" r="7"/><circle cx="862" cy="132" r="9"/><circle cx="782" cy="178" r="8"/><circle cx="846" cy="190" r="7"/>
-          <text x="814" y="258">花坛 · 禁区</text>
-        </g>
-        <g class="dockmark"><rect x="40" y="318" width="34" height="56" rx="6"/><text x="57" y="400">充电座</text></g>
-        <g id="mower" class="mower"><rect x="-19" y="-14" width="38" height="28" rx="9"/><rect x="-12" y="-9" width="22" height="18" rx="6" class="m-top"/><circle cx="6" cy="0" r="2.6" class="m-stop"/></g>
+      <svg class="lawn" id="lawn" viewBox="0 0 1536 1024" role="img" aria-label="花园俯视图：割草机从充电座出发，先沿草坪边割一圈，再一行一行往返，绕开花坛，割完回到充电座">
+        <defs>
+          <mask id="mA" maskUnits="userSpaceOnUse" x="0" y="0" width="1536" height="1024"><g id="gA"></g></mask>
+          <mask id="mB" maskUnits="userSpaceOnUse" x="0" y="0" width="1536" height="1024"><g id="gB"></g></mask>
+        </defs>
+        <image href="site/img/lawn/garden.webp" width="1536" height="1024"/>
+        <image href="site/img/lawn/mowed_a.webp" width="1536" height="1024" mask="url(#mA)"/>
+        <image href="site/img/lawn/mowed_b.webp" width="1536" height="1024" mask="url(#mB)"/>
+        <path class="nogo" id="nogo"/>
+        <g visibility="hidden" id="gT"></g>
+        <image id="dockImg" href="site/img/lawn/dock.webp"/>
+        <g id="mower"><image id="mowerImg" href="site/img/lawn/mower.webp"/></g>
       </svg>
     </div>
     <div class="cap left" data-range="0.02,0.30"><h2>先割一圈边</h2><p>从充电座出发，先沿草坪边界割一圈，把边和角割整齐。</p></div>
@@ -127,14 +128,15 @@
   </div>
 </section>
 
-<!-- terrain -->
-<section class="light terrain" id="terrain">
-  <div class="head">
-    <p class="eyebrow reveal">地形</p>
-    <h2 class="big reveal">大轮子，上得了坡</h2>
-    <p class="lead reveal">两个驱动轮直径 229 mm、宽 54 mm，胎面是深齿纹，湿草和松土上也抓得住。两个轮子各有一个电机，可以原地转向，在窄的地方也能掉头。车尾是两个 100 mm 的万向轮。</p>
+<!-- terrain: slope sequence -->
+<section class="seq light" id="terrain" data-seq="slope" data-frames="36" style="--h:300vh" aria-label="爬坡">
+  <div class="seq-stick">
+    <canvas class="seq-canvas" aria-hidden="true"></canvas>
+    <div class="cap" data-range="0.02,0.45"><p class="eyebrow">地形</p><h2>大轮子，上得了坡</h2><p>两个驱动轮直径 229 mm、宽 54 mm，胎面是深齿纹，湿草和松土上也抓得住。</p></div>
+    <div class="cap" data-range="0.52,0.98"><h2>35% 的坡，照样往上走</h2><p>两个轮子各有一个电机，可以原地转向；车尾是两个 100 mm 的万向轮。<sup>*</sup></p></div>
   </div>
-  <img class="wide-img reveal" loading="lazy" src="site/img/side.webp" alt="Orbit 侧面：229 mm 深齿纹驱动轮" width="2400" height="1600">
+</section>
+<section class="kband">
   <div class="kpis">
     <div class="kpi reveal"><span class="num" data-to="229">229</span><span class="unit">mm</span><p>驱动轮直径</p></div>
     <div class="kpi reveal" style="--d:.08s"><span class="num" data-to="35">35</span><span class="unit">%</span><p>最大坡度，约 19°<sup>*</sup></p></div>
@@ -142,14 +144,15 @@
   </div>
 </section>
 
-<!-- docking -->
-<section class="dark dock" id="dock">
-  <div class="head">
-    <p class="eyebrow reveal">回充</p>
-    <h2 class="big reveal">电量低了，自己回去充</h2>
-    <p class="lead reveal">电量不够或到了计划的结束时间，它沿边界开回充电座，车头朝前停进去。充满电后回到中断的那一行，接着割。</p>
+<!-- docking: sequence -->
+<section class="seq light" id="dock" data-seq="dock" data-frames="36" style="--h:320vh" aria-label="自动回充">
+  <div class="seq-stick">
+    <canvas class="seq-canvas" aria-hidden="true"></canvas>
+    <div class="cap" data-range="0.02,0.45"><p class="eyebrow">回充</p><h2>电量低了，自己回去充</h2><p>电量不够或到了计划的结束时间，它沿边界开回充电座，车头朝前停进去。</p></div>
+    <div class="cap" data-range="0.55,0.98"><h2>充满了，接着割</h2><p>两根充电针插进车头的窗口。充满电后，它回到中断的那一行继续割。</p></div>
   </div>
-  <img class="dock-img reveal" loading="lazy" src="site/img/dockwide.webp" alt="割草机停在充电座上" width="2400" height="1600">
+</section>
+<section class="dark dock">
   <div class="dock-row">
     <figure class="tile reveal"><img loading="lazy" src="site/img/dockport.webp" alt="充电针穿过车头的对称窗口" width="1600" height="1066"><figcaption><b>停偏了也能充</b>车头开口后面是左右对称的两个窗口。左右偏 ±16 mm、上下偏 ±3.5 mm、斜 2° 停进来，充电针都碰不到外壳。</figcaption></figure>
     <div class="tile tile-num reveal" style="--d:.1s">
@@ -213,8 +216,8 @@
   <div class="seq-stick">
     <canvas class="seq-canvas" aria-hidden="true"></canvas>
     <div class="cap" data-range="0.03,0.27"><h2>浅色上盖，深色车身</h2><p>上盖和车身是两个零件，颜色的分界就是分缝。</p></div>
-    <div class="cap" data-range="0.36,0.60"><h2>分缝绕驱动轮一圈</h2><p>缝宽 0.8 mm，和轮毂同心。</p></div>
-    <div class="cap" data-range="0.69,0.95"><h2>前后同样的灯带</h2><p>17.5 mm 高的烟色镜片。车头这段后面是摄像头和指示灯。</p></div>
+    <div class="cap" data-range="0.36,0.60"><h2>翼子板高过车头中间</h2><p>驱动轮上方的两侧比中间高，越往车头越明显，最多高出 27 mm。从正面看，两边高、中间低。</p></div>
+    <div class="cap" data-range="0.69,0.95"><h2>车尾两侧鼓起</h2><p>车尾两侧比中间高 12 到 16 mm，中间顺着车顶往后降。STOP 键仍是全车最高点。</p></div>
   </div>
 </section>
 
@@ -318,6 +321,6 @@
   <p>概念设计，非在售产品。图片由设计模型渲染。</p>
 </footer>
 
-<script src="site/site.js?v=20261125b" defer></script>
+<script src="site/site.js?v=20261125c" defer></script>
 </body>
 </html>

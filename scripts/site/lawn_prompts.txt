@@ -1,0 +1,17 @@
+Prompts for the two photos behind the lawn-path animation (viewer/site/img/lawn). Generated with an OpenAI-compatible
+image model (gpt-image-2, quality high); any comparable model works. Then:
+  python lawn_assets.py src/garden.png src/short_grass.png ../../viewer/site/img/lawn r/p_mplan.png r/p_dockplan.png
+(the two photos used for the site are in src/)
+
+garden.png (1536x1024):
+Top-down orthographic aerial photograph, camera pointing straight down, of a small private back garden about 10 metres wide and
+6.5 metres deep. One lush, slightly overgrown green lawn (grass about 6 cm tall, natural uneven texture, a few slightly darker patches)
+fills most of the frame and has smooth gently curved edges. In the upper-right part of the frame a flower bed with dark bark mulch, low
+shrubs and pink and white flowers is cut into the lawn, edged with a thin dark steel strip. Along the left edge of the frame runs a strip
+of light grey stone paving slabs. Around the rest of the lawn a narrow border of grey gravel. Soft overcast daylight, very soft shadows.
+No people, no furniture, no tools, no lawn mower, no hoses, no text, no watermark. Photorealistic, high detail, true top-down view
+without perspective.
+
+short_grass.png (1024x1024; also the RAMP_TEX of the slope sequence):
+Photograph looking straight down at a freshly mowed lawn: very short, dense, even green grass about 3 cm tall, uniform colour, no
+stripes, no bare patches, no objects, no shadows, soft overcast light, photorealistic texture that fills the whole frame.

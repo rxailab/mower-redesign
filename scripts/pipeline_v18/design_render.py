@@ -359,13 +359,57 @@ def explode_(*lifts):
         for n_ in names_:
             if bpy.data.objects.get(n_): bpy.data.objects[n_].matrix_world = mathutils.Matrix.Translation((0, 0, dz_))
     lid_state = None          # the lid group moved: the next set_lid() rebuilds it
+# [web] motion and plan views for the product site
+_mp = lambda e_: {k_: [float(x_) for x_ in v_.split(':')] for k_, v_ in (t_.split('=') for t_ in filter(None, os.environ.get(e_, '').split(',')))}
+POSE_ = _mp('POSEMAP')        # "view=dx:dz:pitch_deg:s": the whole mower moved by (dx, 0, dz), pitched nose-up about y through the origin; wheels spun for s m rolled
+ORTHO_ = _mp('ORTHO')         # "view=ortho_scale": orthographic camera for that view (plan views)
+if os.environ.get('ONLY'):    # render only these objects (e.g. the dock alone for the plan view); the floor stays
+    _keep = set(os.environ['ONLY'].split(','))
+    for o_ in sc.objects:
+        if o_.type in ('MESH', 'CURVE', 'FONT') and o_.name != 'Backdrop' and o_.name not in _keep: o_.hide_render = True
+if os.environ.get('RAMP'):    # a block of lawn rising at RAMP degrees towards +x through the origin (slope scenes); grass on top, soil on the sides
+    _th = math.radians(float(os.environ['RAMP'])); _L = float(os.environ.get('RAMP_L', 1.3)); _W = float(os.environ.get('RAMP_W', 0.55)); _T = float(os.environ.get('RAMP_T', 0.16))
+    _u = np.array([math.cos(_th), 0, math.sin(_th)]); _n = np.array([-math.sin(_th), 0, math.cos(_th)])
+    _c = [(-_L, -_W), (_L, -_W), (_L, _W), (-_L, _W)]
+    _top = [tuple(_u * a_ + np.array([0, b_, 0])) for a_, b_ in _c]; _bot = [tuple(np.array(t_) - _n * _T) for t_ in _top]
+    rme = bpy.data.meshes.new('Ramp'); rme.from_pydata(_top + _bot, [], [(0, 1, 2, 3), (7, 6, 5, 4), (0, 4, 5, 1), (1, 5, 6, 2), (2, 6, 7, 3), (3, 7, 4, 0)]); rme.update()
+    rob = bpy.data.objects.new('Ramp', rme); sc.collection.objects.link(rob)
+    gm = bpy.data.materials.new('Grass'); gm.use_nodes = True; nt_ = gm.node_tree; gb_ = nt_.nodes['Principled BSDF']; gb_.inputs['Roughness'].default_value = 0.9
+    if os.environ.get('RAMP_TEX'):
+        ti_ = nt_.nodes.new('ShaderNodeTexImage'); ti_.image = bpy.data.images.load(os.environ['RAMP_TEX']); tc_ = nt_.nodes.new('ShaderNodeTexCoord'); mp_ = nt_.nodes.new('ShaderNodeMapping')
+        mp_.inputs['Scale'].default_value = (1 / 0.7, 1 / 0.7, 1); nt_.links.new(tc_.outputs['Object'], mp_.inputs['Vector']); nt_.links.new(mp_.outputs['Vector'], ti_.inputs['Vector']); hv_ = nt_.nodes.new('ShaderNodeHueSaturation'); hv_.inputs['Value'].default_value = float(os.environ.get('RAMP_GAIN', 1.8)); nt_.links.new(ti_.outputs['Color'], hv_.inputs['Color']); nt_.links.new(hv_.outputs['Color'], gb_.inputs['Base Color'])
+    else: gb_.inputs['Base Color'].default_value = (0.12, 0.30, 0.05, 1)
+    sm_ = mat('Soil', os.environ.get('RAMP_SOIL', '#7A5B3E'), 'matte'); rme.materials.append(gm); rme.materials.append(sm_)
+    for i_, pf_ in enumerate(rme.polygons): pf_.material_index = 0 if i_ == 0 else 1
+    rob.rotation_euler = (0, 0, 0); cyc.hide_render = True
+    area('RampFill', (0.5, -2.6, 0.5), 2.2, float(os.environ.get('RAMP_FILL', 35)), 1.2)      # lights the soil face towards the camera
+_SKIP = {'Backdrop', 'Dock', 'Cam', 'Ramp'}
+_ROOTS = [o_ for o_ in sc.objects if o_.parent is None and o_.type in ('MESH', 'EMPTY', 'CURVE') and o_.name not in _SKIP]
+_M0 = {o_.name: o_.matrix_world.copy() for o_ in sc.objects}
+_LIDSET = {'Lid', 'LidKit', 'StopKey', 'LightHalo', 'LightHaloCap', 'Struts'}
+_SPIN = []
+for o_ in sc.objects:
+    if o_.type == 'MESH' and o_.name.startswith(('Wheel_', 'RingDecal_', 'Caster_')):
+        bb_ = [o_.matrix_world @ mathutils.Vector(c_) for c_ in o_.bound_box]; c_ = sum(bb_, mathutils.Vector()) / 8
+        _SPIN.append((o_, c_, 0.1145 if not o_.name.startswith('Caster_') else (max(v_.z for v_ in bb_) - min(v_.z for v_ in bb_)) / 2))
+def pose_(dx, dz, pitch, s):
+    global lid_state
+    lid_state = None; set_lid(0.0)
+    T = mathutils.Matrix.Translation((dx, 0, dz)) @ mathutils.Matrix.Rotation(math.radians(-pitch), 4, 'Y')
+    for o_ in _ROOTS: o_.matrix_world = T @ (o_.matrix_world if o_.name in _LIDSET else _M0[o_.name])
+    bpy.context.view_layer.update()
+    for o_, c_, r_ in _SPIN:
+        R_ = mathutils.Matrix.Translation(c_) @ mathutils.Matrix.Rotation(s / r_, 4, 'Y') @ mathutils.Matrix.Translation(-c_); o_.matrix_world = T @ R_ @ _M0[o_.name]
 for v in VIEWS:
     if dock is not None: dock.hide_render = not v.startswith('dock'); cyc.location.z = -DOCK_LIFT if v.startswith('dock') else 0.0
     set_lid((float(os.environ['LIDDEG']) if os.environ.get('LIDDEG') else OPEN) if 'lid' in v else 0.0)      # LIDDEG: any lid angle (review / animation)
     if v in LIDMAP_: set_lid(LIDMAP_[v])      # [web]
     if v in EXMAP_: explode_(*EXMAP_[v])      # [web]
+    if v in POSE_: pose_(*POSE_[v])      # [web]
     if v in MATVIEWS_: recolour_(MATVIEWS_[v])      # [web]
     loc, tgt, lens = VW[v]; cam.location = loc; cam.data.lens = lens
+    cam.data.type = 'ORTHO' if v in ORTHO_ else 'PERSP'
+    if v in ORTHO_: cam.data.ortho_scale = ORTHO_[v][0]      # [web]
     if os.environ.get('HEADLIGHT'):                                      # views into the body from below: a soft light travelling with the camera
         hl_ = bpy.data.objects.get('Head') or area('Head', loc, 0.6, float(os.environ['HEADLIGHT']), 0.6); hl_ = bpy.data.objects['Head']
         hl_.location = loc; hl_.rotation_euler = (mathutils.Vector(tgt) - mathutils.Vector(loc)).to_track_quat('-Z', 'Y').to_euler()

@@ -297,3 +297,23 @@ except the two chassis cuts per side of 6.2. Body half-width beside the wheels 1
    view), LIDMAP ("view=deg,..." per-view lid angle), MATVIEWS ("view|Mat=#hex:finish,..." per-view recolour) - used for the product site.
    EXMAP ("view=body:cover:lid" lifts in m per view): the exploded view rendered in 3D as a frame sequence, so occlusion and shadows are
    right at every step (the stacked LAYER images showed the cover's hidden snap legs over the body and had no body shadow under it).
+
+9. SCULPTED COVER (f6)  (tag [v19]; product-site motion options tagged [web])
+-------------------------------------------------------------------------------------------------------------------------------
+ Request: a more iconic, more shaped top cover, with a Porsche-like stance. Parameters: f6.json = f5 files + fix6_porsche.json (mk_f3.py);
+ f6_web.json likewise. Form study: clay renders of variants A-E (FORM_ONLY grids); the user picked E ("bold").
+ shape_bumps (design_gen.py, after fairing; z only, so the plan outline, the belt, the lid outline and the STOP key stay):
+   - front fenders over the drive wheels: an outboard step (|y| 85 -> 135 mm) whose height follows a table along x - the sides stand
+     10 mm above the centre over the wheel and up to 27 mm near the nose, so from the front the top reads high at both sides, low between;
+   - hood: the centre drops up to 4 mm ahead of the lid;
+   - rear hips: an outboard step (|y| 110 -> 170 mm) 12-16 mm above the centre, with the fastback centre up to 6 mm lower between them, only
+     behind x -195 mm (the lid well and hinge area keep the f5 surface).
+   The fender and hip lift ramps up between z 190 and 235 mm ('zw'): the lamp bands below keep their shape and the shoulder corner above moves
+   up unchanged. Two earlier builds failed and were reworked: with the ramp inside the shoulder corner (rows t 0.25 -> 0.55) the minimum
+   surface radius fell to 6.9 mm (limit 8); with the ramp over the whole wall (t 0.04 -> 0.26) the radius was fine (12.2 mm) but the front lens
+   was stretched (2 self-intersections), and the fastback dip reaching x -130 mm lowered the well by ~0.7 mm: guide / pocket interference
+   (6, 0.74 mm) and the hinge tongue 0.44 mm from its pocket in the lid sweep (< 0.5). Results of the final build: see checks/f6.
+   The STOP key top (~290 mm) stays the highest point (body max 282.6 mm at the hips).
+ Renderer ([web], design_render.py): POSEMAP ("view=dx:dz:pitch_deg:s": the whole mower moved / pitched, wheels and casters spun for s m
+   rolled), ORTHO ("view=ortho_scale"), ONLY (render only the named objects, e.g. the dock), RAMP (a 35 % lawn block with a grass photo on top
+   and soil sides; RAMP_L / _W / _T / _SOIL / _TEX / _GAIN / _FILL) - for the docking and slope sequences and the lawn-plan sprites.

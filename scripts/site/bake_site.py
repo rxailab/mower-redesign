@@ -61,7 +61,7 @@ def save(src, dst, w=None, q=84, bg=PAPER):
 if __name__ == '__main__':
     R, O = sys.argv[1:3]
     stills = {'o_hero': ('hero', 2400, PAPER), 'o_stopkey': ('stop', 2400, (0, 0, 0)), 'o_pupil': ('pupil', 1600, TILE),
-              'pt_dockport': ('dockport', 1600, None), 'o_dockwide': ('dockwide', 2400, PAPER), 'o_side': ('side', 2400, PAPER),
+              'pt_dockport': ('dockport', 1600, None),
               'h_hero': ('h_hero', 2400, HZ), 'h_rear2': ('h_rear', 2400, HZ)}
     for a, (b, w, bg) in stills.items():
         save(f'{R}/{a}.png', f'{O}/{b}.webp', w, bg=bg)
@@ -73,5 +73,8 @@ if __name__ == '__main__':
         save(f'{R}/lid_lid{i:02d}.png', f'{O}/lid/{i:02d}.webp', 1440, 80)
     for i in range(24):
         save(f'{R}/exs_ex{i:02d}.png', f'{O}/ex/{i:02d}.webp', 1440, 80)
+    for i in range(36):
+        save(f'{R}/dk_dockin{i:02d}.png', f'{O}/dock/{i:02d}.webp', 1440, 80)
+        save(f'{R}/sl_slope{i:02d}.png', f'{O}/slope/{i:02d}.webp', 1440, 80)
     files = glob.glob(O + '/**/*.webp', recursive=True)
     print('webp files', len(files), round(sum(os.path.getsize(f) for f in files) / 1e6, 1), 'MB')

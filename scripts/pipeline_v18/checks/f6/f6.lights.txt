@@ -1,0 +1,35 @@
+topology {"front": {"boundary_edges": 0, "nonmanifold_edges": 0}, "rear": {"boundary_edges": 0, "nonmanifold_edges": 0}} {"kit_topology": 0, "harness_topology": 0}
+lens None see below
+lens gap {'min': 0.364, 'at_mm': [312.1, 7.9, 183.7], 'p1': 0.401, 'median': 0.512}
+housing       {'body': 0.27, 'cover': 4.7, 'deck': 1.21, 'body_kit': 15.4, 'cover_kit': 8.1, 'sleeves': 1.24, 'chassis': 1.86, 'lens': -0.23}
+gasket        {'body': -0.18, 'cover': 4.65, 'deck': 1.52, 'body_kit': 17.78, 'cover_kit': 9.15, 'sleeves': 1.83, 'chassis': 8.95, 'lens': 0.87}
+bar           {'body': 6.31, 'cover': 13.17, 'deck': 9.65, 'body_kit': 23.71, 'cover_kit': 17.2, 'sleeves': 9.61, 'chassis': 7.48, 'lens': 0.24}
+carrier       {'body': 5.82, 'cover': 12.24, 'deck': 8.74, 'body_kit': 22.45, 'cover_kit': 15.97, 'sleeves': 8.53, 'chassis': 6.47, 'lens': 0.09}
+pcb           {'body': 3.36, 'cover': 9.5, 'deck': 5.62, 'body_kit': 19.53, 'cover_kit': 11.52, 'sleeves': 5.7, 'chassis': 7.43, 'lens': 1.88}
+led           {'body': 8.72, 'cover': 15.16, 'deck': 11.5, 'body_kit': 27.72, 'cover_kit': 22.91, 'sleeves': 11.78, 'chassis': 9.19, 'lens': 1.3}
+camera        {'body': 5.54, 'cover': 11.67, 'deck': 7.69, 'body_kit': 19.22, 'cover_kit': 12.49, 'sleeves': 7.09, 'chassis': 3.62, 'lens': 0.2}
+tof           {'body': 7.75, 'cover': 14.21, 'deck': 10.62, 'body_kit': 28.04, 'cover_kit': 21.25, 'sleeves': 10.93, 'chassis': 9.02, 'lens': 0.34}
+pipe          {'body': 6.78, 'cover': 13.28, 'deck': 10.49, 'body_kit': 27.45, 'cover_kit': 22.56, 'sleeves': 10.9, 'chassis': 9.77, 'lens': 0.1}
+foam          {'body': 4.74, 'cover': 11.2, 'deck': 7.75, 'body_kit': 22.8, 'cover_kit': 14.52, 'sleeves': 8.28, 'chassis': 10.23, 'lens': 0.01}
+boss          {'body': -1.25, 'cover': 10.47, 'deck': 8.46, 'sleeves': 22.35, 'chassis': 11.13, 'lens': 5.56}
+screw         {'body': 0.99, 'cover': 14.21, 'deck': 11.72, 'body_kit': 26.58, 'sleeves': 22.84, 'chassis': 6.78, 'lens': 8.98}
+ear           {'body': 4.12, 'cover': 12.14, 'deck': 9.33, 'body_kit': 27.02, 'sleeves': 20.75, 'chassis': 8.38, 'lens': 3.95}
+shroud        {'body': 11.25, 'cover': 15.0, 'deck': 10.76, 'body_kit': 26.66, 'cover_kit': 22.61, 'chassis': 4.32, 'lens': 10.89}
+vent          {'body': 7.63, 'cover': 12.31, 'deck': 8.11, 'body_kit': 21.59, 'cover_kit': 12.52, 'sleeves': 13.18, 'chassis': 5.89, 'lens': 6.89}
+emitter       {'lid_well': 2.09, 'lid_kit': 16.36, 'controls': 0.0, 'ctl_standin': 1.34}
+pad           {'body': -0.11, 'cover': 13.89, 'deck': 11.49, 'sleeves': 25.06, 'chassis': 15.64, 'lens': 1.88}
+plug          {'body': 12.54, 'cover': 15.05, 'deck': 9.89, 'body_kit': 25.79, 'cover_kit': 21.88, 'chassis': 4.68}
+cable         {'body': 11.66, 'cover': 5.66, 'deck': 0.43, 'body_kit': 7.85, 'cover_kit': 15.79, 'chassis': 8.59}
+grommet       {'body': 9.99, 'cover': 5.09, 'deck': -0.47, 'body_kit': 19.24, 'cover_kit': 17.05, 'chassis': 11.65}
+clip          {'body': 29.35, 'cover': 7.62, 'deck': -0.77, 'body_kit': 6.72, 'cover_kit': 15.45, 'chassis': 10.49}
+svc           {'cover': 9.33, 'deck': 1.96, 'body_kit': 6.64, 'cover_kit': 25.13, 'chassis': 8.03}
+cradle        {'cover': 9.93, 'deck': -1.25, 'body_kit': 4.25, 'cover_kit': 26.48, 'chassis': 2.65}
+chassis_lead  {'cover': 18.47, 'deck': 10.62, 'body_kit': 19.82, 'chassis': 2.05}
+chassis vs kit {'samples': 824995, 'inside': 0, 'min_gap_mm': 1.86} boss/screw behind outer skin 0.35 3.49
+violations []
+sight front {'gap_rays': {'lens': 1236, 'kit:housing': 617, 'body': 547}, 'gap_leaks': 0, 'leak_examples': [], 'behind_windows': {'kit:bar/light': 189, 'kit:pipe/light': 13, 'kit:camera/glass': 86, 'kit:tof/glass': 10, 'kit:pcb/glass': 2}}
+sight rear {'gap_rays': {'kit:housing': 612, 'lens': 1243, 'body': 545}, 'gap_leaks': 0, 'leak_examples': [], 'behind_windows': {'kit:bar/light': 260, 'kit:pipe/light': 40}}
+<scratch>/wf5/main/design/lightcheck.py:233: RuntimeWarning: All-NaN slice encountered
+  rows[str(deg)] = {tg: round(float(np.nanmin(np.where(np.isfinite(sdist(tg, P2)), sdist(tg, P2), np.nan))) * 1000, 2) for tg in ('controls', 'ctl_standin', 'emitter', 'lid_well')}
+halo sweep {'-0.438': {'controls': 2.5, 'ctl_standin': 2.17, 'emitter': 1.03, 'lid_well': 4.55}, '0.0': {'controls': 2.75, 'ctl_standin': 2.34, 'emitter': 2.4, 'lid_well': 5.29}, '2.0': {'controls': 6.24, 'ctl_standin': 4.56, 'emitter': 8.6, 'lid_well': 7.44}, '5.0': {'controls': 14.28, 'ctl_standin': 12.68, 'emitter': 17.93, 'lid_well': 8.64}, '10.0': {'controls': 28.99, 'ctl_standin': 27.72, 'emitter': nan, 'lid_well': 21.57}, '20.0': {'controls': nan, 'ctl_standin': nan, 'emitter': nan, 'lid_well': nan}, '40.0': {'controls': nan, 'ctl_standin': nan, 'emitter': nan, 'lid_well': nan}, '75.0': {'controls': nan, 'ctl_standin': nan, 'emitter': nan, 'lid_well': nan}}
+LIGHTS OK: True
