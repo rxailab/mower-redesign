@@ -168,11 +168,11 @@ canvas.addEventListener('webglcontextlost', (e) => e.preventDefault());
 canvas.addEventListener('webglcontextrestored', () => { buildEnv(); requestRender(); });
 
 // ---------------------------------------------------------------- loading
-const MODEL_VERSION = '2026-11-24b';     // bump when the models change, so browsers do not reuse cached copies
+const MODEL_VERSION = '2026-11-24c';     // bump when the models change, so browsers do not reuse cached copies
 const FILES = ['body', 'cover', 'lid', 'lower', 'panel', 'base', 'dock'].map((k) => [k, `models/${k}.glb?v=${MODEL_VERSION}`]);
 const GROUP_OF = { panel: 'base' };      // the control panel (STOP key, display) is fixed to the chassis
 // the host compresses the models and sends no Content-Length: use the known sizes as the progress total
-const SIZES = { body: 9138436, cover: 2873828, lid: 1014092, lower: 479300, panel: 266068, base: 13671280, dock: 5486764 };
+const SIZES = { body: 9120188, cover: 2892520, lid: 1014668, lower: 479300, panel: 266068, base: 13671280, dock: 5486764 };
 const prog = {};
 for (const k in SIZES) prog[k] = [0, SIZES[k]];
 function updateBar() {

@@ -1,0 +1,4 @@
+part 0 inner verts 303717 outside outer 0 wall < 1.5 mm 0
+   inner faces facing outwards (dot > 0.2 with the nearest outer face): 0
+part 1 inner verts 306446 outside outer 0 wall < 1.5 mm 0
+   inner faces facing outwards (dot > 0.2 with the nearest outer face): 0

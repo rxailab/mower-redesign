@@ -1,0 +1,327 @@
+{
+ "datum_mm": [
+  2.02,
+  0.0,
+  195.6
+ ],
+ "datum_from": "x-locators",
+ "cases": {
+  "+0.00e+00": {
+   "cover->body": {
+    "min_mm": 0.585,
+    "at_mm": [
+     310.2,
+     -83.8,
+     190.5
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 0.585,
+     "tail": 0.675,
+     "flanks": 0.688
+    }
+   },
+   "body->cover": {
+    "min_mm": 0.75,
+    "at_mm": [
+     306.1,
+     -126.3,
+     189.9
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 0.75,
+     "tail": 0.795,
+     "flanks": 0.792
+    }
+   },
+   "cover->deck": {
+    "min_mm": 1.105,
+    "at_mm": [
+     -176.8,
+     189.0,
+     141.0
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 1.239,
+     "tail": 1.147,
+     "flanks": 1.105
+    }
+   },
+   "deck->cover": {
+    "min_mm": 1.094,
+    "at_mm": [
+     -177.1,
+     188.0,
+     140.6
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 1.236,
+     "tail": 1.168,
+     "flanks": 1.094
+    }
+   }
+  },
+  "-5.60e-04": {
+   "cover->body": {
+    "min_mm": 0.592,
+    "at_mm": [
+     -180.4,
+     191.2,
+     139.2
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 0.596,
+     "tail": 0.651,
+     "flanks": 0.592
+    }
+   },
+   "body->cover": {
+    "min_mm": 0.68,
+    "at_mm": [
+     -178.6,
+     191.2,
+     134.1
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 0.708,
+     "tail": 0.702,
+     "flanks": 0.68
+    }
+   },
+   "cover->deck": {
+    "min_mm": 1.169,
+    "at_mm": [
+     -176.9,
+     189.1,
+     140.9
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 1.34,
+     "tail": 1.231,
+     "flanks": 1.169
+    }
+   },
+   "deck->cover": {
+    "min_mm": 1.167,
+    "at_mm": [
+     -177.0,
+     187.8,
+     140.6
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 1.344,
+     "tail": 1.239,
+     "flanks": 1.167
+    }
+   }
+  },
+  "+5.00e-04": {
+   "cover->body": {
+    "min_mm": 0.575,
+    "at_mm": [
+     310.1,
+     -83.8,
+     190.5
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 0.575,
+     "tail": 0.664,
+     "flanks": 0.685
+    }
+   },
+   "body->cover": {
+    "min_mm": 0.691,
+    "at_mm": [
+     309.8,
+     -83.7,
+     190.0
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 0.691,
+     "tail": 0.76,
+     "flanks": 0.728
+    }
+   },
+   "cover->deck": {
+    "min_mm": 1.03,
+    "at_mm": [
+     -260.7,
+     187.0,
+     194.8
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 1.129,
+     "tail": 1.03,
+     "flanks": 1.049
+    }
+   },
+   "deck->cover": {
+    "min_mm": 1.042,
+    "at_mm": [
+     -177.1,
+     188.0,
+     140.6
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 1.129,
+     "tail": 1.07,
+     "flanks": 1.042
+    }
+   }
+  },
+  "+1.00e-03": {
+   "cover->body": {
+    "min_mm": 0.56,
+    "at_mm": [
+     308.9,
+     84.6,
+     192.7
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 0.56,
+     "tail": 0.627,
+     "flanks": 0.606
+    }
+   },
+   "body->cover": {
+    "min_mm": 0.559,
+    "at_mm": [
+     308.7,
+     84.8,
+     192.6
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 0.559,
+     "tail": 0.645,
+     "flanks": 0.652
+    }
+   },
+   "cover->deck": {
+    "min_mm": 0.899,
+    "at_mm": [
+     -260.5,
+     186.9,
+     194.8
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 1.019,
+     "tail": 0.899,
+     "flanks": 0.992
+    }
+   },
+   "deck->cover": {
+    "min_mm": 0.93,
+    "at_mm": [
+     -261.2,
+     185.7,
+     194.7
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 1.013,
+     "tail": 0.93,
+     "flanks": 1.005
+    }
+   }
+  },
+  "+1.47e-03": {
+   "cover->body": {
+    "min_mm": 0.422,
+    "at_mm": [
+     308.8,
+     84.6,
+     192.7
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 0.422,
+     "tail": 0.469,
+     "flanks": 0.533
+    }
+   },
+   "body->cover": {
+    "min_mm": 0.423,
+    "at_mm": [
+     308.8,
+     84.8,
+     192.6
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 0.423,
+     "tail": 0.497,
+     "flanks": 0.573
+    }
+   },
+   "cover->deck": {
+    "min_mm": 0.778,
+    "at_mm": [
+     -260.4,
+     186.8,
+     194.8
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 0.918,
+     "tail": 0.778,
+     "flanks": 0.939
+    }
+   },
+   "deck->cover": {
+    "min_mm": 0.793,
+    "at_mm": [
+     -261.3,
+     185.8,
+     194.7
+    ],
+    "n_inside": 0,
+    "n_lt_0p3": 0,
+    "regions": {
+     "nose": 0.904,
+     "tail": 0.793,
+     "flanks": 0.955
+    }
+   }
+  }
+ },
+ "min_over_cases_mm": {
+  "cover->body": 0.422,
+  "body->cover": 0.423,
+  "cover->deck": 0.778,
+  "deck->cover": 0.793
+ },
+ "ok": true
+}

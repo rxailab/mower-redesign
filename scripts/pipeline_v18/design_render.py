@@ -331,9 +331,29 @@ if os.environ.get('CLIPY'):                                              # secti
         bm_ = bmesh.new(); bm_.from_mesh(o_.data); bmesh.ops.bisect_plane(bm_, geom=bm_.verts[:] + bm_.edges[:] + bm_.faces[:], plane_co=co_, plane_no=no_, clear_inner=True)
         bm_.to_mesh(o_.data); bm_.free()
 if os.environ.get('OBJLIST'): print('OBJECTS:', json.dumps(sorted((o_.name, len(o_.data.polygons) if o_.type == 'MESH' else 0, o_.hide_render) for o_ in sc.objects)))      # [fix3-int] render audit
+if os.environ.get('WEBBG'):          # [web] product-site renders: transparent film, the floor only catches shadows
+    sc.render.film_transparent = True; cyc.is_shadow_catcher = True; sc.render.image_settings.color_mode = 'RGBA'
+if os.environ.get('LAYER'):          # [web] exploded-view layers for the product site: render one assembly layer alone
+    LAY_ = {'lid': {'Lid', 'LidKit', 'StopKey', 'LightHalo', 'LightHaloCap'}, 'cover': {'TopCover', 'CoverKit', 'LidWell', 'HingePod'},
+            'body': {'NewShell', 'Mount', 'PortSleeves', 'LightLens', 'LightKit', 'Harness', 'HzLight'}}
+    keep_ = LAY_.get(os.environ['LAYER']); other_ = set().union(*LAY_.values())
+    for o_ in sc.objects:
+        if o_.type not in ('MESH', 'CURVE', 'FONT') or o_.name == 'Backdrop': continue
+        o_.hide_render = (o_.name not in keep_) if keep_ is not None else (o_.name in other_)
+    if keep_ is not None: cyc.hide_render = True          # shadows only under the base layer
+LIDMAP_ = {k_: float(v_) for k_, v_ in (t_.split('=') for t_ in filter(None, os.environ.get('LIDMAP', '').split(',')))}      # [web] per-view lid angle
+MATVIEWS_ = {}                                                           # [web] per-view recolour: "view|Mat=#hex:fin,Mat2=#hex:fin;view2|..."
+for t_ in filter(None, os.environ.get('MATVIEWS', '').split(';')):
+    vn_, ms_ = t_.split('|'); MATVIEWS_[vn_] = [m_.split('=') for m_ in ms_.split(',') if m_]
+def recolour_(pairs):
+    for mn_, mv_ in pairs:
+        hx_, fin_ = (mv_.split(':') + ['satin'])[:2]; m_ = bpy.data.materials.get(mn_)
+        if m_: b_ = m_.node_tree.nodes['Principled BSDF']; b_.inputs['Base Color'].default_value = (*lin(hx_), 1); b_.inputs['Roughness'].default_value = FIN[fin_][0]; b_.inputs['Metallic'].default_value = FIN[fin_][1]; b_.inputs['Coat Weight'].default_value = FIN[fin_][2]
 for v in VIEWS:
     if dock is not None: dock.hide_render = not v.startswith('dock'); cyc.location.z = -DOCK_LIFT if v.startswith('dock') else 0.0
     set_lid((float(os.environ['LIDDEG']) if os.environ.get('LIDDEG') else OPEN) if 'lid' in v else 0.0)      # LIDDEG: any lid angle (review / animation)
+    if v in LIDMAP_: set_lid(LIDMAP_[v])      # [web]
+    if v in MATVIEWS_: recolour_(MATVIEWS_[v])      # [web]
     loc, tgt, lens = VW[v]; cam.location = loc; cam.data.lens = lens
     if os.environ.get('HEADLIGHT'):                                      # views into the body from below: a soft light travelling with the camera
         hl_ = bpy.data.objects.get('Head') or area('Head', loc, 0.6, float(os.environ['HEADLIGHT']), 0.6); hl_ = bpy.data.objects['Head']

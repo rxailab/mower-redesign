@@ -1,0 +1,4 @@
+body deck / screws vs cover: 0 of 276473 vertices outside the skin (worst 0.00 mm)
+cover snap legs vs body: 0 of 7706 vertices outside the skin (worst 0.00 mm)
+body inner parts vs body skin: 0 of 278693 vertices outside the skin (worst 0.00 mm)
+non-finite mount vertices: 0

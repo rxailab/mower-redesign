@@ -1,6 +1,11 @@
-# 割草机 3D 模型查看器
+# 割草机产品介绍页与 3D 模型查看器
 
-在浏览器里查看割草机三维模型（新设计 v18“Orbit”：浅色卡扣式上盖罩在深色一体式车身上，2.5 mm 实体壁厚；保留原来的前保险杠、底盘和车轮）：
+本文件夹是一个静态网站：
+
+- 首页 `index.html` 是 Orbit 的产品介绍页：用滚动动画（转台序列、盖板开启序列、分层爆炸、逐字点亮的文字、数字计数、配色切换）介绍外观，以及作为割草机本身的职责：自动回充、看清前方、防雨、一按即停、状态指示和维护。样式、脚本和图片在 `site/`；图片由设计模型渲染（脚本在仓库的 `scripts/site/`）。
+- `viewer.html` 是 3D 查看器，`horizon/` 是 Horizon 方案的 3D 查看器，`original/` 是原版设计。
+
+3D 查看器在浏览器里显示割草机三维模型（新设计 v18“Orbit”f5：浅色卡扣式上盖罩在深色一体式车身上，2.5 mm 实体壁厚；保留原来的前保险杠、底盘和车轮）：
 
 - 可旋转、缩放，可一键爆炸分解为盖板、上盖、一体式车身、底盘四层；
 - 上盖盖住固定车身的 14 颗螺丝，外表面没有螺丝孔；分解后能看到螺丝和它们对应的底盘螺丝柱；
@@ -10,7 +15,10 @@
 
 ## 在线版
 
-已部署到 Vercel：<https://mower-3d-viewer.vercel.app>（公开访问，任何拿到链接的人都能打开）。
+已部署到 Vercel（公开访问，任何拿到链接的人都能打开）：
+
+- 产品介绍页：<https://mower-3d-viewer.vercel.app>
+- 3D 查看器：<https://mower-3d-viewer.vercel.app/viewer.html>
 
 修改后重新部署：在本文件夹运行 `vercel deploy --prod`。项目已关联为 `mower-3d-viewer`，关联信息在 `.vercel/` 中。`.vercelignore` 会排除本地启动器等无关文件。
 
@@ -24,13 +32,13 @@
 | macOS / Linux | 双击或在终端运行 `./启动查看器.sh` |
 | 任意系统 | 运行 `python3 serve.py`（可加 `--port 端口号`、`--no-browser`） |
 
-启动后会自动用默认浏览器打开查看器。地址为 `http://127.0.0.1:端口/index.html`，只在本机可访问。关闭命令窗口即可退出。
+启动后会自动用默认浏览器打开产品介绍页，点“在 3D 中探索”进入查看器。地址为 `http://127.0.0.1:端口/index.html`（查看器是 `viewer.html`），只在本机可访问。关闭命令窗口即可退出。
 
 运行需要：
 
 - Python 3（用于本地服务器）；
 - 支持 WebGL 的现代浏览器，例如 Chrome、Edge、Firefox 或 Safari；
-- 联网：首次打开需要联网，从 cdn.jsdelivr.net 加载 three.js。模型在本地，约 36 MB。
+- 联网：首次打开需要联网，从 cdn.jsdelivr.net 加载 three.js。模型在本地，约 32 MB。
 
 ## 功能
 
@@ -74,7 +82,11 @@
 ## 文件
 
 ```
-index.html / style.css / app.js   查看器程序（three.js r160）
+index.html                         产品介绍页
+site/site.css / site/site.js      产品介绍页的样式和滚动动画
+site/img/                          产品介绍页的图片（WebP，已烘焙页面底色；tt/ 转台 72 帧，lid/ 盖板开启 31 帧）
+viewer.html / style.css / app.js  3D 查看器程序（three.js r160）
+horizon/                           Horizon 方案的 3D 查看器（共用 app.js，模型和配色单独）
 artifact.html                      网页托管版本的页面（模型以 base64 文本分块加载）
 models/body.glb                    一体式车身：机身与下裙、灯罩与密封灯组（含摄像头）、线束、充电口框、上盖下面的台面、14 颗螺丝
 models/cover.glb                   卡扣式上盖：车顶与肩部、内侧卡脚和定位销、盖板槽、密封圈、铰链座（齿轮、卷簧盒、阻尼器）

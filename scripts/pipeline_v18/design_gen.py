@@ -194,6 +194,16 @@ def half(sign):
         Vb[..., 0] += tr['k'] * rake_ramp(Vb[..., 2], tr['z0'], tr['z1'], tr.get('b', 0.012)) * (1 - sm5(tr.get('x_a', -0.31), tr.get('x_b', -0.19), Vb[..., 0]))
     elif tr:      # raked tail: above z0 the rear face leans forwards (by dx at z1 and above); fades out along the sides between x_a and x_b
         Vb[..., 0] += tr['dx'] * sm5(tr.get('z0', 0.10), tr.get('z1', 0.20), Vb[..., 2]) * (1 - sm5(tr.get('x_a', -0.31), tr.get('x_b', -0.19), Vb[..., 0]))
+    trd_ = g('tail_round', None)
+    if trd_ and tp_:      # [tail5] a rounder tail: above z_lo the plan corners blend from the tail superellipse (n) to a rounder one (n2), pulled radially
+        xc5_ = tp_['x_c']; A5_ = tp_['x_c'] - tp_['x_tip']; w5_ = tp_['w']; n1_ = tp_.get('n', 3.0); n2_ = trd_['n2']      # towards the plan centre (x_c, 0); the chassis
+        u5_ = np.clip((xc5_ - Vb[..., 0]) / A5_, 0, None); v5_ = np.abs(Vb[..., 1]) / w5_                                 # below z_lo (wide rear tub) keeps the old outline
+        r1_ = (u5_ ** n1_ + v5_ ** n1_) ** (1 / n1_); r2_ = (u5_ ** n2_ + v5_ ** n2_) ** (1 / n2_)
+        s5_ = np.where(r2_ > 1e-9, r1_ / np.maximum(r2_, 1e-9), 1.0)                                                       # <= 1: a point on the old outline lands on the new one
+        wb5_ = trd_.get('w_base', 0.0); wz_ = (wb5_ + (1 - wb5_) * sm5(trd_.get('z_lo', 0.10), trd_.get('z_hi', 0.17), Vb[..., 2])) * (1 - trd_.get('top_keep', 0.0) * sm5(trd_.get('zt0', 0.24), trd_.get('zt1', 0.28), Vb[..., 2]))
+        wv_ = sm5(trd_.get('v0', 0.0), trd_.get('v1', 0.0001), v5_) if trd_.get('v0', 0.0) > 0 else 1.0                      # optional: keep the middle of the tail face (lens band) flat
+        sc5_ = 1 + (s5_ - 1) * wz_ * wv_ * (u5_ > 0)
+        Vb[..., 0] = xc5_ - (xc5_ - Vb[..., 0]) * sc5_; Vb[..., 1] = Vb[..., 1] * sc5_
     return Vb
 sm5 = lambda a, b, x: (lambda u: u * u * u * (u * (u * 6 - 15) + 10))(np.clip((x - a) / (b - a), 0, 1))
 TT = np.repeat(tt[:, None], NH, 1)

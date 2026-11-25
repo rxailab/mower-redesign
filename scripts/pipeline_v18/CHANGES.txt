@@ -278,3 +278,20 @@ except the two chassis cuts per side of 6.2. Body half-width beside the wheels 1
    deck_refine stays 0 (memory: see the OOM note in the session log; deck_envelope is now batched and capped).
  Integration ([fix4-int]): closed well-kit solids (pocket, latch housing, rotor, TPE lip, ears), interfere RNG seeded per pair, halo pipe vs the
    h4 closed lid's STOP bore, hingecalc mass / inertia net of the lid skin the STOP socket replaces, f4 render scripts (fix4_renders.sh, final_set4).
+
+8. ROUNDER TAIL (f5)  (tag [tail5]; product-site renderer options tagged [web])
+-------------------------------------------------------------------------------------------------------------------------------
+ Request: the Orbit tail rounder, as few hard corners as possible. Parameters: f5.json = f4 files + fix5_tail.json (mk_f3.py); the web
+ variant f5_web.json likewise. Numbers below are on the full-resolution f5.npz; check outputs are in checks/f5.
+ Plan (design_gen.py, tail_round, end of half()): above z_lo the tail's plan corners blend from the tail superellipse (n 3.3) to n2 2.4 by a
+   radial pull towards the plan centre, fully from z_hi up; v0..v1 keeps the middle of the tail face (rear lens band, lamp module) unchanged.
+   fix5_tail.json: n2 2.4, z_lo 0.09, z_hi 0.20, v0 0.72, v1 0.88.
+ Roof: the roof line falls to the tail on a larger, softer curve (new roof points from x -0.3345 to -0.15).
+ Limits kept on purpose: below z 0.09 the outline stays (the chassis tub's rear corners at z 50-85 sit 1-2 mm inside the body); variants that
+   rounded lower hit the chassis (C, D) or the rear lamp plug, ears or housing (F, G, I); H was chosen. From above, 5-8 mm of the dark body
+   shows at the rear corners.
+ Checks (all pass): interfere 0 violations; lidsim >= 0.5 mm; kitclear 1.432 mm over 0-30 mm lift; labthermal min 0.422 mm, no contact;
+   wall_clear 0; ports, lights, STOP, struts OK; labcheck exit 0; rimfold 0 self-folds. solidaudit: well.well and well.lip are still open
+   solids, as in f4 (no part touches them).
+ Renderer ([web], design_render.py): WEBBG (transparent film + shadow catcher), LAYER (lid / cover / body / base layers for the exploded
+   view), LIDMAP ("view=deg,..." per-view lid angle), MATVIEWS ("view|Mat=#hex:finish,..." per-view recolour) - used for the product site.
